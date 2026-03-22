@@ -1,0 +1,32 @@
+{
+  "name": "cinetube_server",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/mashayeakh/CineTube-backend#readme",
+  "bugs": {
+    "url": "https://github.com/mashayeakh/CineTube-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mashayeakh/CineTube-backend.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc ",
+    "dev": "tsx watch src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/node": "^25.5.0",
+    "express": "^5.2.1"
+  }
+}
