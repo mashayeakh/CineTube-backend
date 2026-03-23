@@ -1,0 +1,19 @@
+model MovieContribution {
+    id                String      @id @default(cuid())
+    contributorId     String
+    contributor       User        @relation(fields: [contributorId], references: [id], onDelete: Cascade)
+    title             String
+    description       String      @db.Text
+    poster            String
+    releaseYear       Int
+    director          String
+    cast              String      @db.Text // JSON array/string
+    genres            String      @db.Text // JSON array/string
+    streamingPlatform String
+    status            MovieStatus @default(PENDING)
+    createdAt         DateTime    @default(now())
+    updatedAt         DateTime    @updatedAt
+
+    @@index([contributorId])
+    @@map("movie_contribution")
+}

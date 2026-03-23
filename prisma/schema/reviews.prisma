@@ -1,0 +1,19 @@
+model Review {
+    id          String       @id @default(cuid())
+    movieId     String
+    userId      String
+    movie       Movie        @relation(fields: [movieId], references: [id], onDelete: Cascade)
+    user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    rating      Int
+    content     String       @db.Text
+    tags        String       @db.Text // JSON array string, e.g. ["classic","underrated"]
+    status      ReviewStatus @default(PENDING)
+    comments    Comment[]
+    reviewLikes ReviewLike[]
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+
+    @@index([movieId])
+    @@index([userId])
+    @@map("review")
+}

@@ -1,0 +1,42 @@
+enum PriceType {
+    FREE
+    PREMIUM
+}
+
+enum UserStatus {
+    ACTIVE
+    ARCHIVED
+    BLOCKED
+    DELETED
+}
+
+enum MovieStatus {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+enum ReviewStatus {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+enum PaymentStatus {
+    PENDING
+    COMPLETED
+    FAILED
+}
+
+enum SubscriptionType {
+    MONTHLY
+    YEARLY
+    TRIAL
+}
+
+enum SubscriptionStatus {
+    PENDING
+    ACTIVE
+    EXPIRED
+    CANCELLED
+}
