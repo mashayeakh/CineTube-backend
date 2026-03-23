@@ -16,7 +16,7 @@ const bootstrap = async () => {
             console.log(`Server is running on http://localhost:${port}`);
         });
     } catch (error) {
-        console.log("Filed to start srever", error)
+        console.log("Failed to start server", error)
     }
 }
 
