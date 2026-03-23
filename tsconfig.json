@@ -59,8 +59,7 @@
     "ignoreDeprecations": "5.0",
     "baseUrl": ".",                     // Add this
     "paths": {                          // Add this for cleaner imports
-      "@/*": ["src/*"],
-      "@prisma/*": ["prisma/generated/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": [
