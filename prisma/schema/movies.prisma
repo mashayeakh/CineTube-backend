@@ -19,6 +19,7 @@ model Movie {
     userId String
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+    @@unique([title])
     @@index([userId])
     @@map("movie")
 }

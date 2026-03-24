@@ -1,16 +1,22 @@
 import { Response, Request } from "express";
 import { MoviesService } from "./movies.service";
+import { catchAsyc } from "@/app/shared/catchAsyc";
+import { sendResponse } from "@/app/utils/sendResponse";
+import status from "http-status";
 
 export const MoviesController = {
-    async createMovies(req: Request, res: Response) {
-        try {
-            const result = await MoviesService.createMovies(req.body);
-            console.log("Controller ", result)
-            res.status(201).json(result);
-        } catch (error) {
-            res.status(500).json({ error: "Failed to create movie" });
-        }
-    },
 
- 
+    //! create movies
+    createMovies: catchAsyc(
+        async (req: Request, res: Response) => {
+            const data = await MoviesService.createMovies(req.body)
+            sendResponse(res, {
+                httpStatusCode: status.CREATED,
+                success: true,
+                message: "Movie created successfully",
+                result: { ...data }
+            })
+        }
+    ),
+
 }

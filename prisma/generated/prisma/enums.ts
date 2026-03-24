@@ -80,3 +80,11 @@ export const UserRole = {
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const AgeGroup = {
+  AGE_18_PLUS: 'AGE_18_PLUS',
+  AGE_UNDER_18: 'AGE_UNDER_18'
+} as const
+
+export type AgeGroup = (typeof AgeGroup)[keyof typeof AgeGroup]

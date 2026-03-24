@@ -46,3 +46,8 @@ enum UserRole {
     ADMIN
     PREMIUM_USER
 }
+
+enum AgeGroup {
+    AGE_18_PLUS
+    AGE_UNDER_18
+}

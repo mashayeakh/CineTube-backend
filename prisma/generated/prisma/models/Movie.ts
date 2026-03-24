@@ -308,10 +308,10 @@ export type MovieOrderByWithRelationInput = {
 
 export type MovieWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  title?: string
   AND?: Prisma.MovieWhereInput | Prisma.MovieWhereInput[]
   OR?: Prisma.MovieWhereInput[]
   NOT?: Prisma.MovieWhereInput | Prisma.MovieWhereInput[]
-  title?: Prisma.StringFilter<"Movie"> | string
   description?: Prisma.StringFilter<"Movie"> | string
   poster?: Prisma.StringFilter<"Movie"> | string
   releaseYear?: Prisma.IntFilter<"Movie"> | number
@@ -327,7 +327,7 @@ export type MovieWhereUniqueInput = Prisma.AtLeast<{
   payments?: Prisma.PaymentListRelationFilter
   watchlists?: Prisma.WatchListListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id">
+}, "id" | "title">
 
 export type MovieOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

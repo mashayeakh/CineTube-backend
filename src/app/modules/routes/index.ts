@@ -3,16 +3,24 @@ import { MoviesRouter } from "../movies/movies.route";
 import express from 'express';
 import { AuthRouter } from "../auth/auth.route";
 
-const router = express.Router(); // Use Router() instead of express()
+const router = express.Router(); 
 
+//!users
+router.use(
+    "/users",
+    UsersRouter
+);
+
+//!Auth
+router.use(
+    "/auth",
+    AuthRouter
+);
 
 //!Movies
 router.use(
     "/movies",
     MoviesRouter
 );
-
-router.use("/users", UsersRouter);
-router.use("/auth", AuthRouter);
 
 export default router;

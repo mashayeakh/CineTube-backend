@@ -1,16 +1,59 @@
 import { prisma } from "@/app/lib/prisma";
-import { create } from "node:domain";
 
 export const MoviesService = {
 
-    //!create movies
-    async createMovies(payload: any) {
+    //! Create movie
+    async createMovies(payload: IMovie) {
+        const {
+            title,
+            description,
+            poster,
+            releaseYear,
+            director,
+            cast,
+            genres,
+            streamingPlatform,
+            priceType,
+            userId
+        } = payload;
+
         const result = await prisma.movie.create({
-            data: payload
-        })
+            data: {
+                title: title || "",
+                description: description || "",
+                poster: poster || "",
+                releaseYear: releaseYear || new Date().getFullYear(),
+                director: director || "",
+                cast: cast ? JSON.stringify(cast) : "[]",
+                genres: genres ? JSON.stringify(genres) : "[]",
+                streamingPlatform: streamingPlatform || "",
+                priceType: priceType || "FREE",
+                user: {
+                    connect: {
+                        id: userId
+                    }
+                }
+            },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        image: true,
+                        role: true,
+                    }
+                }
+            }
+        });
 
-        console.log("RESULT ", result)
+        // Convert JSON strings back to arrays for the response
+        const response = {
+            ...result,
+            cast: JSON.parse(result.cast || "[]"),
+            genres: JSON.parse(result.genres || "[]")
+        };
 
-        return result
+        return response;
     }
 }
