@@ -12,13 +12,5 @@ export const MoviesController = {
         }
     },
 
-    async test(req: Request, res: Response) {
-        try {
-            const result = await MoviesService.test();
-            console.log("Controller ", result)
-            res.status(200).json(result);
-        } catch (error) {
-            res.status(500).json({ error: "Failed to fetch movies" });
-        }
-    }
+ 
 }

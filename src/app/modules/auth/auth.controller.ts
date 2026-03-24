@@ -8,29 +8,35 @@ import { auth } from "@/app/lib/auth";
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { sendResponse } from "@/app/utils/sendResponse";
+import { catchAsyc } from "@/app/shared/catchAsyc";
 
 
 
 export const AuthController = {
 
-    /**
-     *  httpStatusCode,
-        success,
-        message,
-        result
-     */
-    createUser: async (req: Request, res: Response) => {
-
-        const data = await AuthService.registerUser(req.body)
-
-        sendResponse(res, {
-            httpStatusCode: status.CREATED,
-            success: true,
-            message: "User Registered successfully",
-            result: {
-                ...data
-            }
-        })
-    },
+    //! User registration
+    createUser: catchAsyc(
+        async (req: Request, res: Response) => {
+            const data = await AuthService.registerUser(req.body)
+            sendResponse(res, {
+                httpStatusCode: status.CREATED,
+                success: true,
+                message: "User Registered successfully",
+                result: { ...data }
+            })
+        }
+    ),
+    //! User login
+    loginUser: catchAsyc(
+        async (req: Request, res: Response) => {
+            const data = await AuthService.loginUser(req.body)
+            sendResponse(res, {
+                httpStatusCode: status.OK,
+                success: true,
+                message: "User Logged in successfully",
+                result: { ...data }
+            })
+        }
+    )
 
 }

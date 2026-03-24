@@ -3,12 +3,7 @@ import express, { NextFunction, Request, RequestHandler, Response } from "expres
 import { MoviesController } from "./movies.controller";
 
 
-const router = express.Router(); // Use Router() instead of express()
-
-router.get(
-    "/test",
-    MoviesController.test
-);
+const router = express.Router(); 
 
 //!create movie
 router.post(

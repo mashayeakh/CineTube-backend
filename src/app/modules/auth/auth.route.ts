@@ -5,10 +5,16 @@ import { router } from 'better-auth/api';
 const route = express.Router();
 
 
-//!create user
+//!register user
 route.post(
     "/user/register",
     AuthController.createUser
+);
+
+//! login user
+route.post(
+    "/user/login",
+    AuthController.loginUser
 );
 
 
