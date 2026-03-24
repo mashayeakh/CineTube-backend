@@ -10,7 +10,8 @@ interface EnvConfig {
     DATABASE_URL: string
     BETTER_AUTH_SECRET: string
     BETTER_AUTH_URL: string,
-
+    ADMIN_EMAIL: string
+    ADMIN_PASSWORD: string,
 
 }
 
@@ -23,6 +24,8 @@ const loadEnvVariables = (): EnvConfig => {
         "DATABASE_URL",
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
+        "ADMIN_EMAIL",
+        "ADMIN_PASSWORD"
 
     ]
 
@@ -42,6 +45,9 @@ const loadEnvVariables = (): EnvConfig => {
         DATABASE_URL: process.env.DATABASE_URL as string,
         BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET as string,
         BETTER_AUTH_URL: process.env.BETTER_AUTH_URL as string,
+        ADMIN_EMAIL: process.env.ADMIN_EMAIL as string,
+        ADMIN_PASSWORD: process.env.ADMIN_PASSWORD as string,
+
 
     }
 }
