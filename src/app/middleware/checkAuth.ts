@@ -3,12 +3,11 @@ import { AppError } from "../errorHelpers/AppError";
 import status from "http-status";
 import { envVars } from "../config/env";
 import { prisma } from "../lib/prisma";
-import { Role } from 'node_modules/better-auth/dist/plugins/access/types.mjs';
 import { getCookie } from '../utils/cookies';
-import { UserStatus } from 'prisma/generated/prisma/enums';
+import { UserRole, UserStatus } from 'prisma/generated/prisma/enums';
 import { vefiryToken } from '../utils/jwt';
 
-export const checkAuth = (...authRoles: Role[]) =>
+export const checkAuth = (...authRoles: UserRole[]) =>
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             //! checking for session token
@@ -64,13 +63,13 @@ export const checkAuth = (...authRoles: Role[]) =>
                     }
 
                     //role 
-                    if (authRoles.length > 0 && !authRoles.includes(user.role as unknown as Role)) {
+                    if (authRoles.length > 0 && !authRoles.includes(user.role as UserRole)) {
                         throw new AppError(status.FORBIDDEN, "Forbideen access!! You do not have permission to access this resource");
                     }
                     req.user = {
                         userId: user.id,
                         email: user.email,
-                        role: user.role,
+                        role: user.role as UserRole,
                     }
                     // return next()
                 }
@@ -90,7 +89,7 @@ export const checkAuth = (...authRoles: Role[]) =>
                 throw new AppError(status.UNAUTHORIZED, "Unauthorized access! Invalid access token");
             }
             //stop if you are not admin
-            if (authRoles.length > 0 && !authRoles.includes(verifiedtoken.data!.role as Role)) {
+            if (authRoles.length > 0 && !authRoles.includes(verifiedtoken.data!.role as UserRole)) {
                 throw new AppError(status.FORBIDDEN, "Forbidden access! You do not have permission to access this");
 
             }

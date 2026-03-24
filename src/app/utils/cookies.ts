@@ -8,7 +8,7 @@ export const setCookie = (res: Response, key: string, value: string, options: Co
 
 //get the cookie
 export const getCookie = (req: Request, key: string) => {
-    return req.cookies[key];
+    return req.cookies?.[key];
 }
 
 //clear the cookie

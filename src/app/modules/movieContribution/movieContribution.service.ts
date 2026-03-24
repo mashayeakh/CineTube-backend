@@ -31,9 +31,9 @@ export const MoviesContributionService = {
         }
 
         // Only allow USERS or PREMIUM_USER to contribute
-        if (!["USER", "PREMIUM_USER"].includes(user.role)) {
-            throw new AppError(status.FORBIDDEN, "Only regular users can contribute movies");
-        }
+        // if (!["USER", "PREMIUM_USER"].includes(user.role)) {
+        //     throw new AppError(status.FORBIDDEN, "Only regular users can contribute movies");
+        // }
 
 
 

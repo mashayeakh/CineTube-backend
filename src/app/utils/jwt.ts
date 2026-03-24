@@ -12,7 +12,7 @@ import { success } from "zod";
 //! create Token 
 export const createToken = (payload: JwtPayload, secret: string, { expiresIn }: SignOptions) => {
     const token = jwt.sign(payload, secret, { expiresIn })
-    console.log("***Token generates : ", token)
+    // console.log("***Token generates : ", token)
     return token;
 }
 

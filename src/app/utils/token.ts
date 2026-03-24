@@ -33,7 +33,7 @@ export const getRefreshToken = (payload: JwtPayload) => {
 //* set access token in cookie
 export const setAccessTokenCookie = (res: Response, token: string) => {
     const maxAge = ms((envVars.ACCESS_TOKEN_EXPIRES_IN as StringValue));
-    setCookie(res, "access_token", token, {
+    setCookie(res, "accessToken", token, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
@@ -45,7 +45,7 @@ export const setAccessTokenCookie = (res: Response, token: string) => {
 //* set refresh token in cookie
 export const setRefreshTokenCookie = (res: Response, token: string) => {
     // const maxAge = ms((envVars.REFRESH_TOKEN_EXPIRES_IN as StringValue));
-    setCookie(res, "refresh_token", token, {
+    setCookie(res, "refreshToken", token, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
