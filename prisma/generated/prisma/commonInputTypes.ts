@@ -243,11 +243,28 @@ export type EnumMovieStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumMovieStatusFilter<$PrismaModel>
 }
 
+export type EnumAgeGroupFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgeGroup | Prisma.EnumAgeGroupFieldRefInput<$PrismaModel>
+  in?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAgeGroupFilter<$PrismaModel> | $Enums.AgeGroup
+}
+
 export type EnumPriceTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.PriceType | Prisma.EnumPriceTypeFieldRefInput<$PrismaModel>
   in?: $Enums.PriceType[] | Prisma.ListEnumPriceTypeFieldRefInput<$PrismaModel>
   notIn?: $Enums.PriceType[] | Prisma.ListEnumPriceTypeFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumPriceTypeFilter<$PrismaModel> | $Enums.PriceType
+}
+
+export type EnumAgeGroupWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgeGroup | Prisma.EnumAgeGroupFieldRefInput<$PrismaModel>
+  in?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAgeGroupWithAggregatesFilter<$PrismaModel> | $Enums.AgeGroup
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgeGroupFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgeGroupFilter<$PrismaModel>
 }
 
 export type EnumPriceTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -597,11 +614,28 @@ export type NestedEnumMovieStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumMovieStatusFilter<$PrismaModel>
 }
 
+export type NestedEnumAgeGroupFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgeGroup | Prisma.EnumAgeGroupFieldRefInput<$PrismaModel>
+  in?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAgeGroupFilter<$PrismaModel> | $Enums.AgeGroup
+}
+
 export type NestedEnumPriceTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.PriceType | Prisma.EnumPriceTypeFieldRefInput<$PrismaModel>
   in?: $Enums.PriceType[] | Prisma.ListEnumPriceTypeFieldRefInput<$PrismaModel>
   notIn?: $Enums.PriceType[] | Prisma.ListEnumPriceTypeFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumPriceTypeFilter<$PrismaModel> | $Enums.PriceType
+}
+
+export type NestedEnumAgeGroupWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgeGroup | Prisma.EnumAgeGroupFieldRefInput<$PrismaModel>
+  in?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AgeGroup[] | Prisma.ListEnumAgeGroupFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAgeGroupWithAggregatesFilter<$PrismaModel> | $Enums.AgeGroup
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgeGroupFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgeGroupFilter<$PrismaModel>
 }
 
 export type NestedEnumPriceTypeWithAggregatesFilter<$PrismaModel = never> = {

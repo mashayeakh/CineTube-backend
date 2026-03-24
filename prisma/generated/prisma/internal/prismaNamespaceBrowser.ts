@@ -184,6 +184,7 @@ export const MovieScalarFieldEnum = {
   cast: 'cast',
   genres: 'genres',
   streamingPlatform: 'streamingPlatform',
+  ageGroup: 'ageGroup',
   priceType: 'priceType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',

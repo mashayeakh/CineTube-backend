@@ -49,5 +49,6 @@ enum UserRole {
 
 enum AgeGroup {
     AGE_18_PLUS
-    AGE_UNDER_18
+    AGE_13_PLUS
+    ALL_AGES
 }
