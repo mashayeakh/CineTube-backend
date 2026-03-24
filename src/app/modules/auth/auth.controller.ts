@@ -21,14 +21,7 @@ export const AuthController = {
      */
     createUser: async (req: Request, res: Response) => {
 
-        const data = await AuthService.registerUser(req.body, res)
-
-
-        const {
-
-        } = data
-
-
+        const data = await AuthService.registerUser(req.body)
 
         sendResponse(res, {
             httpStatusCode: status.CREATED,

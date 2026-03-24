@@ -40,3 +40,9 @@ enum SubscriptionStatus {
     EXPIRED
     CANCELLED
 }
+
+enum UserRole {
+    USER
+    ADMIN
+    PREMIUM_USER
+}
