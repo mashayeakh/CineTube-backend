@@ -5,6 +5,7 @@ model User {
     emailVerified Boolean             @default(false)
     image         String?
     ageGroup      AgeGroup?
+    isDeleted     Boolean             @default(false)
     status        UserStatus          @default(ACTIVE)
     role          UserRole            @default(USER)
     createdAt     DateTime            @default(now())
