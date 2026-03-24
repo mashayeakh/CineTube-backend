@@ -17,6 +17,10 @@ route.post(
     AuthController.loginUser
 );
 
-
+//!get new access token
+route.post(
+    "/user/refresh-token",
+    AuthController.getNewToken
+);
 
 export const AuthRouter = route;

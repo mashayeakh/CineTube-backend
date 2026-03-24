@@ -6,6 +6,7 @@ import { prisma } from "../lib/prisma";
 import { Role } from 'node_modules/better-auth/dist/plugins/access/types.mjs';
 import { getCookie } from '../utils/cookies';
 import { UserStatus } from 'prisma/generated/prisma/enums';
+import { vefiryToken } from '../utils/jwt';
 
 export const checkAuth = (...authRoles: Role[]) =>
     async (req: Request, res: Response, next: NextFunction) => {
@@ -63,7 +64,7 @@ export const checkAuth = (...authRoles: Role[]) =>
                     }
 
                     //role 
-                    if (authRoles.length > 0 && !authRoles.includes(user.role)) {
+                    if (authRoles.length > 0 && !authRoles.includes(user.role as unknown as Role)) {
                         throw new AppError(status.FORBIDDEN, "Forbideen access!! You do not have permission to access this resource");
                     }
                     req.user = {
