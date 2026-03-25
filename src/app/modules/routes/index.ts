@@ -3,8 +3,9 @@ import { MoviesRouter } from "../movies/movies.route";
 import express from 'express';
 import { AuthRouter } from "../auth/auth.route";
 import { MoviesContributionRouter } from "../movieContribution/movieContribution.route";
+import { GenreRouter } from "../genre/genre.route";
 
-const router = express.Router(); 
+const router = express.Router();
 
 //!users
 router.use(
@@ -28,6 +29,12 @@ router.use(
 router.use(
     "/movie-contributions",
     MoviesContributionRouter
+);
+
+//!Genres
+router.use(
+    "/genres",
+    GenreRouter
 );
 
 export default router;

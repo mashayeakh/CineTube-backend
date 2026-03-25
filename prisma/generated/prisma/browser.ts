@@ -48,6 +48,11 @@ export type Verification = Prisma.VerificationModel
  */
 export type Comment = Prisma.CommentModel
 /**
+ * Model Genre
+ * 
+ */
+export type Genre = Prisma.GenreModel
+/**
  * Model MovieContribution
  * 
  */

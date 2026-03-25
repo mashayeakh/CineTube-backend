@@ -97,6 +97,16 @@ export const MoviesController = {
             message: "Movies fetched successfully",
             result: movies
         });
-    })
+    }),
+
+    //!delete all movies
+    deleteAllMovies: catchAsyc(async (req: Request, res: Response) => {
+        await MoviesService.deleteAllMovies();
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "All movies deleted successfully",
+        });
+    }),
 
 }

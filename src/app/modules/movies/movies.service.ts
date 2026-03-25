@@ -6,7 +6,6 @@ import { IQueryParams } from "@/app/interface/queryinterface";
 import { Prisma } from "prisma/generated/prisma/client";
 
 export const MoviesService = {
-
     //! Create movie
     async createMovies(payload: IMovie) {
         const {
@@ -16,7 +15,7 @@ export const MoviesService = {
             releaseYear,
             director,
             cast,
-            genres,
+            genres, // array of genre IDs
             streamingPlatform,
             priceType,
             ageGroup,
@@ -30,47 +29,36 @@ export const MoviesService = {
 
         const result = await prisma.movie.create({
             data: {
-                title: title || "",
+                title,
                 description: description || "",
                 poster: poster || "",
                 releaseYear: releaseYear || new Date().getFullYear(),
-                director: director || "",
+                director,
                 cast: cast ? JSON.stringify(cast) : "[]",
-                genres: genres ? JSON.stringify(genres) : "[]",
                 streamingPlatform: streamingPlatform || "",
                 priceType: priceType || "FREE",
                 ageGroup: normalizedAgeGroup,
                 user: {
-                    connect: {
-                        id: userId
-                    }
-                }
+                    connect: { id: userId }
+                },
+                genres: genres && genres.length > 0
+                    ? { connect: genres.map((id) => ({ id })) }
+                    : undefined
             },
             include: {
-                user: {
-                    select: {
-                        id: true,
-                        name: true,
-                        email: true,
-                        image: true,
-                        role: true,
-                    }
-                }
+                user: true,
+                genres: true
             }
         });
 
-        // Convert JSON strings back to arrays for the response
-        const response = {
+        return {
             ...result,
-            cast: JSON.parse(result.cast || "[]"),
-            genres: JSON.parse(result.genres || "[]")
+            cast: JSON.parse(result.cast || "[]")
         };
-
-        return response;
     },
 
+    //! Get all movies with filters, search, pagination
     async getAllMovies(query: IQueryParams) {
-
         const queryBuilder = new QueryBuilder<IMovie, Prisma.MovieWhereInput, Prisma.MovieInclude>(
             prisma.movie,
             query,
@@ -78,57 +66,53 @@ export const MoviesService = {
                 searchableFields: movieSearchableFields,
                 filterableFields: movieFilterableFields
             }
-        )
+        );
 
+        // Include relations via movieIncludeConfig with default includes
         const result = await queryBuilder
             .search()
             .filter()
-            // .where({
-            //     isDeleted: false,
-            // })
-            .include({
-                user: true,
-                // specialties: true,
-                // specialties: {
-                //     include: {
-                //         specialty: true
-                //     }
-                // }
-            })
-            .dynamicInclude(movieIncludeConfig)
+            .dynamicInclude(movieIncludeConfig, ['user', 'genres']) // include user and genres by default
             .paginate()
             .sort()
             .fields()
-            .execute()
+            .execute();
 
-        return result
+        // Parse cast and ensure user & genres are not null
+        const dataWithParsed = result.data.map((movie: any) => ({
+            ...movie,
+            cast: Array.isArray(movie.cast) ? movie.cast : JSON.parse(movie.cast || "[]"),
+            genres: Array.isArray(movie.genres) ? movie.genres : [],
+            user: movie.user || null
+        }));
+
+        return {
+            ...result,
+            data: dataWithParsed
+        };
     },
 
-    //! Get movie by ID
+    //! Get single movie by ID
     async getMovieById(id: string) {
         const movie = await prisma.movie.findUnique({
             where: { id },
-            include: { user: true }
+            include: { user: true, genres: true }
         });
 
-        if (!movie) {
-            throw new AppError(404, "Movie not found");
-        }
+        if (!movie) throw new AppError(404, "Movie not found");
 
         return {
             ...movie,
             cast: movie.cast ? JSON.parse(movie.cast) : [],
-            genres: movie.genres ? JSON.parse(movie.genres) : []
+            genres: movie.genres || [],
+            user: movie.user || null
         };
     },
 
-    //! update movie by id
+    //! Update movie
     async updateMovieById(id: string, payload: IUpdateMovie) {
         const existingMovie = await prisma.movie.findUnique({ where: { id } });
-
-        if (!existingMovie) {
-            throw new AppError(404, "Movie not found");
-        }
+        if (!existingMovie) throw new AppError(404, "Movie not found");
 
         const {
             cast,
@@ -145,51 +129,38 @@ export const MoviesService = {
             where: { id },
             data: {
                 ...rest,
-
-                // fix nullable fields
                 description: description ?? undefined,
                 poster: poster ?? undefined,
                 streamingPlatform: streamingPlatform ?? undefined,
                 priceType: priceType ?? undefined,
                 ageGroup: ageGroup ?? undefined,
-
-                // transform arrays
-                cast:
-                    cast === undefined
-                        ? undefined
-                        : JSON.stringify(cast),
-
-                genres:
-                    genres === undefined
-                        ? undefined
-                        : JSON.stringify(genres),
+                cast: cast === undefined ? undefined : JSON.stringify(cast),
+                genres: genres ? { set: genres.map((id) => ({ id })) } : undefined
+            },
+            include: {
+                user: true,
+                genres: true
             }
         });
 
         return {
             ...updatedMovie,
             cast: updatedMovie.cast ? JSON.parse(updatedMovie.cast) : [],
-            genres: updatedMovie.genres ? JSON.parse(updatedMovie.genres) : []
+            genres: updatedMovie.genres || []
         };
     },
 
-    //!delete movie by id
+    //! Delete movie
     async deleteMovieById(id: string) {
         const existingMovie = await prisma.movie.findUnique({ where: { id } });
-        if (!existingMovie) {
-            throw new AppError(404, "Movie not found");
-        }
+        if (!existingMovie) throw new AppError(404, "Movie not found");
+
         return await prisma.movie.delete({ where: { id } });
     },
 
-    //!search movies by title or director
+    //! Search movies
     async searchMovies(query: string) {
-
-        //check if query is empty
-        if (!query || query.trim() === "") {
-            throw new AppError(400, "Search query cannot be empty");
-        }
-
+        if (!query || query.trim() === "") throw new AppError(400, "Search query cannot be empty");
 
         const movies = await prisma.movie.findMany({
             where: {
@@ -198,8 +169,19 @@ export const MoviesService = {
                     { director: { contains: query, mode: "insensitive" } }
                 ]
             },
-            include: { user: true }
+            include: { user: true, genres: true }
         });
-        return movies;
+
+        return movies.map((movie) => ({
+            ...movie,
+            cast: movie.cast ? JSON.parse(movie.cast) : [],
+            genres: movie.genres || [],
+            user: movie.user || null
+        }));
+    },
+
+    // !delete al movies
+    async deleteAllMovies() {
+        await prisma.movie.deleteMany({});
     }
-}
+};

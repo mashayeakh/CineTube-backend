@@ -6,7 +6,7 @@ interface IMovie {
     releaseYear: number;
     director: string;
     cast?: string[] | null;
-    genres?: string[] | null;
+    genres: string[];
     streamingPlatform?: string | null;
     priceType?: 'FREE' | 'PREMIUM' | null;
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;

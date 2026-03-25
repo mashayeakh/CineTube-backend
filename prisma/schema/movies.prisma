@@ -1,24 +1,24 @@
 model Movie {
-    id                String      @id @default(cuid())
+    id                String    @id @default(cuid())
     title             String
     description       String
     poster            String
     releaseYear       Int
     director          String
-    cast              String      @db.Text
-    genres            String      @db.Text
+    cast              String    @db.Text
     streamingPlatform String
     ageGroup          AgeGroup
-    priceType         PriceType   @default(FREE)
-    createdAt         DateTime    @default(now())
-    updatedAt         DateTime    @updatedAt
-    reviews           Review[]
-    payments          Payment[]
-    watchlists        WatchList[]
+    priceType         PriceType @default(FREE)
+    createdAt         DateTime  @default(now())
+    updatedAt         DateTime  @updatedAt
+    userId            String
+    user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    // Foreign Key to User
-    userId String
-    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    genres Genre[] @relation("MovieGenres")
+
+    reviews    Review[]
+    payments   Payment[]
+    watchlists WatchList[]
 
     @@unique([title])
     @@index([userId])

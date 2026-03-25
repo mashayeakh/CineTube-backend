@@ -44,4 +44,13 @@ router.delete(
     MoviesController.deleteMovieById
 );
 
+//! delete all movies
+router.delete(
+    "/",
+    checkAuth(UserRole.ADMIN),
+    MoviesController.deleteAllMovies
+);
+
+
+
 export const MoviesRouter = router;

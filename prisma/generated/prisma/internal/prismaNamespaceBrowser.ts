@@ -57,6 +57,7 @@ export const ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   Comment: 'Comment',
+  Genre: 'Genre',
   MovieContribution: 'MovieContribution',
   Movie: 'Movie',
   Payment: 'Payment',
@@ -172,6 +173,14 @@ export const CommentScalarFieldEnum = {
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
+export const GenreScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type GenreScalarFieldEnum = (typeof GenreScalarFieldEnum)[keyof typeof GenreScalarFieldEnum]
+
+
 export const MovieContributionScalarFieldEnum = {
   id: 'id',
   contributorId: 'contributorId',
@@ -199,7 +208,6 @@ export const MovieScalarFieldEnum = {
   releaseYear: 'releaseYear',
   director: 'director',
   cast: 'cast',
-  genres: 'genres',
   streamingPlatform: 'streamingPlatform',
   ageGroup: 'ageGroup',
   priceType: 'priceType',
