@@ -1,0 +1,28 @@
+import { Response, Request } from "express";
+import { catchAsyc } from "@/app/shared/catchAsyc";
+import { sendResponse } from "@/app/utils/sendResponse";
+import status from "http-status";
+import { AppError } from "@/app/errorHelpers/AppError";
+import { IQueryParams } from "@/app/interface/queryinterface";
+import { ReviewService } from "../review/review.service";
+import { AdminService } from "./admin.service";
+
+export const AdminController = {
+
+    //! Approve review
+    approveReview: catchAsyc(async (req: Request, res: Response) => {
+        const { reviewId } = req.params;
+
+        if (!reviewId) throw new AppError(status.BAD_REQUEST, "Review ID is required");
+
+        const updatedReview = await AdminService.approveReview(reviewId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Review approved successfully",
+            result: updatedReview
+        });
+    }),
+
+}

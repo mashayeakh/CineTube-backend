@@ -7,6 +7,7 @@ export const movieSearchableFields = [
     "description",
     "genres.name",
     "platforms.name",
+    "status",
     "user.name",
     "user.email"
 ];
@@ -19,6 +20,7 @@ export const movieFilterableFields = [
     "ageGroup",
     "genres.name",
     "platforms.name",
+    "status",
     "userId",
     "user.email",
     "user.name"

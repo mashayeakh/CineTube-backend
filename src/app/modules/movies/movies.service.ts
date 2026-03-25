@@ -55,7 +55,10 @@ export const MoviesService = {
             include: {
                 user: true,
                 genres: true,
-                platforms: true
+                platforms: true,
+                reviews: true,
+                watchlists: true,
+                payments: true,
             }
         });
 
@@ -79,7 +82,7 @@ export const MoviesService = {
         const result = await queryBuilder
             .search()
             .filter()
-            .dynamicInclude(movieIncludeConfig, ['user', 'genres', 'platforms'])
+            .dynamicInclude(movieIncludeConfig, ['user', 'genres', 'platforms', 'reviews', 'watchlists', 'payments'])
             .paginate()
             .sort()
             .fields()
@@ -90,6 +93,9 @@ export const MoviesService = {
             cast: Array.isArray(movie.cast) ? movie.cast : JSON.parse(movie.cast || "[]"),
             genres: Array.isArray(movie.genres) ? movie.genres : [],
             platforms: Array.isArray(movie.platforms) ? movie.platforms : [],
+            reviews: Array.isArray(movie.reviews) ? movie.reviews : [],
+            watchlists: Array.isArray(movie.watchlists) ? movie.watchlists : [],
+            payments: Array.isArray(movie.payments) ? movie.payments : [],
             user: movie.user || null
         }));
 
@@ -100,7 +106,7 @@ export const MoviesService = {
     async getMovieById(id: string) {
         const movie = await prisma.movie.findUnique({
             where: { id },
-            include: { user: true, genres: true, platforms: true }
+            include: { user: true, genres: true, platforms: true, reviews: true, watchlists: true, payments: true }
         });
 
         if (!movie) throw new AppError(404, "Movie not found");
@@ -110,6 +116,9 @@ export const MoviesService = {
             cast: movie.cast ? JSON.parse(movie.cast) : [],
             genres: movie.genres || [],
             platforms: movie.platforms || [],
+            reviews: movie.reviews || [],
+            watchlists: movie.watchlists || [],
+            payments: movie.payments || [],
             user: movie.user || null
         };
     },
@@ -152,14 +161,17 @@ export const MoviesService = {
                     ? { set: [], connect: normalizedPlatformIds.map((id) => ({ id })) }
                     : undefined
             },
-            include: { user: true, genres: true, platforms: true }
+            include: { user: true, genres: true, platforms: true, reviews: true, watchlists: true, payments: true }
         });
 
         return {
             ...updatedMovie,
             cast: updatedMovie.cast ? JSON.parse(updatedMovie.cast) : [],
             genres: updatedMovie.genres || [],
-            platforms: updatedMovie.platforms || []
+            platforms: updatedMovie.platforms || [],
+            reviews: updatedMovie.reviews || [],
+            watchlists: updatedMovie.watchlists || [],
+            payments: updatedMovie.payments || []
         };
     },
 
@@ -181,7 +193,7 @@ export const MoviesService = {
                     { director: { contains: query, mode: "insensitive" } }
                 ]
             },
-            include: { user: true, genres: true, platforms: true }
+            include: { user: true, genres: true, platforms: true, reviews: true, watchlists: true, payments: true }
         });
 
         return movies.map((movie) => ({
@@ -189,6 +201,9 @@ export const MoviesService = {
             cast: movie.cast ? JSON.parse(movie.cast) : [],
             genres: movie.genres || [],
             platforms: movie.platforms || [],
+            reviews: movie.reviews || [],
+            watchlists: movie.watchlists || [],
+            payments: movie.payments || [],
             user: movie.user || null
         }));
     },
