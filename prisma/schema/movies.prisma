@@ -5,10 +5,10 @@ model Movie {
     poster            String
     releaseYear       Int
     director          String
-    cast              String      @db.Text // Could be JSON array or string
-    genres            String      @db.Text // JSON array or comma-separated
+    cast              String      @db.Text
+    genres            String      @db.Text
     streamingPlatform String
-    ageGroup          AgeGroup    
+    ageGroup          AgeGroup
     priceType         PriceType   @default(FREE)
     createdAt         DateTime    @default(now())
     updatedAt         DateTime    @updatedAt

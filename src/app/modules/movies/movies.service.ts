@@ -1,4 +1,9 @@
+import { AppError } from "@/app/errorHelpers/AppError";
 import { prisma } from "@/app/lib/prisma";
+import { QueryBuilder } from "@/app/utils/queryBuilder";
+import { movieFilterableFields, movieIncludeConfig, movieSearchableFields } from "./movie.constant";
+import { IQueryParams } from "@/app/interface/queryinterface";
+import { Prisma } from "prisma/generated/prisma/client";
 
 export const MoviesService = {
 
@@ -64,19 +69,39 @@ export const MoviesService = {
         return response;
     },
 
-    //! Get all movies
-    async getAllMovies() {
-        const movies = await prisma.movie.findMany({
-            include: { user: true },
-            orderBy: { createdAt: "desc" }
-        });
+    async getAllMovies(query: IQueryParams) {
 
-        // Parse JSON strings for cast/genres
-        return movies.map(movie => ({
-            ...movie,
-            cast: movie.cast ? JSON.parse(movie.cast) : [],
-            genres: movie.genres ? JSON.parse(movie.genres) : []
-        }));
+        const queryBuilder = new QueryBuilder<IMovie, Prisma.MovieWhereInput, Prisma.MovieInclude>(
+            prisma.movie,
+            query,
+            {
+                searchableFields: movieSearchableFields,
+                filterableFields: movieFilterableFields
+            }
+        )
+
+        const result = await queryBuilder
+            .search()
+            .filter()
+            // .where({
+            //     isDeleted: false,
+            // })
+            .include({
+                user: true,
+                // specialties: true,
+                // specialties: {
+                //     include: {
+                //         specialty: true
+                //     }
+                // }
+            })
+            .dynamicInclude(movieIncludeConfig)
+            .paginate()
+            .sort()
+            .fields()
+            .execute()
+
+        return result
     },
 
     //! Get movie by ID
@@ -87,7 +112,7 @@ export const MoviesService = {
         });
 
         if (!movie) {
-            throw new Error("Movie not found");
+            throw new AppError(404, "Movie not found");
         }
 
         return {
@@ -95,5 +120,86 @@ export const MoviesService = {
             cast: movie.cast ? JSON.parse(movie.cast) : [],
             genres: movie.genres ? JSON.parse(movie.genres) : []
         };
+    },
+
+    //! update movie by id
+    async updateMovieById(id: string, payload: IUpdateMovie) {
+        const existingMovie = await prisma.movie.findUnique({ where: { id } });
+
+        if (!existingMovie) {
+            throw new AppError(404, "Movie not found");
+        }
+
+        const {
+            cast,
+            genres,
+            description,
+            poster,
+            streamingPlatform,
+            priceType,
+            ageGroup,
+            ...rest
+        } = payload;
+
+        const updatedMovie = await prisma.movie.update({
+            where: { id },
+            data: {
+                ...rest,
+
+                // fix nullable fields
+                description: description ?? undefined,
+                poster: poster ?? undefined,
+                streamingPlatform: streamingPlatform ?? undefined,
+                priceType: priceType ?? undefined,
+                ageGroup: ageGroup ?? undefined,
+
+                // transform arrays
+                cast:
+                    cast === undefined
+                        ? undefined
+                        : JSON.stringify(cast),
+
+                genres:
+                    genres === undefined
+                        ? undefined
+                        : JSON.stringify(genres),
+            }
+        });
+
+        return {
+            ...updatedMovie,
+            cast: updatedMovie.cast ? JSON.parse(updatedMovie.cast) : [],
+            genres: updatedMovie.genres ? JSON.parse(updatedMovie.genres) : []
+        };
+    },
+
+    //!delete movie by id
+    async deleteMovieById(id: string) {
+        const existingMovie = await prisma.movie.findUnique({ where: { id } });
+        if (!existingMovie) {
+            throw new AppError(404, "Movie not found");
+        }
+        return await prisma.movie.delete({ where: { id } });
+    },
+
+    //!search movies by title or director
+    async searchMovies(query: string) {
+
+        //check if query is empty
+        if (!query || query.trim() === "") {
+            throw new AppError(400, "Search query cannot be empty");
+        }
+
+
+        const movies = await prisma.movie.findMany({
+            where: {
+                OR: [
+                    { title: { contains: query, mode: "insensitive" } },
+                    { director: { contains: query, mode: "insensitive" } }
+                ]
+            },
+            include: { user: true }
+        });
+        return movies;
     }
 }
