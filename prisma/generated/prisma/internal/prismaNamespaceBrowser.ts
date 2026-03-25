@@ -63,6 +63,7 @@ export const ModelName = {
   Payment: 'Payment',
   ReviewLike: 'ReviewLike',
   Review: 'Review',
+  StreamingPlatform: 'StreamingPlatform',
   Subscription: 'Subscription',
   WatchList: 'WatchList'
 } as const
@@ -208,7 +209,6 @@ export const MovieScalarFieldEnum = {
   releaseYear: 'releaseYear',
   director: 'director',
   cast: 'cast',
-  streamingPlatform: 'streamingPlatform',
   ageGroup: 'ageGroup',
   priceType: 'priceType',
   createdAt: 'createdAt',
@@ -256,6 +256,14 @@ export const ReviewScalarFieldEnum = {
 } as const
 
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+export const StreamingPlatformScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type StreamingPlatformScalarFieldEnum = (typeof StreamingPlatformScalarFieldEnum)[keyof typeof StreamingPlatformScalarFieldEnum]
 
 
 export const SubscriptionScalarFieldEnum = {

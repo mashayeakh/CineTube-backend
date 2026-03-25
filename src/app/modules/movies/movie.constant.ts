@@ -1,36 +1,37 @@
-import { Prisma } from "prisma/generated/prisma/client"
+import { Prisma } from "prisma/generated/prisma/client";
 
-//  searchable fields (used in search())
+// searchable fields
 export const movieSearchableFields = [
     "title",
     "director",
     "description",
-    "streamingPlatform",
-    "genres.name",    // since stored as string
+    "genres.name",
+    "platforms.name",
     "user.name",
     "user.email"
-]
+];
 
-// filterable fields (used in filter())
+// filterable fields
 export const movieFilterableFields = [
     "title",
     "releaseYear",
     "priceType",
     "ageGroup",
     "genres.name",
-    "streamingPlatform",
+    "platforms.name",
     "userId",
     "user.email",
-    "user.name",
-]
+    "user.name"
+];
 
-// 🔗 include config (relations)
+// include config
 export const movieIncludeConfig: Partial<
     Record<keyof Prisma.MovieInclude, Prisma.MovieInclude[keyof Prisma.MovieInclude]>
 > = {
     user: true,
     genres: true,
+    platforms: true,
     reviews: true,
     payments: true,
     watchlists: true
-}
+};

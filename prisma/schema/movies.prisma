@@ -1,20 +1,21 @@
 model Movie {
-    id                String    @id @default(cuid())
-    title             String
-    description       String
-    poster            String
-    releaseYear       Int
-    director          String
-    cast              String    @db.Text
-    streamingPlatform String
-    ageGroup          AgeGroup
-    priceType         PriceType @default(FREE)
-    createdAt         DateTime  @default(now())
-    updatedAt         DateTime  @updatedAt
-    userId            String
-    user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id          String    @id @default(cuid())
+    title       String
+    description String
+    poster      String
+    releaseYear Int
+    director    String
+    cast        String    @db.Text
+    // streamingPlatform String
+    ageGroup    AgeGroup
+    priceType   PriceType @default(FREE)
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    userId      String
+    user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    genres Genre[] @relation("MovieGenres")
+    genres    Genre[]             @relation("MovieGenres")
+    platforms StreamingPlatform[] @relation("MoviePlatforms")
 
     reviews    Review[]
     payments   Payment[]

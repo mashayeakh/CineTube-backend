@@ -26,5 +26,10 @@ export const GenreService = {
         if (!existing) throw new AppError(status.NOT_FOUND, "Genre not found");
 
         return prisma.genre.delete({ where: { id } });
+    },
+
+    //!deleteallGenre
+    async deleteAllGenres() {
+        await prisma.genre.deleteMany({});
     }
 };

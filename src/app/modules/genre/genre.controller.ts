@@ -4,6 +4,8 @@ import { GenreService } from "./genre.service";
 import { sendResponse } from "@/app/utils/sendResponse";
 import { catchAsyc } from "@/app/shared/catchAsyc";
 import { AppError } from "@/app/errorHelpers/AppError";
+import { prisma } from "@/app/lib/prisma";
+import { MoviesService } from "../movies/movies.service";
 
 export const GenreController = {
 
@@ -52,6 +54,16 @@ export const GenreController = {
             success: true,
             message: "Genre deleted successfully",
             result: null
+        });
+    }),
+
+    //! Delete all genres
+    deleteAllGenres: catchAsyc(async (req: Request, res: Response) => {
+        await GenreService.deleteAllGenres();
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "All genres deleted successfully",
         });
     }),
 

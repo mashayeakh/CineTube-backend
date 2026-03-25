@@ -102,6 +102,11 @@ export type ReviewLike = Prisma.ReviewLikeModel
  */
 export type Review = Prisma.ReviewModel
 /**
+ * Model StreamingPlatform
+ * 
+ */
+export type StreamingPlatform = Prisma.StreamingPlatformModel
+/**
  * Model Subscription
  * 
  */

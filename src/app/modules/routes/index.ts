@@ -4,6 +4,7 @@ import express from 'express';
 import { AuthRouter } from "../auth/auth.route";
 import { MoviesContributionRouter } from "../movieContribution/movieContribution.route";
 import { GenreRouter } from "../genre/genre.route";
+import { StreamingPlatformRouter } from "../streamingPlatform/streamingPlatform.route";
 
 const router = express.Router();
 
@@ -35,6 +36,12 @@ router.use(
 router.use(
     "/genres",
     GenreRouter
+);
+
+//!Streaming Platforms
+router.use(
+    "/streaming-platforms",
+    StreamingPlatformRouter
 );
 
 export default router;
