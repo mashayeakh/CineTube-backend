@@ -28,36 +28,15 @@ The API is served under the base prefix:
 
 ## Getting Started
 
-### 1. Install dependencies
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-### 2. Configure environment variables
+### Configure environment variables
 
-Create a `.env` file in the project root and add:
-
-```env
-NODE_ENV=development
-PORT=5000
-DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DB_NAME
-
-BETTER_AUTH_SECRET=your_secret
-BETTER_AUTH_URL=http://localhost:5000
-FRONTEND_URL=http://localhost:3000
-
-ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=admin_password
-
-ACCESS_TOKEN_SECRET=access_secret
-REFRESH_TOKEN_SECRET=refresh_secret
-ACCESS_TOKEN_EXPIRES_IN=1d
-REFRESH_TOKEN_EXPIRES_IN=30d
-
-BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN=86400
-BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE=86400
-```
+````
 
 Notes:
 
@@ -68,7 +47,7 @@ Notes:
 
 ```bash
 npx prisma migrate dev
-```
+````
 
 ### 4. Run in development
 
