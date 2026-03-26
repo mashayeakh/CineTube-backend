@@ -61,6 +61,7 @@ export const MoviesService = {
     async getAllMovies(query: IQueryParams) {
         const queryBuilder = new QueryBuilder<IMovie, Prisma.MovieWhereInput, Prisma.MovieInclude>(
             prisma.movie,
+
             query,
             {
                 searchableFields: movieSearchableFields,

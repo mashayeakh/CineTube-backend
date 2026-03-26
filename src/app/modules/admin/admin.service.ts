@@ -40,5 +40,33 @@ export const AdminService = {
             ...updatedReview,
             tags: updatedReview.tags ? JSON.parse(updatedReview.tags) : []
         }
+    },
+
+    //! Approve movie contribution
+    async approveMovieContribution(contributionId: string) {
+
+        // find the contribution first
+        const contribution = await prisma.movieContribution.findUnique({
+            where: { id: contributionId }
+        });
+
+        if (!contribution) {
+            throw new AppError(404, "Movie contribution not found");
+        }
+
+        // prevent re-processing
+        if (contribution.status !== "PENDING") {
+            throw new AppError(400, "Movie contribution already processed");
+        }
+
+        // update status
+        const updated = await prisma.movieContribution.update({
+            where: { id: contributionId },
+            data: {
+                status: "APPROVED"
+            }
+        });
+
+        return updated;
     }
 }

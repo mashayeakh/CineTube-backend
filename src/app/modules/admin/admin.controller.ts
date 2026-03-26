@@ -25,4 +25,20 @@ export const AdminController = {
         });
     }),
 
+    //! Approve movie contribution
+    approveMovieContribution: catchAsyc(async (req: Request, res: Response) => {
+        const { contributionId } = req.params;
+
+        if (!contributionId) throw new AppError(status.BAD_REQUEST, "Contribution ID is required");
+
+        const updatedContribution = await AdminService.approveMovieContribution(contributionId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Movie contribution approved successfully",
+            result: updatedContribution
+        });
+    }),
+
 }
