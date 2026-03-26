@@ -13,7 +13,6 @@ import { AppError } from "@/app/errorHelpers/AppError";
 import { setAccessTokenCookie, setBetterAuthSessionCookie, setRefreshTokenCookie } from "@/app/utils/token";
 
 
-
 export const AuthController = {
 
     //! User registration
@@ -95,5 +94,17 @@ export const AuthController = {
         }
     ),
 
-
+    //!verify email
+    verifyEmail: catchAsyc(
+        async (req: Request, res: Response) => {
+            const { email, otp } = req.body;
+            const result = await AuthService.verifyEmail(email, otp);
+            sendResponse(res, {
+                httpStatusCode: status.OK,
+                success: true,
+                message: "Email verified successfully",
+                result
+            })
+        }
+    ),
 }

@@ -178,6 +178,30 @@ export const AuthService = {
         }
     },
 
+    //!Verify your email
+    async verifyEmail(email: string, otp: string) {
+        // get the otp from better auth
+        const result = await auth.api.verifyEmailOTP({
+            body: {
+                email,
+                otp
+            }
+        })
+
+        //check if the otp is correct and if the email is verified then update the emailVerified field in the user table.
+
+        if (result.status && !result.user.emailVerified) {
+            await prisma.user.update({
+                where: {
+                    email: email
+                },
+                data: {
+                    emailVerified: true
+                }
+            });
+        }
+    }
+
 }
 
 

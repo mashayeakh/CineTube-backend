@@ -23,4 +23,16 @@ route.post(
     AuthController.getNewToken
 );
 
+//!get new access token
+route.post(
+    "/user/refresh-token",
+    AuthController.getNewToken
+);
+
+//!verify email
+route.post(
+    "/user/verify-email",
+    AuthController.verifyEmail
+);
+
 export const AuthRouter = route;
