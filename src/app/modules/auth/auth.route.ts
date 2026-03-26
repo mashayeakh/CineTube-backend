@@ -37,6 +37,24 @@ route.post(
     AuthController.verifyEmail
 );
 
+//!forget password
+route.post(
+    "/user/forget-password",
+    AuthController.forgetPassword
+);
+
+//!reset password
+route.post(
+    "/user/reset-password",
+    AuthController.resetPassword
+);
+
+//!change password
+route.post(
+    "/user/change-password",
+    AuthController.changePassword
+);
+
 //! logout user 
 route.post(
     "/user/logout",

@@ -109,6 +109,63 @@ export const AuthController = {
         }
     ),
 
+    //!forget password
+    forgetPassword: catchAsyc(
+        async (req: Request, res: Response) => {
+            const { email } = req.body;
+            const result = await AuthService.forgetPassword(email);
+            sendResponse(res, {
+                httpStatusCode: status.OK,
+                success: true,
+                message: "Password reset otp sent to this email",
+                result
+            })
+        }
+    ),
+
+    //!reset password
+    resetPassword: catchAsyc(
+        async (req: Request, res: Response) => {
+            const { email, otp, newPassword } = req.body;
+            const result = await AuthService.resetPassword(email, otp, newPassword);
+            sendResponse(res, {
+                httpStatusCode: status.OK,
+                success: true,
+                message: "Password reset successfully",
+                result
+            })
+        }
+    ),
+
+    //!change password
+    changePassword: catchAsyc(
+        async (req: Request, res: Response) => {
+
+            const sessionToken = req.cookies['better-auth.session_token'];
+
+            console.log("Session token from controller", sessionToken);
+
+            const result = await AuthService.changePassword(req.body, sessionToken);
+
+            const {
+                accessToken,
+                refreshToken,
+                token
+            } = result
+
+            setAccessTokenCookie(res, accessToken);
+            setRefreshTokenCookie(res, refreshToken);
+            setBetterAuthSessionCookie(res, token as string);
+
+
+            sendResponse(res, {
+                httpStatusCode: status.OK,
+                success: true,
+                message: "Password changed successfully",
+                result
+            })
+        }),
+
     //!logout user
     logout: catchAsyc(
         async (req: Request, res: Response) => {
@@ -116,19 +173,19 @@ export const AuthController = {
 
             const result = await AuthService.logout(betterAuthSessiontoken);
 
-            //clear the cookies - access tokene
+            //clear the cookies - access token
             clearCookie(res, 'accessToken', {
                 httpOnly: true,
                 secure: false,
                 sameSite: "none",
             });
-            //clear the cookies - refresh tokene
+            //clear the cookies - refresh token
             clearCookie(res, 'refreshToken', {
                 httpOnly: true,
                 secure: false,
                 sameSite: "none",
             });
-            //clear the cookies - better-auth-session tokene
+            //clear the cookies - better-auth-session token
             clearCookie(res, 'better-auth.session_token', {
                 httpOnly: true,
                 secure: false,

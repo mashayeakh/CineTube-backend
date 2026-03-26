@@ -202,6 +202,134 @@ export const AuthService = {
         }
     },
 
+    //!forget password
+    async forgetPassword(email: string) {
+        //generate otp and send email to user with the otp.
+        //find the user with the email
+        const isUserExist = await prisma.user.findUnique({
+            where: {
+                email: email
+            }
+        })
+
+        //if user does not exist
+        if (!isUserExist) {
+            throw new AppError(status.NOT_FOUND, "User not found");
+        }
+
+        //if user verifiend or not
+        if (isUserExist && !isUserExist.emailVerified) {
+            throw new AppError(status.BAD_REQUEST, "Email is not verified. Please verify your email first");
+        }
+
+        //if user exist but isDeleted is true then do not send email
+        if (isUserExist && isUserExist.isDeleted) {
+            throw new AppError(status.BAD_REQUEST, "User not found");
+        }
+
+        //now send the email with otp from better auth
+        await auth.api.requestPasswordResetEmailOTP({
+            body: {
+                email: email
+            }
+        })
+
+    },
+
+    //!reset password
+    async resetPassword(email: string, otp: string, newPassword: string) {
+        const isUserExist = await prisma.user.findUnique({
+            where: {
+                email: email
+            }
+        })
+
+        if (!isUserExist) {
+            throw new AppError(status.NOT_FOUND, "User not found")
+        }
+
+        if (isUserExist && !isUserExist.emailVerified) {
+            throw new AppError(status.BAD_REQUEST, "Email is not verified. ")
+        }
+
+        if (isUserExist && isUserExist.isDeleted) {
+            throw new AppError(status.BAD_REQUEST, "User is deleted. ")
+        }
+        //now actual pass change part
+        await auth.api.resetPasswordEmailOTP({
+            body: {
+                email: email,
+                otp: otp,
+                password: newPassword
+            }
+        })
+    },
+
+    //!change password
+    async changePassword(payload: IChangePassword, sessionToken: string) {
+        // we will ge tthe user from sestion toekn with using better auth
+        const userSession = await auth.api.getSession({
+            headers: {
+                AUTHORIZATION: `Bearer ${sessionToken}`
+            }
+        })
+
+        console.log("---user session", userSession)
+
+        if (!userSession || !userSession.user) {
+            throw new AppError(status.UNAUTHORIZED, "Invalid session token");
+        }
+
+        const {
+            currentPassword,
+            newPassword
+        } = payload
+
+        //now change the password with better auth
+        const result = await auth.api.changePassword({
+            body: {
+                currentPassword: currentPassword,
+                newPassword: newPassword,
+                //to logout from all device 
+                revokeOtherSessions: true,
+            },
+            // we must pass the header so that better auth can idendify the user and the change password
+            headers: {
+                AUTHORIZATION: `Bearer ${sessionToken}`
+            }
+        });
+
+        //generate new access token
+        const accessToken = getAccessToken({
+            userId: userSession.user.id,
+            role: userSession.user.role,
+            name: userSession.user.name,
+            email: userSession.user.email,
+            status: userSession.user.status,
+            isDeleated: userSession.user.isDeleted,
+            emailVerified: userSession.user.emailVerified,
+        })
+
+        //generate the refresh token as well
+        const refreshToken = getRefreshToken({
+            userId: userSession.user.id,
+            role: userSession.user.role,
+            name: userSession.user.name,
+            email: userSession.user.email,
+            status: userSession.user.status,
+            isDeleated: userSession.user.isDeleted,
+            emailVerified: userSession.user.emailVerified,
+        });
+
+        console.log("***Result ", result);
+        return {
+            ...result,
+            accessToken,
+            refreshToken
+        }
+
+    },
+
     //!logout user
     async logout(sessionToken: string) {
         return await auth.api.signOut({
