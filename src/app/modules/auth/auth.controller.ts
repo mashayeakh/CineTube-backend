@@ -11,6 +11,7 @@ import { sendResponse } from "@/app/utils/sendResponse";
 import { catchAsyc } from "@/app/shared/catchAsyc";
 import { AppError } from "@/app/errorHelpers/AppError";
 import { setAccessTokenCookie, setBetterAuthSessionCookie, setRefreshTokenCookie } from "@/app/utils/token";
+import { clearCookie } from "@/app/utils/cookies";
 
 
 export const AuthController = {
@@ -103,6 +104,41 @@ export const AuthController = {
                 httpStatusCode: status.OK,
                 success: true,
                 message: "Email verified successfully",
+                result
+            })
+        }
+    ),
+
+    //!logout user
+    logout: catchAsyc(
+        async (req: Request, res: Response) => {
+            const betterAuthSessiontoken = req.cookies["better-auth.session_token"];
+
+            const result = await AuthService.logout(betterAuthSessiontoken);
+
+            //clear the cookies - access tokene
+            clearCookie(res, 'accessToken', {
+                httpOnly: true,
+                secure: false,
+                sameSite: "none",
+            });
+            //clear the cookies - refresh tokene
+            clearCookie(res, 'refreshToken', {
+                httpOnly: true,
+                secure: false,
+                sameSite: "none",
+            });
+            //clear the cookies - better-auth-session tokene
+            clearCookie(res, 'better-auth.session_token', {
+                httpOnly: true,
+                secure: false,
+                sameSite: "none",
+            });
+
+            sendResponse(res, {
+                httpStatusCode: status.OK,
+                success: true,
+                message: "You logged out successfully",
                 result
             })
         }

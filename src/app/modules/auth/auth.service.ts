@@ -200,6 +200,15 @@ export const AuthService = {
                 }
             });
         }
+    },
+
+    //!logout user
+    async logout(sessionToken: string) {
+        return await auth.api.signOut({
+            headers: {
+                AUTHORIZATION: `Bearer ${sessionToken}`
+            }
+        })
     }
 
 }
