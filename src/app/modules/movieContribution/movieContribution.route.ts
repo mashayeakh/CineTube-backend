@@ -1,6 +1,6 @@
 
 import express, { NextFunction, Request, RequestHandler, Response } from "express";
-import { MoviesController } from "./movieContribution.controller";
+import { MovieContributionController } from "./movieContribution.controller";
 import { checkAuth } from "@/app/middleware/checkAuth";
 import { UserRole } from "prisma/generated/prisma/enums";
 
@@ -10,18 +10,18 @@ const router = express.Router();
 //!contribute a movie
 router.post(
     "/movie",
-    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
-    MoviesController.contributeMovie
+    checkAuth(UserRole.USER),
+    MovieContributionController.contributeMovie
 );
-// //!fetch all movies
-// router.get(
-//     "/",
-//     MoviesController.getAllMovies
-// );
+//!fetch all movies
+router.get(
+    "/",
+    MovieContributionController.getAllMovies
+);
 // //!get movie by ID
 // router.get(
 //     "/:id",
-//     MoviesController.getMovieById
+//     MovieContributionController.getMovieById
 // );
 
 

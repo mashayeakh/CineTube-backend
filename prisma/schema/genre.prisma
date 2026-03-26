@@ -1,7 +1,8 @@
 model Genre {
-    id     String  @id @default(cuid())
-    name   String  @unique
-    movies Movie[] @relation("MovieGenres")
+    id                 String              @id @default(cuid())
+    name               String              @unique
+    movies             Movie[]             @relation("MovieGenres")
+    movieContributions MovieContribution[] @relation("MovieContributionGenres")
 
     @@map("genre")
 }

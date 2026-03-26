@@ -1,4 +1,5 @@
 export interface IMovieContributionPayload {
+
     contributorId: string;
     title: string;
     description: string;
@@ -7,5 +8,8 @@ export interface IMovieContributionPayload {
     director: string;
     cast?: string[];
     genres?: string[];
-    streamingPlatform: string;
+    platforms?: string[];
+    ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

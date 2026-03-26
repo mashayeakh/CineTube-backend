@@ -191,8 +191,7 @@ export const MovieContributionScalarFieldEnum = {
   releaseYear: 'releaseYear',
   director: 'director',
   cast: 'cast',
-  genres: 'genres',
-  streamingPlatform: 'streamingPlatform',
+  ageGroup: 'ageGroup',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

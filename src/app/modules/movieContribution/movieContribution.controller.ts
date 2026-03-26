@@ -5,7 +5,7 @@ import { sendResponse } from "@/app/utils/sendResponse";
 import status from "http-status";
 import { AppError } from "@/app/errorHelpers/AppError";
 
-export const MoviesController = {
+export const MovieContributionController = {
 
     //! create movie contribution
     contributeMovie: catchAsyc(
@@ -20,19 +20,19 @@ export const MoviesController = {
         }
     ),
 
-    // //! Get all movies
-    // getAllMovies: catchAsyc(async (req: Request, res: Response) => {
-    //     const movies = await MoviesService.getAllMovies();
-    //     if (!movies || movies.length === 0) {
-    //         throw new AppError(status.NOT_FOUND, "No movies found");
-    //     }
-    //     sendResponse(res, {
-    //         httpStatusCode: status.OK,
-    //         success: true,
-    //         message: "Movies fetched successfully",
-    //         result: movies
-    //     });
-    // }),
+    //! Get all movies
+    getAllMovies: catchAsyc(async (req: Request, res: Response) => {
+        const movies = await MoviesContributionService.getAllContributedMovies();
+        if (!movies || movies.length === 0) {
+            throw new AppError(status.NOT_FOUND, "No movies found");
+        }
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "All contributed movies fetched successfully",
+            result: movies
+        });
+    }),
 
     // //! Get movie by ID
     // getMovieById: catchAsyc(async (req: Request, res: Response) => {
@@ -40,7 +40,7 @@ export const MoviesController = {
     //     if (!id) {
     //         throw new AppError(status.BAD_REQUEST, "Movie ID is required");
     //     }
-    //     const movie = await MoviesService.getMovieById(id as string);
+    //     const movie = await MoviesContributionService.getMovieById(id as string);
     //     sendResponse(res, {
     //         httpStatusCode: status.OK,
     //         success: true,

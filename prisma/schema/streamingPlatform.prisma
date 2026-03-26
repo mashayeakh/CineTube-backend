@@ -1,7 +1,8 @@
 model StreamingPlatform {
-    id     String  @id @default(cuid())
-    name   String  @unique
-    movies Movie[] @relation("MoviePlatforms")
+    id                 String              @id @default(cuid())
+    name               String              @unique
+    movies             Movie[]             @relation("MoviePlatforms")
+    movieContributions MovieContribution[] @relation("MovieContributionPlatforms")
 
     @@map("streaming_platform")
 }

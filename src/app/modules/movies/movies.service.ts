@@ -16,20 +16,13 @@ export const MoviesService = {
             releaseYear,
             director,
             cast,
-            genres,      // array of genre IDs
-            platforms,   // array of platform IDs
-            streamingPlatforms,
-            streamingPlatform,
+            genres,
+            platforms,
             priceType,
             ageGroup,
             userId
         } = payload;
 
-        const normalizedPlatformIds = Array.from(new Set([
-            ...(Array.isArray(platforms) ? platforms : []),
-            ...(Array.isArray(streamingPlatforms) ? streamingPlatforms : []),
-            ...(typeof streamingPlatform === "string" && streamingPlatform.trim() ? [streamingPlatform] : [])
-        ]));
 
         const normalizedAgeGroup: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" =
             ageGroup === "AGE_18_PLUS" || ageGroup === "AGE_13_PLUS" || ageGroup === "ALL_AGES"
@@ -47,18 +40,14 @@ export const MoviesService = {
                 priceType: priceType || "FREE",
                 ageGroup: normalizedAgeGroup,
                 user: { connect: { id: userId } },
-                genres: genres?.length ? { connect: genres.map((id) => ({ id })) } : undefined,
-                platforms: normalizedPlatformIds.length
-                    ? { connect: normalizedPlatformIds.map((id) => ({ id })) }
+
+                genres: genres?.length
+                    ? { connect: genres.map((id) => ({ id })) }
+                    : undefined,
+
+                platforms: platforms?.length
+                    ? { connect: platforms.map((id) => ({ id })) }
                     : undefined
-            },
-            include: {
-                user: true,
-                genres: true,
-                platforms: true,
-                reviews: true,
-                watchlists: true,
-                payments: true,
             }
         });
 
@@ -132,8 +121,6 @@ export const MoviesService = {
             cast,
             genres,
             platforms,
-            streamingPlatforms,
-            streamingPlatform,
             description,
             poster,
             priceType,
@@ -141,11 +128,6 @@ export const MoviesService = {
             ...rest
         } = payload;
 
-        const normalizedPlatformIds = Array.from(new Set([
-            ...(Array.isArray(platforms) ? platforms : []),
-            ...(Array.isArray(streamingPlatforms) ? streamingPlatforms : []),
-            ...(typeof streamingPlatform === "string" && streamingPlatform.trim() ? [streamingPlatform] : [])
-        ]));
 
         const updatedMovie = await prisma.movie.update({
             where: { id },
@@ -157,8 +139,8 @@ export const MoviesService = {
                 ageGroup: ageGroup ?? undefined,
                 cast: cast === undefined ? undefined : JSON.stringify(cast),
                 genres: genres ? { set: [], connect: genres.map((id) => ({ id })) } : undefined,
-                platforms: platforms !== undefined || streamingPlatforms !== undefined || streamingPlatform !== undefined
-                    ? { set: [], connect: normalizedPlatformIds.map((id) => ({ id })) }
+                platforms: platforms !== undefined
+                    ? { set: [], connect: platforms?.map((id) => ({ id })) }
                     : undefined
             },
             include: { user: true, genres: true, platforms: true, reviews: true, watchlists: true, payments: true }

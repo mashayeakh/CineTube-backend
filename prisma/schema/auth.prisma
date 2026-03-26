@@ -1,26 +1,26 @@
 model User {
-    id            String              @id
-    name          String
-    email         String
-    emailVerified Boolean             @default(false)
-    image         String?
-    ageGroup      AgeGroup?
-    isDeleted     Boolean             @default(false)
-    status        UserStatus          @default(ACTIVE)
-    role          UserRole            @default(USER)
-    createdAt     DateTime            @default(now())
-    updatedAt     DateTime            @updatedAt
-    admin         Admin?
-    sessions      Session[]
-    accounts      Account[]
-    movies        Movie[]
-    contributions MovieContribution[]
-    reviews       Review[]
-    comments      Comment[]
-    reviewLikes   ReviewLike[]
-    payments      Payment[]
-    subscriptions Subscription[]
-    watchlists    WatchList[]
+    id                 String              @id
+    name               String
+    email              String
+    emailVerified      Boolean             @default(false)
+    image              String?
+    ageGroup           AgeGroup?
+    isDeleted          Boolean             @default(false)
+    status             UserStatus          @default(ACTIVE)
+    role               UserRole            @default(USER)
+    createdAt          DateTime            @default(now())
+    updatedAt          DateTime            @updatedAt
+    admin              Admin?
+    sessions           Session[]
+    accounts           Account[]
+    movies             Movie[]
+    reviews            Review[]
+    comments           Comment[]
+    reviewLikes        ReviewLike[]
+    payments           Payment[]
+    subscriptions      Subscription[]
+    watchlists         WatchList[]
+    movieContributions MovieContribution[]
 
     @@unique([email])
     @@map("user")

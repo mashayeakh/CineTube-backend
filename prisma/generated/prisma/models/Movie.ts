@@ -640,10 +640,6 @@ export type MovieUncheckedUpdateManyWithoutGenresNestedInput = {
   deleteMany?: Prisma.MovieScalarWhereInput | Prisma.MovieScalarWhereInput[]
 }
 
-export type EnumAgeGroupFieldUpdateOperationsInput = {
-  set?: $Enums.AgeGroup
-}
-
 export type EnumPriceTypeFieldUpdateOperationsInput = {
   set?: $Enums.PriceType
 }

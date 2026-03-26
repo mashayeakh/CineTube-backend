@@ -6,11 +6,8 @@ export interface IMovie {
     releaseYear: number;
     director: string;
     cast?: string[] | null;
-    genres: string[];             // array of genre IDs
-    // Backward compatible platform inputs
-    streamingPlatform?: string | null;     // single platform ID
-    streamingPlatforms?: string[] | null;  // array of platform IDs
-    platforms?: string[] | null;           // array of platform IDs
+    genres: string[];
+    platforms: string[];
     priceType?: 'FREE' | 'PREMIUM' | null;
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;
     userId: string;
@@ -26,8 +23,6 @@ export interface IUpdateMovie {
     director?: string;
     cast?: string[] | null;
     genres?: string[] | null;
-    streamingPlatform?: string | null;
-    streamingPlatforms?: string[] | null;
     platforms?: string[] | null;
     priceType?: 'FREE' | 'PREMIUM' | null;
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;
