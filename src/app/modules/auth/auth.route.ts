@@ -60,6 +60,19 @@ route.post(
     "/user/logout",
     checkAuth(UserRole.ADMIN, UserRole.USER, UserRole.PREMIUM_USER),
     AuthController.logout
-)
+);
+
+
+//! get the profile of all the user
+route.get(
+    "/user/profile",
+    checkAuth(UserRole.ADMIN, UserRole.USER, UserRole.PREMIUM_USER),
+    AuthController.getMyProfile
+);
+
+
+
+
+
 
 export const AuthRouter = route;

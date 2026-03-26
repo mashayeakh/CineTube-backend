@@ -1,5 +1,6 @@
 import { envVars } from "@/app/config/env";
 import { AppError } from "@/app/errorHelpers/AppError";
+import { IRequestUser } from "@/app/interface/requestUserInterface";
 import { auth } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
 import { vefiryToken } from "@/app/utils/jwt";
@@ -337,8 +338,27 @@ export const AuthService = {
                 AUTHORIZATION: `Bearer ${sessionToken}`
             }
         })
-    }
+    },
 
+    //!get My Profile
+    async myProfile(user: IRequestUser) {
+        const data = await prisma.user.findUnique({
+            where: {
+                id: user.userId
+            },
+            include: {
+                movies: true,
+                movieContributions: true,
+                reviews: true,
+                comments: true,
+                payments: true,
+            }
+        })
+        if (!data) {
+            throw new AppError(status.NOT_FOUND, "User not found");
+        }
+        return data;
+    }
 }
 
 
