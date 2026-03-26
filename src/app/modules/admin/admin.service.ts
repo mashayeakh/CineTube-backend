@@ -1,5 +1,6 @@
 import { AppError } from "@/app/errorHelpers/AppError"
 import { prisma } from "@/app/lib/prisma"
+import { sendEmail } from "@/app/utils/email";
 import { ReviewStatus } from "prisma/generated/prisma/enums";
 
 export const AdminService = {
@@ -47,8 +48,14 @@ export const AdminService = {
 
         // find the contribution first
         const contribution = await prisma.movieContribution.findUnique({
-            where: { id: contributionId }
+            where: {
+                id: contributionId
+            },
+            include: {
+                contributor: true
+            }
         });
+        console.log("contribution found:", contribution);
 
         if (!contribution) {
             throw new AppError(404, "Movie contribution not found");
@@ -67,6 +74,65 @@ export const AdminService = {
             }
         });
 
+        //now notify the user about the approval (you can implement a notification system or send an email here)
+
+        console.log("---->>contribution.contributor.email,", contribution.contributor.email,),
+            await sendEmail({
+                to: contribution.contributor.email,
+                subject: "Your movie contribution has been approved!",
+                templateName: "contributionEmail",
+                templateData: {
+                    name: contribution.contributor.name,
+                    movieTitle: contribution.title,
+                    status: "approved"
+                }
+            });
+        return updated;
+    },
+    //! Reject movie contribution
+    async rejectMovieContribution(contributionId: string) {
+
+        // find the contribution first
+        const contribution = await prisma.movieContribution.findUnique({
+            where: {
+                id: contributionId
+            },
+            include: {
+                contributor: true
+            }
+        });
+        console.log("contribution found:", contribution);
+
+        if (!contribution) {
+            throw new AppError(404, "Movie contribution not found");
+        }
+
+        // prevent re-processing
+        if (contribution.status !== "PENDING") {
+            throw new AppError(400, "Movie contribution already processed");
+        }
+
+        // update status
+        const updated = await prisma.movieContribution.update({
+            where: { id: contributionId },
+            data: {
+                status: "REJECTED"
+            }
+        });
+
+        //now notify the user about the rejection (you can implement a notification system or send an email here)
+
+        console.log("---->>contribution.contributor.email,", contribution.contributor.email,),
+            await sendEmail({
+                to: contribution.contributor.email,
+                subject: "Your movie contribution has been rejected!",
+                templateName: "contributionEmail",
+                templateData: {
+                    name: contribution.contributor.name,
+                    movieTitle: contribution.title,
+                    status: "rejected"
+                }
+            });
         return updated;
     }
 }

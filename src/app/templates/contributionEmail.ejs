@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Movie Contribution Status</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                color: #172033;
+            }
+
+            .container {
+                width: 100%;
+                padding: 32px 16px;
+            }
+
+            .card {
+                max-width: 620px;
+                background-color: #ffffff;
+                margin: 0 auto;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 20px 45px rgba(25, 50, 100, 0.12);
+            }
+
+            .hero {
+                padding: 32px 36px 24px;
+                color: #ffffff;
+            }
+
+            .brand {
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                opacity: 0.9;
+                margin-bottom: 18px;
+            }
+
+            .hero-title {
+                margin: 0;
+                font-size: 30px;
+                line-height: 1.25;
+                font-weight: 700;
+            }
+
+            .hero-text {
+                margin: 12px 0 0;
+                font-size: 15px;
+                line-height: 1.7;
+                color: rgba(255, 255, 255, 0.88);
+                max-width: 470px;
+            }
+
+            .content {
+                padding: 32px 36px 20px;
+            }
+
+            .greeting {
+                margin: 0 0 14px;
+                font-size: 20px;
+                font-weight: 700;
+                color: #111827;
+            }
+
+            .message {
+                margin: 0 0 24px;
+                font-size: 15px;
+                line-height: 1.8;
+                color: #4b5563;
+            }
+
+            .status-card {
+                border-radius: 16px;
+                padding: 24px;
+                margin-bottom: 24px;
+            }
+
+            .label {
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 1.4px;
+                text-transform: uppercase;
+                color: #64748b;
+                margin-bottom: 12px;
+            }
+
+            .movie-title {
+                margin: 0 0 14px;
+                font-size: 24px;
+                line-height: 1.4;
+                font-weight: 700;
+                color: #0f172a;
+            }
+
+            .status-badge {
+                display: inline-block;
+                padding: 10px 16px;
+                border-radius: 999px;
+                font-size: 12px;
+                font-weight: bold;
+                letter-spacing: 1.2px;
+                text-transform: uppercase;
+            }
+
+            .meta {
+                margin: 18px 0 0;
+                font-size: 14px;
+                line-height: 1.7;
+                color: #475569;
+            }
+
+            .note {
+                margin: 0 0 24px;
+                padding: 16px 18px;
+                border-radius: 12px;
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .reason-box {
+                margin: 0 0 24px;
+                padding: 20px 22px;
+                border-radius: 16px;
+            }
+
+            .reason-title {
+                margin: 0 0 10px;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            .reason-text {
+                margin: 0;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .reason-list {
+                margin: 12px 0 0;
+                padding-left: 18px;
+                color: #475569;
+            }
+
+            .reason-list li {
+                margin-bottom: 8px;
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .footer {
+                padding: 0 36px 32px;
+                font-size: 12px;
+                line-height: 1.8;
+                color: #94a3b8;
+            }
+
+            .divider {
+                height: 1px;
+                background: #e5e7eb;
+                margin-bottom: 18px;
+            }
+
+            .preheader {
+                display: none;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+                mso-hide: all;
+            }
+
+            @media only screen and (max-width: 640px) {
+                .container {
+                    padding: 16px;
+                }
+
+                .hero,
+                .content,
+                .footer {
+                    padding-left: 22px;
+                    padding-right: 22px;
+                }
+
+                .hero-title {
+                    font-size: 24px;
+                }
+
+                .movie-title {
+                    font-size: 20px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <% const normalizedStatus = String(status || '').toUpperCase(); %>
+        <% const isApproved = normalizedStatus === 'APPROVED'; %>
+        <% const isRejected = normalizedStatus === 'REJECTED'; %>
+        <% const statusLabel = normalizedStatus || 'PENDING'; %>
+        <% const pageBackground = isApproved ? 'linear-gradient(180deg, #ecfdf3 0%, #f8fafc 100%)' : isRejected ? 'linear-gradient(180deg, #fef2f2 0%, #fff7f7 100%)' : 'linear-gradient(180deg, #eef4ff 0%, #f7f9fc 100%)'; %>
+        <% const heroBackground = isApproved ? 'linear-gradient(135deg, #14532d 0%, #16a34a 100%)' : isRejected ? 'linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%)' : 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)'; %>
+        <% const badgeBg = isApproved ? '#dcfce7' : isRejected ? '#fee2e2' : '#dbeafe'; %>
+        <% const badgeColor = isApproved ? '#166534' : isRejected ? '#b91c1c' : '#1d4ed8'; %>
+        <% const statusCardBackground = isApproved ? '#f0fdf4' : isRejected ? '#fef2f2' : '#f8fbff'; %>
+        <% const statusCardBorder = isApproved ? '#bbf7d0' : isRejected ? '#fecaca' : '#dbe7ff'; %>
+        <% const noteBackground = isApproved ? '#effcf3' : isRejected ? '#fff1f2' : '#fff8eb'; %>
+        <% const noteBorder = isApproved ? '#22c55e' : isRejected ? '#ef4444' : '#f59e0b'; %>
+        <% const noteColor = isApproved ? '#166534' : isRejected ? '#991b1b' : '#7c5a10'; %>
+        <% const titleText = isApproved ? 'Contribution approved' : isRejected ? 'Contribution rejected' : 'Contribution status updated'; %>
+        <% const heroText = isApproved ? 'Good news. Your movie contribution has been approved and is ready to move forward.' : isRejected ? 'We reviewed your movie contribution and it was not approved in its current form.' : 'We reviewed the movie contribution you submitted and have an update for you.'; %>
+
+        <div class="preheader">
+            Your movie contribution update for <%= movieTitle %> is now <%= statusLabel %>.
+        </div>
+
+        <div class="container" style="background: <%= pageBackground %>;">
+            <div class="card">
+                <div class="hero" style="background: <%= heroBackground %>;">
+                    <div class="brand">
+                        Cinetube
+                    </div>
+
+                    <h1 class="hero-title">
+                        <%= titleText %>
+                    </h1>
+
+                    <p class="hero-text">
+                        <%= heroText %>
+                    </p>
+                </div>
+
+                <div class="content">
+                    <p class="greeting">
+                        Hello <%= name %>,
+                    </p>
+
+                    <p class="message">
+                        Your submitted movie contribution has been reviewed. Here is the latest decision for your record.
+                    </p>
+
+                    <div class="status-card" style="background: <%= statusCardBackground %>; border: 1px solid <%= statusCardBorder %>;">
+                        <div class="label">
+                            Contribution details
+                        </div>
+
+                        <h2 class="movie-title">
+                            <%= movieTitle %>
+                        </h2>
+
+                        <span class="status-badge" style="background-color: <%= badgeBg %>; color: <%= badgeColor %>;">
+                            <%= statusLabel %>
+                        </span>
+
+                        <p class="meta">
+                            <% if (isApproved) { %>
+                                Your contribution has been approved and is ready for the next step in the publishing workflow.
+                            <% } else if (isRejected) { %>
+                                Your contribution was rejected. Please review the content carefully, make the necessary corrections, and resubmit when it is ready.
+                            <% } else { %>
+                                Your contribution is still under review or awaiting the next action. We will notify you again if the status changes.
+                            <% } %>
+                        </p>
+                    </div>
+
+                    <% if (isRejected) { %>
+                        <div class="reason-box" style="background: #fff5f5; border: 1px solid #fecaca;">
+                            <p class="reason-title" style="color: #b91c1c;">
+                                Why this was rejected
+                            </p>
+
+                            <p class="reason-text" style="color: #7f1d1d;">
+                                Your contribution was rejected because it did not follow our content submission guidelines. We only approve submissions that meet our quality, accuracy, and formatting standards.
+                            </p>
+
+                            <ul class="reason-list">
+                                <li>The movie information may be incomplete, inaccurate, or inconsistent with the required format.</li>
+                                <li>The poster, title, cast, genre, or platform details may not match our contribution standards.</li>
+                                <li>The overall submission quality did not meet the review requirements for publication.</li>
+                            </ul>
+                        </div>
+                    <% } %>
+
+                    <div class="note" style="background: <%= noteBackground %>; border-left: 4px solid <%= noteBorder %>; color: <%= noteColor %>;">
+                        <% if (isApproved) { %>
+                            Need help? If you want to verify publishing details or next steps, contact the Cinetube support team.
+                        <% } else if (isRejected) { %>
+                            Please review our guidelines, update the contribution carefully, and submit again once all issues have been addressed. If you need clarification about the rejection, reply to this email or contact the Cinetube support team before submitting again.
+                        <% } else { %>
+                            Need help? If you have questions about this decision, reply to this email or contact the Cinetube support team for clarification.
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div class="divider"></div>
+                    Cinetube Notifications<br>
+                    This is an automated update about your movie contribution activity.<br>
+                    © 2026 Cinetube. All rights reserved.
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+
+</html>

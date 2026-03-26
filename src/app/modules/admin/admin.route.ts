@@ -22,5 +22,12 @@ route.post(
     AdminController.approveMovieContribution
 );
 
+//!reject movie contribution
+route.post(
+    "/reject-movie-contribution/:contributionId",
+    checkAuth(UserRole.ADMIN),
+    AdminController.rejectMovieContribution
+);
+
 
 export const AdminRouter = route;
