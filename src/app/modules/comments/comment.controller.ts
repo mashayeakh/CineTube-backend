@@ -1,0 +1,61 @@
+import { Request, Response } from "express";
+import status from "http-status";
+import { sendResponse } from "@/app/utils/sendResponse";
+import { catchAsyc } from "@/app/shared/catchAsyc";
+import { AppError } from "@/app/errorHelpers/AppError";
+import { prisma } from "@/app/lib/prisma";
+import { MoviesService } from "../movies/movies.service";
+import { CommentService } from "./comment.service";
+
+export const CommentController = {
+
+    createComment: catchAsyc(async (req: Request, res: Response) => {
+        const result = await CommentService.createComment(req.body);
+
+        sendResponse(res, {
+            httpStatusCode: status.CREATED,
+            success: true,
+            message: "Comment created successfully",
+            result
+        });
+    }),
+
+    getAllComments: catchAsyc(async (req: Request, res: Response) => {
+        const { reviewId } = req.params;
+        const result = await CommentService.getCommentsForReview(reviewId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Comments fetched successfully",
+            result
+        });
+    }),
+
+    updateComment: catchAsyc(async (req: Request, res: Response) => {
+        const { commentId, userId } = req.params;
+        const { content, isSpoiler } = req.body;
+
+        const result = await CommentService.editComment(commentId as string, userId as string, { content, isSpoiler });
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Comment updated successfully",
+            result
+        });
+    }),
+
+    deleteComment: catchAsyc(async (req: Request, res: Response) => {
+        const { commentId, userId } = req.params;
+
+        await CommentService.deleteComment(commentId as string, userId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Comment deleted successfully",
+            result: null
+        });
+    }),
+};

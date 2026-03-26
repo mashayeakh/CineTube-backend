@@ -7,6 +7,7 @@ import { StreamingPlatformRouter } from "../streamingPlatform/streamingPlatform.
 import { ReviewRouter } from "../review/review.route";
 import { AdminRouter } from "../admin/admin.route";
 import { MoviesContributionRouter } from "../movieContribution/movieContribution.route";
+import { CommentRouter } from "../comments/comment.route";
 
 const router = express.Router();
 
@@ -50,6 +51,13 @@ router.use(
 router.use(
     "/reviews",
     ReviewRouter
+);
+
+
+//!Comments 
+router.use(
+    "/comments",
+    CommentRouter
 );
 
 //!admin 

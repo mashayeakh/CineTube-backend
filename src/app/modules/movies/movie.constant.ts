@@ -33,7 +33,16 @@ export const movieIncludeConfig: Partial<
     user: true,
     genres: true,
     platforms: true,
-    reviews: true,
     payments: true,
-    watchlists: true
+    watchlists: true,
+    reviews: {
+        include: {
+            user: true,
+            comments: {
+                include: {
+                    user: true
+                }
+            }
+        }
+    }
 };
