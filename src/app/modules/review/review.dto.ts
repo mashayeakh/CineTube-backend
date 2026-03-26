@@ -4,6 +4,7 @@ export interface IReview {
     userId: string;
     rating: number; // 1-5
     content: string;
+    isSpoiler?: boolean; // new field to indicate if the review contains spoilers
     tags?: string[]; // array of strings
     status?: "PENDING" | "APPROVED" | "REJECTED";
     createdAt?: Date;

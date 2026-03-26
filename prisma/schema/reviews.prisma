@@ -6,6 +6,7 @@ model Review {
     user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
     rating      Int
     content     String       @db.Text
+    isSpoiler   Boolean      @default(false)
     tags        String       @db.Text // JSON array string, e.g. ["classic","underrated"]
     status      ReviewStatus @default(PENDING)
     comments    Comment[]

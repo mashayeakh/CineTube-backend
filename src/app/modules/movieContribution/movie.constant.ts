@@ -35,5 +35,5 @@ export const movieIncludeConfig: Partial<
     platforms: true,
     reviews: true,
     payments: true,
-    watchlists: true
+    watchlists: true,
 };

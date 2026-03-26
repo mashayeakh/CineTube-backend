@@ -10,7 +10,7 @@ export const ReviewService = {
      * 
      */
     async createReview(payload: IReview) {
-        const { movieId, userId, rating, content, tags } = payload;
+        const { movieId, userId, rating, content, isSpoiler, tags } = payload;
 
 
         // Check if movie exists
@@ -29,6 +29,7 @@ export const ReviewService = {
                 user: { connect: { id: userId } },
                 rating,
                 content,
+                isSpoiler: isSpoiler ?? false,
                 tags: tags ? JSON.stringify(tags) : "[]"
             },
             include: {

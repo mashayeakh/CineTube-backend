@@ -24,6 +24,21 @@ export const AdminController = {
             result: updatedReview
         });
     }),
+    //! Reject review
+    rejectReview: catchAsyc(async (req: Request, res: Response) => {
+        const { reviewId } = req.params;
+
+        if (!reviewId) throw new AppError(status.BAD_REQUEST, "Review ID is required");
+
+        const updatedReview = await AdminService.rejectReview(reviewId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Review rejected successfully",
+            result: updatedReview
+        });
+    }),
 
     //! Approve movie contribution
     approveMovieContribution: catchAsyc(async (req: Request, res: Response) => {
