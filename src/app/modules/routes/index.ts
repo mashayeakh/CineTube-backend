@@ -8,6 +8,7 @@ import { ReviewRouter } from "../review/review.route";
 import { AdminRouter } from "../admin/admin.route";
 import { MoviesContributionRouter } from "../movieContribution/movieContribution.route";
 import { CommentRouter } from "../comments/comment.route";
+import { LandingRouter } from "../landing/landing.route";
 
 const router = express.Router();
 
@@ -64,6 +65,12 @@ router.use(
 router.use(
     "/admin",
     AdminRouter
+);
+
+//! landing
+router.use(
+    "/landing",
+    LandingRouter
 );
 
 export default router;
