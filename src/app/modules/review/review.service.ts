@@ -1,6 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
-import { IReview } from "./review.dto";
+import { IReview, IUpdateReview } from "./review.dto";
 import { AppError } from "@/app/errorHelpers/AppError";
+import status from "http-status";
 
 export const ReviewService = {
     //! create review
@@ -45,4 +46,79 @@ export const ReviewService = {
             tags: JSON.parse(review.tags || "[]")
         };
     },
+
+    //! get review by id
+    async getReviewById(reviewId: string) {
+        const review = await prisma.review.findUnique({
+            where: { id: reviewId },
+            include: {
+                user: true,
+                movie: true,
+                comments: true,
+                reviewLikes: true
+            }
+        });
+    },
+
+    //!edit the review if the stauts is pending onely
+    async editReview(reviewId: string, userId: string, payload: IUpdateReview) {
+        const review = await prisma.review.findUnique({
+            where: { id: reviewId }
+        });
+
+        //if review not found throw error
+        if (!review) throw new AppError(404, "Review not found");
+
+        //if review status is not pending throw error
+        if (review.status !== "PENDING") throw new AppError(status.BAD_REQUEST, "Only pending reviews can be edited");
+
+        //review ownership check
+        if (review.userId !== userId) throw new AppError(status.FORBIDDEN, "You are not allowed to edit this review");
+
+        //now update the review
+        const updatedReview = await prisma.review.update({
+            where: { id: reviewId },
+            data: {
+                content: payload.content,
+                rating: payload.rating,
+                // isSpoiler: payload.isSpoiler,
+                tags: payload.tags ? JSON.stringify(payload.tags) : undefined
+            },
+            include: {
+                user: true,
+                movie: true,
+                comments: true,
+                reviewLikes: true
+            }
+        });
+
+        return {
+            ...updatedReview,
+            tags: JSON.parse(updatedReview.tags || "[]")
+        }
+    },
+
+    //!delete the review if the stauts is pending onely
+    async deleteReview(reviewId: string, userId: string) {
+        const review = await prisma.review.findUnique({
+            where: { id: reviewId }
+        });
+
+        //if review not found throw error
+        if (!review) throw new AppError(404, "Review not found");
+
+        //if review status is not pending throw error
+        if (review.status !== "PENDING") throw new AppError(status.BAD_REQUEST, "Only pending reviews can be deleted");
+
+        //review ownership check
+        if (review.userId !== userId) throw new AppError(status.FORBIDDEN, "You are not allowed to delete this review");
+
+        //now delete the review
+        await prisma.review.delete({
+            where: { id: reviewId }
+        });
+
+        return { message: "Review deleted successfully" };
+    }
+
 }
