@@ -9,6 +9,9 @@ import { AdminRouter } from "../admin/admin.route";
 import { MoviesContributionRouter } from "../movieContribution/movieContribution.route";
 import { CommentRouter } from "../comments/comment.route";
 import { LandingRouter } from "../landing/landing.route";
+import { DashboardRoutes } from "../admin/dashboard/admin.dashboard.route";
+import { DashboardStatsRoutes } from "../admin/dashboard/stats/dashboard.stats.route";
+import { DashboardUserRoutes } from "../admin/dashboard/users/dashboard.user.route";
 
 const router = express.Router();
 
@@ -72,5 +75,15 @@ router.use(
     "/landing",
     LandingRouter
 );
+
+//?----------------------------------------------------
+
+//! Admin Dashboard
+router.use(
+    "/admin/dashboard",
+    DashboardRoutes
+)
+
+
 
 export default router;
