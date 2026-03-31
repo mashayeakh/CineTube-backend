@@ -60,6 +60,25 @@ export const ReviewService = {
         });
     },
 
+    //! get all reviews
+    async getAllReviews() {
+        const reviews = await prisma.review.findMany({
+            include: {
+                user: true,
+                movie: true,
+                comments: true,
+                reviewLikes: true
+            }
+        });
+
+        console.log("RE", reviews)
+
+        return reviews.map(review => ({
+            ...review,
+            tags: JSON.parse(review.tags || "[]")
+        }));
+    },
+
     //!edit the review if the stauts is pending onely
     async editReview(reviewId: string, userId: string, payload: IUpdateReview) {
         const review = await prisma.review.findUnique({

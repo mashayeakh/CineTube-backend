@@ -5,13 +5,56 @@ import { sendResponse } from "@/app/utils/sendResponse";
 import status from "http-status";
 import { AppError } from "@/app/errorHelpers/AppError";
 import { IQueryParams } from "@/app/interface/queryinterface";
+import { IMovie, IUpdateMovie } from "./movie.dto";
+
+const parseStringArray = (value: unknown): string[] | undefined => {
+    if (Array.isArray(value)) {
+        return value.map((item) => String(item));
+    }
+
+    if (typeof value !== "string") {
+        return undefined;
+    }
+
+    const trimmed = value.trim();
+    if (!trimmed) {
+        return [];
+    }
+
+    try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed)) {
+            return parsed.map((item) => String(item));
+        }
+    } catch {
+        return trimmed
+            .split(",")
+            .map((item) => item.trim())
+            .filter(Boolean);
+    }
+
+    return undefined;
+};
 
 export const MoviesController = {
 
     //! create movies
     createMovies: catchAsyc(
         async (req: Request, res: Response) => {
-            const data = await MoviesService.createMovies(req.body)
+            const body = req.body as Record<string, unknown>;
+            const posterPath = req.file ? `/files/${req.file.filename}` : body.poster;
+
+            const payload: IMovie = {
+                ...(body as unknown as IMovie),
+                poster: posterPath ? String(posterPath) : undefined,
+                releaseYear: body.releaseYear ? Number(body.releaseYear) : new Date().getFullYear(),
+                cast: parseStringArray(body.cast),
+                genres: parseStringArray(body.genres) ?? [],
+                platforms: parseStringArray(body.platforms) ?? [],
+                userId: String(body.userId || "")
+            };
+
+            const data = await MoviesService.createMovies(payload)
             sendResponse(res, {
                 httpStatusCode: status.CREATED,
                 success: true,
@@ -57,7 +100,17 @@ export const MoviesController = {
         if (!id) {
             throw new AppError(status.BAD_REQUEST, "Movie ID is required");
         }
-        const updatedMovie = await MoviesService.updateMovieById(id as string, req.body);
+        const body = req.body as Record<string, unknown>;
+        const payload: IUpdateMovie = {
+            ...(body as unknown as IUpdateMovie),
+            releaseYear: body.releaseYear ? Number(body.releaseYear) : undefined,
+            poster: req.file ? `/files/${req.file.filename}` : (body.poster as string | undefined),
+            cast: parseStringArray(body.cast),
+            genres: parseStringArray(body.genres),
+            platforms: parseStringArray(body.platforms)
+        };
+
+        const updatedMovie = await MoviesService.updateMovieById(id as string, payload);
         sendResponse(res, {
             httpStatusCode: status.OK,
             success: true,

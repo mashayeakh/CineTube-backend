@@ -12,6 +12,8 @@ import { LandingRouter } from "../landing/landing.route";
 import { DashboardRoutes } from "../admin/dashboard/admin.dashboard.route";
 import { DashboardStatsRoutes } from "../admin/dashboard/stats/dashboard.stats.route";
 import { DashboardUserRoutes } from "../admin/dashboard/users/dashboard.user.route";
+import { UserDashboardRoutes } from "@/app/user/dashboard/user.dashboard.route";
+import { PaymentRouter } from "../payment/payment.route";
 
 const router = express.Router();
 
@@ -82,6 +84,18 @@ router.use(
 router.use(
     "/admin/dashboard",
     DashboardRoutes
+)
+
+//! User Dashboard
+router.use(
+    "/user/dashboard",
+    UserDashboardRoutes
+)
+
+//! Payment
+router.use(
+    "/payments",
+    PaymentRouter
 )
 
 

@@ -2,13 +2,23 @@ import { AppError } from "@/app/errorHelpers/AppError";
 import { prisma } from "@/app/lib/prisma";
 import status from "http-status";
 import { IMovieContributionPayload } from "./movieContribution.dto";
+import { hasUserContributionAccess } from "@/app/helper/payment.helper";
 
 export const MoviesContributionService = {
 
     //! Create movie contribution
-    async createMovieContribution(payload: IMovieContributionPayload) {
+    async createMovieContribution(payload: IMovieContributionPayload, userId: string) {
+
+
+        //payment check
+        const hasPaid = await hasUserContributionAccess(userId);
+
+        if (!hasPaid) {
+            throw new AppError(status.FORBIDDEN, "User has not completed payment");
+        }
+
+
         const {
-            contributorId,
             title,
             description,
             poster,
@@ -23,7 +33,7 @@ export const MoviesContributionService = {
         //fetch the contribution info
         const user = await prisma.user.findUnique({
             where: {
-                id: contributorId
+                id: userId
             }
         })
 
@@ -37,10 +47,14 @@ export const MoviesContributionService = {
                 ? ageGroup
                 : "ALL_AGES";
 
+        if (!poster?.trim()) {
+            throw new AppError(status.BAD_REQUEST, "Poster is required");
+        }
+
         // Create contribution
         const contribution = await prisma.movieContribution.create({
             data: {
-                contributorId,
+                contributorId: userId,
                 title,
                 description,
                 poster,

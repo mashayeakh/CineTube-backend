@@ -29,11 +29,15 @@ export const MoviesService = {
                 ? ageGroup
                 : "ALL_AGES";
 
+        if (!poster?.trim()) {
+            throw new AppError(400, "Poster is required");
+        }
+
         const result = await prisma.movie.create({
             data: {
                 title,
                 description: description || "",
-                poster: poster || "",
+                poster,
                 releaseYear: releaseYear || new Date().getFullYear(),
                 director,
                 cast: cast ? JSON.stringify(cast) : "[]",

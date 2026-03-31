@@ -18,7 +18,7 @@ router.get(
     "/:id",
     PlatformController.getPlatformById
 );
-router.put(
+router.patch(
     "/:id",
     checkAuth(UserRole.ADMIN),
     PlatformController.updatePlatform

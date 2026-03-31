@@ -87,7 +87,9 @@ export const AdminService = {
                 id: contributionId
             },
             include: {
-                contributor: true
+                contributor: true,
+                genres: true,
+                platforms: true
             }
         });
         console.log("contribution found:", contribution);
@@ -101,12 +103,33 @@ export const AdminService = {
             throw new AppError(400, "Movie contribution already processed");
         }
 
-        // update status
-        const updated = await prisma.movieContribution.update({
-            where: { id: contributionId },
-            data: {
-                status: "APPROVED"
-            }
+        // create movie + update contribution status atomically
+        const updated = await prisma.$transaction(async (tx) => {
+            await tx.movie.create({
+                data: {
+                    title: contribution.title,
+                    description: contribution.description,
+                    poster: contribution.poster,
+                    releaseYear: contribution.releaseYear,
+                    director: contribution.director,
+                    cast: contribution.cast,
+                    ageGroup: contribution.ageGroup,
+                    userId: contribution.contributorId,
+                    genres: {
+                        connect: contribution.genres.map((genre) => ({ id: genre.id }))
+                    },
+                    platforms: {
+                        connect: contribution.platforms.map((platform) => ({ id: platform.id }))
+                    }
+                }
+            });
+
+            return tx.movieContribution.update({
+                where: { id: contributionId },
+                data: {
+                    status: "APPROVED"
+                }
+            });
         });
 
         //now notify the user about the approval (you can implement a notification system or send an email here)

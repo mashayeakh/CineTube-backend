@@ -7,9 +7,17 @@ import { errorHandler } from './app/middleware/globalErrorHandler';
 import { envVars } from './app/config/env';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { PaymentController } from './app/modules/payment/payment.controller';
+import path from 'node:path';
 
 
 export const app: Application = express()
+
+
+//? stripe webhook
+app.post("/webhook", express.raw({ type: "application/json" }), PaymentController.handleStripeWebhook)
+
+
 
 app.use(cors({
     // origin: process.env.BETTER_AUTH_URL || `http://localhost:${envVars.PORT}`,
@@ -35,6 +43,9 @@ app.use(cookieParser());
 
 // Parse URL-encoded bodies (optional, but good to have)
 app.use(express.urlencoded({ extended: true }));
+
+// serve uploaded files
+app.use('/files', express.static(path.join(process.cwd(), 'files')));
 
 app.use("/api/v1/", router);
 

@@ -42,6 +42,17 @@ export const ReviewController = {
         });
     }),
 
+    //!get all reviews
+    getAllReviews: catchAsyc(async (req: Request, res: Response) => {
+        const reviews = await ReviewService.getAllReviews();
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Reviews fetched successfully",
+            result: reviews
+        });
+    }),
+
     //! delete review if the status is pending onely
     deleteReview: catchAsyc(async (req: Request, res: Response) => {
         const reviewId = req.params.reviewId;

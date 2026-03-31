@@ -34,6 +34,13 @@ router.delete(
 );
 
 
+//! get all review
+router.get(
+    "/all/reviews",
+    checkAuth(UserRole.ADMIN),
+    ReviewController.getAllReviews
+);
+
 
 // router.get(
 //     "/",

@@ -7,7 +7,7 @@ import { vefiryToken } from "@/app/utils/jwt";
 import { getAccessToken, getRefreshToken } from "@/app/utils/token";
 import status from "http-status";
 import { JwtPayload } from "jsonwebtoken";
-import { UserStatus } from "prisma/generated/prisma/enums";
+import { UserRole, UserStatus } from "prisma/generated/prisma/enums";
 
 
 export const AuthService = {
@@ -341,17 +341,46 @@ export const AuthService = {
     },
 
     //!get My Profile
+    // async myProfile(user: IRequestUser) {
+    //     const isAdmin = user.role === UserRole.USER || user.role === UserRole.PREMIUM_USER ;
+
+    //     const data = await prisma.user.findUnique({
+    //         where: {
+    //             id: user.userId
+    //         },
+    //         include: {
+    //             movies: true,
+    //             movieContributions: true,
+    //             reviews: true,
+    //             comments: true,
+    //             payments: true,
+    //         }
+    //     })
+    //     if (!data) {
+    //         throw new AppError(status.NOT_FOUND, "User not found");
+    //     }
+    //     return data;
+    // },
+
     async myProfile(user: IRequestUser) {
+        const isAdmin = user.role === UserRole.ADMIN;
+
         const data = await prisma.user.findUnique({
             where: {
                 id: user.userId
             },
             include: {
                 movies: true,
-                movieContributions: true,
-                reviews: true,
-                comments: true,
-                payments: true,
+                ...(isAdmin
+                    ? {
+                        admin: true,
+                    }
+                    : {
+                        movieContributions: true,
+                        reviews: true,
+                        comments: true,
+                        payments: true,
+                    }),
             }
         })
         if (!data) {

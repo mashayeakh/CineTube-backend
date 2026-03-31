@@ -2,6 +2,7 @@ import express from "express";
 import { MoviesController } from "./movies.controller";
 import { checkAuth } from "@/app/middleware/checkAuth";
 import { UserRole } from "prisma/generated/prisma/enums";
+import { uploadPoster } from "@/app/middleware/upload";
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 router.post(
     "/create",
     checkAuth(UserRole.ADMIN),
+    uploadPoster,
     MoviesController.createMovies
 );
 
@@ -34,6 +36,7 @@ router.get(
 router.patch(
     "/:id",
     checkAuth(UserRole.ADMIN),
+    uploadPoster,
     MoviesController.updateMovieById
 );
 
