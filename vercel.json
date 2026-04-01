@@ -1,16 +1,10 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": ".",
-  "functions": {
-    "dist/src/server.js": {
-      "includeFiles": "dist/**"
-    }
-  },
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/src/server.js"
+      "dest": "/api/index.js"
     }
   ]
 }
