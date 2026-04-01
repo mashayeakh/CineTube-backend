@@ -105,6 +105,43 @@ export const PaymentService = {
         );
     },
 
+    async verifyCheckoutSession(sessionId: string) {
+        const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+        if (session.payment_status !== "paid") {
+            throw new AppError(status.BAD_REQUEST, "Payment not completed");
+        }
+
+        const paymentId = session.metadata?.paymentId;
+        const subscriptionId = session.metadata?.subscriptionId;
+
+        if (!paymentId || !subscriptionId) {
+            throw new AppError(status.BAD_REQUEST, "Missing payment or subscription metadata");
+        }
+
+        const existingPayment = await prisma.payment.findUnique({
+            where: { id: paymentId }
+        });
+
+        if (!existingPayment) {
+            throw new AppError(status.NOT_FOUND, "Payment not found");
+        }
+
+        if (existingPayment.status === PaymentStatus.COMPLETED) {
+            return { message: "Payment already verified" };
+        }
+
+        await prisma.payment.update({
+            where: { id: paymentId },
+            data: {
+                status: PaymentStatus.COMPLETED,
+                transactionId: session.id
+            }
+        });
+
+        return { message: "Payment verified. Subscription will be activated by admin." };
+    },
+
     async handleStripeWebhookEvent(event: Stripe.Event) {
         if (event.type === "checkout.session.completed") {
             const session = event.data.object as Stripe.Checkout.Session;
@@ -127,28 +164,12 @@ export const PaymentService = {
                 return { message: "Event already processed" };
             }
 
-            await prisma.$transaction(async (tx) => {
-                await tx.payment.update({
-                    where: { id: paymentId },
-                    data: {
-                        status: PaymentStatus.COMPLETED,
-                        transactionId: session.id
-                    }
-                });
-
-                await tx.subscription.update({
-                    where: { id: subscriptionId },
-                    data: {
-                        status: SubscriptionStatus.ACTIVE
-                    }
-                });
-
-                await tx.user.update({
-                    where: { id: existingPayment.userId },
-                    data: {
-                        role: UserRole.PREMIUM_USER
-                    }
-                });
+            await prisma.payment.update({
+                where: { id: paymentId },
+                data: {
+                    status: PaymentStatus.COMPLETED,
+                    transactionId: session.id
+                }
             });
 
             return { message: "checkout.session.completed processed" };

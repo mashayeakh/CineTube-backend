@@ -19,6 +19,16 @@ export const DashboardSubscriptionController = {
     getSubscriptionStats: catchAsyc(async (req: Request, res: Response, next: NextFunction) => {
         const data = await DashboardSubscriptionService.getSubscriptionStats();
         res.status(200).json({ success: true, data });
+    }),
+
+    activateSubscription: catchAsyc(async (req: Request, res: Response, next: NextFunction) => {
+        const data = await DashboardSubscriptionService.activateSubscription(req.params.id as string);
+        res.status(200).json({ success: true, message: "Subscription activated successfully", data });
+    }),
+
+    rejectSubscription: catchAsyc(async (req: Request, res: Response, next: NextFunction) => {
+        const data = await DashboardSubscriptionService.rejectSubscription(req.params.id as string);
+        res.status(200).json({ success: true, message: "Subscription rejected successfully", data });
     })
 }
 

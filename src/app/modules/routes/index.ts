@@ -14,6 +14,7 @@ import { DashboardStatsRoutes } from "../admin/dashboard/stats/dashboard.stats.r
 import { DashboardUserRoutes } from "../admin/dashboard/users/dashboard.user.route";
 import { UserDashboardRoutes } from "@/app/user/dashboard/user.dashboard.route";
 import { PaymentRouter } from "../payment/payment.route";
+import { WatchlistRouter } from "../watchlist/watchlist.route";
 
 const router = express.Router();
 
@@ -97,6 +98,14 @@ router.use(
     "/payments",
     PaymentRouter
 )
+
+//! Watchlist
+router.use(
+    "/watchlists",
+    WatchlistRouter
+)
+
+//!
 
 
 

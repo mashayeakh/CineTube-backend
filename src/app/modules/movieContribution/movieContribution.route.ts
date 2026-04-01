@@ -15,7 +15,7 @@ router.post(
     uploadPoster,
     MovieContributionController.contributeMovie
 );
-//!fetch all movies
+//!fetch all movies 
 router.get(
     "/",
     MovieContributionController.getAllMovies

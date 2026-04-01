@@ -14,27 +14,27 @@ import { UserDashboardPaymentsController } from "./payments/user.dashboard.payme
 const router = express.Router();
 
 /* ---------------- PROFILE ---------------- */
-router.get("/profile", checkAuth(UserRole.USER), UserDashboardProfileController.getProfile);
+router.get("/profile", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardProfileController.getProfile);
 
 /* ---------------- STATS ---------------- */
-router.get("/stats", checkAuth(UserRole.USER), UserDashboardStatsController.getStats);
+router.get("/stats", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardStatsController.getStats);
 
 /* ---------------- WATCHLIST ---------------- */
-router.get("/watchlist", checkAuth(UserRole.USER), UserDashboardWatchlistController.getWatchlist);
+router.get("/watchlist", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardWatchlistController.getWatchlist);
 
 /* ---------------- REVIEWS ---------------- */
-router.get("/reviews", checkAuth(UserRole.USER), UserDashboardReviewsController.getReviews);
+router.get("/reviews", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardReviewsController.getReviews);
 
 /* ---------------- COMMENTS ---------------- */
-router.get("/comments", checkAuth(UserRole.USER), UserDashboardCommentsController.getComments);
+router.get("/comments", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardCommentsController.getComments);
 
 /* ---------------- CONTRIBUTIONS ---------------- */
-router.get("/contributions", checkAuth(UserRole.USER), UserDashboardContributionsController.getContributions);
+router.get("/contributions", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardContributionsController.getContributions);
 
 /* ---------------- SUBSCRIPTION ---------------- */
-router.get("/subscriptions", checkAuth(UserRole.USER), UserDashboardSubscriptionController.getSubscriptions);
+router.get("/subscriptions", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardSubscriptionController.getSubscriptions);
 
 /* ---------------- PAYMENTS ---------------- */
-router.get("/payments", checkAuth(UserRole.USER), UserDashboardPaymentsController.getPayments);
+router.get("/payments", checkAuth(UserRole.USER, UserRole.PREMIUM_USER), UserDashboardPaymentsController.getPayments);
 
 export const UserDashboardRoutes = router;

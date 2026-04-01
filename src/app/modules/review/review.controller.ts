@@ -8,7 +8,8 @@ import { ReviewService } from "./review.service";
 export const ReviewController = {
     //! create review
     createReview: catchAsyc(async (req: Request, res: Response) => {
-        const review = await ReviewService.createReview(req.body);
+        const userId = req.user.userId;
+        const review = await ReviewService.createReview({ ...req.body, userId });
         sendResponse(res, {
             httpStatusCode: status.CREATED,
             success: true,
