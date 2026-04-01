@@ -50,7 +50,7 @@ app.use('/files', express.static(path.join(process.cwd(), 'files')));
 app.use("/api/v1/", router);
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello backend!')
+    res.send('Hello Cinetube!')
 })
 
 //global error handler

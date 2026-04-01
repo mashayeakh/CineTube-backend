@@ -1,4 +1,4 @@
-import { UsersRouter } from "@/app/user/user.route";
+import { UsersRouter } from "@/app/modules/user/user.route";
 import { MoviesRouter } from "../movies/movies.route";
 import express from 'express';
 import { AuthRouter } from "../auth/auth.route";
@@ -12,7 +12,7 @@ import { LandingRouter } from "../landing/landing.route";
 import { DashboardRoutes } from "../admin/dashboard/admin.dashboard.route";
 import { DashboardStatsRoutes } from "../admin/dashboard/stats/dashboard.stats.route";
 import { DashboardUserRoutes } from "../admin/dashboard/users/dashboard.user.route";
-import { UserDashboardRoutes } from "@/app/user/dashboard/user.dashboard.route";
+import { UserDashboardRoutes } from "@/app/modules/user/dashboard/user.dashboard.route";
 import { PaymentRouter } from "../payment/payment.route";
 import { WatchlistRouter } from "../watchlist/watchlist.route";
 

@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from "express";
 import { app } from "./app";
 import dotenv from 'dotenv'
 import { envVars } from "./app/config/env";
-import { seedAdmin } from "./app/scripts/seedAdmin";
+import { seedAdmin } from "./app/scripts/seedAdmin/seedAdmin";
 
 dotenv.config();
 

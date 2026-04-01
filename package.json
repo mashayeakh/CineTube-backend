@@ -15,8 +15,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
-    "build": "tsc ",
+    "start": "node dist/src/server.js",
+    "build": "prisma generate && tsc && node src/app/scripts/fix-imports.js && node src/app/scripts/fix-prisma-imports.js",
+    "build:tsup":"tsup",
     "dev": "tsx watch src/server.ts",
     "seed:movies": "tsx src/app/utils/seedMovies.ts",
     "stripe:webhook": "stripe listen --forward-to localhost:5000/webhook",
