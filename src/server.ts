@@ -11,7 +11,7 @@ console.log("port -= ", process.env.PORT)
 
 const bootstrap = async () => {
     try {
-        //seeding Admin 
+        //seeding Admin
         await seedAdmin();
         app.listen(envVars.PORT, () => {
             // app.listen(port, () => {
@@ -22,4 +22,13 @@ const bootstrap = async () => {
     }
 }
 
-bootstrap();
+// Run listen only in non-serverless environments
+if (process.env.VERCEL !== '1') {
+    bootstrap();
+} else {
+    // On Vercel: seed admin on cold start without listen()
+    seedAdmin().catch(console.error);
+}
+
+// Required export for Vercel serverless
+export default app;
