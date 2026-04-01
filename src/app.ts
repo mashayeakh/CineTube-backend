@@ -19,18 +19,34 @@ app.post("/webhook", express.raw({ type: "application/json" }), PaymentControlle
 
 
 
-app.use(cors({
-    // origin: process.env.BETTER_AUTH_URL || `http://localhost:${envVars.PORT}`,
-    origin: [
+const allowedOrigins = new Set(
+    [
         envVars.FRONTEND_URL,
         envVars.BETTER_AUTH_URL,
         "http://localhost:3000",
-        "http://localhost:5000"
-    ],
-    credentials: true, // Important for cookies
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization",]
-}));
+        "http://localhost:5000",
+    ].filter(Boolean),
+);
+
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            // Allow tools like Postman/cURL and same-origin server calls.
+            if (!origin) {
+                return callback(null, true);
+            }
+
+            if (allowedOrigins.has(origin) || origin.endsWith(".vercel.app")) {
+                return callback(null, true);
+            }
+
+            return callback(new Error("Not allowed by CORS"));
+        },
+        credentials: true,
+        methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    }),
+);
 // Parse JSON bodies
 app.use(express.json());
 

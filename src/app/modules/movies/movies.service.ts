@@ -5,6 +5,18 @@ import { movieFilterableFields, movieIncludeConfig, movieSearchableFields } from
 import { IQueryParams } from "@/app/interface/queryinterface";
 import { Prisma } from "prisma/generated/prisma/client";
 import { IMovie, IUpdateMovie } from "./movie.dto";
+import { envVars } from "@/app/config/env";
+
+const toAbsolutePosterUrl = (poster: string) => {
+    if (!poster) return poster;
+    if (poster.startsWith("http://") || poster.startsWith("https://")) return poster;
+    if (!poster.startsWith("/")) return poster;
+
+    const baseUrl = envVars.BETTER_AUTH_URL?.replace(/\/$/, "");
+    if (!baseUrl) return poster;
+
+    return `${baseUrl}${poster}`;
+};
 
 export const MoviesService = {
     //! Create movie
@@ -84,6 +96,7 @@ export const MoviesService = {
 
         const dataWithParsed = result.data.map((movie: any) => ({
             ...movie,
+            poster: toAbsolutePosterUrl(movie.poster),
             cast: Array.isArray(movie.cast) ? movie.cast : JSON.parse(movie.cast || "[]"),
             genres: Array.isArray(movie.genres) ? movie.genres : [],
             platforms: Array.isArray(movie.platforms) ? movie.platforms : [],
@@ -107,6 +120,7 @@ export const MoviesService = {
 
         return {
             ...movie,
+            poster: toAbsolutePosterUrl(movie.poster),
             cast: movie.cast ? JSON.parse(movie.cast) : [],
             genres: movie.genres || [],
             platforms: movie.platforms || [],
@@ -153,6 +167,7 @@ export const MoviesService = {
 
         return {
             ...updatedMovie,
+            poster: toAbsolutePosterUrl(updatedMovie.poster),
             cast: updatedMovie.cast ? JSON.parse(updatedMovie.cast) : [],
             genres: updatedMovie.genres || [],
             platforms: updatedMovie.platforms || [],
@@ -185,6 +200,7 @@ export const MoviesService = {
 
         return movies.map((movie) => ({
             ...movie,
+            poster: toAbsolutePosterUrl(movie.poster),
             cast: movie.cast ? JSON.parse(movie.cast) : [],
             genres: movie.genres || [],
             platforms: movie.platforms || [],
