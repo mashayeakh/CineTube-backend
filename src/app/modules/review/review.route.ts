@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { checkAuth } from "@/app/middleware/checkAuth";
 import { UserRole } from "prisma/generated/prisma/enums";
-import { PlatformController } from "../streamingPlatform/streamingPlatform.controller";
 import { ReviewController } from "./review.controller";
 
 const router = Router();
@@ -18,6 +17,20 @@ router.patch(
     "/:reviewId/:userId",
     checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
     ReviewController.editReview
+);
+
+//! like review
+router.post(
+    "/:reviewId/like",
+    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    ReviewController.likeReview
+);
+
+//! unlike review
+router.delete(
+    "/:reviewId/like",
+    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    ReviewController.unlikeReview
 );
 
 //! get review by id

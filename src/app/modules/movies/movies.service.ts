@@ -219,8 +219,8 @@ export const MoviesService = {
         }));
     },
 
-    //! Delete all movies
-    async deleteAllMovies() {
-        await prisma.movie.deleteMany({});
-    }
+    // //! Delete all movies
+    // async deleteAllMovies() {
+    //     await prisma.movie.deleteMany({});
+    // }
 };

@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { AppError } from "@/app/errorHelpers/AppError";
 import { status } from "http-status";
 import { sendResponse } from "@/app/utils/sendResponse";
 import { catchAsyc } from "@/app/shared/catchAsyc";
@@ -28,6 +27,34 @@ export const ReviewController = {
             success: true,
             message: "Review edited successfully",
             result: review
+        });
+    }),
+
+    //! like review
+    likeReview: catchAsyc(async (req: Request, res: Response) => {
+        const reviewId = req.params.reviewId;
+        const userId = req.user.userId;
+        const result = await ReviewService.likeReview(reviewId as string, userId);
+
+        sendResponse(res, {
+            httpStatusCode: status.CREATED,
+            success: true,
+            message: "Review liked successfully",
+            result
+        });
+    }),
+
+    //! unlike review
+    unlikeReview: catchAsyc(async (req: Request, res: Response) => {
+        const reviewId = req.params.reviewId;
+        const userId = req.user.userId;
+        const result = await ReviewService.unlikeReview(reviewId as string, userId);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Review unliked successfully",
+            result
         });
     }),
 
