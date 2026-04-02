@@ -9,6 +9,7 @@ import status from 'http-status';
 const transporter = nodemailer.createTransport({
     host: envVars.EMAIL_SENDER.SMTP_HOST,
     port: parseInt(envVars.EMAIL_SENDER.SMTP_PORT),
+    secure: parseInt(envVars.EMAIL_SENDER.SMTP_PORT) === 465,
     auth: {
         user: envVars.EMAIL_SENDER.SMTP_USER,
         pass: envVars.EMAIL_SENDER.SMTP_PASS,

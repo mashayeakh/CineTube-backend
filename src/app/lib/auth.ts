@@ -8,8 +8,7 @@ import { sendEmail } from "../utils/email";
 
 
 export const auth = betterAuth({
-    // baseURL: envVars.BETTER_AUTH_URL,
-    baseURL: envVars.FRONTEND_URL,
+    baseURL: envVars.BETTER_AUTH_URL,
     secret: envVars.BETTER_AUTH_SECRET,
     // baseURL: process.env.BETTER_AUTH_URL,
     // secret: process.env.BETTER_AUTH_SECRET,
@@ -114,7 +113,7 @@ export const auth = betterAuth({
 
                     if (user && !user.emailVerified) {
                         //now send the eamil with otp
-                        sendEmail({
+                        await sendEmail({
                             to: email,
                             subject: "Your OTP for email verification",
                             templateName: "otp",
@@ -134,7 +133,7 @@ export const auth = betterAuth({
                         }
                     })
                     if (user) {
-                        sendEmail({
+                        await sendEmail({
                             to: email,
                             subject: "Your OTP for password reset",
                             templateName: "otp",
