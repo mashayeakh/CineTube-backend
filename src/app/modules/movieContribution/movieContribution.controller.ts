@@ -35,6 +35,15 @@ const parseStringArray = (value: unknown): string[] | undefined => {
     return undefined;
 };
 
+const buildPosterValue = (req: Request, body: Record<string, unknown>): string => {
+    if (req.file?.buffer?.length && req.file.mimetype) {
+        const base64 = req.file.buffer.toString("base64");
+        return `data:${req.file.mimetype};base64,${base64}`;
+    }
+
+    return String(body.poster || "");
+};
+
 export const MovieContributionController = {
 
     //! create movie contribution
@@ -45,7 +54,7 @@ export const MovieContributionController = {
             const payload: IMovieContributionPayload = {
                 ...(body as unknown as IMovieContributionPayload),
                 contributorId: req.user.userId,
-                poster: req.file ? `/files/${req.file.filename}` : String(body.poster || ""),
+                poster: buildPosterValue(req, body),
                 releaseYear: body.releaseYear ? Number(body.releaseYear) : new Date().getFullYear(),
                 cast: parseStringArray(body.cast),
                 genres: parseStringArray(body.genres),

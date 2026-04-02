@@ -1,22 +1,6 @@
-import fs from "node:fs";
-import path from "node:path";
 import multer from "multer";
 import { AppError } from "@/app/errorHelpers/AppError";
 import status from "http-status";
-
-const uploadDir = path.join(process.cwd(), "files");
-
-const storage = multer.diskStorage({
-    destination: (_req, _file, cb) => {
-        fs.mkdirSync(uploadDir, { recursive: true });
-        cb(null, uploadDir);
-    },
-    filename: (_req, file, cb) => {
-        const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-        const ext = path.extname(file.originalname).toLowerCase();
-        cb(null, `${file.fieldname}-${uniqueSuffix}${ext}`);
-    }
-});
 
 const allowedMimes = new Set([
     "image/jpeg",
@@ -27,7 +11,7 @@ const allowedMimes = new Set([
 ]);
 
 export const upload = multer({
-    storage,
+    storage: multer.memoryStorage(),
     limits: {
         fileSize: 5 * 1024 * 1024
     },
