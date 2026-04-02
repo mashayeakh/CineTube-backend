@@ -6,7 +6,6 @@ import status from "http-status";
 import { AppError } from "@/app/errorHelpers/AppError";
 import { IQueryParams } from "@/app/interface/queryinterface";
 import { IMovie, IUpdateMovie } from "./movie.dto";
-import { envVars } from "@/app/config/env";
 
 const parseStringArray = (value: unknown): string[] | undefined => {
     if (Array.isArray(value)) {
@@ -152,19 +151,5 @@ export const MoviesController = {
             result: movies
         });
     }),
-
-    // //!delete all movies
-    // deleteAllMovies: catchAsyc(async (req: Request, res: Response) => {
-    //     if (envVars.NODE_ENV === "production") {
-    //         throw new AppError(status.FORBIDDEN, "Bulk movie deletion is disabled in production");
-    //     }
-
-    //     await MoviesService.deleteAllMovies();
-    //     sendResponse(res, {
-    //         httpStatusCode: status.OK,
-    //         success: true,
-    //         message: "All movies deleted successfully",
-    //     });
-    // }),
 
 }

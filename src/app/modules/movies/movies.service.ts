@@ -217,10 +217,5 @@ export const MoviesService = {
             payments: movie.payments || [],
             user: movie.user || null
         }));
-    },
-
-    // //! Delete all movies
-    // async deleteAllMovies() {
-    //     await prisma.movie.deleteMany({});
-    // }
+    }
 };

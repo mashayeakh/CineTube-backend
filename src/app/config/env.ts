@@ -71,6 +71,20 @@ const loadEnvVariables = (): EnvConfig => {
         }
     })
 
+    const nodeEnv = process.env.NODE_ENV as string;
+    const betterAuthUrl = process.env.BETTER_AUTH_URL as string;
+    const frontendUrl = process.env.FRONTEND_URL as string;
+
+    if (nodeEnv === "production") {
+        if (/localhost|127\.0\.0\.1/i.test(betterAuthUrl)) {
+            throw new Error("BETTER_AUTH_URL must be a production URL when NODE_ENV=production");
+        }
+
+        if (/localhost|127\.0\.0\.1/i.test(frontendUrl)) {
+            throw new Error("FRONTEND_URL must be a production URL when NODE_ENV=production");
+        }
+    }
+
 
     return {
         NODE_ENV: process.env.NODE_ENV as string,

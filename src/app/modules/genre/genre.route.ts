@@ -32,11 +32,11 @@ router.delete(
     GenreController.deleteGenre
 );
 
-//! delete all genres
-router.delete(
-    "/",
-    checkAuth(UserRole.ADMIN),
-    GenreController.deleteAllGenres
-);
+// //! delete all genres
+// router.delete(
+//     "/",
+//     checkAuth(UserRole.ADMIN),
+//     GenreController.deleteAllGenres
+// );
 
 export const GenreRouter = router;
