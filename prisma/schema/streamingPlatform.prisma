@@ -3,6 +3,7 @@ model StreamingPlatform {
     name               String              @unique
     movies             Movie[]             @relation("MoviePlatforms")
     movieContributions MovieContribution[] @relation("MovieContributionPlatforms")
+    userPreferences    UserPreference[]    @relation("UserPreferencePlatforms")
 
     @@map("streaming_platform")
 }

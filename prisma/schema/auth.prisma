@@ -21,6 +21,7 @@ model User {
     subscriptions      Subscription[]
     watchlists         WatchList[]
     movieContributions MovieContribution[]
+    userPreference     UserPreference?
 
     @@unique([email])
     @@map("user")

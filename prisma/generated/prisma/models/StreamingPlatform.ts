@@ -160,6 +160,7 @@ export type StreamingPlatformWhereInput = {
   name?: Prisma.StringFilter<"StreamingPlatform"> | string
   movies?: Prisma.MovieListRelationFilter
   movieContributions?: Prisma.MovieContributionListRelationFilter
+  userPreferences?: Prisma.UserPreferenceListRelationFilter
 }
 
 export type StreamingPlatformOrderByWithRelationInput = {
@@ -167,6 +168,7 @@ export type StreamingPlatformOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   movies?: Prisma.MovieOrderByRelationAggregateInput
   movieContributions?: Prisma.MovieContributionOrderByRelationAggregateInput
+  userPreferences?: Prisma.UserPreferenceOrderByRelationAggregateInput
 }
 
 export type StreamingPlatformWhereUniqueInput = Prisma.AtLeast<{
@@ -177,6 +179,7 @@ export type StreamingPlatformWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.StreamingPlatformWhereInput | Prisma.StreamingPlatformWhereInput[]
   movies?: Prisma.MovieListRelationFilter
   movieContributions?: Prisma.MovieContributionListRelationFilter
+  userPreferences?: Prisma.UserPreferenceListRelationFilter
 }, "id" | "name">
 
 export type StreamingPlatformOrderByWithAggregationInput = {
@@ -200,6 +203,7 @@ export type StreamingPlatformCreateInput = {
   name: string
   movies?: Prisma.MovieCreateNestedManyWithoutPlatformsInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutPlatformsInput
+  userPreferences?: Prisma.UserPreferenceCreateNestedManyWithoutPlatformsInput
 }
 
 export type StreamingPlatformUncheckedCreateInput = {
@@ -207,6 +211,7 @@ export type StreamingPlatformUncheckedCreateInput = {
   name: string
   movies?: Prisma.MovieUncheckedCreateNestedManyWithoutPlatformsInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutPlatformsInput
+  userPreferences?: Prisma.UserPreferenceUncheckedCreateNestedManyWithoutPlatformsInput
 }
 
 export type StreamingPlatformUpdateInput = {
@@ -214,6 +219,7 @@ export type StreamingPlatformUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   movies?: Prisma.MovieUpdateManyWithoutPlatformsNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutPlatformsNestedInput
+  userPreferences?: Prisma.UserPreferenceUpdateManyWithoutPlatformsNestedInput
 }
 
 export type StreamingPlatformUncheckedUpdateInput = {
@@ -221,6 +227,7 @@ export type StreamingPlatformUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   movies?: Prisma.MovieUncheckedUpdateManyWithoutPlatformsNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutPlatformsNestedInput
+  userPreferences?: Prisma.UserPreferenceUncheckedUpdateManyWithoutPlatformsNestedInput
 }
 
 export type StreamingPlatformCreateManyInput = {
@@ -339,16 +346,56 @@ export type StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput = {
   deleteMany?: Prisma.StreamingPlatformScalarWhereInput | Prisma.StreamingPlatformScalarWhereInput[]
 }
 
+export type StreamingPlatformCreateNestedManyWithoutUserPreferencesInput = {
+  create?: Prisma.XOR<Prisma.StreamingPlatformCreateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput> | Prisma.StreamingPlatformCreateWithoutUserPreferencesInput[] | Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput[]
+  connectOrCreate?: Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput | Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput[]
+  connect?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+}
+
+export type StreamingPlatformUncheckedCreateNestedManyWithoutUserPreferencesInput = {
+  create?: Prisma.XOR<Prisma.StreamingPlatformCreateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput> | Prisma.StreamingPlatformCreateWithoutUserPreferencesInput[] | Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput[]
+  connectOrCreate?: Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput | Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput[]
+  connect?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+}
+
+export type StreamingPlatformUpdateManyWithoutUserPreferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.StreamingPlatformCreateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput> | Prisma.StreamingPlatformCreateWithoutUserPreferencesInput[] | Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput[]
+  connectOrCreate?: Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput | Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput[]
+  upsert?: Prisma.StreamingPlatformUpsertWithWhereUniqueWithoutUserPreferencesInput | Prisma.StreamingPlatformUpsertWithWhereUniqueWithoutUserPreferencesInput[]
+  set?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  disconnect?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  delete?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  connect?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  update?: Prisma.StreamingPlatformUpdateWithWhereUniqueWithoutUserPreferencesInput | Prisma.StreamingPlatformUpdateWithWhereUniqueWithoutUserPreferencesInput[]
+  updateMany?: Prisma.StreamingPlatformUpdateManyWithWhereWithoutUserPreferencesInput | Prisma.StreamingPlatformUpdateManyWithWhereWithoutUserPreferencesInput[]
+  deleteMany?: Prisma.StreamingPlatformScalarWhereInput | Prisma.StreamingPlatformScalarWhereInput[]
+}
+
+export type StreamingPlatformUncheckedUpdateManyWithoutUserPreferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.StreamingPlatformCreateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput> | Prisma.StreamingPlatformCreateWithoutUserPreferencesInput[] | Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput[]
+  connectOrCreate?: Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput | Prisma.StreamingPlatformCreateOrConnectWithoutUserPreferencesInput[]
+  upsert?: Prisma.StreamingPlatformUpsertWithWhereUniqueWithoutUserPreferencesInput | Prisma.StreamingPlatformUpsertWithWhereUniqueWithoutUserPreferencesInput[]
+  set?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  disconnect?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  delete?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  connect?: Prisma.StreamingPlatformWhereUniqueInput | Prisma.StreamingPlatformWhereUniqueInput[]
+  update?: Prisma.StreamingPlatformUpdateWithWhereUniqueWithoutUserPreferencesInput | Prisma.StreamingPlatformUpdateWithWhereUniqueWithoutUserPreferencesInput[]
+  updateMany?: Prisma.StreamingPlatformUpdateManyWithWhereWithoutUserPreferencesInput | Prisma.StreamingPlatformUpdateManyWithWhereWithoutUserPreferencesInput[]
+  deleteMany?: Prisma.StreamingPlatformScalarWhereInput | Prisma.StreamingPlatformScalarWhereInput[]
+}
+
 export type StreamingPlatformCreateWithoutMovieContributionsInput = {
   id?: string
   name: string
   movies?: Prisma.MovieCreateNestedManyWithoutPlatformsInput
+  userPreferences?: Prisma.UserPreferenceCreateNestedManyWithoutPlatformsInput
 }
 
 export type StreamingPlatformUncheckedCreateWithoutMovieContributionsInput = {
   id?: string
   name: string
   movies?: Prisma.MovieUncheckedCreateNestedManyWithoutPlatformsInput
+  userPreferences?: Prisma.UserPreferenceUncheckedCreateNestedManyWithoutPlatformsInput
 }
 
 export type StreamingPlatformCreateOrConnectWithoutMovieContributionsInput = {
@@ -384,12 +431,14 @@ export type StreamingPlatformCreateWithoutMoviesInput = {
   id?: string
   name: string
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutPlatformsInput
+  userPreferences?: Prisma.UserPreferenceCreateNestedManyWithoutPlatformsInput
 }
 
 export type StreamingPlatformUncheckedCreateWithoutMoviesInput = {
   id?: string
   name: string
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutPlatformsInput
+  userPreferences?: Prisma.UserPreferenceUncheckedCreateNestedManyWithoutPlatformsInput
 }
 
 export type StreamingPlatformCreateOrConnectWithoutMoviesInput = {
@@ -413,16 +462,53 @@ export type StreamingPlatformUpdateManyWithWhereWithoutMoviesInput = {
   data: Prisma.XOR<Prisma.StreamingPlatformUpdateManyMutationInput, Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesInput>
 }
 
+export type StreamingPlatformCreateWithoutUserPreferencesInput = {
+  id?: string
+  name: string
+  movies?: Prisma.MovieCreateNestedManyWithoutPlatformsInput
+  movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutPlatformsInput
+}
+
+export type StreamingPlatformUncheckedCreateWithoutUserPreferencesInput = {
+  id?: string
+  name: string
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutPlatformsInput
+  movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutPlatformsInput
+}
+
+export type StreamingPlatformCreateOrConnectWithoutUserPreferencesInput = {
+  where: Prisma.StreamingPlatformWhereUniqueInput
+  create: Prisma.XOR<Prisma.StreamingPlatformCreateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput>
+}
+
+export type StreamingPlatformUpsertWithWhereUniqueWithoutUserPreferencesInput = {
+  where: Prisma.StreamingPlatformWhereUniqueInput
+  update: Prisma.XOR<Prisma.StreamingPlatformUpdateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedUpdateWithoutUserPreferencesInput>
+  create: Prisma.XOR<Prisma.StreamingPlatformCreateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedCreateWithoutUserPreferencesInput>
+}
+
+export type StreamingPlatformUpdateWithWhereUniqueWithoutUserPreferencesInput = {
+  where: Prisma.StreamingPlatformWhereUniqueInput
+  data: Prisma.XOR<Prisma.StreamingPlatformUpdateWithoutUserPreferencesInput, Prisma.StreamingPlatformUncheckedUpdateWithoutUserPreferencesInput>
+}
+
+export type StreamingPlatformUpdateManyWithWhereWithoutUserPreferencesInput = {
+  where: Prisma.StreamingPlatformScalarWhereInput
+  data: Prisma.XOR<Prisma.StreamingPlatformUpdateManyMutationInput, Prisma.StreamingPlatformUncheckedUpdateManyWithoutUserPreferencesInput>
+}
+
 export type StreamingPlatformUpdateWithoutMovieContributionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   movies?: Prisma.MovieUpdateManyWithoutPlatformsNestedInput
+  userPreferences?: Prisma.UserPreferenceUpdateManyWithoutPlatformsNestedInput
 }
 
 export type StreamingPlatformUncheckedUpdateWithoutMovieContributionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   movies?: Prisma.MovieUncheckedUpdateManyWithoutPlatformsNestedInput
+  userPreferences?: Prisma.UserPreferenceUncheckedUpdateManyWithoutPlatformsNestedInput
 }
 
 export type StreamingPlatformUncheckedUpdateManyWithoutMovieContributionsInput = {
@@ -434,15 +520,36 @@ export type StreamingPlatformUpdateWithoutMoviesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutPlatformsNestedInput
+  userPreferences?: Prisma.UserPreferenceUpdateManyWithoutPlatformsNestedInput
 }
 
 export type StreamingPlatformUncheckedUpdateWithoutMoviesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutPlatformsNestedInput
+  userPreferences?: Prisma.UserPreferenceUncheckedUpdateManyWithoutPlatformsNestedInput
 }
 
 export type StreamingPlatformUncheckedUpdateManyWithoutMoviesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type StreamingPlatformUpdateWithoutUserPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  movies?: Prisma.MovieUpdateManyWithoutPlatformsNestedInput
+  movieContributions?: Prisma.MovieContributionUpdateManyWithoutPlatformsNestedInput
+}
+
+export type StreamingPlatformUncheckedUpdateWithoutUserPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutPlatformsNestedInput
+  movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutPlatformsNestedInput
+}
+
+export type StreamingPlatformUncheckedUpdateManyWithoutUserPreferencesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -455,11 +562,13 @@ export type StreamingPlatformUncheckedUpdateManyWithoutMoviesInput = {
 export type StreamingPlatformCountOutputType = {
   movies: number
   movieContributions: number
+  userPreferences: number
 }
 
 export type StreamingPlatformCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   movies?: boolean | StreamingPlatformCountOutputTypeCountMoviesArgs
   movieContributions?: boolean | StreamingPlatformCountOutputTypeCountMovieContributionsArgs
+  userPreferences?: boolean | StreamingPlatformCountOutputTypeCountUserPreferencesArgs
 }
 
 /**
@@ -486,12 +595,20 @@ export type StreamingPlatformCountOutputTypeCountMovieContributionsArgs<ExtArgs 
   where?: Prisma.MovieContributionWhereInput
 }
 
+/**
+ * StreamingPlatformCountOutputType without action
+ */
+export type StreamingPlatformCountOutputTypeCountUserPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserPreferenceWhereInput
+}
+
 
 export type StreamingPlatformSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   movies?: boolean | Prisma.StreamingPlatform$moviesArgs<ExtArgs>
   movieContributions?: boolean | Prisma.StreamingPlatform$movieContributionsArgs<ExtArgs>
+  userPreferences?: boolean | Prisma.StreamingPlatform$userPreferencesArgs<ExtArgs>
   _count?: boolean | Prisma.StreamingPlatformCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["streamingPlatform"]>
 
@@ -514,6 +631,7 @@ export type StreamingPlatformOmit<ExtArgs extends runtime.Types.Extensions.Inter
 export type StreamingPlatformInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   movies?: boolean | Prisma.StreamingPlatform$moviesArgs<ExtArgs>
   movieContributions?: boolean | Prisma.StreamingPlatform$movieContributionsArgs<ExtArgs>
+  userPreferences?: boolean | Prisma.StreamingPlatform$userPreferencesArgs<ExtArgs>
   _count?: boolean | Prisma.StreamingPlatformCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StreamingPlatformIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -524,6 +642,7 @@ export type $StreamingPlatformPayload<ExtArgs extends runtime.Types.Extensions.I
   objects: {
     movies: Prisma.$MoviePayload<ExtArgs>[]
     movieContributions: Prisma.$MovieContributionPayload<ExtArgs>[]
+    userPreferences: Prisma.$UserPreferencePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -924,6 +1043,7 @@ export interface Prisma__StreamingPlatformClient<T, Null = never, ExtArgs extend
   readonly [Symbol.toStringTag]: "PrismaPromise"
   movies<T extends Prisma.StreamingPlatform$moviesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StreamingPlatform$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   movieContributions<T extends Prisma.StreamingPlatform$movieContributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StreamingPlatform$movieContributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovieContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  userPreferences<T extends Prisma.StreamingPlatform$userPreferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StreamingPlatform$userPreferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1393,6 +1513,30 @@ export type StreamingPlatform$movieContributionsArgs<ExtArgs extends runtime.Typ
   take?: number
   skip?: number
   distinct?: Prisma.MovieContributionScalarFieldEnum | Prisma.MovieContributionScalarFieldEnum[]
+}
+
+/**
+ * StreamingPlatform.userPreferences
+ */
+export type StreamingPlatform$userPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserPreference
+   */
+  select?: Prisma.UserPreferenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserPreference
+   */
+  omit?: Prisma.UserPreferenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserPreferenceInclude<ExtArgs> | null
+  where?: Prisma.UserPreferenceWhereInput
+  orderBy?: Prisma.UserPreferenceOrderByWithRelationInput | Prisma.UserPreferenceOrderByWithRelationInput[]
+  cursor?: Prisma.UserPreferenceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserPreferenceScalarFieldEnum | Prisma.UserPreferenceScalarFieldEnum[]
 }
 
 /**

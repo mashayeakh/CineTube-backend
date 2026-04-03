@@ -3,6 +3,7 @@ model Genre {
     name               String              @unique
     movies             Movie[]             @relation("MovieGenres")
     movieContributions MovieContribution[] @relation("MovieContributionGenres")
+    userPreferences    UserPreference[]    @relation("UserPreferenceGenres")
 
     @@map("genre")
 }

@@ -88,6 +88,11 @@ export type StreamingPlatform = Prisma.StreamingPlatformModel
  */
 export type Subscription = Prisma.SubscriptionModel
 /**
+ * Model UserPreference
+ * 
+ */
+export type UserPreference = Prisma.UserPreferenceModel
+/**
  * Model WatchList
  * 
  */

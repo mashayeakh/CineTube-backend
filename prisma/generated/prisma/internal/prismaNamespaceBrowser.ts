@@ -65,6 +65,7 @@ export const ModelName = {
   Review: 'Review',
   StreamingPlatform: 'StreamingPlatform',
   Subscription: 'Subscription',
+  UserPreference: 'UserPreference',
   WatchList: 'WatchList'
 } as const
 
@@ -278,6 +279,16 @@ export const SubscriptionScalarFieldEnum = {
 } as const
 
 export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+export const UserPreferenceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserPreferenceScalarFieldEnum = (typeof UserPreferenceScalarFieldEnum)[keyof typeof UserPreferenceScalarFieldEnum]
 
 
 export const WatchListScalarFieldEnum = {
