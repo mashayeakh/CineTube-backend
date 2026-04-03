@@ -15,6 +15,7 @@ import { DashboardUserRoutes } from "../admin/dashboard/users/dashboard.user.rou
 import { UserDashboardRoutes } from "@/app/modules/user/dashboard/user.dashboard.route";
 import { PaymentRouter } from "../payment/payment.route";
 import { WatchlistRouter } from "../watchlist/watchlist.route";
+import { UserPreferenceRouter } from "../userPreference/userPreference.route";
 
 const router = express.Router();
 
@@ -105,7 +106,11 @@ router.use(
     WatchlistRouter
 )
 
-//!
+//! User Preference
+router.use(
+    "/user-preferences",
+    UserPreferenceRouter
+)
 
 
 

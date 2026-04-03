@@ -6,6 +6,7 @@ model UserPreference {
     genres Genre[] @relation("UserPreferenceGenres")
     platforms StreamingPlatform[] @relation("UserPreferencePlatforms")
 
+
     
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
