@@ -6,7 +6,7 @@ import { envVars } from "@/app/config/env";
 
 const { CLOUD_NAME, API_KEY, API_SECRET } = envVars.CLOUDINARY;
 
-const canUseCloudinary = Boolean(CLOUD_NAME && API_KEY && API_SECRET);
+const canUseCloudinary = Boolean(CLOUD_NAME && API_KEY && API_SECRET); 
 
 if (canUseCloudinary) {
     cloudinary.config({

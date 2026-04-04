@@ -150,5 +150,33 @@ export const SeriesController = {
             message: "Series fetched successfully",
             result: results
         });
+    }),
+
+    //! Set featured series (admin)
+    setFeaturedSeries: catchAsyc(async (req: Request, res: Response) => {
+        const { id } = req.params;
+        if (!id) throw new AppError(status.BAD_REQUEST, "Series ID is required");
+
+        const adminUserId = req.user.userId;
+        const result = await SeriesService.setFeaturedSeries(id as string, adminUserId);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Featured series updated successfully",
+            result
+        });
+    }),
+
+    //! Get featured series (public)
+    getFeaturedSeries: catchAsyc(async (_req: Request, res: Response) => {
+        const result = await SeriesService.getFeaturedSeries();
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Featured series fetched successfully",
+            result
+        });
     })
 };

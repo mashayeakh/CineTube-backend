@@ -17,6 +17,7 @@ export const seriesFilterableFields = [
     "priceType",
     "ageGroup",
     "status",
+    "isFeatured",
     "totalSeasons",
     "genres.name",
     "platforms.name",

@@ -26,6 +26,12 @@ router.get(
     SeriesController.searchSeries
 );
 
+//! Get featured series (public)
+router.get(
+    "/featured",
+    SeriesController.getFeaturedSeries
+);
+
 //! Get series by ID (public)
 router.get(
     "/:id",
@@ -45,6 +51,13 @@ router.delete(
     "/:id",
     checkAuth(UserRole.ADMIN),
     SeriesController.deleteSeriesById
+);
+
+//! Set featured series by ID (admin only)
+router.patch(
+    "/:id/feature",
+    checkAuth(UserRole.ADMIN),
+    SeriesController.setFeaturedSeries
 );
 
 export const SeriesRouter = router;

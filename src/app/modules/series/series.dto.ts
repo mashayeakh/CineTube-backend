@@ -13,6 +13,9 @@ export interface ISeries {
     totalSeasons: number;
     totalEpisodes?: number | null;
     status?: "ONGOING" | "COMPLETED" | "UPCOMING" | "CANCELLED" | null;
+    isFeatured?: boolean;
+    featuredAt?: Date | null;
+    featuredBy?: string | null;
     userId: string;
     createdAt?: Date;
     updatedAt?: Date;

@@ -197,5 +197,50 @@ export const SeriesService = {
         });
 
         return results.map(parseSeries);
+    },
+
+    //! Set one featured series at a time
+    async setFeaturedSeries(seriesId: string, adminUserId: string) {
+        const existing = await prisma.series.findUnique(
+            {
+                where: { id: seriesId }
+            }
+        );
+
+        if (!existing) throw new AppError(404, "Series not found");
+
+        const [featuredSeries] = await prisma.$transaction([
+            prisma.series.updateMany({
+                where: { isFeatured: true },
+                data: {
+                    isFeatured: false,
+                    featuredAt: null,
+                    featuredBy: null
+                }
+            }),
+            prisma.series.update({
+                where: { id: seriesId },
+                data: {
+                    isFeatured: true,
+                    featuredAt: new Date(),
+                    featuredBy: adminUserId
+                },
+                include: { user: true, genres: true, platforms: true }
+            })
+        ]);
+
+        return parseSeries(featuredSeries);
+    },
+
+    //! Get currently featured series
+    async getFeaturedSeries() {
+        const featured = await prisma.series.findFirst({
+            where: { isFeatured: true },
+            include: { user: true, genres: true, platforms: true },
+            orderBy: { featuredAt: "desc" }
+        });
+
+        if (!featured) throw new AppError(404, "No featured series found");
+        return parseSeries(featured);
     }
 };

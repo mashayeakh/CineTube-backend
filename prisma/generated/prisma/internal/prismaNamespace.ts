@@ -1905,6 +1905,9 @@ export const SeriesScalarFieldEnum = {
   totalSeasons: 'totalSeasons',
   totalEpisodes: 'totalEpisodes',
   status: 'status',
+  isFeatured: 'isFeatured',
+  featuredAt: 'featuredAt',
+  featuredBy: 'featuredBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId'
