@@ -2,6 +2,7 @@ model StreamingPlatform {
     id                 String              @id @default(cuid())
     name               String              @unique
     movies             Movie[]             @relation("MoviePlatforms")
+    series             Series[]            @relation("SeriesPlatforms")
     movieContributions MovieContribution[] @relation("MovieContributionPlatforms")
     userPreferences    UserPreference[]    @relation("UserPreferencePlatforms")
 

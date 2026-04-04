@@ -89,3 +89,13 @@ export const AgeGroup = {
 } as const
 
 export type AgeGroup = (typeof AgeGroup)[keyof typeof AgeGroup]
+
+
+export const SeriesStatus = {
+  ONGOING: 'ONGOING',
+  COMPLETED: 'COMPLETED',
+  UPCOMING: 'UPCOMING',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type SeriesStatus = (typeof SeriesStatus)[keyof typeof SeriesStatus]

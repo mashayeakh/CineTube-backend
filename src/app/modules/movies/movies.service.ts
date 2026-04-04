@@ -80,6 +80,7 @@ export const MoviesService = {
             cast: JSON.parse(result.cast || "[]")
         };
     },
+    
 
     //! Get all movies with filters, search, pagination
     async getAllMovies(query: IQueryParams) {

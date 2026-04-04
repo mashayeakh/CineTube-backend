@@ -52,3 +52,10 @@ enum AgeGroup {
     AGE_13_PLUS
     ALL_AGES
 }
+
+enum SeriesStatus {
+    ONGOING
+    COMPLETED
+    UPCOMING
+    CANCELLED
+}

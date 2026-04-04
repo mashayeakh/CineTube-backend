@@ -1,0 +1,25 @@
+model Series {
+    id            String       @id @default(cuid())
+    title         String
+    description   String
+    poster        String
+    releaseYear   Int
+    director      String
+    cast          String       @db.Text
+    ageGroup      AgeGroup
+    priceType     PriceType    @default(FREE)
+    totalSeasons  Int
+    totalEpisodes Int?
+    status        SeriesStatus @default(ONGOING)
+    createdAt     DateTime     @default(now())
+    updatedAt     DateTime     @updatedAt
+    userId        String
+    user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    genres    Genre[]             @relation("SeriesGenres")
+    platforms StreamingPlatform[] @relation("SeriesPlatforms")
+
+    @@unique([title])
+    @@index([userId])
+    @@map("series")
+}

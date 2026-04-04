@@ -396,6 +396,7 @@ export const ModelName = {
   Payment: 'Payment',
   ReviewLike: 'ReviewLike',
   Review: 'Review',
+  Series: 'Series',
   StreamingPlatform: 'StreamingPlatform',
   Subscription: 'Subscription',
   UserPreference: 'UserPreference',
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "user" | "session" | "account" | "verification" | "comment" | "genre" | "movieContribution" | "movie" | "payment" | "reviewLike" | "review" | "streamingPlatform" | "subscription" | "userPreference" | "watchList"
+    modelProps: "admin" | "user" | "session" | "account" | "verification" | "comment" | "genre" | "movieContribution" | "movie" | "payment" | "reviewLike" | "review" | "series" | "streamingPlatform" | "subscription" | "userPreference" | "watchList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1307,6 +1308,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Series: {
+      payload: Prisma.$SeriesPayload<ExtArgs>
+      fields: Prisma.SeriesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SeriesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SeriesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+        }
+        findFirst: {
+          args: Prisma.SeriesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SeriesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+        }
+        findMany: {
+          args: Prisma.SeriesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>[]
+        }
+        create: {
+          args: Prisma.SeriesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+        }
+        createMany: {
+          args: Prisma.SeriesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SeriesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>[]
+        }
+        delete: {
+          args: Prisma.SeriesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+        }
+        update: {
+          args: Prisma.SeriesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+        }
+        deleteMany: {
+          args: Prisma.SeriesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SeriesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SeriesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>[]
+        }
+        upsert: {
+          args: Prisma.SeriesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+        }
+        aggregate: {
+          args: Prisma.SeriesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSeries>
+        }
+        groupBy: {
+          args: Prisma.SeriesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SeriesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SeriesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SeriesCountAggregateOutputType> | number
+        }
+      }
+    }
     StreamingPlatform: {
       payload: Prisma.$StreamingPlatformPayload<ExtArgs>
       fields: Prisma.StreamingPlatformFieldRefs
@@ -1817,6 +1892,27 @@ export const ReviewScalarFieldEnum = {
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
+export const SeriesScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  poster: 'poster',
+  releaseYear: 'releaseYear',
+  director: 'director',
+  cast: 'cast',
+  ageGroup: 'ageGroup',
+  priceType: 'priceType',
+  totalSeasons: 'totalSeasons',
+  totalEpisodes: 'totalEpisodes',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
+
+
 export const StreamingPlatformScalarFieldEnum = {
   id: 'id',
   name: 'name'
@@ -2050,6 +2146,20 @@ export type ListEnumReviewStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
+ * Reference to a field of type 'SeriesStatus'
+ */
+export type EnumSeriesStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SeriesStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SeriesStatus[]'
+ */
+export type ListEnumSeriesStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SeriesStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'SubscriptionType'
  */
 export type EnumSubscriptionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionType'>
@@ -2197,6 +2307,7 @@ export type GlobalOmitConfig = {
   payment?: Prisma.PaymentOmit
   reviewLike?: Prisma.ReviewLikeOmit
   review?: Prisma.ReviewOmit
+  series?: Prisma.SeriesOmit
   streamingPlatform?: Prisma.StreamingPlatformOmit
   subscription?: Prisma.SubscriptionOmit
   userPreference?: Prisma.UserPreferenceOmit
