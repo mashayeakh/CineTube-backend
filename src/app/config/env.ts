@@ -32,7 +32,11 @@ interface EnvConfig {
         STRIPE_WEBHOOK_SECRET: string,
     }
 
-
+    CLOUDINARY: {
+        CLOUD_NAME: string,
+        API_KEY: string,
+        API_SECRET: string,
+    }
 }
 
 //load env
@@ -59,7 +63,10 @@ const loadEnvVariables = (): EnvConfig => {
         "EMAIL_SENDER_SMTP_PORT",
         "EMAIL_SENDER_SMTP_FROM",
         "STRIPE_SECRET_KEY",
-        "STRIPE_WEBHOOK_SECRET"
+        "STRIPE_WEBHOOK_SECRET",
+        "CLOUDINARY_CLOUD_NAME",
+        "CLOUDINARY_API_KEY",
+        "CLOUDINARY_API_SECRET"
     ]
 
     // check for validation, if something is missing, throw new err
@@ -111,6 +118,12 @@ const loadEnvVariables = (): EnvConfig => {
         STRIPE: {
             STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
             STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET as string,
+        },
+
+        CLOUDINARY: {
+            CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
+            API_KEY: process.env.CLOUDINARY_API_KEY as string,
+            API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
         }
 
     }

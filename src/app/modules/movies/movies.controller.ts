@@ -6,6 +6,7 @@ import status from "http-status";
 import { AppError } from "@/app/errorHelpers/AppError";
 import { IQueryParams } from "@/app/interface/queryinterface";
 import { IMovie, IUpdateMovie } from "./movie.dto";
+import { persistPoster } from "@/app/utils/posterUpload";
 
 const parseStringArray = (value: unknown): string[] | undefined => {
     if (Array.isArray(value)) {
@@ -42,7 +43,8 @@ export const MoviesController = {
     createMovies: catchAsyc(
         async (req: Request, res: Response) => {
             const body = req.body as Record<string, unknown>;
-            const posterPath = req.file ? `/files/${req.file.filename}` : body.poster;
+            const uploadedPoster = await persistPoster(req.file as Express.Multer.File | undefined);
+            const posterPath = uploadedPoster ?? body.poster;
 
             const payload: IMovie = {
                 ...(body as unknown as IMovie),
@@ -101,10 +103,11 @@ export const MoviesController = {
             throw new AppError(status.BAD_REQUEST, "Movie ID is required");
         }
         const body = req.body as Record<string, unknown>;
+        const uploadedPoster = await persistPoster(req.file as Express.Multer.File | undefined);
         const payload: IUpdateMovie = {
             ...(body as unknown as IUpdateMovie),
             releaseYear: body.releaseYear ? Number(body.releaseYear) : undefined,
-            poster: req.file ? `/files/${req.file.filename}` : (body.poster as string | undefined),
+            poster: uploadedPoster ?? (body.poster as string | undefined),
             cast: parseStringArray(body.cast),
             genres: parseStringArray(body.genres),
             platforms: parseStringArray(body.platforms)
