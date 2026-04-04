@@ -1,5 +1,6 @@
 import { UsersRouter } from "@/app/modules/user/user.route";
 import { MoviesRouter } from "../movies/movies.route";
+import { SeriesRouter } from "../series/series.route";
 import express from 'express';
 import { AuthRouter } from "../auth/auth.route";
 import { GenreRouter } from "../genre/genre.route";
@@ -35,6 +36,12 @@ router.use(
 router.use(
     "/movies",
     MoviesRouter
+);
+
+//!Series
+router.use(
+    "/series",
+    SeriesRouter
 );
 
 //!Movie Contribution
