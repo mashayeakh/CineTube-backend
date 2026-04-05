@@ -26,6 +26,25 @@ router.get(
     MoviesController.searchMovies
 );
 
+//! top rated movies
+router.get(
+    "/top-rated",
+    MoviesController.getTopRatedMovies
+);
+
+//! upcoming movies
+router.get(
+    "/upcoming",
+    MoviesController.getUpcomingMovies
+);
+
+//* fetch all movies + movies contributions
+router.get(
+    "/all-with-contributions",
+    // checkAuth(),
+    MoviesController.getMoviesWithContributions
+);
+
 //! get movie by ID
 router.get(
     "/:id",

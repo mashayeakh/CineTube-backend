@@ -80,7 +80,7 @@ export const MoviesService = {
             cast: JSON.parse(result.cast || "[]")
         };
     },
-    
+
 
     //! Get all movies with filters, search, pagination
     async getAllMovies(query: IQueryParams) {
@@ -218,5 +218,172 @@ export const MoviesService = {
             payments: movie.payments || [],
             user: movie.user || null
         }));
+    },
+
+    //! Get top rated movies (review + rating + payment signals)
+    async getTopRatedMovies(limit = 20) {
+        const take = Number.isFinite(limit) && limit > 0 ? Math.floor(limit) : 20;
+        const currentYear = new Date().getFullYear();
+
+        const movies = await prisma.movie.findMany({
+            where: {
+                releaseYear: {
+                    lte: currentYear
+                }
+            },
+            include: {
+                user: true,
+                genres: true,
+                platforms: true,
+                reviews: {
+                    where: { status: "APPROVED" },
+                    include: {
+                        user: true,
+                        comments: true
+                    }
+                },
+                watchlists: true,
+                payments: true
+            }
+        });
+
+        const scoredMovies = movies
+            .map((movie) => {
+                const approvedReviews = movie.reviews || [];
+                const reviewCount = approvedReviews.length;
+                const ratingSum = approvedReviews.reduce((sum, review) => sum + review.rating, 0);
+                const averageRating = reviewCount > 0 ? ratingSum / reviewCount : 0;
+                const completedPaymentCount = (movie.payments || []).filter(
+                    (payment) => payment.status === "COMPLETED"
+                ).length;
+
+                const score =
+                    averageRating * 2 +
+                    Math.log(reviewCount + 1) * 1.5 +
+                    Math.log(completedPaymentCount + 1);
+
+                return {
+                    ...movie,
+                    poster: toAbsolutePosterUrl(movie.poster),
+                    cast: movie.cast ? JSON.parse(movie.cast) : [],
+                    genres: movie.genres || [],
+                    platforms: movie.platforms || [],
+                    reviews: approvedReviews,
+                    watchlists: movie.watchlists || [],
+                    payments: movie.payments || [],
+                    user: movie.user || null,
+                    metrics: {
+                        averageRating: Number(averageRating.toFixed(2)),
+                        reviewCount,
+                        completedPaymentCount,
+                        score: Number(score.toFixed(4))
+                    }
+                };
+            })
+            .sort((a, b) => {
+                if (b.metrics.score !== a.metrics.score) return b.metrics.score - a.metrics.score;
+                if (b.metrics.averageRating !== a.metrics.averageRating) {
+                    return b.metrics.averageRating - a.metrics.averageRating;
+                }
+                if (b.metrics.reviewCount !== a.metrics.reviewCount) {
+                    return b.metrics.reviewCount - a.metrics.reviewCount;
+                }
+                return b.metrics.completedPaymentCount - a.metrics.completedPaymentCount;
+            })
+            .slice(0, take);
+
+        return scoredMovies;
+    },
+
+    //! Get upcoming movies (release year greater than current year)
+    async getUpcomingMovies(limit = 20) {
+        const take = Number.isFinite(limit) && limit > 0 ? Math.floor(limit) : 20;
+        const currentYear = new Date().getFullYear();
+
+        const movies = await prisma.movie.findMany({
+            where: {
+                releaseYear: {
+                    gt: currentYear
+                }
+            },
+            orderBy: [
+                { releaseYear: "asc" },
+                { createdAt: "desc" }
+            ],
+            take,
+            include: {
+                user: true,
+                genres: true,
+                platforms: true,
+                reviews: true,
+                watchlists: true,
+                payments: true
+            }
+        });
+
+        return movies.map((movie) => ({
+            ...movie,
+            poster: toAbsolutePosterUrl(movie.poster),
+            cast: movie.cast ? JSON.parse(movie.cast) : [],
+            genres: movie.genres || [],
+            platforms: movie.platforms || [],
+            reviews: movie.reviews || [],
+            watchlists: movie.watchlists || [],
+            payments: movie.payments || [],
+            user: movie.user || null
+        }));
+    },
+
+
+    //? Get all movies + all pending contributions
+    async getMoviesWithContributions() {
+        const movies = await prisma.movie.findMany({
+            include: {
+                user: true,
+                genres: true,
+                platforms: true,
+                reviews: true,
+                watchlists: true,
+                payments: true,
+            }
+        });
+        console.log("--- movies", movies.length)
+        console.log("--- movies", movies)
+        // MovieContribution is a standalone user submission — it has no movieId relation.
+        // Return contributions separately alongside movies.
+        const contributions = await prisma.movieContribution.findMany({
+            include: {
+                contributor: true,
+                genres: true,
+                platforms: true,
+            }
+        });
+
+        console.log("--- movie contributions", contributions.length)
+        console.log("--- movies contributions", contributions)
+
+        return {
+            movies: movies.map((movie) => ({
+                ...movie,
+                poster: toAbsolutePosterUrl(movie.poster),
+                cast: movie.cast ? JSON.parse(movie.cast) : [],
+                genres: movie.genres || [],
+                platforms: movie.platforms || [],
+                reviews: movie.reviews || [],
+                watchlists: movie.watchlists || [],
+                payments: movie.payments || [],
+                user: movie.user || null
+            })),
+            contributions: contributions.map((c) => ({
+                ...c,
+                poster: toAbsolutePosterUrl(c.poster),
+                cast: c.cast ? JSON.parse(c.cast) : [],
+                genres: c.genres || [],
+                platforms: c.platforms || [],
+                contributor: c.contributor || null
+            }))
+        };
     }
-};
+
+
+}

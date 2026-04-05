@@ -155,4 +155,44 @@ export const MoviesController = {
         });
     }),
 
+    //! Get top rated movies
+    getTopRatedMovies: catchAsyc(async (req: Request, res: Response) => {
+        const limit = req.query.limit ? Number(req.query.limit) : 20;
+        const movies = await MoviesService.getTopRatedMovies(limit);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Top rated movies fetched successfully",
+            result: movies
+        });
+    }),
+
+    //! Get upcoming movies
+    getUpcomingMovies: catchAsyc(async (req: Request, res: Response) => {
+        const limit = req.query.limit ? Number(req.query.limit) : 20;
+        const movies = await MoviesService.getUpcomingMovies(limit);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Upcoming movies fetched successfully",
+            result: movies
+        });
+    }),
+
+    //! Get all movies + movies contributions 
+    getMoviesWithContributions: catchAsyc(async (req: Request, res: Response) => {
+        const result = await MoviesService.getMoviesWithContributions();
+        if (!result || result.movies.length === 0) {
+            throw new AppError(status.NOT_FOUND, "No movies found");
+        }
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Movies with contributions fetched successfully",
+            result
+        });
+    })
+
 }
