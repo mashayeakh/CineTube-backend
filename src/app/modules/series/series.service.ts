@@ -209,7 +209,7 @@ export const SeriesService = {
 
         if (!existing) throw new AppError(404, "Series not found");
 
-        const [featuredSeries] = await prisma.$transaction([
+        const [, featuredSeries] = await prisma.$transaction([
             prisma.series.updateMany({
                 where: { isFeatured: true },
                 data: {

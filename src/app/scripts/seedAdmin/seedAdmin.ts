@@ -5,65 +5,72 @@ import { envVars } from '../../config/env';
 
 export const seedAdmin = async () => {
     try {
-        //if admin already exists, do not create another one
-        const existingAdmin = await prisma.user.findFirst({
+        const adminEmail = envVars.ADMIN_EMAIL;
+        let adminUser = await prisma.user.findUnique({
             where: {
-                role: "ADMIN"
-            }
+                email: adminEmail,
+            },
+            include: {
+                admin: true,
+            },
         });
 
-        if (existingAdmin) {
-            console.log("Admin already exists. Skipping seeding admin.");
-            return;
-        }
-        // Create admin user
-        const adminCreation = await auth.api.signUpEmail({
-            body: {
-                email: envVars.ADMIN_EMAIL,
-                password: envVars.ADMIN_PASSWORD,
-                name: "Admin",
-                role: UserRole.ADMIN,
-                rememberMe: false
-            }
+        if (!adminUser) {
+            const adminCreation = await auth.api.signUpEmail({
+                body: {
+                    email: adminEmail,
+                    password: envVars.ADMIN_PASSWORD,
+                    name: "Admin",
+                    role: UserRole.ADMIN,
+                    rememberMe: false,
+                },
+            });
 
-
-        });
-
-        await prisma.$transaction(async (tx) => {
-
-            await tx.user.update({
+            adminUser = await prisma.user.findUnique({
                 where: {
                     id: adminCreation?.user.id as string,
                 },
+                include: {
+                    admin: true,
+                },
+            });
+        }
+
+        if (!adminUser) {
+            throw new Error("Failed to resolve admin user during bootstrap");
+        }
+
+        await prisma.$transaction(async (tx) => {
+            await tx.user.update({
+                where: {
+                    id: adminUser.id,
+                },
                 data: {
                     emailVerified: true,
-                }
+                    role: UserRole.ADMIN,
+                },
             });
 
-            await tx.admin.create({
-                data: {
-                    userId: adminCreation?.user.id as string,
-                    name: "Admin",
-                    email: envVars.ADMIN_EMAIL,
-                }
-            })
-
-            const admin = await tx.admin.findFirst({
+            await tx.admin.upsert({
                 where: {
-                    email: envVars.ADMIN_EMAIL,
+                    userId: adminUser.id,
                 },
-                // include: {
-                //     user: true,
-                // }
-            })
-            console.log("Admin created successfully:", admin);
-        })
+                update: {
+                    name: "Admin",
+                    email: adminEmail,
+                    isDeleted: false,
+                    deletedAt: null,
+                },
+                create: {
+                    userId: adminUser.id,
+                    name: "Admin",
+                    email: adminEmail,
+                },
+            });
+        });
+
+        console.log("Admin bootstrap completed for:", adminEmail);
     } catch (error) {
-        console.error("Error creating admin:", error);
-        await prisma.user.delete({
-            where: {
-                email: envVars.ADMIN_EMAIL,
-            }
-        })
+        console.error("Error ensuring admin:", error);
     }
 } 
