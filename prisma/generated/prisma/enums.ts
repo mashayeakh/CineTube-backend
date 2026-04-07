@@ -99,3 +99,14 @@ export const SeriesStatus = {
 } as const
 
 export type SeriesStatus = (typeof SeriesStatus)[keyof typeof SeriesStatus]
+
+
+export const SeriesTrackingStatus = {
+  PLAN_TO_WATCH: 'PLAN_TO_WATCH',
+  WATCHING: 'WATCHING',
+  ON_HOLD: 'ON_HOLD',
+  COMPLETED: 'COMPLETED',
+  DROPPED: 'DROPPED'
+} as const
+
+export type SeriesTrackingStatus = (typeof SeriesTrackingStatus)[keyof typeof SeriesTrackingStatus]

@@ -397,6 +397,7 @@ export const ModelName = {
   ReviewLike: 'ReviewLike',
   Review: 'Review',
   Series: 'Series',
+  UserSeriesTracking: 'UserSeriesTracking',
   StreamingPlatform: 'StreamingPlatform',
   Subscription: 'Subscription',
   UserPreference: 'UserPreference',
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "user" | "session" | "account" | "verification" | "comment" | "genre" | "movieContribution" | "movie" | "payment" | "reviewLike" | "review" | "series" | "streamingPlatform" | "subscription" | "userPreference" | "watchList"
+    modelProps: "admin" | "user" | "session" | "account" | "verification" | "comment" | "genre" | "movieContribution" | "movie" | "payment" | "reviewLike" | "review" | "series" | "userSeriesTracking" | "streamingPlatform" | "subscription" | "userPreference" | "watchList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1382,6 +1383,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UserSeriesTracking: {
+      payload: Prisma.$UserSeriesTrackingPayload<ExtArgs>
+      fields: Prisma.UserSeriesTrackingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserSeriesTrackingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserSeriesTrackingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>
+        }
+        findFirst: {
+          args: Prisma.UserSeriesTrackingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserSeriesTrackingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>
+        }
+        findMany: {
+          args: Prisma.UserSeriesTrackingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>[]
+        }
+        create: {
+          args: Prisma.UserSeriesTrackingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>
+        }
+        createMany: {
+          args: Prisma.UserSeriesTrackingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserSeriesTrackingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>[]
+        }
+        delete: {
+          args: Prisma.UserSeriesTrackingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>
+        }
+        update: {
+          args: Prisma.UserSeriesTrackingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserSeriesTrackingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserSeriesTrackingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserSeriesTrackingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserSeriesTrackingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserSeriesTrackingPayload>
+        }
+        aggregate: {
+          args: Prisma.UserSeriesTrackingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserSeriesTracking>
+        }
+        groupBy: {
+          args: Prisma.UserSeriesTrackingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserSeriesTrackingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserSeriesTrackingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserSeriesTrackingCountAggregateOutputType> | number
+        }
+      }
+    }
     StreamingPlatform: {
       payload: Prisma.$StreamingPlatformPayload<ExtArgs>
       fields: Prisma.StreamingPlatformFieldRefs
@@ -1916,6 +1991,22 @@ export const SeriesScalarFieldEnum = {
 export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
 
 
+export const UserSeriesTrackingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  seriesId: 'seriesId',
+  status: 'status',
+  currentSeason: 'currentSeason',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  lastTrackedAt: 'lastTrackedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserSeriesTrackingScalarFieldEnum = (typeof UserSeriesTrackingScalarFieldEnum)[keyof typeof UserSeriesTrackingScalarFieldEnum]
+
+
 export const StreamingPlatformScalarFieldEnum = {
   id: 'id',
   name: 'name'
@@ -2163,6 +2254,20 @@ export type ListEnumSeriesStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
+ * Reference to a field of type 'SeriesTrackingStatus'
+ */
+export type EnumSeriesTrackingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SeriesTrackingStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SeriesTrackingStatus[]'
+ */
+export type ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SeriesTrackingStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'SubscriptionType'
  */
 export type EnumSubscriptionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionType'>
@@ -2311,6 +2416,7 @@ export type GlobalOmitConfig = {
   reviewLike?: Prisma.ReviewLikeOmit
   review?: Prisma.ReviewOmit
   series?: Prisma.SeriesOmit
+  userSeriesTracking?: Prisma.UserSeriesTrackingOmit
   streamingPlatform?: Prisma.StreamingPlatformOmit
   subscription?: Prisma.SubscriptionOmit
   userPreference?: Prisma.UserPreferenceOmit

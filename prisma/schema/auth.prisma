@@ -1,15 +1,15 @@
 model User {
-    id                 String              @id
+    id                 String               @id
     name               String
     email              String
-    emailVerified      Boolean             @default(false)
+    emailVerified      Boolean              @default(false)
     image              String?
     ageGroup           AgeGroup?
-    isDeleted          Boolean             @default(false)
-    status             UserStatus          @default(ACTIVE)
-    role               UserRole            @default(USER)
-    createdAt          DateTime            @default(now())
-    updatedAt          DateTime            @updatedAt
+    isDeleted          Boolean              @default(false)
+    status             UserStatus           @default(ACTIVE)
+    role               UserRole             @default(USER)
+    createdAt          DateTime             @default(now())
+    updatedAt          DateTime             @updatedAt
     admin              Admin?
     sessions           Session[]
     accounts           Account[]
@@ -21,6 +21,7 @@ model User {
     payments           Payment[]
     subscriptions      Subscription[]
     watchlists         WatchList[]
+    seriesTrackings    UserSeriesTracking[]
     movieContributions MovieContribution[]
     userPreference     UserPreference?
 

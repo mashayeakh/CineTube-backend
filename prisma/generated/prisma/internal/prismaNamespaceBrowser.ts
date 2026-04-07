@@ -64,6 +64,7 @@ export const ModelName = {
   ReviewLike: 'ReviewLike',
   Review: 'Review',
   Series: 'Series',
+  UserSeriesTracking: 'UserSeriesTracking',
   StreamingPlatform: 'StreamingPlatform',
   Subscription: 'Subscription',
   UserPreference: 'UserPreference',
@@ -283,6 +284,22 @@ export const SeriesScalarFieldEnum = {
 } as const
 
 export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
+
+
+export const UserSeriesTrackingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  seriesId: 'seriesId',
+  status: 'status',
+  currentSeason: 'currentSeason',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  lastTrackedAt: 'lastTrackedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserSeriesTrackingScalarFieldEnum = (typeof UserSeriesTrackingScalarFieldEnum)[keyof typeof UserSeriesTrackingScalarFieldEnum]
 
 
 export const StreamingPlatformScalarFieldEnum = {

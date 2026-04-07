@@ -107,6 +107,11 @@ export type Review = Prisma.ReviewModel
  */
 export type Series = Prisma.SeriesModel
 /**
+ * Model UserSeriesTracking
+ * 
+ */
+export type UserSeriesTracking = Prisma.UserSeriesTrackingModel
+/**
  * Model StreamingPlatform
  * 
  */

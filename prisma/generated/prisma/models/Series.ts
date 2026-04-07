@@ -329,6 +329,7 @@ export type SeriesWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   userId?: Prisma.StringFilter<"Series"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  trackings?: Prisma.UserSeriesTrackingListRelationFilter
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
 }
@@ -353,6 +354,7 @@ export type SeriesOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  trackings?: Prisma.UserSeriesTrackingOrderByRelationAggregateInput
   genres?: Prisma.GenreOrderByRelationAggregateInput
   platforms?: Prisma.StreamingPlatformOrderByRelationAggregateInput
 }
@@ -380,6 +382,7 @@ export type SeriesWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   userId?: Prisma.StringFilter<"Series"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  trackings?: Prisma.UserSeriesTrackingListRelationFilter
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
 }, "id" | "title">
@@ -453,6 +456,7 @@ export type SeriesCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
+  trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
 }
@@ -476,6 +480,7 @@ export type SeriesUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
 }
@@ -499,6 +504,7 @@ export type SeriesUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
+  trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
 }
@@ -522,6 +528,7 @@ export type SeriesUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
 }
@@ -673,6 +680,11 @@ export type SeriesSumOrderByAggregateInput = {
   totalEpisodes?: Prisma.SortOrder
 }
 
+export type SeriesScalarRelationFilter = {
+  is?: Prisma.SeriesWhereInput
+  isNot?: Prisma.SeriesWhereInput
+}
+
 export type SeriesCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.SeriesCreateWithoutUserInput, Prisma.SeriesUncheckedCreateWithoutUserInput> | Prisma.SeriesCreateWithoutUserInput[] | Prisma.SeriesUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.SeriesCreateOrConnectWithoutUserInput | Prisma.SeriesCreateOrConnectWithoutUserInput[]
@@ -765,6 +777,20 @@ export type EnumSeriesStatusFieldUpdateOperationsInput = {
   set?: $Enums.SeriesStatus
 }
 
+export type SeriesCreateNestedOneWithoutTrackingsInput = {
+  create?: Prisma.XOR<Prisma.SeriesCreateWithoutTrackingsInput, Prisma.SeriesUncheckedCreateWithoutTrackingsInput>
+  connectOrCreate?: Prisma.SeriesCreateOrConnectWithoutTrackingsInput
+  connect?: Prisma.SeriesWhereUniqueInput
+}
+
+export type SeriesUpdateOneRequiredWithoutTrackingsNestedInput = {
+  create?: Prisma.XOR<Prisma.SeriesCreateWithoutTrackingsInput, Prisma.SeriesUncheckedCreateWithoutTrackingsInput>
+  connectOrCreate?: Prisma.SeriesCreateOrConnectWithoutTrackingsInput
+  upsert?: Prisma.SeriesUpsertWithoutTrackingsInput
+  connect?: Prisma.SeriesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SeriesUpdateToOneWithWhereWithoutTrackingsInput, Prisma.SeriesUpdateWithoutTrackingsInput>, Prisma.SeriesUncheckedUpdateWithoutTrackingsInput>
+}
+
 export type SeriesCreateNestedManyWithoutPlatformsInput = {
   create?: Prisma.XOR<Prisma.SeriesCreateWithoutPlatformsInput, Prisma.SeriesUncheckedCreateWithoutPlatformsInput> | Prisma.SeriesCreateWithoutPlatformsInput[] | Prisma.SeriesUncheckedCreateWithoutPlatformsInput[]
   connectOrCreate?: Prisma.SeriesCreateOrConnectWithoutPlatformsInput | Prisma.SeriesCreateOrConnectWithoutPlatformsInput[]
@@ -821,6 +847,7 @@ export type SeriesCreateWithoutUserInput = {
   featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
 }
@@ -843,6 +870,7 @@ export type SeriesUncheckedCreateWithoutUserInput = {
   featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
 }
@@ -916,6 +944,7 @@ export type SeriesCreateWithoutGenresInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
+  trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
 }
 
@@ -938,6 +967,7 @@ export type SeriesUncheckedCreateWithoutGenresInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
 }
 
@@ -962,6 +992,114 @@ export type SeriesUpdateManyWithWhereWithoutGenresInput = {
   data: Prisma.XOR<Prisma.SeriesUpdateManyMutationInput, Prisma.SeriesUncheckedUpdateManyWithoutGenresInput>
 }
 
+export type SeriesCreateWithoutTrackingsInput = {
+  id?: string
+  title: string
+  description: string
+  poster: string
+  releaseYear: number
+  director: string
+  cast: string
+  ageGroup: $Enums.AgeGroup
+  priceType?: $Enums.PriceType
+  totalSeasons: number
+  totalEpisodes?: number | null
+  status?: $Enums.SeriesStatus
+  isFeatured?: boolean
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutSeriesInput
+  genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
+  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
+}
+
+export type SeriesUncheckedCreateWithoutTrackingsInput = {
+  id?: string
+  title: string
+  description: string
+  poster: string
+  releaseYear: number
+  director: string
+  cast: string
+  ageGroup: $Enums.AgeGroup
+  priceType?: $Enums.PriceType
+  totalSeasons: number
+  totalEpisodes?: number | null
+  status?: $Enums.SeriesStatus
+  isFeatured?: boolean
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
+  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
+}
+
+export type SeriesCreateOrConnectWithoutTrackingsInput = {
+  where: Prisma.SeriesWhereUniqueInput
+  create: Prisma.XOR<Prisma.SeriesCreateWithoutTrackingsInput, Prisma.SeriesUncheckedCreateWithoutTrackingsInput>
+}
+
+export type SeriesUpsertWithoutTrackingsInput = {
+  update: Prisma.XOR<Prisma.SeriesUpdateWithoutTrackingsInput, Prisma.SeriesUncheckedUpdateWithoutTrackingsInput>
+  create: Prisma.XOR<Prisma.SeriesCreateWithoutTrackingsInput, Prisma.SeriesUncheckedCreateWithoutTrackingsInput>
+  where?: Prisma.SeriesWhereInput
+}
+
+export type SeriesUpdateToOneWithWhereWithoutTrackingsInput = {
+  where?: Prisma.SeriesWhereInput
+  data: Prisma.XOR<Prisma.SeriesUpdateWithoutTrackingsInput, Prisma.SeriesUncheckedUpdateWithoutTrackingsInput>
+}
+
+export type SeriesUpdateWithoutTrackingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  poster?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  cast?: Prisma.StringFieldUpdateOperationsInput | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
+  totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
+  genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
+  platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
+}
+
+export type SeriesUncheckedUpdateWithoutTrackingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  poster?: Prisma.StringFieldUpdateOperationsInput | string
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  cast?: Prisma.StringFieldUpdateOperationsInput | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
+  totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
+  totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
+  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
+}
+
 export type SeriesCreateWithoutPlatformsInput = {
   id?: string
   title: string
@@ -981,6 +1119,7 @@ export type SeriesCreateWithoutPlatformsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
+  trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
 }
 
@@ -1003,6 +1142,7 @@ export type SeriesUncheckedCreateWithoutPlatformsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
 }
 
@@ -1065,6 +1205,7 @@ export type SeriesUpdateWithoutUserInput = {
   featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
 }
@@ -1087,6 +1228,7 @@ export type SeriesUncheckedUpdateWithoutUserInput = {
   featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
 }
@@ -1130,6 +1272,7 @@ export type SeriesUpdateWithoutGenresInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
+  trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
 }
 
@@ -1152,6 +1295,7 @@ export type SeriesUncheckedUpdateWithoutGenresInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
@@ -1195,6 +1339,7 @@ export type SeriesUpdateWithoutPlatformsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
+  trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
 }
 
@@ -1217,6 +1362,7 @@ export type SeriesUncheckedUpdateWithoutPlatformsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
@@ -1247,11 +1393,13 @@ export type SeriesUncheckedUpdateManyWithoutPlatformsInput = {
  */
 
 export type SeriesCountOutputType = {
+  trackings: number
   genres: number
   platforms: number
 }
 
 export type SeriesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  trackings?: boolean | SeriesCountOutputTypeCountTrackingsArgs
   genres?: boolean | SeriesCountOutputTypeCountGenresArgs
   platforms?: boolean | SeriesCountOutputTypeCountPlatformsArgs
 }
@@ -1264,6 +1412,13 @@ export type SeriesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the SeriesCountOutputType
    */
   select?: Prisma.SeriesCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SeriesCountOutputType without action
+ */
+export type SeriesCountOutputTypeCountTrackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserSeriesTrackingWhereInput
 }
 
 /**
@@ -1301,6 +1456,7 @@ export type SeriesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   updatedAt?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  trackings?: boolean | Prisma.Series$trackingsArgs<ExtArgs>
   genres?: boolean | Prisma.Series$genresArgs<ExtArgs>
   platforms?: boolean | Prisma.Series$platformsArgs<ExtArgs>
   _count?: boolean | Prisma.SeriesCountOutputTypeDefaultArgs<ExtArgs>
@@ -1374,6 +1530,7 @@ export type SeriesSelectScalar = {
 export type SeriesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "poster" | "releaseYear" | "director" | "cast" | "ageGroup" | "priceType" | "totalSeasons" | "totalEpisodes" | "status" | "isFeatured" | "featuredAt" | "featuredBy" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["series"]>
 export type SeriesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  trackings?: boolean | Prisma.Series$trackingsArgs<ExtArgs>
   genres?: boolean | Prisma.Series$genresArgs<ExtArgs>
   platforms?: boolean | Prisma.Series$platformsArgs<ExtArgs>
   _count?: boolean | Prisma.SeriesCountOutputTypeDefaultArgs<ExtArgs>
@@ -1389,6 +1546,7 @@ export type $SeriesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Series"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    trackings: Prisma.$UserSeriesTrackingPayload<ExtArgs>[]
     genres: Prisma.$GenrePayload<ExtArgs>[]
     platforms: Prisma.$StreamingPlatformPayload<ExtArgs>[]
   }
@@ -1806,6 +1964,7 @@ readonly fields: SeriesFieldRefs;
 export interface Prisma__SeriesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  trackings<T extends Prisma.Series$trackingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$trackingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserSeriesTrackingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   genres<T extends Prisma.Series$genresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$genresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GenrePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   platforms<T extends Prisma.Series$platformsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$platformsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StreamingPlatformPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2253,6 +2412,30 @@ export type SeriesDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Series to delete.
    */
   limit?: number
+}
+
+/**
+ * Series.trackings
+ */
+export type Series$trackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserSeriesTracking
+   */
+  select?: Prisma.UserSeriesTrackingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserSeriesTracking
+   */
+  omit?: Prisma.UserSeriesTrackingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserSeriesTrackingInclude<ExtArgs> | null
+  where?: Prisma.UserSeriesTrackingWhereInput
+  orderBy?: Prisma.UserSeriesTrackingOrderByWithRelationInput | Prisma.UserSeriesTrackingOrderByWithRelationInput[]
+  cursor?: Prisma.UserSeriesTrackingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserSeriesTrackingScalarFieldEnum | Prisma.UserSeriesTrackingScalarFieldEnum[]
 }
 
 /**

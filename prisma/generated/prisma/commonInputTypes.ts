@@ -382,6 +382,23 @@ export type EnumSeriesStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumSeriesStatusFilter<$PrismaModel>
 }
 
+export type EnumSeriesTrackingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.SeriesTrackingStatus | Prisma.EnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSeriesTrackingStatusFilter<$PrismaModel> | $Enums.SeriesTrackingStatus
+}
+
+export type EnumSeriesTrackingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SeriesTrackingStatus | Prisma.EnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSeriesTrackingStatusWithAggregatesFilter<$PrismaModel> | $Enums.SeriesTrackingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSeriesTrackingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSeriesTrackingStatusFilter<$PrismaModel>
+}
+
 export type EnumSubscriptionTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.SubscriptionType | Prisma.EnumSubscriptionTypeFieldRefInput<$PrismaModel>
   in?: $Enums.SubscriptionType[] | Prisma.ListEnumSubscriptionTypeFieldRefInput<$PrismaModel>
@@ -795,6 +812,23 @@ export type NestedEnumSeriesStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumSeriesStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumSeriesStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumSeriesTrackingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.SeriesTrackingStatus | Prisma.EnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSeriesTrackingStatusFilter<$PrismaModel> | $Enums.SeriesTrackingStatus
+}
+
+export type NestedEnumSeriesTrackingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SeriesTrackingStatus | Prisma.EnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SeriesTrackingStatus[] | Prisma.ListEnumSeriesTrackingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSeriesTrackingStatusWithAggregatesFilter<$PrismaModel> | $Enums.SeriesTrackingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSeriesTrackingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSeriesTrackingStatusFilter<$PrismaModel>
 }
 
 export type NestedEnumSubscriptionTypeFilter<$PrismaModel = never> = {

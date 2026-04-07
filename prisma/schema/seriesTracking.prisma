@@ -1,0 +1,20 @@
+model UserSeriesTracking {
+    id            String               @id @default(cuid())
+    userId        String
+    seriesId      String
+    status        SeriesTrackingStatus @default(PLAN_TO_WATCH)
+    currentSeason Int?
+    startedAt     DateTime?
+    completedAt   DateTime?
+    lastTrackedAt DateTime             @default(now())
+    createdAt     DateTime             @default(now())
+    updatedAt     DateTime             @updatedAt
+    user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+    series        Series               @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+
+    @@unique([userId, seriesId])
+    @@index([userId])
+    @@index([seriesId])
+    @@index([status])
+    @@map("user_series_tracking")
+}

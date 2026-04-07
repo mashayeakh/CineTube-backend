@@ -4,7 +4,7 @@ import { QueryBuilder } from "@/app/utils/queryBuilder";
 import { seriesFilterableFields, seriesIncludeConfig, seriesSearchableFields } from "./series.constant";
 import { IQueryParams } from "@/app/interface/queryinterface";
 import { Prisma } from "prisma/generated/prisma/client";
-import { ISeries, IUpdateSeries } from "./series.dto";
+import { ISeries, IUpdateSeries, IUpsertSeriesTracking, SeriesTrackingStatusValue } from "./series.dto";
 import { envVars } from "@/app/config/env";
 
 const toAbsolutePosterUrl = (poster: string) => {
@@ -40,6 +40,17 @@ const normalizeStatus = (
         ? status
         : "ONGOING";
 
+const normalizeTrackingStatus = (
+    status: string | null | undefined
+): SeriesTrackingStatusValue =>
+    status === "PLAN_TO_WATCH"
+        || status === "WATCHING"
+        || status === "ON_HOLD"
+        || status === "COMPLETED"
+        || status === "DROPPED"
+        ? status
+        : "PLAN_TO_WATCH";
+
 const parseSeries = (series: any) => ({
     ...series,
     poster: toAbsolutePosterUrl(series.poster),
@@ -47,6 +58,11 @@ const parseSeries = (series: any) => ({
     genres: Array.isArray(series.genres) ? series.genres : [],
     platforms: Array.isArray(series.platforms) ? series.platforms : [],
     user: series.user || null
+});
+
+const parseSeriesTracking = (tracking: any) => ({
+    ...tracking,
+    series: tracking.series ? parseSeries(tracking.series) : null
 });
 
 export const SeriesService = {
@@ -135,6 +151,68 @@ export const SeriesService = {
         if (!series) throw new AppError(404, "Series not found");
 
         return parseSeries(series);
+    },
+
+    //! Get series by release status
+    async getSeriesByStatus(status: "ONGOING" | "COMPLETED" | "UPCOMING") {
+        const series = await prisma.series.findMany({
+            where: { status },
+            include: { user: true, genres: true, platforms: true },
+            orderBy: [
+                { isFeatured: "desc" },
+                { featuredAt: "desc" },
+                { releaseYear: status === "UPCOMING" ? "asc" : "desc" },
+                { title: "asc" }
+            ]
+        });
+
+        return series.map(parseSeries);
+    },
+
+    //! Get series available on a specific platform
+    async getSeriesByPlatform(platformId: string) {
+        const platform = await prisma.streamingPlatform.findUnique({ where: { id: platformId } });
+        if (!platform) {
+            throw new AppError(404, "Streaming platform not found");
+        }
+
+        const series = await prisma.series.findMany({
+            where: {
+                platforms: {
+                    some: {
+                        id: platformId
+                    }
+                }
+            },
+            include: { user: true, genres: true, platforms: true },
+            orderBy: [
+                { isFeatured: "desc" },
+                { releaseYear: "desc" },
+                { title: "asc" }
+            ]
+        });
+
+        return series.map(parseSeries);
+    },
+
+    //! Get series by season count range
+    async getSeriesBySeasonCount(minSeasons?: number, maxSeasons?: number) {
+        const series = await prisma.series.findMany({
+            where: {
+                totalSeasons: {
+                    gte: minSeasons,
+                    lte: maxSeasons
+                }
+            },
+            include: { user: true, genres: true, platforms: true },
+            orderBy: [
+                { totalSeasons: "asc" },
+                { releaseYear: "desc" },
+                { title: "asc" }
+            ]
+        });
+
+        return series.map(parseSeries);
     },
 
     //! Update series
@@ -242,5 +320,165 @@ export const SeriesService = {
 
         if (!featured) throw new AppError(404, "No featured series found");
         return parseSeries(featured);
+    },
+
+    //! Create or update series tracking for a user
+    async upsertSeriesTracking(seriesId: string, userId: string, payload: IUpsertSeriesTracking) {
+        const series = await prisma.series.findUnique({
+            where: { id: seriesId },
+            select: { id: true, totalSeasons: true }
+        });
+
+        if (!series) {
+            throw new AppError(404, "Series not found");
+        }
+
+        const normalizedStatus = normalizeTrackingStatus(payload.status);
+        const currentSeason = payload.currentSeason ?? undefined;
+
+        if (currentSeason !== undefined && currentSeason < 1) {
+            throw new AppError(400, "Current season must be at least 1");
+        }
+
+        if (currentSeason !== undefined && currentSeason > series.totalSeasons) {
+            throw new AppError(400, "Current season cannot be greater than total seasons");
+        }
+
+        const existingTracking = await prisma.userSeriesTracking.findUnique({
+            where: {
+                userId_seriesId: {
+                    userId,
+                    seriesId
+                }
+            }
+        });
+
+        const now = new Date();
+        const shouldTrackProgress = normalizedStatus === "WATCHING" || normalizedStatus === "ON_HOLD";
+
+        const nextCurrentSeason = normalizedStatus === "COMPLETED"
+            ? series.totalSeasons
+            : shouldTrackProgress
+                ? (currentSeason ?? existingTracking?.currentSeason ?? 1)
+                : null;
+
+        const tracking = await prisma.userSeriesTracking.upsert({
+            where: {
+                userId_seriesId: {
+                    userId,
+                    seriesId
+                }
+            },
+            create: {
+                userId,
+                seriesId,
+                status: normalizedStatus,
+                currentSeason: nextCurrentSeason,
+                startedAt: normalizedStatus === "WATCHING" || normalizedStatus === "ON_HOLD" || normalizedStatus === "COMPLETED"
+                    ? now
+                    : null,
+                completedAt: normalizedStatus === "COMPLETED" ? now : null,
+                lastTrackedAt: now
+            },
+            update: {
+                status: normalizedStatus,
+                currentSeason: nextCurrentSeason,
+                startedAt: existingTracking?.startedAt
+                    ?? (
+                        normalizedStatus === "WATCHING"
+                            || normalizedStatus === "ON_HOLD"
+                            || normalizedStatus === "COMPLETED"
+                            ? now
+                            : null
+                    ),
+                completedAt: normalizedStatus === "COMPLETED"
+                    ? (existingTracking?.completedAt ?? now)
+                    : null,
+                lastTrackedAt: now
+            },
+            include: {
+                series: {
+                    include: {
+                        user: true,
+                        genres: true,
+                        platforms: true
+                    }
+                }
+            }
+        });
+
+        return parseSeriesTracking(tracking);
+    },
+
+    //! Get current user's series tracking list
+    async getMySeriesTracking(userId: string, trackingStatus?: SeriesTrackingStatusValue) {
+        const trackings = await prisma.userSeriesTracking.findMany({
+            where: {
+                userId,
+                status: trackingStatus
+            },
+            include: {
+                series: {
+                    include: {
+                        user: true,
+                        genres: true,
+                        platforms: true
+                    }
+                }
+            },
+            orderBy: [
+                { lastTrackedAt: "desc" },
+                { updatedAt: "desc" }
+            ]
+        });
+
+        return trackings.map(parseSeriesTracking);
+    },
+
+    //! Get tracking record for current user and series
+    async getMySeriesTrackingBySeriesId(seriesId: string, userId: string) {
+        const tracking = await prisma.userSeriesTracking.findUnique({
+            where: {
+                userId_seriesId: {
+                    userId,
+                    seriesId
+                }
+            },
+            include: {
+                series: {
+                    include: {
+                        user: true,
+                        genres: true,
+                        platforms: true
+                    }
+                }
+            }
+        });
+
+        if (!tracking) {
+            throw new AppError(404, "Series tracking not found");
+        }
+
+        return parseSeriesTracking(tracking);
+    },
+
+    //! Delete tracking record for current user and series
+    async deleteSeriesTracking(seriesId: string, userId: string) {
+        const tracking = await prisma.userSeriesTracking.findUnique({
+            where: {
+                userId_seriesId: {
+                    userId,
+                    seriesId
+                }
+            }
+        });
+
+        if (!tracking) {
+            throw new AppError(404, "Series tracking not found");
+        }
+
+        await prisma.userSeriesTracking.delete({ where: { id: tracking.id } });
+
+        return { message: "Series tracking deleted successfully" };
     }
 };

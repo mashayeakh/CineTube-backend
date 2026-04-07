@@ -4,7 +4,7 @@ import { sendResponse } from "@/app/utils/sendResponse";
 import { AppError } from "@/app/errorHelpers/AppError";
 import status from "http-status";
 import { IQueryParams } from "@/app/interface/queryinterface";
-import { ISeries, IUpdateSeries } from "./series.dto";
+import { ISeries, IUpdateSeries, IUpsertSeriesTracking, SeriesTrackingStatusValue } from "./series.dto";
 import { SeriesService } from "./series.service";
 import { persistPoster } from "@/app/utils/posterUpload";
 
@@ -30,6 +30,34 @@ const parseStringArray = (value: unknown): string[] | undefined => {
             .split(",")
             .map((item) => item.trim())
             .filter(Boolean);
+    }
+
+    return undefined;
+};
+
+const parseOptionalNumber = (value: unknown): number | undefined => {
+    if (value === undefined || value === null || value === "") {
+        return undefined;
+    }
+
+    const parsed = Number(value);
+    return Number.isNaN(parsed) ? undefined : parsed;
+};
+
+const parseTrackingStatus = (value: unknown): SeriesTrackingStatusValue | undefined => {
+    if (typeof value !== "string") {
+        return undefined;
+    }
+
+    const normalized = value.trim().toUpperCase();
+    if (
+        normalized === "PLAN_TO_WATCH"
+        || normalized === "WATCHING"
+        || normalized === "ON_HOLD"
+        || normalized === "COMPLETED"
+        || normalized === "DROPPED"
+    ) {
+        return normalized;
     }
 
     return undefined;
@@ -90,6 +118,86 @@ export const SeriesController = {
             success: true,
             message: "Series fetched successfully",
             result: data
+        });
+    }),
+
+    //! Get ongoing series
+    getOngoingSeries: catchAsyc(async (_req: Request, res: Response) => {
+        const result = await SeriesService.getSeriesByStatus("ONGOING");
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Ongoing series fetched successfully",
+            result
+        });
+    }),
+
+    //! Get completed series
+    getCompletedSeries: catchAsyc(async (_req: Request, res: Response) => {
+        const result = await SeriesService.getSeriesByStatus("COMPLETED");
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Completed series fetched successfully",
+            result
+        });
+    }),
+
+    //! Get upcoming series
+    getUpcomingSeries: catchAsyc(async (_req: Request, res: Response) => {
+        const result = await SeriesService.getSeriesByStatus("UPCOMING");
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Upcoming series fetched successfully",
+            result
+        });
+    }),
+
+    //! Get series by platform
+    getSeriesByPlatform: catchAsyc(async (req: Request, res: Response) => {
+        const { platformId } = req.params;
+        if (!platformId || Array.isArray(platformId)) {
+            throw new AppError(status.BAD_REQUEST, "Platform ID is required");
+        }
+
+        const result = await SeriesService.getSeriesByPlatform(platformId);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Platform series fetched successfully",
+            result
+        });
+    }),
+
+    //! Get series by season count
+    getSeriesBySeasonCount: catchAsyc(async (req: Request, res: Response) => {
+        const minSeasons = parseOptionalNumber(req.query.minSeasons);
+        const maxSeasons = parseOptionalNumber(req.query.maxSeasons);
+
+        if (minSeasons === undefined && maxSeasons === undefined) {
+            throw new AppError(status.BAD_REQUEST, "Provide minSeasons or maxSeasons");
+        }
+
+        if (
+            minSeasons !== undefined
+            && maxSeasons !== undefined
+            && minSeasons > maxSeasons
+        ) {
+            throw new AppError(status.BAD_REQUEST, "minSeasons cannot be greater than maxSeasons");
+        }
+
+        const result = await SeriesService.getSeriesBySeasonCount(minSeasons, maxSeasons);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Series by season count fetched successfully",
+            result
         });
     }),
 
@@ -176,6 +284,80 @@ export const SeriesController = {
             httpStatusCode: status.OK,
             success: true,
             message: "Featured series fetched successfully",
+            result
+        });
+    }),
+
+    //! Upsert series tracking for current user
+    upsertSeriesTracking: catchAsyc(async (req: Request, res: Response) => {
+        const { seriesId } = req.params;
+        if (!seriesId || Array.isArray(seriesId)) {
+            throw new AppError(status.BAD_REQUEST, "Series ID is required");
+        }
+
+        const trackingStatus = parseTrackingStatus(req.body.status);
+        if (!trackingStatus) {
+            throw new AppError(status.BAD_REQUEST, "Valid tracking status is required");
+        }
+
+        const payload: IUpsertSeriesTracking = {
+            status: trackingStatus,
+            currentSeason: parseOptionalNumber(req.body.currentSeason)
+        };
+
+        const result = await SeriesService.upsertSeriesTracking(seriesId, req.user.userId, payload);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Series tracking updated successfully",
+            result
+        });
+    }),
+
+    //! Get current user's series tracking list
+    getMySeriesTracking: catchAsyc(async (req: Request, res: Response) => {
+        const trackingStatus = parseTrackingStatus(req.query.status);
+        const result = await SeriesService.getMySeriesTracking(req.user.userId, trackingStatus);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Series tracking fetched successfully",
+            result
+        });
+    }),
+
+    //! Get tracking record for current user and series
+    getMySeriesTrackingBySeriesId: catchAsyc(async (req: Request, res: Response) => {
+        const { seriesId } = req.params;
+        if (!seriesId || Array.isArray(seriesId)) {
+            throw new AppError(status.BAD_REQUEST, "Series ID is required");
+        }
+
+        const result = await SeriesService.getMySeriesTrackingBySeriesId(seriesId, req.user.userId);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Series tracking item fetched successfully",
+            result
+        });
+    }),
+
+    //! Delete tracking record for current user and series
+    deleteSeriesTracking: catchAsyc(async (req: Request, res: Response) => {
+        const { seriesId } = req.params;
+        if (!seriesId || Array.isArray(seriesId)) {
+            throw new AppError(status.BAD_REQUEST, "Series ID is required");
+        }
+
+        const result = await SeriesService.deleteSeriesTracking(seriesId, req.user.userId);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Series tracking deleted successfully",
             result
         });
     })

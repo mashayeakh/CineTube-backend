@@ -21,6 +21,18 @@ export interface ISeries {
     updatedAt?: Date;
 }
 
+export type SeriesTrackingStatusValue =
+    | "PLAN_TO_WATCH"
+    | "WATCHING"
+    | "ON_HOLD"
+    | "COMPLETED"
+    | "DROPPED";
+
+export interface IUpsertSeriesTracking {
+    status: SeriesTrackingStatusValue;
+    currentSeason?: number | null;
+}
+
 export interface IUpdateSeries {
     title?: string;
     description?: string | null;
