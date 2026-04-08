@@ -6,10 +6,10 @@ import { uploadPoster } from "@/app/middleware/upload";
 
 const router = express.Router();
 
-//! Create series (admin only)
+//! Create series (both admin and premium user only)
 router.post(
     "/create",
-    checkAuth(UserRole.ADMIN),
+    checkAuth(UserRole.ADMIN, UserRole.PREMIUM_USER),
     uploadPoster,
     SeriesController.createSeries
 );
