@@ -3,18 +3,39 @@ import { prisma } from "@/app/lib/prisma";
 export const UserDashboardContributionsService = {
 
     async getContributions(userId: string) {
-        const contributions = await prisma.movieContribution.findMany({
-            where: { contributorId: userId },
-            include: {
-                genres: true,
-                platforms: true
-            },
-            orderBy: { createdAt: "desc" }
-        });
+        const [movieContributions, seriesContributions] = await Promise.all([
+            prisma.movieContribution.findMany({
+                where: { contributorId: userId },
+                include: {
+                    genres: true,
+                    platforms: true
+                },
+                orderBy: { createdAt: "desc" }
+            }),
+            prisma.seriesContribution.findMany({
+                where: { contributorId: userId },
+                include: {
+                    genres: true,
+                    platforms: true
+                },
+                orderBy: { createdAt: "desc" }
+            })
+        ]);
 
-        return contributions.map(c => ({
-            ...c,
-            cast: c.cast ? JSON.parse(c.cast) : []
+        const normalizedMovieContributions = movieContributions.map((contribution) => ({
+            ...contribution,
+            cast: contribution.cast ? JSON.parse(contribution.cast) : [],
+            contributionType: "MOVIE"
         }));
+
+        const normalizedSeriesContributions = seriesContributions.map((contribution) => ({
+            ...contribution,
+            cast: contribution.cast ? JSON.parse(contribution.cast) : [],
+            contributionType: "SERIES"
+        }));
+
+        return [...normalizedMovieContributions, ...normalizedSeriesContributions].sort(
+            (first, second) => second.createdAt.getTime() - first.createdAt.getTime()
+        );
     }
 };

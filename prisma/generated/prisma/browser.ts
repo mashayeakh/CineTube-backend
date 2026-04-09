@@ -83,6 +83,11 @@ export type Review = Prisma.ReviewModel
  */
 export type Series = Prisma.SeriesModel
 /**
+ * Model SeriesContribution
+ * 
+ */
+export type SeriesContribution = Prisma.SeriesContributionModel
+/**
  * Model UserSeriesTracking
  * 
  */

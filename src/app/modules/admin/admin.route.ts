@@ -21,12 +21,11 @@ route.post(
     checkAuth(UserRole.ADMIN),
     AdminController.rejectReview
 );
-
-//!approve movie contribution
+//!approve series contribution
 route.post(
-    "/approve-movie-contribution/:contributionId",
+    "/approve-series-contribution/:contributionId",
     checkAuth(UserRole.ADMIN),
-    AdminController.approveMovieContribution
+    AdminController.approveSeriesContribution
 );
 
 //!reject movie contribution
@@ -34,6 +33,13 @@ route.post(
     "/reject-movie-contribution/:contributionId",
     checkAuth(UserRole.ADMIN),
     AdminController.rejectMovieContribution
+);
+
+//!reject series contribution
+route.post(
+    "/reject-series-contribution/:contributionId",
+    checkAuth(UserRole.ADMIN),
+    AdminController.rejectSeriesContribution
 );
 
 

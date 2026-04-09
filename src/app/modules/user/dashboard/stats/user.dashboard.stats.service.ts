@@ -9,8 +9,10 @@ export const UserDashboardStatsService = {
             reviewCount,
             approvedReviewCount,
             commentCount,
-            contributionCount,
-            approvedContributionCount,
+            movieContributionCount,
+            seriesContributionCount,
+            approvedMovieContributionCount,
+            approvedSeriesContributionCount,
             activeSubscription,
             totalPaid,
             reviewLikesGiven
@@ -20,7 +22,9 @@ export const UserDashboardStatsService = {
             prisma.review.count({ where: { userId, status: ReviewStatus.APPROVED } }),
             prisma.comment.count({ where: { userId } }),
             prisma.movieContribution.count({ where: { contributorId: userId } }),
+            prisma.seriesContribution.count({ where: { contributorId: userId } }),
             prisma.movieContribution.count({ where: { contributorId: userId, status: MovieStatus.APPROVED } }),
+            prisma.seriesContribution.count({ where: { contributorId: userId, status: MovieStatus.APPROVED } }),
             prisma.subscription.findFirst({
                 where: { userId, status: SubscriptionStatus.ACTIVE },
                 orderBy: { createdAt: "desc" }
@@ -31,6 +35,9 @@ export const UserDashboardStatsService = {
             }),
             prisma.reviewLike.count({ where: { userId } })
         ]);
+
+        const contributionCount = movieContributionCount + seriesContributionCount;
+        const approvedContributionCount = approvedMovieContributionCount + approvedSeriesContributionCount;
 
         return {
             watchlistCount,

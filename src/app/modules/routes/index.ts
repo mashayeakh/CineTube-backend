@@ -8,6 +8,7 @@ import { StreamingPlatformRouter } from "../streamingPlatform/streamingPlatform.
 import { ReviewRouter } from "../review/review.route";
 import { AdminRouter } from "../admin/admin.route";
 import { MoviesContributionRouter } from "../movieContribution/movieContribution.route";
+import { SeriesContributionRouter } from "../seriesContribution/seriesContribution.route";
 import { CommentRouter } from "../comments/comment.route";
 import { LandingRouter } from "../landing/landing.route";
 import { DashboardRoutes } from "../admin/dashboard/admin.dashboard.route";
@@ -49,6 +50,12 @@ router.use(
 router.use(
     "/movie-contributions",
     MoviesContributionRouter
+);
+
+//!Series Contribution
+router.use(
+    "/series-contributions",
+    SeriesContributionRouter
 );
 
 //!Genres

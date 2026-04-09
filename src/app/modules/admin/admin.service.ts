@@ -192,5 +192,114 @@ export const AdminService = {
                 }
             });
         return updated;
+    },
+
+    //! Approve series contribution
+    async approveSeriesContribution(contributionId: string) {
+
+        const contribution = await prisma.seriesContribution.findUnique({
+            where: {
+                id: contributionId
+            },
+            include: {
+                contributor: true,
+                genres: true,
+                platforms: true
+            }
+        });
+
+        if (!contribution) {
+            throw new AppError(404, "Series contribution not found");
+        }
+
+        if (contribution.status !== "PENDING") {
+            throw new AppError(400, "Series contribution already processed");
+        }
+
+        const updated = await prisma.$transaction(async (tx) => {
+            await tx.series.create({
+                data: {
+                    title: contribution.title,
+                    description: contribution.description,
+                    poster: contribution.poster,
+                    releaseYear: contribution.releaseYear,
+                    director: contribution.director,
+                    cast: contribution.cast,
+                    ageGroup: contribution.ageGroup,
+                    priceType: contribution.priceType,
+                    totalSeasons: contribution.totalSeasons,
+                    totalEpisodes: contribution.totalEpisodes,
+                    status: contribution.seriesStatus,
+                    userId: contribution.contributorId,
+                    genres: {
+                        connect: contribution.genres.map((genre) => ({ id: genre.id }))
+                    },
+                    platforms: {
+                        connect: contribution.platforms.map((platform) => ({ id: platform.id }))
+                    }
+                }
+            });
+
+            return tx.seriesContribution.update({
+                where: { id: contributionId },
+                data: {
+                    status: "APPROVED"
+                }
+            });
+        });
+
+        await sendEmail({
+            to: contribution.contributor.email,
+            subject: "Your series contribution has been approved!",
+            templateName: "contributionEmail",
+            templateData: {
+                name: contribution.contributor.name,
+                movieTitle: contribution.title,
+                status: "approved"
+            }
+        });
+
+        return updated;
+    },
+
+    //! Reject series contribution
+    async rejectSeriesContribution(contributionId: string) {
+
+        const contribution = await prisma.seriesContribution.findUnique({
+            where: {
+                id: contributionId
+            },
+            include: {
+                contributor: true
+            }
+        });
+
+        if (!contribution) {
+            throw new AppError(404, "Series contribution not found");
+        }
+
+        if (contribution.status !== "PENDING") {
+            throw new AppError(400, "Series contribution already processed");
+        }
+
+        const updated = await prisma.seriesContribution.update({
+            where: { id: contributionId },
+            data: {
+                status: "REJECTED"
+            }
+        });
+
+        await sendEmail({
+            to: contribution.contributor.email,
+            subject: "Your series contribution has been rejected!",
+            templateName: "contributionEmail",
+            templateData: {
+                name: contribution.contributor.name,
+                movieTitle: contribution.title,
+                status: "rejected"
+            }
+        });
+
+        return updated;
     }
 }
