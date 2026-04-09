@@ -83,60 +83,87 @@ export const MoviesService = {
 
 
     //! Get all movies with filters, search, pagination
-    async getAllMovies(query: IQueryParams) {
-        const queryBuilder = new QueryBuilder<IMovie, Prisma.MovieWhereInput, Prisma.MovieInclude>(
-            prisma.movie,
+    async getAllMovies() {
+        // const queryBuilder = new QueryBuilder<IMovie, Prisma.MovieWhereInput, Prisma.MovieInclude>(
+        //     prisma.movie,
 
-            query,
-            {
-                searchableFields: movieSearchableFields,
-                filterableFields: movieFilterableFields
-            }
-        );
+        //     query,
+        //     {
+        //         searchableFields: movieSearchableFields,
+        //         filterableFields: movieFilterableFields
+        //     }
+        // );
 
-        const result = await queryBuilder
-            .search()
-            .filter()
-            .dynamicInclude(movieIncludeConfig, ['user', 'genres', 'platforms', 'reviews', 'watchlists', 'payments'])
-            .paginate()
-            .sort()
-            .fields()
-            .execute();
+        // const result = await queryBuilder
+        //     .search()
+        //     .filter()
+        //     .dynamicInclude(movieIncludeConfig, ['user', 'genres', 'platforms', 'reviews', 'watchlists', 'payments'])
+        //     .paginate()
+        //     .sort()
+        //     .fields()
+        //     .execute();
 
-        const dataWithParsed = result.data.map((movie: any) => ({
-            ...movie,
-            poster: toAbsolutePosterUrl(movie.poster),
-            cast: Array.isArray(movie.cast) ? movie.cast : JSON.parse(movie.cast || "[]"),
-            genres: Array.isArray(movie.genres) ? movie.genres : [],
-            platforms: Array.isArray(movie.platforms) ? movie.platforms : [],
-            reviews: Array.isArray(movie.reviews) ? movie.reviews : [],
-            watchlists: Array.isArray(movie.watchlists) ? movie.watchlists : [],
-            payments: Array.isArray(movie.payments) ? movie.payments : [],
-            user: movie.user || null
-        }));
+        // const dataWithParsed = result.data.map((movie: any) => ({
+        //     ...movie,
+        //     poster: toAbsolutePosterUrl(movie.poster),
+        //     cast: Array.isArray(movie.cast) ? movie.cast : JSON.parse(movie.cast || "[]"),
+        //     genres: Array.isArray(movie.genres) ? movie.genres : [],
+        //     platforms: Array.isArray(movie.platforms) ? movie.platforms : [],
+        //     reviews: Array.isArray(movie.reviews) ? movie.reviews : [],
+        //     watchlists: Array.isArray(movie.watchlists) ? movie.watchlists : [],
+        //     payments: Array.isArray(movie.payments) ? movie.payments : [],
+        //     user: movie.user || null
+        // }));
 
-        return { ...result, data: dataWithParsed };
+        // return { ...result, data: dataWithParsed };
+
+        const m = await prisma.movie.findMany()
+        const contribute = await prisma.movieContribution.findMany({
+            where: { status: "APPROVED" },
+        })
+
+        const merged = [
+            ...m.map(movie => ({ ...movie, type: 'movie' })),
+            ...contribute.map(contribution => ({ ...contribution, type: 'contribution' }))
+        ];
+
+        return merged
     },
 
     //! Get single movie by ID
     async getMovieById(id: string) {
+        // Try to find in movies table
         const movie = await prisma.movie.findUnique({
             where: { id },
             include: { user: true, genres: true, platforms: true, reviews: true, watchlists: true, payments: true }
         });
 
-        if (!movie) throw new AppError(404, "Movie not found");
+        // Try to find in contributions table (using same ID)
+        const contributedMovie = await prisma.movieContribution.findUnique({
+            where: { id: id, status: "APPROVED" },
+            include: { contributor: true, genres: true, platforms: true }
+        });
+
+        // If not found in either table
+        if (!movie && !contributedMovie) {
+            throw new AppError(404, "Movie not found");
+        }
+
+        // Use whichever one exists
+        const result = movie || contributedMovie;
+        const isContribution = !!contributedMovie;
 
         return {
-            ...movie,
-            poster: toAbsolutePosterUrl(movie.poster),
-            cast: movie.cast ? JSON.parse(movie.cast) : [],
-            genres: movie.genres || [],
-            platforms: movie.platforms || [],
-            reviews: movie.reviews || [],
-            watchlists: movie.watchlists || [],
-            payments: movie.payments || [],
-            user: movie.user || null
+            ...result,
+            poster: (result?.poster),
+            cast: result?.cast ? JSON.parse(result.cast) : [],
+            genres: result?.genres || [],
+            platforms: result?.platforms || [],
+            reviews: movie?.reviews || [], // Only movies have reviews
+            watchlists: movie?.watchlists || [], // Only movies have watchlists
+            payments: movie?.payments || [], // Only movies have payments
+            // user: isContribution ? result?. : result?.user,
+            type: isContribution ? 'contribution' : 'movie'
         };
     },
 

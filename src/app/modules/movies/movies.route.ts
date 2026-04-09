@@ -47,7 +47,7 @@ router.get(
 
 //! get movie by ID
 router.get(
-    "/:id",
+    "/all-movies/:id",
     MoviesController.getMovieById
 );
 

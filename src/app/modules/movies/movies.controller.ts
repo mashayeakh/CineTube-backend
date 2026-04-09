@@ -68,15 +68,15 @@ export const MoviesController = {
 
     //! Get all movies
     getAllMovies: catchAsyc(async (req: Request, res: Response) => {
-        const movies = await MoviesService.getAllMovies(req.query as IQueryParams);
-        if (!movies || movies.data.length === 0) {
-            throw new AppError(status.NOT_FOUND, "No movies found");
-        }
+        const movies = await MoviesService.getAllMovies();
+        // if (!movies || movies.data.length === 0) {
+        //     throw new AppError(status.NOT_FOUND, "No movies found");
+        // }
         sendResponse(res, {
             httpStatusCode: status.OK,
             success: true,
             message: "Movies fetched successfully",
-            meta: movies.meta,
+            // meta: movies.meta,
             result: movies
         });
     }),
