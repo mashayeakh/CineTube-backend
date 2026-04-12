@@ -21,6 +21,15 @@ route.post(
     checkAuth(UserRole.ADMIN),
     AdminController.rejectReview
 );
+
+route.post(
+    "/approve-movie-contribution/:contributionId",
+    checkAuth(UserRole.ADMIN),
+    AdminController.approveMovieContribution
+)
+
+
+
 //!approve series contribution
 route.post(
     "/approve-series-contribution/:contributionId",
