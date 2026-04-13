@@ -19,11 +19,12 @@ export const DashboardWatchlistService = {
             take: 10
         });
 
-        // fetch movie details
+        // filter out null movieIds to avoid type error
+        const filteredResult = result.filter(item => item.movieId !== null);
         const movies = await Promise.all(
-            result.map(async (item) => {
+            filteredResult.map(async (item) => {
                 const movie = await prisma.movie.findUnique({
-                    where: { id: item.movieId },
+                    where: { id: item.movieId as string },
                     select: {
                         id: true,
                         title: true,
