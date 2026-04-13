@@ -6,9 +6,23 @@ import { WatchlistService } from "./watchlist.service";
 import { AppError } from "@/app/errorHelpers/AppError";
 
 export const WatchlistController = {
-    createWatchlist: catchAsyc(async (req: Request, res: Response) => {
+    //! movie watchlist item
+    createMovieWatchlist: catchAsyc(async (req: Request, res: Response) => {
         const userId = req.user.userId;
-        const result = await WatchlistService.createWatchlist(req.body, userId);
+        const result = await WatchlistService.createMovieWatchlist(req.body, userId);
+
+        sendResponse(res, {
+            httpStatusCode: status.CREATED,
+            success: true,
+            message: "Watchlist item created successfully",
+            result
+        });
+    }),
+
+    //! series watchlist item
+    createSeriesWatchlist: catchAsyc(async (req: Request, res: Response) => {
+        const userId = req.user.userId;
+        const result = await WatchlistService.createSeriesWatchlist(req.body, userId);
 
         sendResponse(res, {
             httpStatusCode: status.CREATED,

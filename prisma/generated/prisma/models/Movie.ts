@@ -718,10 +718,12 @@ export type MovieCreateNestedOneWithoutWatchlistsInput = {
   connect?: Prisma.MovieWhereUniqueInput
 }
 
-export type MovieUpdateOneRequiredWithoutWatchlistsNestedInput = {
+export type MovieUpdateOneWithoutWatchlistsNestedInput = {
   create?: Prisma.XOR<Prisma.MovieCreateWithoutWatchlistsInput, Prisma.MovieUncheckedCreateWithoutWatchlistsInput>
   connectOrCreate?: Prisma.MovieCreateOrConnectWithoutWatchlistsInput
   upsert?: Prisma.MovieUpsertWithoutWatchlistsInput
+  disconnect?: Prisma.MovieWhereInput | boolean
+  delete?: Prisma.MovieWhereInput | boolean
   connect?: Prisma.MovieWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.MovieUpdateToOneWithWhereWithoutWatchlistsInput, Prisma.MovieUpdateWithoutWatchlistsInput>, Prisma.MovieUncheckedUpdateWithoutWatchlistsInput>
 }

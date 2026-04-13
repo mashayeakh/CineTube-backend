@@ -360,6 +360,7 @@ export const WatchListScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   movieId: 'movieId',
+  seriesId: 'seriesId',
   addedAt: 'addedAt'
 } as const
 

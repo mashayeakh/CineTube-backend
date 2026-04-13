@@ -1,10 +1,12 @@
 import { AppError } from "@/app/errorHelpers/AppError";
 import { prisma } from "@/app/lib/prisma";
 import status from "http-status";
-import { ICreateWatchlistPayload, IUpdateWatchlistPayload } from "./watchlist.dto";
+import { ICreateMovieWatchlistPayload, ICreateSeriesWatchlistPayload, IUpdateWatchlistPayload } from "./watchlist.dto";
 
 export const WatchlistService = {
-    async createWatchlist(payload: ICreateWatchlistPayload, userId: string) {
+
+    //!create watchlist item for a movie
+    async createMovieWatchlist(payload: ICreateMovieWatchlistPayload, userId: string) {
         const { movieId } = payload;
 
         const movie = await prisma.movie.findUnique({ where: { id: movieId } });
@@ -32,6 +34,40 @@ export const WatchlistService = {
             },
             include: {
                 movie: true,
+                user: true
+            }
+        });
+    },
+
+    //!create watchlist item for a series
+    async createSeriesWatchlist(payload: ICreateSeriesWatchlistPayload, userId: string) {
+        const { seriesId } = payload;
+
+        const series = await prisma.series.findUnique({ where: { id: seriesId } });
+        if (!series) {
+            throw new AppError(status.NOT_FOUND, "Series not found");
+        }
+
+        const existing = await prisma.watchList.findUnique({
+            where: {
+                userId_seriesId: {
+                    userId,
+                    seriesId
+                }
+            }
+        });
+
+        if (existing) {
+            throw new AppError(status.CONFLICT, "Series already exists in watchlist");
+        }
+
+        return prisma.watchList.create({
+            data: {
+                userId,
+                seriesId
+            },
+            include: {
+                series: true,
                 user: true
             }
         });

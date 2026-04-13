@@ -20,8 +20,9 @@ model Series {
     user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
     trackings     UserSeriesTracking[]
 
-    genres    Genre[]             @relation("SeriesGenres")
-    platforms StreamingPlatform[] @relation("SeriesPlatforms")
+    genres     Genre[]             @relation("SeriesGenres")
+    platforms  StreamingPlatform[] @relation("SeriesPlatforms")
+    watchLists WatchList[]
 
     @@unique([title])
     @@index([userId])
