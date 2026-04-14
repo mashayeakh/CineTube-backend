@@ -7,6 +7,10 @@ export interface ICreateSeriesWatchlistPayload {
 }
 
 
-export interface IUpdateWatchlistPayload {
+export interface IUpdateMoviesWatchlistPayload {
     movieId: string;
+
+}
+export interface IUpdateSeriesWatchlistPayload {
+    seriesId: string;
 }

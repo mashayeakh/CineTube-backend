@@ -19,24 +19,49 @@ router.post(
     WatchlistController.createSeriesWatchlist
 );
 
+//! get my watchlist for movies
 router.get(
-    "/",
+    "/movies/all",
     checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
-    WatchlistController.getMyWatchlist
+    WatchlistController.getMyWatchlistMovies
 );
 
+//! get my watchlist for series
 router.get(
-    "/:watchlistId",
+    "/series/all",
     checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
-    WatchlistController.getWatchlistById
+    WatchlistController.getMyWatchlistSeries
 );
 
+//! get watchlist item for movies by id
+router.get(
+    "/movies/:watchlistId",
+    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    WatchlistController.getWatchlistMoviesById
+);
+
+//! get watchlist item for series by id
+router.get(
+    "/series/:watchlistId",
+    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    WatchlistController.getWatchlistSeriesById
+);
+
+//! update watchlist item for movies only
 router.patch(
     "/:watchlistId",
     checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
-    WatchlistController.updateWatchlist
+    WatchlistController.updateMoviesWatchlist
 );
 
+//! update watchlist item for series only
+router.patch(
+    "/:watchlistId",
+    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    WatchlistController.updateSeriesWatchlist
+);
+
+//! delete watchlist item for both movies and series
 router.delete(
     "/:watchlistId",
     checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
