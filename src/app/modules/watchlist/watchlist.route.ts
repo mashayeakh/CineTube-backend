@@ -19,6 +19,13 @@ router.post(
     WatchlistController.createSeriesWatchlist
 );
 
+//! get watchlist item for all movies and series
+router.get(
+    "/all",
+    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    WatchlistController.getMyWatchlist
+);
+
 //! get my watchlist for movies
 router.get(
     "/movies/all",

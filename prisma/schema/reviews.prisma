@@ -1,8 +1,10 @@
 model Review {
     id          String       @id @default(cuid())
-    movieId     String
+    movieId     String?
+    seriesId    String?
     userId      String
-    movie       Movie        @relation(fields: [movieId], references: [id], onDelete: Cascade)
+    movie       Movie?       @relation(fields: [movieId], references: [id], onDelete: Cascade)
+    series      Series?      @relation(fields: [seriesId], references: [id], onDelete: Cascade)
     user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
     rating      Int
     content     String       @db.Text
@@ -15,6 +17,7 @@ model Review {
     updatedAt   DateTime     @updatedAt
 
     @@index([movieId])
+    @@index([seriesId])
     @@index([userId])
     @@map("review")
 }

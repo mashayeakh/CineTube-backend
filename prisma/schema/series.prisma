@@ -23,6 +23,7 @@ model Series {
     genres     Genre[]             @relation("SeriesGenres")
     platforms  StreamingPlatform[] @relation("SeriesPlatforms")
     watchLists WatchList[]
+    reviews    Review[]
 
     @@unique([title])
     @@index([userId])

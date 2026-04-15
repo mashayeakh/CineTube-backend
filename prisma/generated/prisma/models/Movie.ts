@@ -555,11 +555,6 @@ export type MovieNullableScalarRelationFilter = {
   isNot?: Prisma.MovieWhereInput | null
 }
 
-export type MovieScalarRelationFilter = {
-  is?: Prisma.MovieWhereInput
-  isNot?: Prisma.MovieWhereInput
-}
-
 export type MovieCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.MovieCreateWithoutUserInput, Prisma.MovieUncheckedCreateWithoutUserInput> | Prisma.MovieCreateWithoutUserInput[] | Prisma.MovieUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.MovieCreateOrConnectWithoutUserInput | Prisma.MovieCreateOrConnectWithoutUserInput[]
@@ -666,10 +661,12 @@ export type MovieCreateNestedOneWithoutReviewsInput = {
   connect?: Prisma.MovieWhereUniqueInput
 }
 
-export type MovieUpdateOneRequiredWithoutReviewsNestedInput = {
+export type MovieUpdateOneWithoutReviewsNestedInput = {
   create?: Prisma.XOR<Prisma.MovieCreateWithoutReviewsInput, Prisma.MovieUncheckedCreateWithoutReviewsInput>
   connectOrCreate?: Prisma.MovieCreateOrConnectWithoutReviewsInput
   upsert?: Prisma.MovieUpsertWithoutReviewsInput
+  disconnect?: Prisma.MovieWhereInput | boolean
+  delete?: Prisma.MovieWhereInput | boolean
   connect?: Prisma.MovieWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.MovieUpdateToOneWithWhereWithoutReviewsInput, Prisma.MovieUpdateWithoutReviewsInput>, Prisma.MovieUncheckedUpdateWithoutReviewsInput>
 }

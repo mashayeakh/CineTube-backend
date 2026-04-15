@@ -32,6 +32,18 @@ export const WatchlistController = {
         });
     }),
 
+    //!get watchlist item for all movies and series
+    getMyWatchlist: catchAsyc(async (req: Request, res: Response) => {
+        const userId = req.user.userId;
+        const result = await WatchlistService.getMyWatchlist(userId);
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Watchlist fetched successfully",
+            result
+        });
+    }),
+
     //! get my watchlist for movies
     getMyWatchlistMovies: catchAsyc(async (req: Request, res: Response) => {
         const userId = req.user.userId;

@@ -73,11 +73,40 @@ export const WatchlistService = {
         });
     },
 
+
+    //! get all watchlist items for movies and series for a user
+    async getMyWatchlist(userId: string) {
+        const r = prisma.watchList.findMany({
+            where: { userId },
+            include: {
+                movie: {
+                    include: {
+                        genres: true,
+                        platforms: true
+                    }
+                },
+                series: {
+                    include: {
+                        genres: true,
+                        platforms: true
+                    }
+                }
+            },
+            orderBy: {
+                addedAt: "desc"
+            }
+        });
+
+        return r;
+    },
+
     //! get my watchlist for movies
     async getMyWatchlistMovie(userId: string) {
         return prisma.watchList.findMany({
-            where: { userId },
-            include: {
+            where: {
+                userId,
+                movieId: { not: null }
+            }, include: {
                 movie: {
                     include: {
                         genres: true,
@@ -94,7 +123,10 @@ export const WatchlistService = {
     //! get my watchlist for series
     async getMyWatchlistSeries(userId: string) {
         return prisma.watchList.findMany({
-            where: { userId },
+            where: {
+                userId,
+                seriesId: { not: null }
+            },
             include: {
                 series: {
                     include: {

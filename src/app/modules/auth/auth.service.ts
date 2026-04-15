@@ -377,9 +377,48 @@ export const AuthService = {
                     }
                     : {
                         movieContributions: true,
-                        reviews: true,
+                        reviews: {
+                            select: {
+                                id: true,
+                                rating: true,
+                                movie: {
+                                    select: {
+                                        title: true,
+                                        id: true,
+                                    }
+                                },
+                                series: {
+                                    select: {
+                                        title: true,
+                                        id: true,
+                                    }
+                                },
+                                content: true,
+                                isSpoiler: true,
+                                createdAt: true,
+                            }
+                        },
                         comments: true,
-                        payments: true,
+                        payments: {
+                            select: {
+                                id: true,
+                                amount: true,
+                                status: true,
+                                createdAt: true,
+                                movie: {
+                                    select: {
+                                        title: true,
+                                        id: true,
+                                    }
+                                },
+                                subscription: {
+                                    select: {
+                                        id: true,
+                                        type: true,
+                                    }
+                                },
+                            },
+                        }
                     }),
             }
         })

@@ -1,5 +1,5 @@
 import { prisma } from "@/app/lib/prisma";
-import { IReview, IUpdateReview } from "./review.dto";
+import { IMovieReview, IReview, IUpdateReview } from "./review.dto";
 import { AppError } from "@/app/errorHelpers/AppError";
 import status from "http-status";
 
@@ -11,31 +11,51 @@ export const ReviewService = {
      * 
      */
     async createReview(payload: IReview) {
-        const { movieId, userId, rating, content, isSpoiler, tags } = payload;
+        const { movieId, seriesId, userId, rating, content, isSpoiler, tags } = payload;
 
+        // ❗ Must provide one
+        if (!movieId && !seriesId) {
+            throw new AppError(400, "Either movieId or seriesId is required");
+        }
 
-        // Check if movie exists
-        const movie = await prisma.movie.findUnique(
-            {
-                where: {
-                    id: movieId
-                }
+        // Cannot provide both
+        if (movieId && seriesId) {
+            throw new AppError(400, "Provide either movieId or seriesId, not both");
+        }
+
+        //  Check movie
+        if (movieId) {
+            const movie = await prisma.movie.findUnique({
+                where: { id: movieId }
             });
 
-        if (!movie) throw new AppError(404, "Movie not found");
+            if (!movie) throw new AppError(404, "Movie not found");
+        }
 
+        // Check series
+        if (seriesId) {
+            const series = await prisma.series.findUnique({
+                where: { id: seriesId }
+            });
+
+            if (!series) throw new AppError(404, "Series not found");
+        }
+
+        const data: any = {
+            user: { connect: { id: userId } },
+            rating,
+            content,
+            isSpoiler: isSpoiler ?? false,
+            tags: tags ? JSON.stringify(tags) : "[]"
+        };
+        if (movieId) data.movie = { connect: { id: movieId } };
+        if (seriesId) data.series = { connect: { id: seriesId } };
         const review = await prisma.review.create({
-            data: {
-                movie: { connect: { id: movieId } },
-                user: { connect: { id: userId } },
-                rating,
-                content,
-                isSpoiler: isSpoiler ?? false,
-                tags: tags ? JSON.stringify(tags) : "[]"
-            },
+            data,
             include: {
                 user: true,
                 movie: true,
+                series: true,
                 comments: true,
                 reviewLikes: true
             }
@@ -54,6 +74,7 @@ export const ReviewService = {
             include: {
                 user: true,
                 movie: true,
+                series: true,
                 comments: true,
                 reviewLikes: true
             }
@@ -150,6 +171,7 @@ export const ReviewService = {
             include: {
                 user: true,
                 movie: true,
+                series: true,
                 comments: true,
                 reviewLikes: true
             }
@@ -190,6 +212,7 @@ export const ReviewService = {
             include: {
                 user: true,
                 movie: true,
+                series: true,
                 comments: true,
                 reviewLikes: true
             }

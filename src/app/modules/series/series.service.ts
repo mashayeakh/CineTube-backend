@@ -145,7 +145,12 @@ export const SeriesService = {
     async getSeriesById(id: string) {
         const series = await prisma.series.findUnique({
             where: { id },
-            include: { user: true, genres: true, platforms: true }
+            include: {
+                user: true,
+                reviews: true,
+                genres: true,
+                platforms: true
+            }
         });
 
         if (!series) throw new AppError(404, "Series not found");
