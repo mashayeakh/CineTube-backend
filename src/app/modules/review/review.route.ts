@@ -19,19 +19,6 @@ router.patch(
     ReviewController.editReview
 );
 
-//! like review
-router.post(
-    "/:reviewId/like",
-    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
-    ReviewController.likeReview
-);
-
-//! unlike review
-router.delete(  
-    "/:reviewId/like",
-    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
-    ReviewController.unlikeReview
-);
 
 //! get review by id
 router.get(
@@ -54,24 +41,5 @@ router.get(
     ReviewController.getAllReviews
 );
 
-
-// router.get(
-//     "/",
-//     PlatformController.getAllPlatforms
-// );
-// router.get(
-//     "/:id",
-//     PlatformController.getPlatformById
-// );
-// router.put(
-//     "/:id",
-//     checkAuth(UserRole.ADMIN),
-//     PlatformController.updatePlatform
-// );
-// router.delete(
-//     "/:id",
-//     checkAuth(UserRole.ADMIN),
-//     PlatformController.deletePlatform
-// );
 
 export const ReviewRouter = router;

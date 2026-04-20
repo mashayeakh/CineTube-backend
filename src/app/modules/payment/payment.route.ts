@@ -5,18 +5,21 @@ import { PaymentController } from "./payment.controller";
 
 const router = express.Router();
 
+//! create checkout session for subscription
 router.post(
     "/create-checkout-session",
     checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
     PaymentController.createCheckoutSession
 );
 
+//! verify checkout session after payment
 router.post(
     "/verify-checkout-session",
     checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
     PaymentController.verifyCheckoutSession
 );
 
+//! verify payment and redirect user to appropriate page
 router.get(
     "/verify-payment",
     PaymentController.verifyPaymentAndRedirect

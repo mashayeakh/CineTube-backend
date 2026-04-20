@@ -30,5 +30,11 @@ router.delete(
     CommentController.deleteComment
 );
 
+//! count comments for a review
+router.get(
+    "/count/:reviewId",
+    CommentController.countCommentsForReview
+);
+
 
 export const CommentRouter = router;

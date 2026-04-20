@@ -13,15 +13,11 @@ export const ReviewService = {
     async createReview(payload: IReview) {
         const { movieId, seriesId, userId, rating, content, isSpoiler, tags } = payload;
 
-        // ❗ Must provide one
+        // Must provide one
         if (!movieId && !seriesId) {
             throw new AppError(400, "Either movieId or seriesId is required");
         }
 
-        // Cannot provide both
-        if (movieId && seriesId) {
-            throw new AppError(400, "Provide either movieId or seriesId, not both");
-        }
 
         //  Check movie
         if (movieId) {
@@ -88,82 +84,7 @@ export const ReviewService = {
         };
     },
 
-    //! like review
-    async likeReview(reviewId: string, userId: string) {
-        const review = await prisma.review.findUnique({
-            where: { id: reviewId }
-        });
-
-        if (!review) throw new AppError(status.NOT_FOUND, "Review not found");
-
-        const existingLike = await prisma.reviewLike.findUnique({
-            where: {
-                reviewId_userId: {
-                    reviewId,
-                    userId
-                }
-            }
-        });
-
-        if (existingLike) {
-            throw new AppError(status.CONFLICT, "You have already liked this review");
-        }
-
-        await prisma.reviewLike.create({
-            data: {
-                reviewId,
-                userId
-            }
-        });
-
-        const likeCount = await prisma.reviewLike.count({
-            where: { reviewId }
-        });
-
-        return {
-            reviewId,
-            userId,
-            liked: true,
-            likeCount
-        };
-    },
-
-    //! unlike review
-    async unlikeReview(reviewId: string, userId: string) {
-        const review = await prisma.review.findUnique({
-            where: { id: reviewId }
-        });
-
-        if (!review) throw new AppError(status.NOT_FOUND, "Review not found");
-
-        const existingLike = await prisma.reviewLike.findUnique({
-            where: {
-                reviewId_userId: {
-                    reviewId,
-                    userId
-                }
-            }
-        });
-
-        if (!existingLike) {
-            throw new AppError(status.BAD_REQUEST, "You have not liked this review yet");
-        }
-
-        await prisma.reviewLike.delete({
-            where: { id: existingLike.id }
-        });
-
-        const likeCount = await prisma.reviewLike.count({
-            where: { reviewId }
-        });
-
-        return {
-            reviewId,
-            userId,
-            liked: false,
-            likeCount
-        };
-    },
+   
 
     //! get all reviews
     async getAllReviews() {

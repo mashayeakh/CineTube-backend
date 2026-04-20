@@ -135,7 +135,14 @@ export const MoviesService = {
         // Try to find in movies table
         const movie = await prisma.movie.findUnique({
             where: { id },
-            include: { user: true, genres: true, platforms: true, reviews: true, watchlists: true, payments: true }
+            include: {
+                user: true,
+                genres: true,
+                platforms: true,
+                reviews: true,
+                watchlists: true,
+                payments: true
+            }
         });
 
         // Try to find in contributions table (using same ID)

@@ -124,5 +124,23 @@ export const CommentService = {
         });
 
         return { message: "Comment deleted successfully" };
+    },
+
+    //! count comments for a review
+    async countCommentsForReview(reviewId: string) {
+        // check review
+        const review = await prisma.review.findUnique({
+            where: { id: reviewId }
+        });
+
+        if (!review) {
+            throw new AppError(status.NOT_FOUND, "Review not found");
+        }
+
+        const count = await prisma.comment.count({
+            where: { reviewId }
+        });
+        console.log("Count ", count)
+        return count;
     }
 }

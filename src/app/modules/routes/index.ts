@@ -19,6 +19,7 @@ import { PaymentRouter } from "../payment/payment.route";
 import { WatchlistRouter } from "../watchlist/watchlist.route";
 import { UserPreferenceRouter } from "../userPreference/userPreference.route";
 import { LeaderboardRouter } from "../ledearboard/ledearboard.route";
+import { ReviewLikeRouter } from "../reviewLike/reviewLike.route";
 
 const router = express.Router();
 
@@ -71,6 +72,19 @@ router.use(
 );
 
 //!Reviews
+router.use(
+    "/reviews",
+    ReviewRouter
+);
+
+
+//!Reviews Likes
+router.use(
+    "/review-like",
+    ReviewLikeRouter
+);
+
+
 router.use(
     "/reviews",
     ReviewRouter

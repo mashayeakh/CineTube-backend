@@ -9,6 +9,7 @@ import { CommentService } from "./comment.service";
 
 export const CommentController = {
 
+    //!create comment
     createComment: catchAsyc(async (req: Request, res: Response) => {
         const result = await CommentService.createComment(req.body);
 
@@ -20,6 +21,7 @@ export const CommentController = {
         });
     }),
 
+    //! get all Comments
     getAllComments: catchAsyc(async (req: Request, res: Response) => {
         const { reviewId } = req.params;
         const result = await CommentService.getCommentsForReview(reviewId as string);
@@ -32,6 +34,7 @@ export const CommentController = {
         });
     }),
 
+    //!update Comments
     updateComment: catchAsyc(async (req: Request, res: Response) => {
         const { commentId, userId } = req.params;
         const { content, isSpoiler } = req.body;
@@ -46,6 +49,7 @@ export const CommentController = {
         });
     }),
 
+    //!delete Comments
     deleteComment: catchAsyc(async (req: Request, res: Response) => {
         const { commentId, userId } = req.params;
 
@@ -56,6 +60,18 @@ export const CommentController = {
             success: true,
             message: "Comment deleted successfully",
             result: null
+        });
+    }),
+    //! count comments for a review
+    countCommentsForReview: catchAsyc(async (req: Request, res: Response) => {
+        const { reviewId } = req.params;
+        const count = await CommentService.countCommentsForReview(reviewId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Comment count fetched successfully",
+            result: { count }
         });
     }),
 };

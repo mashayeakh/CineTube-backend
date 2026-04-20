@@ -6,6 +6,7 @@ import Stripe from "stripe";
 import { stripe } from "@/app/config/stripe.config";
 import { envVars } from "@/app/config/env";
 
+//! Define subscription plans and their prices
 const SUBSCRIPTION_PRICE = {
     MONTHLY: { amount: 9.99, amountInCents: 999, label: "Monthly" },
     YEARLY: { amount: 99.99, amountInCents: 9999, label: "Yearly" }

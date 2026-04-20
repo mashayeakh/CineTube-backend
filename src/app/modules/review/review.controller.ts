@@ -30,34 +30,7 @@ export const ReviewController = {
         });
     }),
 
-    //! like review
-    likeReview: catchAsyc(async (req: Request, res: Response) => {
-        const reviewId = req.params.reviewId;
-        const userId = req.user.userId;
-        const result = await ReviewService.likeReview(reviewId as string, userId);
-
-        sendResponse(res, {
-            httpStatusCode: status.CREATED,
-            success: true,
-            message: "Review liked successfully",
-            result
-        });
-    }),
-
-    //! unlike review
-    unlikeReview: catchAsyc(async (req: Request, res: Response) => {
-        const reviewId = req.params.reviewId;
-        const userId = req.user.userId;
-        const result = await ReviewService.unlikeReview(reviewId as string, userId);
-
-        sendResponse(res, {
-            httpStatusCode: status.OK,
-            success: true,
-            message: "Review unliked successfully",
-            result
-        });
-    }),
-
+   
     //!get review by id
     getReviewById: catchAsyc(async (req: Request, res: Response) => {
         const reviewId = req.params.reviewId;
