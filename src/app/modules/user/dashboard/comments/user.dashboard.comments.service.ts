@@ -12,6 +12,9 @@ export const UserDashboardCommentsService = {
                         content: true,
                         movie: {
                             select: { id: true, title: true }
+                        },
+                        series: {
+                            select: { id: true, title: true }
                         }
                     }
                 },

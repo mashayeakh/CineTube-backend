@@ -21,8 +21,33 @@ export const CommentController = {
         });
     }),
 
-    //! get all Comments
+    //! get all Comments By id
     getAllComments: catchAsyc(async (req: Request, res: Response) => {
+        const result = await CommentService.getAllComments();
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Comments fetched successfully",
+            result
+        });
+    }),
+
+    //! get all Comments By user id
+    getAllCommentsByUserId: catchAsyc(async (req: Request, res: Response) => {
+        const { userId } = req.params;
+        const result = await CommentService.getAllCommentsByUserId(userId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "User's comments fetched successfully",
+            result
+        });
+    }),
+
+    //! get all Comments By id
+    getAllCommentsByReviewId: catchAsyc(async (req: Request, res: Response) => {
         const { reviewId } = req.params;
         const result = await CommentService.getCommentsForReview(reviewId as string);
 

@@ -53,6 +53,82 @@ export const CommentService = {
         return comment;
     },
 
+    //! get all comments 
+    async getAllComments() {
+        const comments = await prisma.comment.findMany({
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        role: true,
+                    }
+                },
+                review: {
+                    include: {
+                        movie: {
+                            select: {
+                                id: true,
+                                title: true,
+                                userId: true,
+                            }
+                        },
+                        series: {
+                            select: {
+                                id: true,
+                                title: true,
+                                userId: true,
+                            }
+                        },
+                    }
+                }
+            }
+        });
+
+        return comments;
+    },
+
+
+    //! get all comments for a user
+    async getAllCommentsByUserId(userId: string) {
+        const comments = await prisma.comment.findMany({
+            where: { userId },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        role: true,
+                    }
+                },
+                review: {
+                    include: {
+                        movie: {
+                            select: {
+                                id: true,
+                                title: true,
+                                userId: true,
+                            }
+                        },
+                        series: {
+                            select: {
+                                id: true,
+                                title: true,
+
+                                userId: true,
+                            }
+                        },
+                    }
+                }
+            }
+        });
+
+        return comments;
+    },
+
+
     //! Get all comments for a review, with nested replies
     async getCommentsForReview(reviewId: string) {
         // check review
@@ -67,7 +143,32 @@ export const CommentService = {
         const comments = await prisma.comment.findMany({
             where: { reviewId },
             include: {
-                user: true,
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        role: true,
+                    }
+                },
+                review: {
+                    include: {
+                        movie: {
+                            select: {
+                                id: true,
+                                title: true,
+                                userId: true,
+                            }
+                        },
+                        series: {
+                            select: {
+                                id: true,
+                                title: true,
+                                userId: true,
+                            }
+                        },
+                    }
+                },
                 replies: {
                     include: {
                         user: true

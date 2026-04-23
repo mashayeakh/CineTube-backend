@@ -12,10 +12,25 @@ router.post(
     CommentController.createComment
 );
 
+
+router.get(
+    "/all",
+    // checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    CommentController.getAllComments
+)
+
+
+//! get all Comments By user id
+router.get(
+    "/user/:userId",
+    // checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    CommentController.getAllCommentsByUserId
+);
+
 router.get(
     "/:reviewId",
-    checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
-    CommentController.getAllComments
+    // checkAuth(UserRole.USER, UserRole.PREMIUM_USER),
+    CommentController.getAllCommentsByReviewId
 );
 
 router.patch(
