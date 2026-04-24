@@ -41,6 +41,14 @@ export const MoviesContributionService = {
             throw new AppError(status.NOT_FOUND, "Contributor not found");
         }
 
+        // Check if a movie with this title already exists
+        const existingMovie = await prisma.movie.findUnique({
+            where: { title }
+        });
+
+        if (existingMovie) {
+            throw new AppError(status.CONFLICT, "A movie with this title already exists");
+        }
 
         const normalizedAgeGroup: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" =
             ageGroup === "AGE_18_PLUS" || ageGroup === "AGE_13_PLUS" || ageGroup === "ALL_AGES"

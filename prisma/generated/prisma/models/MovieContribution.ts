@@ -297,11 +297,12 @@ export type MovieContributionOrderByWithRelationInput = {
 
 export type MovieContributionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  title?: string
+  title_contributorId?: Prisma.MovieContributionTitleContributorIdCompoundUniqueInput
   AND?: Prisma.MovieContributionWhereInput | Prisma.MovieContributionWhereInput[]
   OR?: Prisma.MovieContributionWhereInput[]
   NOT?: Prisma.MovieContributionWhereInput | Prisma.MovieContributionWhereInput[]
   contributorId?: Prisma.StringFilter<"MovieContribution"> | string
+  title?: Prisma.StringFilter<"MovieContribution"> | string
   description?: Prisma.StringFilter<"MovieContribution"> | string
   poster?: Prisma.StringFilter<"MovieContribution"> | string
   releaseYear?: Prisma.IntFilter<"MovieContribution"> | number
@@ -314,7 +315,7 @@ export type MovieContributionWhereUniqueInput = Prisma.AtLeast<{
   contributor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
-}, "id" | "title">
+}, "id" | "title_contributorId">
 
 export type MovieContributionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -474,6 +475,11 @@ export type MovieContributionListRelationFilter = {
 
 export type MovieContributionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type MovieContributionTitleContributorIdCompoundUniqueInput = {
+  title: string
+  contributorId: string
 }
 
 export type MovieContributionCountOrderByAggregateInput = {
