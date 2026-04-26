@@ -22,22 +22,22 @@
 - [Scripts](#scripts)
 - [Folder Structure](#folder-structure)
 - [Deployment](#deployment)
+- [Contributing](#contributing)
 
 ---
 
 ## Overview
 
-CineTube Backend is the server-side application powering the CineTube movie streaming platform. It exposes a RESTful API consumed by the Next.js frontend and handles:
+CineTube Backend is the server-side application powering the CineTube movie and TV series streaming platform. It exposes a comprehensive RESTful API consumed by the Next.js frontend and handles:
 
-- Authentication & authorization (JWT + session-based via Better Auth)
-- Movie catalogue management with file uploads
-- Community movie contribution system with admin moderation
-- Review & comment system with likes
-- Stripe-powered payment and subscription management
-- Watchlists per user
-- Admin and user dashboards with aggregated stats
-- Automated admin seeding on startup
-- Transactional email via Nodemailer (verification, password reset)
+- **Authentication & Authorization**: Modern session-based auth with Better Auth + JWT fallback
+- **Content Management**: Movies and TV series catalog with rich metadata, genres, and streaming platforms
+- **Community Features**: User-generated content, reviews, nested comments, and engagement tracking
+- **Monetization**: Stripe-powered payments for premium content and subscription management
+- **User Experience**: Watchlists, series tracking, personalized preferences, and leaderboards
+- **Admin Panel**: Content moderation, user management, analytics, and approval workflows
+- **File Handling**: Cloudinary integration for media uploads and static file serving
+- **Email Services**: SMTP-based transactional emails for verification and notifications
 
 All endpoints are served under the base prefix **`/api/v1`**.
 
@@ -45,73 +45,519 @@ All endpoints are served under the base prefix **`/api/v1`**.
 
 ## Tech Stack
 
-| Layer        | Technology                                      |
-| ------------ | ----------------------------------------------- |
-| Runtime      | Node.js 22.x                                    |
-| Language     | TypeScript 5.9                                  |
-| Framework    | Express 5.x                                     |
-| ORM          | Prisma 7.5 (multi-file schema)                  |
-| Database     | PostgreSQL                                      |
-| Auth         | Better Auth 1.5 + JWT (access & refresh tokens) |
-| Payments     | Stripe                                          |
-| Email        | Nodemailer (SMTP)                               |
-| File Uploads | Multer                                          |
-| Templating   | EJS                                             |
-| Deployment   | Vercel (serverless)                             |
+| Layer        | Technology                                   |
+| ------------ | -------------------------------------------- |
+| Runtime      | Node.js 22.x (ESM modules)                   |
+| Language     | TypeScript 5.9                               |
+| Framework    | Express 5.2.1                                |
+| ORM          | Prisma 7.5 (multi-file schema architecture)  |
+| Database     | PostgreSQL                                   |
+| Auth         | Better Auth 1.5.6 + JWT (jsonwebtoken 9.0.3) |
+| Payments     | Stripe 21.0.1                                |
+| Email        | Nodemailer 8.0.4 (SMTP)                      |
+| File Uploads | Multer 2.1.1 + Cloudinary 2.9.0              |
+| Templating   | EJS 5.0.1                                    |
+| Development  | tsx 4.21.0                                   |
+| Deployment   | Vercel (serverless)                          |
+
+**Additional Libraries:**
+
+- CORS 2.8.6 - Cross-origin request handling
+- Cookie-parser 1.4.7 - Session cookie parsing
+- dotenv 17.3.1 - Environment variable management
+- http-status 2.1.0 - HTTP status code constants
 
 ---
 
 ## Features
 
-- **Role-based access control** — `USER`, `PREMIUM_USER`, `ADMIN`
-- **JWT authentication** — short-lived access tokens + long-lived refresh tokens
-- **Better Auth sessions** — server-side session management
-- **Email flows** — account verification, forgot password, password reset
-- **Movie CRUD** — admin-only create/update/delete with poster upload; public read & search
-- **Community contributions** — users submit movies; admin approves or rejects
-- **Genres & Streaming Platforms** — admin-managed taxonomies linked to movies
-- **Reviews & likes** — authenticated users post reviews; admin moderates; users like/unlike
-- **Comments** — threaded comments on reviews
-- **Stripe payments** — checkout session creation, webhook processing, payment verification
-- **Subscriptions** — `MONTHLY`, `YEARLY`, `TRIAL` plans with lifecycle status tracking
-- **Watchlists** — per-user movie lists (full CRUD)
-- **Admin dashboard** — stats, user management, content moderation
-- **User dashboard** — personalized stats and activity
-- **CORS** — allowlist-based origin control with Vercel wildcard support
-- **Static file serving** — uploaded poster images served from `/files`
-- **Global error handling** — centralised error middleware with typed error helpers
-- **Startup admin seed** — admin account is auto-created if missing
+### Authentication & User Management
+
+- **Role-based Access Control**: `USER`, `PREMIUM_USER`, `ADMIN` roles
+- **Dual Auth System**: Better Auth sessions + JWT tokens for API clients
+- **Email Verification**: Account activation and OTP flows
+- **Password Management**: Secure reset and change flows
+- **Session Management**: 24-hour sessions with auto-refresh
+
+### Content Ecosystem
+
+- **Movie Catalog**: Rich metadata with posters, cast, director, genres, platforms
+- **TV Series**: Season/episode tracking with watch progress
+- **Content Types**: FREE and PREMIUM pricing models
+- **Age Ratings**: ALL_AGES, AGE_13_PLUS, AGE_18_PLUS filtering
+- **User Contributions**: Submit movies/series with admin approval workflow
+
+### Community & Engagement
+
+- **Review System**: Movie/series reviews with ratings and spoiler warnings
+- **Nested Comments**: Threaded discussions on reviews
+- **Engagement Tracking**: Review likes and user activity metrics
+- **Leaderboards**: User rankings and statistics
+
+### Monetization
+
+- **Pay-per-Content**: Stripe checkout for premium movies
+- **Subscriptions**: MONTHLY, YEARLY, TRIAL plans
+- **Webhook Processing**: Real-time payment confirmations
+- **Transaction History**: Payment records and subscription status
+
+### User Experience
+
+- **Watchlists**: Personal movie and series collections
+- **Series Tracking**: PLAN_TO_WATCH, WATCHING, COMPLETED, DROPPED, ON_HOLD
+- **User Preferences**: Content recommendation settings
+- **Personal Dashboards**: Activity stats and analytics
+
+### Admin Features
+
+- **Content Moderation**: Approve/reject user contributions
+- **User Management**: Status control (ACTIVE, ARCHIVED, BLOCKED, DELETED)
+- **Analytics Dashboard**: Platform statistics and metrics
+- **Auto-seeding**: Admin account creation on startup
+
+### Technical Features
+
+- **File Uploads**: Cloudinary integration for media assets
+- **Static Serving**: `/files` endpoint for uploaded content
+- **Error Handling**: Centralized error middleware with typed responses
+- **Query Building**: Dynamic filtering, searching, and pagination
+- **CORS Support**: Allowlist-based origin control with Vercel compatibility
 
 ---
 
 ## Architecture
 
 ```
-Client (Next.js)
+Client (Next.js Frontend)
       │
       ▼
-  Express App  ──► /webhook (Stripe raw body)
+  Express Application
       │
-      ├── CORS Middleware
-      ├── Body Parsers (JSON, URL-encoded, Cookie)
-      ├── Static Files (/files)
+      ├── /webhook (Stripe) ──► Raw body parsing
       │
-      └── /api/v1  ──► Feature Routers
-                         ├── /auth
-                         ├── /users
-                         ├── /movies
-                         ├── /movie-contributions
-                         ├── /genres
-                         ├── /streaming-platforms
-                         ├── /reviews
-                         ├── /comments
-                         ├── /admin
-                         ├── /admin/dashboard
-                         ├── /user/dashboard
-                         ├── /payments
-                         ├── /watchlists
-                         └── /landing
+      ├── Middleware Stack:
+      │   ├── CORS (origin validation)
+      │   ├── JSON/URL-encoded body parsing
+      │   ├── Cookie parsing (Better Auth)
+      │   └── Static file serving (/files)
+      │
+      └── /api/v1 ──► Feature Route Modules
+                      ├── Auth (/auth/*)
+                      ├── Users (/users/*)
+                      ├── Movies (/movies/*)
+                      ├── Series (/series/*)
+                      ├── Reviews (/reviews/*)
+                      ├── Comments (/comments/*)
+                      ├── Payments (/payments/*)
+                      ├── Admin (/admin/*)
+                      └── ... (20+ route modules)
 ```
+
+**Key Architectural Patterns:**
+
+- **Modular Routes**: Feature-based route organization
+- **Middleware Chain**: Request processing pipeline
+- **Error Boundaries**: Global error handling with custom AppError class
+- **Async Wrappers**: `catchAsync` for controller error handling
+- **Query Builders**: Reusable filtering/search/pagination logic
+
+---
+
+## Database Schema
+
+The application uses Prisma with a multi-file schema architecture for better organization:
+
+### Core Models
+
+**User Management:**
+
+- `User` - Core user entity with roles and status
+- `Session` - Better Auth session tokens
+- `Account` - OAuth provider accounts
+- `Verification` - Email verification tokens
+- `Admin` - Admin profile extension
+
+**Content Models:**
+
+- `Movie` - Movie catalog with metadata
+- `Series` - TV series with tracking
+- `Genre` - Content categorization
+- `StreamingPlatform` - Available streaming services
+
+**Community Models:**
+
+- `Review` - User reviews and ratings
+- `Comment` - Nested comment threads
+- `ReviewLike` - User engagement tracking
+
+**Monetization Models:**
+
+- `Payment` - Transaction records
+- `Subscription` - Subscription management
+
+**User Features:**
+
+- `WatchList` - Personal content lists
+- `UserSeriesTracking` - Series watch progress
+- `UserPreference` - Recommendation settings
+- `MovieContribution` - User-submitted content
+- `SeriesContribution` - Series submissions
+
+### Key Relationships
+
+- Users ↔ Reviews ↔ Comments (nested threads)
+- Movies/Series ↔ Genres (many-to-many)
+- Users ↔ WatchList ↔ Content
+- Payments ↔ Subscriptions (transactional)
+- Admin approval workflow for contributions
+
+---
+
+## API Reference
+
+All endpoints are prefixed with `/api/v1`. Authentication required for protected routes.
+
+### Authentication (`/auth/*`)
+
+- `POST /auth/user/sign-up` - User registration
+- `POST /auth/user/sign-in` - User login
+- `POST /auth/user/sign-out` - Logout
+- `POST /auth/user/forgot-password` - Password reset request
+- `POST /auth/user/reset-password` - Password reset confirmation
+- `GET /auth/user/session` - Get current session
+- `POST /auth/user/verify-email` - Email verification
+
+### Users (`/users/*`)
+
+- `GET /users/profile` - Get user profile
+- `PUT /users/profile` - Update user profile
+- `GET /users/dashboard` - User dashboard stats
+
+### Movies (`/movies/*`)
+
+- `GET /movies` - List movies (with filtering/search/pagination)
+- `GET /movies/:id` - Get movie details
+- `POST /movies` - Create movie (admin only)
+- `PUT /movies/:id` - Update movie (admin only)
+- `DELETE /movies/:id` - Delete movie (admin only)
+- `GET /movies/featured` - Get featured movies
+
+### Series (`/series/*`)
+
+- `GET /series` - List series
+- `GET /series/:id` - Get series details
+- `POST /series` - Create series (admin only)
+- `PUT /series/:id` - Update series (admin only)
+- `GET /series/tracking` - Get user's series tracking
+
+### Reviews (`/reviews/*`)
+
+- `GET /reviews` - List reviews
+- `GET /reviews/:id` - Get review details
+- `POST /reviews` - Create review
+- `PUT /reviews/:id` - Update review
+- `DELETE /reviews/:id` - Delete review (owner/admin)
+
+### Comments (`/comments/*`)
+
+- `GET /comments` - List comments (by review)
+- `POST /comments` - Create comment
+- `PUT /comments/:id` - Update comment
+- `DELETE /comments/:id` - Delete comment
+
+### Payments (`/payments/*`)
+
+- `POST /payments/create-checkout-session` - Create Stripe checkout
+- `POST /payments/verify` - Verify payment
+- `GET /payments/history` - Payment history
+- `POST /webhook` - Stripe webhook handler
+
+### Watchlists (`/watchlists/*`)
+
+- `GET /watchlists` - Get user's watchlist
+- `POST /watchlists` - Add to watchlist
+- `DELETE /watchlists/:id` - Remove from watchlist
+
+### Admin (`/admin/*`)
+
+- `GET /admin/dashboard` - Admin dashboard stats
+- `GET /admin/users` - List users
+- `PUT /admin/users/:id/status` - Update user status
+- `GET /admin/contributions` - Pending contributions
+- `PUT /admin/contributions/:id/approve` - Approve contribution
+
+### Other Endpoints
+
+- `/genres/*` - Genre management
+- `/streaming-platforms/*` - Platform management
+- `/user-preferences/*` - User preferences
+- `/leaderboard/*` - User rankings
+- `/landing/*` - Public landing page data
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```bash
+# Environment
+NODE_ENV=development
+PORT=5000
+
+# Database
+DATABASE_URL="postgresql://username:password@localhost:5432/cinetube_db"
+
+# Authentication
+BETTER_AUTH_SECRET="your-secret-key-here"
+BETTER_AUTH_URL="http://localhost:5000"
+FRONTEND_URL="http://localhost:3000"
+
+# JWT Tokens
+ACCESS_TOKEN_SECRET="your-access-secret"
+REFRESH_TOKEN_SECRET="your-refresh-secret"
+ACCESS_TOKEN_EXPIRES_IN="15m"
+REFRESH_TOKEN_EXPIRES_IN="7d"
+
+# Better Auth Sessions
+BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN="24h"
+BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE="4h"
+
+# Admin Seeding
+ADMIN_EMAIL="admin@cinetube.com"
+ADMIN_PASSWORD="secure-admin-password"
+
+# Email Service (SMTP)
+EMAIL_SENDER_SMTP_HOST="smtp.gmail.com"
+EMAIL_SENDER_SMTP_PORT="587"
+EMAIL_SENDER_SMTP_USER="your-email@gmail.com"
+EMAIL_SENDER_SMTP_PASS="your-app-password"
+EMAIL_SENDER_FROM="noreply@cinetube.com"
+
+# Stripe
+STRIPE_SECRET_KEY="sk_test_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME="your-cloud-name"
+CLOUDINARY_API_KEY="your-api-key"
+CLOUDINARY_API_SECRET="your-api-secret"
+```
+
+**Production Notes:**
+
+- `BETTER_AUTH_URL` must be your production domain (not localhost)
+- `FRONTEND_URL` must be your frontend production URL
+- All secrets must be securely stored (not committed to git)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 22.x or higher
+- PostgreSQL database
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/mashayeakh/CineTube-backend.git
+   cd cinetube_server
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables:**
+   - Copy `.env.example` to `.env`
+   - Fill in all required environment variables
+
+4. **Set up the database:**
+
+   ```bash
+   # Generate Prisma client
+   npx prisma generate
+
+   # Run migrations
+   npx prisma migrate dev
+
+   # (Optional) Seed initial data
+   npm run seed:movies
+   ```
+
+5. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+The server will start on `http://localhost:5000` (or your configured PORT).
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## Scripts
+
+| Command                  | Description                                                 |
+| ------------------------ | ----------------------------------------------------------- |
+| `npm run dev`            | Start development server with tsx                           |
+| `npm run build`          | Build for production (Prisma generate + TypeScript compile) |
+| `npm start`              | Start production server                                     |
+| `npm run seed:movies`    | Seed initial movie data                                     |
+| `npm run stripe:webhook` | Test Stripe webhooks locally                                |
+| `npx prisma studio`      | Open Prisma Studio for database management                  |
+| `npx prisma migrate dev` | Run database migrations in development                      |
+| `npx prisma generate`    | Generate Prisma client                                      |
+
+---
+
+## Folder Structure
+
+```
+src/
+├── app.ts                          # Express app configuration
+├── server.ts                       # Server bootstrap and admin seeding
+└── app/
+    ├── config/
+    │   ├── env.ts                 # Environment validation
+    │   └── stripe.config.ts       # Stripe configuration
+    ├── lib/
+    │   ├── auth.ts                # Better Auth setup
+    │   └── prisma.ts              # Prisma client
+    ├── middleware/
+    │   ├── checkAuth.ts           # Authentication middleware
+    │   ├── globalErrorHandler.ts  # Error handling
+    │   ├── upload.ts              # File upload middleware
+    │   └── notFound.ts            # 404 handler
+    ├── modules/                   # Feature route modules
+    │   ├── auth/
+    │   ├── users/
+    │   ├── movies/
+    │   ├── series/
+    │   ├── reviews/
+    │   ├── comments/
+    │   ├── payments/
+    │   └── admin/
+    ├── shared/
+    │   └── catchAsync.ts          # Async error wrapper
+    ├── interface/
+    │   └── queryInterface.ts      # Query builder types
+    ├── utils/
+    │   ├── email.ts               # Email service
+    │   ├── jwt.ts                 # JWT utilities
+    │   ├── cookies.ts             # Cookie helpers
+    │   ├── queryBuilder.ts        # Query/filter builder
+    │   └── seedMovies.ts          # Movie seeding
+    ├── errorHelpers/
+    │   └── AppError.ts            # Custom error class
+    └── templates/                 # Email templates
+
+prisma/
+├── schema.prisma                  # Main schema config
+├── schema/                        # Multi-file schemas
+│   ├── auth.prisma
+│   ├── movies.prisma
+│   ├── series.prisma
+│   └── ...
+└── migrations/                    # Database migrations
+
+api/
+└── index.js                       # Vercel serverless entry
+
+files/                             # Static file uploads
+```
+
+---
+
+## Deployment
+
+### Vercel (Serverless)
+
+The application is configured for Vercel serverless deployment:
+
+1. **Connect to Vercel:**
+
+   ```bash
+   vercel --prod
+   ```
+
+2. **Environment Variables:**
+   - Set all required environment variables in Vercel dashboard
+   - Ensure `BETTER_AUTH_URL` points to your Vercel domain
+   - Configure `FRONTEND_URL` for CORS
+
+3. **Build Configuration:**
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+   - Install Command: `npm install`
+
+### Other Platforms
+
+For traditional hosting, ensure:
+
+- PostgreSQL database is accessible
+- Environment variables are set
+- Build process includes `npm run build`
+- Static files are served from `/files` directory
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- Use TypeScript for all new code
+- Follow the existing modular structure
+- Add proper error handling with `AppError`
+- Use `catchAsync` for async controllers
+- Update database schema through Prisma migrations
+- Test API endpoints thoroughly
+- Follow RESTful conventions
+
+---
+
+## License
+
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Support
+
+For questions or issues, please open an issue on GitHub or contact the development team.
+├── /users
+├── /movies
+├── /movie-contributions
+├── /genres
+├── /streaming-platforms
+├── /reviews
+├── /comments
+├── /admin
+├── /admin/dashboard
+├── /user/dashboard
+├── /payments
+├── /watchlists
+└── /landing
+
+````
 
 Each feature module follows a **Controller → Service → Prisma** layered pattern.
 
@@ -330,7 +776,7 @@ EMAIL_SENDER_SMTP_FROM="CineTube <noreply@cinetube.com>"
 # Stripe
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
-```
+````
 
 > **Security notes:**
 >
