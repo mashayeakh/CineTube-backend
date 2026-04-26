@@ -37,6 +37,7 @@ export const MoviesService = {
             director,
             cast,
             genres,
+            streamingLink,
             platforms,
             priceType,
             ageGroup,
@@ -58,6 +59,7 @@ export const MoviesService = {
                 title,
                 description: description || "",
                 poster,
+                streamingLink,
                 releaseYear: releaseYear || new Date().getFullYear(),
                 director,
                 cast: cast ? JSON.stringify(cast) : "[]",
@@ -74,6 +76,8 @@ export const MoviesService = {
                     : undefined
             }
         });
+
+        console.log("Movie To be added", result)
 
         return {
             ...result,

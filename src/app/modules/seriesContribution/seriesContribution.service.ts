@@ -42,6 +42,7 @@ export const SeriesContributionService = {
                 poster: payload.poster,
                 releaseYear: payload.releaseYear,
                 director: payload.director,
+                streamingLink: payload.streamingLink || "",
                 cast: payload.cast ? JSON.stringify(payload.cast) : "[]",
                 ageGroup: normalizedAgeGroup,
                 priceType: payload.priceType === "PREMIUM" ? "PREMIUM" : "FREE",

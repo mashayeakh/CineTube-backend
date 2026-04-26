@@ -10,6 +10,7 @@ export interface ISeries {
     platforms: string[];
     priceType?: "FREE" | "PREMIUM" | null;
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;
+    streamingLink?: string | null;
     totalSeasons: number;
     totalEpisodes?: number | null;
     status?: "ONGOING" | "COMPLETED" | "UPCOMING" | "CANCELLED" | null;
@@ -44,6 +45,7 @@ export interface IUpdateSeries {
     platforms?: string[] | null;
     priceType?: "FREE" | "PREMIUM" | null;
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;
+    streamingLink?: string | null;
     totalSeasons?: number;
     totalEpisodes?: number | null;
     status?: "ONGOING" | "COMPLETED" | "UPCOMING" | "CANCELLED" | null;

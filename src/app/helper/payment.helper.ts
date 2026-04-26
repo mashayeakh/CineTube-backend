@@ -21,8 +21,7 @@ export const hasUserContributionAccess = async (userId: string) => {
                 },
                 select: {
                     id: true
-                },
-                take: 1
+                }
             }
         }
     });
@@ -31,5 +30,5 @@ export const hasUserContributionAccess = async (userId: string) => {
         return false;
     }
 
-    return user.role === UserRole.PREMIUM_USER || user.payments.length > 0 || user.subscriptions.length > 0;
+    return user.role === UserRole.PREMIUM_USER || user.payments.length > 0 || !!user.subscriptions;
 };

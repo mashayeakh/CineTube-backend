@@ -7,6 +7,7 @@ export interface IMovieContributionPayload {
     releaseYear: number;
     director: string;
     cast?: string[];
+    streamingLink?: string;
     genres?: string[];
     platforms?: string[];
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;

@@ -8,6 +8,7 @@ export interface IMovie {
     cast?: string[] | null;
     genres: string[];
     platforms: string[];
+    streamingLink: string;
     priceType?: 'FREE' | 'PREMIUM' | null;
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES" | null;
     userId: string;
@@ -22,6 +23,7 @@ export interface IUpdateMovie {
     releaseYear?: number;
     director?: string;
     cast?: string[] | null;
+    streamingLink?: string;
     genres?: string[] | null;
     platforms?: string[] | null;
     priceType?: 'FREE' | 'PREMIUM' | null;

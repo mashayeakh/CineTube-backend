@@ -14,6 +14,17 @@ export const WatchlistService = {
             throw new AppError(status.NOT_FOUND, "Movie not found");
         }
 
+        console.log("movie found:::", movie);
+
+        console.log("date ", movie.releaseYear)
+
+        //cant add movies to watchlist before release date
+        const currentDate = new Date();
+        const releaseDate = new Date(movie.releaseYear, 0, 1); // Assuming releaseYear is the year of release
+        if (currentDate < releaseDate) {
+            throw new AppError(status.BAD_REQUEST, "Cannot add movie to watchlist before its release date");
+        }
+
         const existing = await prisma.watchList.findUnique({
             where: {
                 userId_movieId: {
@@ -46,6 +57,13 @@ export const WatchlistService = {
         const series = await prisma.series.findUnique({ where: { id: seriesId } });
         if (!series) {
             throw new AppError(status.NOT_FOUND, "Series not found");
+        }
+
+        //cant add series to watchlist before release date
+        const currentDate = new Date();
+        const releaseDate = new Date(series.releaseYear, 0, 1); // Assuming releaseYear is the year of release
+        if (currentDate < releaseDate) {
+            throw new AppError(status.BAD_REQUEST, "Cannot add series to watchlist before its release date");
         }
 
         const existing = await prisma.watchList.findUnique({

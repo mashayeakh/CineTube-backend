@@ -7,6 +7,7 @@ export interface ISeriesContributionPayload {
     director: string;
     cast?: string[];
     genres?: string[];
+    streamingLink?: string;
     platforms?: string[];
     ageGroup?: "AGE_18_PLUS" | "AGE_13_PLUS" | "ALL_AGES";
     priceType?: "FREE" | "PREMIUM";

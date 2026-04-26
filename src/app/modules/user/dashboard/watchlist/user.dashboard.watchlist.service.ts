@@ -11,6 +11,12 @@ export const UserDashboardWatchlistService = {
                         genres: true,
                         platforms: true
                     }
+                },
+                series: {
+                    include: {
+                        genres: true,
+                        platforms: true
+                    }
                 }
             },
             orderBy: { addedAt: "desc" }

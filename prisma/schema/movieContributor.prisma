@@ -1,30 +1,23 @@
 model MovieContribution {
-    id String @id @default(cuid())
+  id            String   @id @default(cuid())
+  contributorId String
+  title         String
+  description   String
+  poster        String
+  releaseYear   Int
+  director      String
+  cast          String
+  ageGroup      AgeGroup
+  streamingLink String
 
-    contributorId String
-    contributor   User   @relation(fields: [contributorId], references: [id], onDelete: Cascade)
+  status      MovieStatus         @default(PENDING)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  contributor User                @relation(fields: [contributorId], references: [id], onDelete: Cascade)
+  genres      Genre[]             @relation("MovieContributionGenres")
+  platforms   StreamingPlatform[] @relation("MovieContributionPlatforms")
 
-    title       String
-    description String @db.Text
-    poster      String
-    releaseYear Int
-    director    String
-
-    // store cast as JSON string (simple + flexible)
-    cast String @db.Text
-
-    // RELATIONS (same pattern as Movie model)
-    genres    Genre[]             @relation("MovieContributionGenres")
-    platforms StreamingPlatform[] @relation("MovieContributionPlatforms")
-
-    ageGroup AgeGroup
-
-    status MovieStatus @default(PENDING)
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@unique([title])
-    @@index([contributorId])
-    @@map("movie_contribution")
+  @@unique([title, contributorId])
+  @@index([contributorId])
+  @@map("movie_contribution")
 }

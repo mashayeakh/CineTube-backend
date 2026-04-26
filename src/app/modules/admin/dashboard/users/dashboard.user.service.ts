@@ -1,6 +1,7 @@
 import { AppError } from "@/app/errorHelpers/AppError";
 import { prisma } from "@/app/lib/prisma";
 import status from "http-status";
+import { SubscriptionStatus } from "prisma/generated/prisma/enums";
 
 
 
@@ -32,9 +33,7 @@ export const DashboardUserService = {
             totalReviews: user.reviews.length,
             totalComments: user.comments.length,
             totalPayments: user.payments.length,
-            hasActiveSubscription: user.subscriptions.some(
-                sub => sub.status === "ACTIVE"
-            )
+            hasActiveSubscription: user?.subscriptions?.status === SubscriptionStatus.ACTIVE
         }));
     },
 

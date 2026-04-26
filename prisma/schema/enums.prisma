@@ -1,69 +1,69 @@
 enum PriceType {
-    FREE
-    PREMIUM
+  FREE
+  PREMIUM
 }
 
 enum UserStatus {
-    ACTIVE
-    ARCHIVED
-    BLOCKED
-    DELETED
+  ACTIVE
+  ARCHIVED
+  BLOCKED
+  DELETED
 }
 
 enum MovieStatus {
-    PENDING
-    APPROVED
-    REJECTED
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 enum ReviewStatus {
-    PENDING
-    APPROVED
-    REJECTED
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 enum PaymentStatus {
-    PENDING
-    COMPLETED
-    FAILED
+  PENDING
+  COMPLETED
+  FAILED
 }
 
 enum SubscriptionType {
-    MONTHLY
-    YEARLY
-    TRIAL
+  MONTHLY
+  YEARLY
+  TRIAL
 }
 
 enum SubscriptionStatus {
-    PENDING
-    ACTIVE
-    EXPIRED
-    CANCELLED
+  PENDING
+  ACTIVE
+  EXPIRED
+  CANCELLED
 }
 
 enum UserRole {
-    USER
-    ADMIN
-    PREMIUM_USER
+  USER
+  ADMIN
+  PREMIUM_USER
 }
 
 enum AgeGroup {
-    AGE_18_PLUS
-    AGE_13_PLUS
-    ALL_AGES
+  AGE_18_PLUS
+  AGE_13_PLUS
+  ALL_AGES
 }
 
 enum SeriesStatus {
-    ONGOING
-    COMPLETED
-    UPCOMING
-    CANCELLED
+  ONGOING
+  COMPLETED
+  UPCOMING
+  CANCELLED
 }
 
 enum SeriesTrackingStatus {
-    PLAN_TO_WATCH
-    WATCHING
-    ON_HOLD
-    COMPLETED
-    DROPPED
+  PLAN_TO_WATCH
+  WATCHING
+  ON_HOLD
+  COMPLETED
+  DROPPED
 }

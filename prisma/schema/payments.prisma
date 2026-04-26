@@ -1,19 +1,19 @@
 model Payment {
-    id             String        @id @default(cuid())
-    userId         String
-    movieId        String?
-    subscriptionId String?       @unique
-    amount         Decimal       @db.Decimal(10, 2)
-    status         PaymentStatus @default(PENDING)
-    transactionId  String        @unique
-    createdAt      DateTime      @default(now())
-    user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-    movie          Movie?        @relation(fields: [movieId], references: [id], onDelete: Cascade)
-    subscription   Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+  id             String        @id @default(cuid())
+  userId         String
+  movieId        String?
+  subscriptionId String?       @unique
+  amount         Decimal       @db.Decimal(10, 2)
+  status         PaymentStatus @default(PENDING)
+  transactionId  String        @unique
+  createdAt      DateTime      @default(now())
+  movie          Movie?        @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@index([userId])
-    @@index([movieId])
-    @@index([subscriptionId])
-    @@index([status])
-    @@map("payment")
+  @@index([userId])
+  @@index([movieId])
+  @@index([subscriptionId])
+  @@index([status])
+  @@map("payment")
 }

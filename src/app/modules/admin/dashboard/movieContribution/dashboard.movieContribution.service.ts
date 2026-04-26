@@ -65,6 +65,7 @@ export const DashboardMovieContributionService = {
                 description: contribution.description,
                 poster: contribution.poster,
                 releaseYear: contribution.releaseYear,
+                streamingLink: contribution.streamingLink,
                 director: contribution.director,
                 cast: contribution.cast,
                 ageGroup: contribution.ageGroup,

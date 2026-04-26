@@ -28,24 +28,24 @@ export type WatchListMinAggregateOutputType = {
   id: string | null
   userId: string | null
   movieId: string | null
-  seriesId: string | null
   addedAt: Date | null
+  seriesId: string | null
 }
 
 export type WatchListMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   movieId: string | null
-  seriesId: string | null
   addedAt: Date | null
+  seriesId: string | null
 }
 
 export type WatchListCountAggregateOutputType = {
   id: number
   userId: number
   movieId: number
-  seriesId: number
   addedAt: number
+  seriesId: number
   _all: number
 }
 
@@ -54,24 +54,24 @@ export type WatchListMinAggregateInputType = {
   id?: true
   userId?: true
   movieId?: true
-  seriesId?: true
   addedAt?: true
+  seriesId?: true
 }
 
 export type WatchListMaxAggregateInputType = {
   id?: true
   userId?: true
   movieId?: true
-  seriesId?: true
   addedAt?: true
+  seriesId?: true
 }
 
 export type WatchListCountAggregateInputType = {
   id?: true
   userId?: true
   movieId?: true
-  seriesId?: true
   addedAt?: true
+  seriesId?: true
   _all?: true
 }
 
@@ -151,8 +151,8 @@ export type WatchListGroupByOutputType = {
   id: string
   userId: string
   movieId: string | null
-  seriesId: string | null
   addedAt: Date
+  seriesId: string | null
   _count: WatchListCountAggregateOutputType | null
   _min: WatchListMinAggregateOutputType | null
   _max: WatchListMaxAggregateOutputType | null
@@ -180,22 +180,22 @@ export type WatchListWhereInput = {
   id?: Prisma.StringFilter<"WatchList"> | string
   userId?: Prisma.StringFilter<"WatchList"> | string
   movieId?: Prisma.StringNullableFilter<"WatchList"> | string | null
-  seriesId?: Prisma.StringNullableFilter<"WatchList"> | string | null
   addedAt?: Prisma.DateTimeFilter<"WatchList"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  seriesId?: Prisma.StringNullableFilter<"WatchList"> | string | null
   movie?: Prisma.XOR<Prisma.MovieNullableScalarRelationFilter, Prisma.MovieWhereInput> | null
   series?: Prisma.XOR<Prisma.SeriesNullableScalarRelationFilter, Prisma.SeriesWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type WatchListOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   movieId?: Prisma.SortOrderInput | Prisma.SortOrder
-  seriesId?: Prisma.SortOrderInput | Prisma.SortOrder
   addedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
+  seriesId?: Prisma.SortOrderInput | Prisma.SortOrder
   movie?: Prisma.MovieOrderByWithRelationInput
   series?: Prisma.SeriesOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type WatchListWhereUniqueInput = Prisma.AtLeast<{
@@ -207,19 +207,19 @@ export type WatchListWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.WatchListWhereInput | Prisma.WatchListWhereInput[]
   userId?: Prisma.StringFilter<"WatchList"> | string
   movieId?: Prisma.StringNullableFilter<"WatchList"> | string | null
-  seriesId?: Prisma.StringNullableFilter<"WatchList"> | string | null
   addedAt?: Prisma.DateTimeFilter<"WatchList"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  seriesId?: Prisma.StringNullableFilter<"WatchList"> | string | null
   movie?: Prisma.XOR<Prisma.MovieNullableScalarRelationFilter, Prisma.MovieWhereInput> | null
   series?: Prisma.XOR<Prisma.SeriesNullableScalarRelationFilter, Prisma.SeriesWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId_movieId" | "userId_seriesId">
 
 export type WatchListOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   movieId?: Prisma.SortOrderInput | Prisma.SortOrder
-  seriesId?: Prisma.SortOrderInput | Prisma.SortOrder
   addedAt?: Prisma.SortOrder
+  seriesId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.WatchListCountOrderByAggregateInput
   _max?: Prisma.WatchListMaxOrderByAggregateInput
   _min?: Prisma.WatchListMinOrderByAggregateInput
@@ -232,48 +232,48 @@ export type WatchListScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"WatchList"> | string
   userId?: Prisma.StringWithAggregatesFilter<"WatchList"> | string
   movieId?: Prisma.StringNullableWithAggregatesFilter<"WatchList"> | string | null
-  seriesId?: Prisma.StringNullableWithAggregatesFilter<"WatchList"> | string | null
   addedAt?: Prisma.DateTimeWithAggregatesFilter<"WatchList"> | Date | string
+  seriesId?: Prisma.StringNullableWithAggregatesFilter<"WatchList"> | string | null
 }
 
 export type WatchListCreateInput = {
   id?: string
   addedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutWatchlistsInput
   movie?: Prisma.MovieCreateNestedOneWithoutWatchlistsInput
   series?: Prisma.SeriesCreateNestedOneWithoutWatchListsInput
+  user: Prisma.UserCreateNestedOneWithoutWatchlistsInput
 }
 
 export type WatchListUncheckedCreateInput = {
   id?: string
   userId: string
   movieId?: string | null
-  seriesId?: string | null
   addedAt?: Date | string
+  seriesId?: string | null
 }
 
 export type WatchListUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutWatchlistsNestedInput
   movie?: Prisma.MovieUpdateOneWithoutWatchlistsNestedInput
   series?: Prisma.SeriesUpdateOneWithoutWatchListsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutWatchlistsNestedInput
 }
 
 export type WatchListUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   movieId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WatchListCreateManyInput = {
   id?: string
   userId: string
   movieId?: string | null
-  seriesId?: string | null
   addedAt?: Date | string
+  seriesId?: string | null
 }
 
 export type WatchListUpdateManyMutationInput = {
@@ -285,8 +285,8 @@ export type WatchListUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   movieId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WatchListListRelationFilter = {
@@ -313,24 +313,24 @@ export type WatchListCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   movieId?: Prisma.SortOrder
-  seriesId?: Prisma.SortOrder
   addedAt?: Prisma.SortOrder
+  seriesId?: Prisma.SortOrder
 }
 
 export type WatchListMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   movieId?: Prisma.SortOrder
-  seriesId?: Prisma.SortOrder
   addedAt?: Prisma.SortOrder
+  seriesId?: Prisma.SortOrder
 }
 
 export type WatchListMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   movieId?: Prisma.SortOrder
-  seriesId?: Prisma.SortOrder
   addedAt?: Prisma.SortOrder
+  seriesId?: Prisma.SortOrder
 }
 
 export type WatchListCreateNestedManyWithoutUserInput = {
@@ -469,8 +469,8 @@ export type WatchListCreateWithoutUserInput = {
 export type WatchListUncheckedCreateWithoutUserInput = {
   id?: string
   movieId?: string | null
-  seriesId?: string | null
   addedAt?: Date | string
+  seriesId?: string | null
 }
 
 export type WatchListCreateOrConnectWithoutUserInput = {
@@ -506,22 +506,22 @@ export type WatchListScalarWhereInput = {
   id?: Prisma.StringFilter<"WatchList"> | string
   userId?: Prisma.StringFilter<"WatchList"> | string
   movieId?: Prisma.StringNullableFilter<"WatchList"> | string | null
-  seriesId?: Prisma.StringNullableFilter<"WatchList"> | string | null
   addedAt?: Prisma.DateTimeFilter<"WatchList"> | Date | string
+  seriesId?: Prisma.StringNullableFilter<"WatchList"> | string | null
 }
 
 export type WatchListCreateWithoutMovieInput = {
   id?: string
   addedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutWatchlistsInput
   series?: Prisma.SeriesCreateNestedOneWithoutWatchListsInput
+  user: Prisma.UserCreateNestedOneWithoutWatchlistsInput
 }
 
 export type WatchListUncheckedCreateWithoutMovieInput = {
   id?: string
   userId: string
-  seriesId?: string | null
   addedAt?: Date | string
+  seriesId?: string | null
 }
 
 export type WatchListCreateOrConnectWithoutMovieInput = {
@@ -553,8 +553,8 @@ export type WatchListUpdateManyWithWhereWithoutMovieInput = {
 export type WatchListCreateWithoutSeriesInput = {
   id?: string
   addedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutWatchlistsInput
   movie?: Prisma.MovieCreateNestedOneWithoutWatchlistsInput
+  user: Prisma.UserCreateNestedOneWithoutWatchlistsInput
 }
 
 export type WatchListUncheckedCreateWithoutSeriesInput = {
@@ -593,8 +593,8 @@ export type WatchListUpdateManyWithWhereWithoutSeriesInput = {
 export type WatchListCreateManyUserInput = {
   id?: string
   movieId?: string | null
-  seriesId?: string | null
   addedAt?: Date | string
+  seriesId?: string | null
 }
 
 export type WatchListUpdateWithoutUserInput = {
@@ -607,43 +607,43 @@ export type WatchListUpdateWithoutUserInput = {
 export type WatchListUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   movieId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WatchListUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   movieId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WatchListCreateManyMovieInput = {
   id?: string
   userId: string
-  seriesId?: string | null
   addedAt?: Date | string
+  seriesId?: string | null
 }
 
 export type WatchListUpdateWithoutMovieInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutWatchlistsNestedInput
   series?: Prisma.SeriesUpdateOneWithoutWatchListsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutWatchlistsNestedInput
 }
 
 export type WatchListUncheckedUpdateWithoutMovieInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WatchListUncheckedUpdateManyWithoutMovieInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WatchListCreateManySeriesInput = {
@@ -656,8 +656,8 @@ export type WatchListCreateManySeriesInput = {
 export type WatchListUpdateWithoutSeriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   addedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutWatchlistsNestedInput
   movie?: Prisma.MovieUpdateOneWithoutWatchlistsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutWatchlistsNestedInput
 }
 
 export type WatchListUncheckedUpdateWithoutSeriesInput = {
@@ -680,73 +680,73 @@ export type WatchListSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   userId?: boolean
   movieId?: boolean
-  seriesId?: boolean
   addedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  seriesId?: boolean
   movie?: boolean | Prisma.WatchList$movieArgs<ExtArgs>
   series?: boolean | Prisma.WatchList$seriesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["watchList"]>
 
 export type WatchListSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   movieId?: boolean
-  seriesId?: boolean
   addedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  seriesId?: boolean
   movie?: boolean | Prisma.WatchList$movieArgs<ExtArgs>
   series?: boolean | Prisma.WatchList$seriesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["watchList"]>
 
 export type WatchListSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   movieId?: boolean
-  seriesId?: boolean
   addedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  seriesId?: boolean
   movie?: boolean | Prisma.WatchList$movieArgs<ExtArgs>
   series?: boolean | Prisma.WatchList$seriesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["watchList"]>
 
 export type WatchListSelectScalar = {
   id?: boolean
   userId?: boolean
   movieId?: boolean
-  seriesId?: boolean
   addedAt?: boolean
+  seriesId?: boolean
 }
 
-export type WatchListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "movieId" | "seriesId" | "addedAt", ExtArgs["result"]["watchList"]>
+export type WatchListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "movieId" | "addedAt" | "seriesId", ExtArgs["result"]["watchList"]>
 export type WatchListInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.WatchList$movieArgs<ExtArgs>
   series?: boolean | Prisma.WatchList$seriesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type WatchListIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.WatchList$movieArgs<ExtArgs>
   series?: boolean | Prisma.WatchList$seriesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type WatchListIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.WatchList$movieArgs<ExtArgs>
   series?: boolean | Prisma.WatchList$seriesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $WatchListPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "WatchList"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     movie: Prisma.$MoviePayload<ExtArgs> | null
     series: Prisma.$SeriesPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
     movieId: string | null
-    seriesId: string | null
     addedAt: Date
+    seriesId: string | null
   }, ExtArgs["result"]["watchList"]>
   composites: {}
 }
@@ -1141,9 +1141,9 @@ readonly fields: WatchListFieldRefs;
  */
 export interface Prisma__WatchListClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   movie<T extends Prisma.WatchList$movieArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WatchList$movieArgs<ExtArgs>>): Prisma.Prisma__MovieClient<runtime.Types.Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   series<T extends Prisma.WatchList$seriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WatchList$seriesArgs<ExtArgs>>): Prisma.Prisma__SeriesClient<runtime.Types.Result.GetResult<Prisma.$SeriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1176,8 +1176,8 @@ export interface WatchListFieldRefs {
   readonly id: Prisma.FieldRef<"WatchList", 'String'>
   readonly userId: Prisma.FieldRef<"WatchList", 'String'>
   readonly movieId: Prisma.FieldRef<"WatchList", 'String'>
-  readonly seriesId: Prisma.FieldRef<"WatchList", 'String'>
   readonly addedAt: Prisma.FieldRef<"WatchList", 'DateTime'>
+  readonly seriesId: Prisma.FieldRef<"WatchList", 'String'>
 }
     
 

@@ -50,13 +50,14 @@ export type SeriesMinAggregateOutputType = {
   priceType: $Enums.PriceType | null
   totalSeasons: number | null
   totalEpisodes: number | null
+  streamingLink: string | null
   status: $Enums.SeriesStatus | null
-  isFeatured: boolean | null
-  featuredAt: Date | null
-  featuredBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  featuredAt: Date | null
+  featuredBy: string | null
+  isFeatured: boolean | null
 }
 
 export type SeriesMaxAggregateOutputType = {
@@ -71,13 +72,14 @@ export type SeriesMaxAggregateOutputType = {
   priceType: $Enums.PriceType | null
   totalSeasons: number | null
   totalEpisodes: number | null
+  streamingLink: string | null
   status: $Enums.SeriesStatus | null
-  isFeatured: boolean | null
-  featuredAt: Date | null
-  featuredBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  featuredAt: Date | null
+  featuredBy: string | null
+  isFeatured: boolean | null
 }
 
 export type SeriesCountAggregateOutputType = {
@@ -92,13 +94,14 @@ export type SeriesCountAggregateOutputType = {
   priceType: number
   totalSeasons: number
   totalEpisodes: number
+  streamingLink: number
   status: number
-  isFeatured: number
-  featuredAt: number
-  featuredBy: number
   createdAt: number
   updatedAt: number
   userId: number
+  featuredAt: number
+  featuredBy: number
+  isFeatured: number
   _all: number
 }
 
@@ -127,13 +130,14 @@ export type SeriesMinAggregateInputType = {
   priceType?: true
   totalSeasons?: true
   totalEpisodes?: true
+  streamingLink?: true
   status?: true
-  isFeatured?: true
-  featuredAt?: true
-  featuredBy?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  featuredAt?: true
+  featuredBy?: true
+  isFeatured?: true
 }
 
 export type SeriesMaxAggregateInputType = {
@@ -148,13 +152,14 @@ export type SeriesMaxAggregateInputType = {
   priceType?: true
   totalSeasons?: true
   totalEpisodes?: true
+  streamingLink?: true
   status?: true
-  isFeatured?: true
-  featuredAt?: true
-  featuredBy?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  featuredAt?: true
+  featuredBy?: true
+  isFeatured?: true
 }
 
 export type SeriesCountAggregateInputType = {
@@ -169,13 +174,14 @@ export type SeriesCountAggregateInputType = {
   priceType?: true
   totalSeasons?: true
   totalEpisodes?: true
+  streamingLink?: true
   status?: true
-  isFeatured?: true
-  featuredAt?: true
-  featuredBy?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  featuredAt?: true
+  featuredBy?: true
+  isFeatured?: true
   _all?: true
 }
 
@@ -277,13 +283,14 @@ export type SeriesGroupByOutputType = {
   priceType: $Enums.PriceType
   totalSeasons: number
   totalEpisodes: number | null
+  streamingLink: string
   status: $Enums.SeriesStatus
-  isFeatured: boolean
-  featuredAt: Date | null
-  featuredBy: string | null
   createdAt: Date
   updatedAt: Date
   userId: string
+  featuredAt: Date | null
+  featuredBy: string | null
+  isFeatured: boolean
   _count: SeriesCountAggregateOutputType | null
   _avg: SeriesAvgAggregateOutputType | null
   _sum: SeriesSumAggregateOutputType | null
@@ -321,19 +328,20 @@ export type SeriesWhereInput = {
   priceType?: Prisma.EnumPriceTypeFilter<"Series"> | $Enums.PriceType
   totalSeasons?: Prisma.IntFilter<"Series"> | number
   totalEpisodes?: Prisma.IntNullableFilter<"Series"> | number | null
+  streamingLink?: Prisma.StringFilter<"Series"> | string
   status?: Prisma.EnumSeriesStatusFilter<"Series"> | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFilter<"Series"> | boolean
-  featuredAt?: Prisma.DateTimeNullableFilter<"Series"> | Date | string | null
-  featuredBy?: Prisma.StringNullableFilter<"Series"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   userId?: Prisma.StringFilter<"Series"> | string
+  featuredAt?: Prisma.DateTimeNullableFilter<"Series"> | Date | string | null
+  featuredBy?: Prisma.StringNullableFilter<"Series"> | string | null
+  isFeatured?: Prisma.BoolFilter<"Series"> | boolean
+  reviews?: Prisma.ReviewListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   trackings?: Prisma.UserSeriesTrackingListRelationFilter
+  watchLists?: Prisma.WatchListListRelationFilter
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
-  watchLists?: Prisma.WatchListListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type SeriesOrderByWithRelationInput = {
@@ -348,19 +356,20 @@ export type SeriesOrderByWithRelationInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrderInput | Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  featuredAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  featuredBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  featuredAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  featuredBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
   trackings?: Prisma.UserSeriesTrackingOrderByRelationAggregateInput
+  watchLists?: Prisma.WatchListOrderByRelationAggregateInput
   genres?: Prisma.GenreOrderByRelationAggregateInput
   platforms?: Prisma.StreamingPlatformOrderByRelationAggregateInput
-  watchLists?: Prisma.WatchListOrderByRelationAggregateInput
-  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type SeriesWhereUniqueInput = Prisma.AtLeast<{
@@ -378,19 +387,20 @@ export type SeriesWhereUniqueInput = Prisma.AtLeast<{
   priceType?: Prisma.EnumPriceTypeFilter<"Series"> | $Enums.PriceType
   totalSeasons?: Prisma.IntFilter<"Series"> | number
   totalEpisodes?: Prisma.IntNullableFilter<"Series"> | number | null
+  streamingLink?: Prisma.StringFilter<"Series"> | string
   status?: Prisma.EnumSeriesStatusFilter<"Series"> | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFilter<"Series"> | boolean
-  featuredAt?: Prisma.DateTimeNullableFilter<"Series"> | Date | string | null
-  featuredBy?: Prisma.StringNullableFilter<"Series"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   userId?: Prisma.StringFilter<"Series"> | string
+  featuredAt?: Prisma.DateTimeNullableFilter<"Series"> | Date | string | null
+  featuredBy?: Prisma.StringNullableFilter<"Series"> | string | null
+  isFeatured?: Prisma.BoolFilter<"Series"> | boolean
+  reviews?: Prisma.ReviewListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   trackings?: Prisma.UserSeriesTrackingListRelationFilter
+  watchLists?: Prisma.WatchListListRelationFilter
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
-  watchLists?: Prisma.WatchListListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
 }, "id" | "title">
 
 export type SeriesOrderByWithAggregationInput = {
@@ -405,13 +415,14 @@ export type SeriesOrderByWithAggregationInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrderInput | Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  featuredAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  featuredBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  featuredAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  featuredBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
   _count?: Prisma.SeriesCountOrderByAggregateInput
   _avg?: Prisma.SeriesAvgOrderByAggregateInput
   _max?: Prisma.SeriesMaxOrderByAggregateInput
@@ -434,13 +445,14 @@ export type SeriesScalarWhereWithAggregatesInput = {
   priceType?: Prisma.EnumPriceTypeWithAggregatesFilter<"Series"> | $Enums.PriceType
   totalSeasons?: Prisma.IntWithAggregatesFilter<"Series"> | number
   totalEpisodes?: Prisma.IntNullableWithAggregatesFilter<"Series"> | number | null
+  streamingLink?: Prisma.StringWithAggregatesFilter<"Series"> | string
   status?: Prisma.EnumSeriesStatusWithAggregatesFilter<"Series"> | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolWithAggregatesFilter<"Series"> | boolean
-  featuredAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Series"> | Date | string | null
-  featuredBy?: Prisma.StringNullableWithAggregatesFilter<"Series"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Series"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Series"> | Date | string
   userId?: Prisma.StringWithAggregatesFilter<"Series"> | string
+  featuredAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Series"> | Date | string | null
+  featuredBy?: Prisma.StringNullableWithAggregatesFilter<"Series"> | string | null
+  isFeatured?: Prisma.BoolWithAggregatesFilter<"Series"> | boolean
 }
 
 export type SeriesCreateInput = {
@@ -455,18 +467,19 @@ export type SeriesCreateInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUncheckedCreateInput = {
@@ -481,18 +494,19 @@ export type SeriesUncheckedCreateInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUpdateInput = {
@@ -507,18 +521,19 @@ export type SeriesUpdateInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateInput = {
@@ -533,18 +548,19 @@ export type SeriesUncheckedUpdateInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesCreateManyInput = {
@@ -559,13 +575,14 @@ export type SeriesCreateManyInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
 }
 
 export type SeriesUpdateManyMutationInput = {
@@ -580,12 +597,13 @@ export type SeriesUpdateManyMutationInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SeriesUncheckedUpdateManyInput = {
@@ -600,13 +618,14 @@ export type SeriesUncheckedUpdateManyInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SeriesListRelationFilter = {
@@ -636,13 +655,14 @@ export type SeriesCountOrderByAggregateInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  featuredAt?: Prisma.SortOrder
-  featuredBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  featuredAt?: Prisma.SortOrder
+  featuredBy?: Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
 }
 
 export type SeriesAvgOrderByAggregateInput = {
@@ -663,13 +683,14 @@ export type SeriesMaxOrderByAggregateInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  featuredAt?: Prisma.SortOrder
-  featuredBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  featuredAt?: Prisma.SortOrder
+  featuredBy?: Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
 }
 
 export type SeriesMinOrderByAggregateInput = {
@@ -684,13 +705,14 @@ export type SeriesMinOrderByAggregateInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  featuredAt?: Prisma.SortOrder
-  featuredBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  featuredAt?: Prisma.SortOrder
+  featuredBy?: Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
 }
 
 export type SeriesSumOrderByAggregateInput = {
@@ -892,17 +914,18 @@ export type SeriesCreateWithoutUserInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUncheckedCreateWithoutUserInput = {
@@ -917,17 +940,18 @@ export type SeriesUncheckedCreateWithoutUserInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesCreateOrConnectWithoutUserInput = {
@@ -971,13 +995,14 @@ export type SeriesScalarWhereInput = {
   priceType?: Prisma.EnumPriceTypeFilter<"Series"> | $Enums.PriceType
   totalSeasons?: Prisma.IntFilter<"Series"> | number
   totalEpisodes?: Prisma.IntNullableFilter<"Series"> | number | null
+  streamingLink?: Prisma.StringFilter<"Series"> | string
   status?: Prisma.EnumSeriesStatusFilter<"Series"> | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFilter<"Series"> | boolean
-  featuredAt?: Prisma.DateTimeNullableFilter<"Series"> | Date | string | null
-  featuredBy?: Prisma.StringNullableFilter<"Series"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Series"> | Date | string
   userId?: Prisma.StringFilter<"Series"> | string
+  featuredAt?: Prisma.DateTimeNullableFilter<"Series"> | Date | string | null
+  featuredBy?: Prisma.StringNullableFilter<"Series"> | string | null
+  isFeatured?: Prisma.BoolFilter<"Series"> | boolean
 }
 
 export type SeriesCreateWithoutGenresInput = {
@@ -992,17 +1017,18 @@ export type SeriesCreateWithoutGenresInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
-  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
   watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
+  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUncheckedCreateWithoutGenresInput = {
@@ -1017,17 +1043,18 @@ export type SeriesUncheckedCreateWithoutGenresInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
-  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
-  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
+  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
+  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesCreateOrConnectWithoutGenresInput = {
@@ -1063,17 +1090,18 @@ export type SeriesCreateWithoutReviewsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUncheckedCreateWithoutReviewsInput = {
@@ -1088,17 +1116,18 @@ export type SeriesUncheckedCreateWithoutReviewsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
   trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesCreateOrConnectWithoutReviewsInput = {
@@ -1129,17 +1158,18 @@ export type SeriesUpdateWithoutReviewsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateWithoutReviewsInput = {
@@ -1154,17 +1184,18 @@ export type SeriesUncheckedUpdateWithoutReviewsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesCreateWithoutTrackingsInput = {
@@ -1179,17 +1210,18 @@ export type SeriesCreateWithoutTrackingsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
+  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUncheckedCreateWithoutTrackingsInput = {
@@ -1204,17 +1236,18 @@ export type SeriesUncheckedCreateWithoutTrackingsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesCreateOrConnectWithoutTrackingsInput = {
@@ -1245,17 +1278,18 @@ export type SeriesUpdateWithoutTrackingsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateWithoutTrackingsInput = {
@@ -1270,17 +1304,18 @@ export type SeriesUncheckedUpdateWithoutTrackingsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesCreateWithoutPlatformsInput = {
@@ -1295,17 +1330,18 @@ export type SeriesCreateWithoutPlatformsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
-  genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   watchLists?: Prisma.WatchListCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
+  genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUncheckedCreateWithoutPlatformsInput = {
@@ -1320,17 +1356,18 @@ export type SeriesUncheckedCreateWithoutPlatformsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
-  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
-  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
-  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
+  trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
+  watchLists?: Prisma.WatchListUncheckedCreateNestedManyWithoutSeriesInput
+  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesCreateOrConnectWithoutPlatformsInput = {
@@ -1366,17 +1403,18 @@ export type SeriesCreateWithoutWatchListsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
   user: Prisma.UserCreateNestedOneWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesUncheckedCreateWithoutWatchListsInput = {
@@ -1391,17 +1429,18 @@ export type SeriesUncheckedCreateWithoutWatchListsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
   trackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutSeriesInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutSeriesInput
 }
 
 export type SeriesCreateOrConnectWithoutWatchListsInput = {
@@ -1432,17 +1471,18 @@ export type SeriesUpdateWithoutWatchListsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateWithoutWatchListsInput = {
@@ -1457,17 +1497,18 @@ export type SeriesUncheckedUpdateWithoutWatchListsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesCreateManyUserInput = {
@@ -1482,12 +1523,13 @@ export type SeriesCreateManyUserInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
+  streamingLink: string
   status?: $Enums.SeriesStatus
-  isFeatured?: boolean
-  featuredAt?: Date | string | null
-  featuredBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  featuredAt?: Date | string | null
+  featuredBy?: string | null
+  isFeatured?: boolean
 }
 
 export type SeriesUpdateWithoutUserInput = {
@@ -1502,17 +1544,18 @@ export type SeriesUpdateWithoutUserInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateWithoutUserInput = {
@@ -1527,17 +1570,18 @@ export type SeriesUncheckedUpdateWithoutUserInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateManyWithoutUserInput = {
@@ -1552,12 +1596,13 @@ export type SeriesUncheckedUpdateManyWithoutUserInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SeriesUpdateWithoutGenresInput = {
@@ -1572,17 +1617,18 @@ export type SeriesUpdateWithoutGenresInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
-  platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
   watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
+  platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateWithoutGenresInput = {
@@ -1597,17 +1643,18 @@ export type SeriesUncheckedUpdateWithoutGenresInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
-  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
+  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
+  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateManyWithoutGenresInput = {
@@ -1622,13 +1669,14 @@ export type SeriesUncheckedUpdateManyWithoutGenresInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SeriesUpdateWithoutPlatformsInput = {
@@ -1643,17 +1691,18 @@ export type SeriesUpdateWithoutPlatformsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSeriesNestedInput
   trackings?: Prisma.UserSeriesTrackingUpdateManyWithoutSeriesNestedInput
-  genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
   watchLists?: Prisma.WatchListUpdateManyWithoutSeriesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutSeriesNestedInput
+  genres?: Prisma.GenreUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateWithoutPlatformsInput = {
@@ -1668,17 +1717,18 @@ export type SeriesUncheckedUpdateWithoutPlatformsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
-  genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
-  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutSeriesNestedInput
+  trackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutSeriesNestedInput
+  watchLists?: Prisma.WatchListUncheckedUpdateManyWithoutSeriesNestedInput
+  genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesNestedInput
 }
 
 export type SeriesUncheckedUpdateManyWithoutPlatformsInput = {
@@ -1693,13 +1743,14 @@ export type SeriesUncheckedUpdateManyWithoutPlatformsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  featuredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  featuredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -1708,19 +1759,19 @@ export type SeriesUncheckedUpdateManyWithoutPlatformsInput = {
  */
 
 export type SeriesCountOutputType = {
+  reviews: number
   trackings: number
+  watchLists: number
   genres: number
   platforms: number
-  watchLists: number
-  reviews: number
 }
 
 export type SeriesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  reviews?: boolean | SeriesCountOutputTypeCountReviewsArgs
   trackings?: boolean | SeriesCountOutputTypeCountTrackingsArgs
+  watchLists?: boolean | SeriesCountOutputTypeCountWatchListsArgs
   genres?: boolean | SeriesCountOutputTypeCountGenresArgs
   platforms?: boolean | SeriesCountOutputTypeCountPlatformsArgs
-  watchLists?: boolean | SeriesCountOutputTypeCountWatchListsArgs
-  reviews?: boolean | SeriesCountOutputTypeCountReviewsArgs
 }
 
 /**
@@ -1736,8 +1787,22 @@ export type SeriesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * SeriesCountOutputType without action
  */
+export type SeriesCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
+/**
+ * SeriesCountOutputType without action
+ */
 export type SeriesCountOutputTypeCountTrackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserSeriesTrackingWhereInput
+}
+
+/**
+ * SeriesCountOutputType without action
+ */
+export type SeriesCountOutputTypeCountWatchListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WatchListWhereInput
 }
 
 /**
@@ -1754,20 +1819,6 @@ export type SeriesCountOutputTypeCountPlatformsArgs<ExtArgs extends runtime.Type
   where?: Prisma.StreamingPlatformWhereInput
 }
 
-/**
- * SeriesCountOutputType without action
- */
-export type SeriesCountOutputTypeCountWatchListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WatchListWhereInput
-}
-
-/**
- * SeriesCountOutputType without action
- */
-export type SeriesCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReviewWhereInput
-}
-
 
 export type SeriesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1781,19 +1832,20 @@ export type SeriesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
+  streamingLink?: boolean
   status?: boolean
-  isFeatured?: boolean
-  featuredAt?: boolean
-  featuredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  featuredAt?: boolean
+  featuredBy?: boolean
+  isFeatured?: boolean
+  reviews?: boolean | Prisma.Series$reviewsArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   trackings?: boolean | Prisma.Series$trackingsArgs<ExtArgs>
+  watchLists?: boolean | Prisma.Series$watchListsArgs<ExtArgs>
   genres?: boolean | Prisma.Series$genresArgs<ExtArgs>
   platforms?: boolean | Prisma.Series$platformsArgs<ExtArgs>
-  watchLists?: boolean | Prisma.Series$watchListsArgs<ExtArgs>
-  reviews?: boolean | Prisma.Series$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.SeriesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["series"]>
 
@@ -1809,13 +1861,14 @@ export type SeriesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
+  streamingLink?: boolean
   status?: boolean
-  isFeatured?: boolean
-  featuredAt?: boolean
-  featuredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  featuredAt?: boolean
+  featuredBy?: boolean
+  isFeatured?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["series"]>
 
@@ -1831,13 +1884,14 @@ export type SeriesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
+  streamingLink?: boolean
   status?: boolean
-  isFeatured?: boolean
-  featuredAt?: boolean
-  featuredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  featuredAt?: boolean
+  featuredBy?: boolean
+  isFeatured?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["series"]>
 
@@ -1853,23 +1907,24 @@ export type SeriesSelectScalar = {
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
+  streamingLink?: boolean
   status?: boolean
-  isFeatured?: boolean
-  featuredAt?: boolean
-  featuredBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  featuredAt?: boolean
+  featuredBy?: boolean
+  isFeatured?: boolean
 }
 
-export type SeriesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "poster" | "releaseYear" | "director" | "cast" | "ageGroup" | "priceType" | "totalSeasons" | "totalEpisodes" | "status" | "isFeatured" | "featuredAt" | "featuredBy" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["series"]>
+export type SeriesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "poster" | "releaseYear" | "director" | "cast" | "ageGroup" | "priceType" | "totalSeasons" | "totalEpisodes" | "streamingLink" | "status" | "createdAt" | "updatedAt" | "userId" | "featuredAt" | "featuredBy" | "isFeatured", ExtArgs["result"]["series"]>
 export type SeriesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  reviews?: boolean | Prisma.Series$reviewsArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   trackings?: boolean | Prisma.Series$trackingsArgs<ExtArgs>
+  watchLists?: boolean | Prisma.Series$watchListsArgs<ExtArgs>
   genres?: boolean | Prisma.Series$genresArgs<ExtArgs>
   platforms?: boolean | Prisma.Series$platformsArgs<ExtArgs>
-  watchLists?: boolean | Prisma.Series$watchListsArgs<ExtArgs>
-  reviews?: boolean | Prisma.Series$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.SeriesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SeriesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1882,12 +1937,12 @@ export type SeriesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $SeriesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Series"
   objects: {
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
     user: Prisma.$UserPayload<ExtArgs>
     trackings: Prisma.$UserSeriesTrackingPayload<ExtArgs>[]
+    watchLists: Prisma.$WatchListPayload<ExtArgs>[]
     genres: Prisma.$GenrePayload<ExtArgs>[]
     platforms: Prisma.$StreamingPlatformPayload<ExtArgs>[]
-    watchLists: Prisma.$WatchListPayload<ExtArgs>[]
-    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1901,13 +1956,14 @@ export type $SeriesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     priceType: $Enums.PriceType
     totalSeasons: number
     totalEpisodes: number | null
+    streamingLink: string
     status: $Enums.SeriesStatus
-    isFeatured: boolean
-    featuredAt: Date | null
-    featuredBy: string | null
     createdAt: Date
     updatedAt: Date
     userId: string
+    featuredAt: Date | null
+    featuredBy: string | null
+    isFeatured: boolean
   }, ExtArgs["result"]["series"]>
   composites: {}
 }
@@ -2302,12 +2358,12 @@ readonly fields: SeriesFieldRefs;
  */
 export interface Prisma__SeriesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  reviews<T extends Prisma.Series$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   trackings<T extends Prisma.Series$trackingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$trackingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserSeriesTrackingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  watchLists<T extends Prisma.Series$watchListsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$watchListsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WatchListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   genres<T extends Prisma.Series$genresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$genresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GenrePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   platforms<T extends Prisma.Series$platformsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$platformsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StreamingPlatformPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  watchLists<T extends Prisma.Series$watchListsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$watchListsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WatchListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviews<T extends Prisma.Series$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Series$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2348,13 +2404,14 @@ export interface SeriesFieldRefs {
   readonly priceType: Prisma.FieldRef<"Series", 'PriceType'>
   readonly totalSeasons: Prisma.FieldRef<"Series", 'Int'>
   readonly totalEpisodes: Prisma.FieldRef<"Series", 'Int'>
+  readonly streamingLink: Prisma.FieldRef<"Series", 'String'>
   readonly status: Prisma.FieldRef<"Series", 'SeriesStatus'>
-  readonly isFeatured: Prisma.FieldRef<"Series", 'Boolean'>
-  readonly featuredAt: Prisma.FieldRef<"Series", 'DateTime'>
-  readonly featuredBy: Prisma.FieldRef<"Series", 'String'>
   readonly createdAt: Prisma.FieldRef<"Series", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Series", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Series", 'String'>
+  readonly featuredAt: Prisma.FieldRef<"Series", 'DateTime'>
+  readonly featuredBy: Prisma.FieldRef<"Series", 'String'>
+  readonly isFeatured: Prisma.FieldRef<"Series", 'Boolean'>
 }
     
 
@@ -2756,6 +2813,30 @@ export type SeriesDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Series.reviews
+ */
+export type Series$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
  * Series.trackings
  */
 export type Series$trackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2777,6 +2858,30 @@ export type Series$trackingsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.UserSeriesTrackingScalarFieldEnum | Prisma.UserSeriesTrackingScalarFieldEnum[]
+}
+
+/**
+ * Series.watchLists
+ */
+export type Series$watchListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WatchList
+   */
+  select?: Prisma.WatchListSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WatchList
+   */
+  omit?: Prisma.WatchListOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WatchListInclude<ExtArgs> | null
+  where?: Prisma.WatchListWhereInput
+  orderBy?: Prisma.WatchListOrderByWithRelationInput | Prisma.WatchListOrderByWithRelationInput[]
+  cursor?: Prisma.WatchListWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WatchListScalarFieldEnum | Prisma.WatchListScalarFieldEnum[]
 }
 
 /**
@@ -2825,54 +2930,6 @@ export type Series$platformsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.StreamingPlatformScalarFieldEnum | Prisma.StreamingPlatformScalarFieldEnum[]
-}
-
-/**
- * Series.watchLists
- */
-export type Series$watchListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the WatchList
-   */
-  select?: Prisma.WatchListSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the WatchList
-   */
-  omit?: Prisma.WatchListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WatchListInclude<ExtArgs> | null
-  where?: Prisma.WatchListWhereInput
-  orderBy?: Prisma.WatchListOrderByWithRelationInput | Prisma.WatchListOrderByWithRelationInput[]
-  cursor?: Prisma.WatchListWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WatchListScalarFieldEnum | Prisma.WatchListScalarFieldEnum[]
-}
-
-/**
- * Series.reviews
- */
-export type Series$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Review
-   */
-  select?: Prisma.ReviewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Review
-   */
-  omit?: Prisma.ReviewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReviewInclude<ExtArgs> | null
-  where?: Prisma.ReviewWhereInput
-  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**

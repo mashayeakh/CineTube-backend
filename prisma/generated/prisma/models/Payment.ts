@@ -240,9 +240,9 @@ export type PaymentWhereInput = {
   status?: Prisma.EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
   transactionId?: Prisma.StringFilter<"Payment"> | string
   createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   movie?: Prisma.XOR<Prisma.MovieNullableScalarRelationFilter, Prisma.MovieWhereInput> | null
   subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type PaymentOrderByWithRelationInput = {
@@ -254,9 +254,9 @@ export type PaymentOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   transactionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
   movie?: Prisma.MovieOrderByWithRelationInput
   subscription?: Prisma.SubscriptionOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type PaymentWhereUniqueInput = Prisma.AtLeast<{
@@ -271,9 +271,9 @@ export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   amount?: Prisma.DecimalFilter<"Payment"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   movie?: Prisma.XOR<Prisma.MovieNullableScalarRelationFilter, Prisma.MovieWhereInput> | null
   subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "subscriptionId" | "transactionId">
 
 export type PaymentOrderByWithAggregationInput = {
@@ -312,9 +312,9 @@ export type PaymentCreateInput = {
   status?: $Enums.PaymentStatus
   transactionId: string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutPaymentsInput
   movie?: Prisma.MovieCreateNestedOneWithoutPaymentsInput
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutPaymentInput
+  user: Prisma.UserCreateNestedOneWithoutPaymentsInput
 }
 
 export type PaymentUncheckedCreateInput = {
@@ -334,9 +334,9 @@ export type PaymentUpdateInput = {
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
   movie?: Prisma.MovieUpdateOneWithoutPaymentsNestedInput
   subscription?: Prisma.SubscriptionUpdateOneWithoutPaymentNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
 }
 
 export type PaymentUncheckedUpdateInput = {
@@ -630,8 +630,8 @@ export type PaymentCreateWithoutMovieInput = {
   status?: $Enums.PaymentStatus
   transactionId: string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutPaymentsInput
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutPaymentInput
+  user: Prisma.UserCreateNestedOneWithoutPaymentsInput
 }
 
 export type PaymentUncheckedCreateWithoutMovieInput = {
@@ -676,8 +676,8 @@ export type PaymentCreateWithoutSubscriptionInput = {
   status?: $Enums.PaymentStatus
   transactionId: string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutPaymentsInput
   movie?: Prisma.MovieCreateNestedOneWithoutPaymentsInput
+  user: Prisma.UserCreateNestedOneWithoutPaymentsInput
 }
 
 export type PaymentUncheckedCreateWithoutSubscriptionInput = {
@@ -712,8 +712,8 @@ export type PaymentUpdateWithoutSubscriptionInput = {
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
   movie?: Prisma.MovieUpdateOneWithoutPaymentsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
 }
 
 export type PaymentUncheckedUpdateWithoutSubscriptionInput = {
@@ -782,8 +782,8 @@ export type PaymentUpdateWithoutMovieInput = {
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
   subscription?: Prisma.SubscriptionUpdateOneWithoutPaymentNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
 }
 
 export type PaymentUncheckedUpdateWithoutMovieInput = {
@@ -817,9 +817,9 @@ export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   status?: boolean
   transactionId?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.Payment$movieArgs<ExtArgs>
   subscription?: boolean | Prisma.Payment$subscriptionArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
 export type PaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -831,9 +831,9 @@ export type PaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   status?: boolean
   transactionId?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.Payment$movieArgs<ExtArgs>
   subscription?: boolean | Prisma.Payment$subscriptionArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
 export type PaymentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -845,9 +845,9 @@ export type PaymentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   status?: boolean
   transactionId?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.Payment$movieArgs<ExtArgs>
   subscription?: boolean | Prisma.Payment$subscriptionArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
 export type PaymentSelectScalar = {
@@ -863,27 +863,27 @@ export type PaymentSelectScalar = {
 
 export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "movieId" | "subscriptionId" | "amount" | "status" | "transactionId" | "createdAt", ExtArgs["result"]["payment"]>
 export type PaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.Payment$movieArgs<ExtArgs>
   subscription?: boolean | Prisma.Payment$subscriptionArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type PaymentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.Payment$movieArgs<ExtArgs>
   subscription?: boolean | Prisma.Payment$subscriptionArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type PaymentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   movie?: boolean | Prisma.Payment$movieArgs<ExtArgs>
   subscription?: boolean | Prisma.Payment$subscriptionArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $PaymentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Payment"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     movie: Prisma.$MoviePayload<ExtArgs> | null
     subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1288,9 +1288,9 @@ readonly fields: PaymentFieldRefs;
  */
 export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   movie<T extends Prisma.Payment$movieArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$movieArgs<ExtArgs>>): Prisma.Prisma__MovieClient<runtime.Types.Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   subscription<T extends Prisma.Payment$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$subscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

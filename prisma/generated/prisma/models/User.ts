@@ -30,12 +30,12 @@ export type UserMinAggregateOutputType = {
   email: string | null
   emailVerified: boolean | null
   image: string | null
-  ageGroup: $Enums.AgeGroup | null
-  isDeleted: boolean | null
   status: $Enums.UserStatus | null
-  role: $Enums.UserRole | null
   createdAt: Date | null
   updatedAt: Date | null
+  role: $Enums.UserRole | null
+  ageGroup: $Enums.AgeGroup | null
+  isDeleted: boolean | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -44,12 +44,12 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   emailVerified: boolean | null
   image: string | null
-  ageGroup: $Enums.AgeGroup | null
-  isDeleted: boolean | null
   status: $Enums.UserStatus | null
-  role: $Enums.UserRole | null
   createdAt: Date | null
   updatedAt: Date | null
+  role: $Enums.UserRole | null
+  ageGroup: $Enums.AgeGroup | null
+  isDeleted: boolean | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -58,12 +58,12 @@ export type UserCountAggregateOutputType = {
   email: number
   emailVerified: number
   image: number
-  ageGroup: number
-  isDeleted: number
   status: number
-  role: number
   createdAt: number
   updatedAt: number
+  role: number
+  ageGroup: number
+  isDeleted: number
   _all: number
 }
 
@@ -74,12 +74,12 @@ export type UserMinAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  ageGroup?: true
-  isDeleted?: true
   status?: true
-  role?: true
   createdAt?: true
   updatedAt?: true
+  role?: true
+  ageGroup?: true
+  isDeleted?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -88,12 +88,12 @@ export type UserMaxAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  ageGroup?: true
-  isDeleted?: true
   status?: true
-  role?: true
   createdAt?: true
   updatedAt?: true
+  role?: true
+  ageGroup?: true
+  isDeleted?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -102,12 +102,12 @@ export type UserCountAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  ageGroup?: true
-  isDeleted?: true
   status?: true
-  role?: true
   createdAt?: true
   updatedAt?: true
+  role?: true
+  ageGroup?: true
+  isDeleted?: true
   _all?: true
 }
 
@@ -189,12 +189,12 @@ export type UserGroupByOutputType = {
   email: string
   emailVerified: boolean
   image: string | null
-  ageGroup: $Enums.AgeGroup | null
-  isDeleted: boolean
   status: $Enums.UserStatus
-  role: $Enums.UserRole
   createdAt: Date
   updatedAt: Date
+  role: $Enums.UserRole
+  ageGroup: $Enums.AgeGroup | null
+  isDeleted: boolean
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -224,27 +224,27 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
-  ageGroup?: Prisma.EnumAgeGroupNullableFilter<"User"> | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFilter<"User"> | boolean
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
-  sessions?: Prisma.SessionListRelationFilter
+  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
+  ageGroup?: Prisma.EnumAgeGroupNullableFilter<"User"> | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFilter<"User"> | boolean
   accounts?: Prisma.AccountListRelationFilter
-  movies?: Prisma.MovieListRelationFilter
-  series?: Prisma.SeriesListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
+  admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
   comments?: Prisma.CommentListRelationFilter
-  reviewLikes?: Prisma.ReviewLikeListRelationFilter
-  payments?: Prisma.PaymentListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  watchlists?: Prisma.WatchListListRelationFilter
-  seriesTrackings?: Prisma.UserSeriesTrackingListRelationFilter
+  movies?: Prisma.MovieListRelationFilter
   movieContributions?: Prisma.MovieContributionListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
+  reviewLikes?: Prisma.ReviewLikeListRelationFilter
+  series?: Prisma.SeriesListRelationFilter
   seriesContributions?: Prisma.SeriesContributionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
+  subscriptions?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   userPreference?: Prisma.XOR<Prisma.UserPreferenceNullableScalarRelationFilter, Prisma.UserPreferenceWhereInput> | null
+  seriesTrackings?: Prisma.UserSeriesTrackingListRelationFilter
+  watchlists?: Prisma.WatchListListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -253,27 +253,27 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
-  ageGroup?: Prisma.SortOrderInput | Prisma.SortOrder
-  isDeleted?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  admin?: Prisma.AdminOrderByWithRelationInput
-  sessions?: Prisma.SessionOrderByRelationAggregateInput
+  role?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
-  movies?: Prisma.MovieOrderByRelationAggregateInput
-  series?: Prisma.SeriesOrderByRelationAggregateInput
-  reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  admin?: Prisma.AdminOrderByWithRelationInput
   comments?: Prisma.CommentOrderByRelationAggregateInput
-  reviewLikes?: Prisma.ReviewLikeOrderByRelationAggregateInput
-  payments?: Prisma.PaymentOrderByRelationAggregateInput
-  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  watchlists?: Prisma.WatchListOrderByRelationAggregateInput
-  seriesTrackings?: Prisma.UserSeriesTrackingOrderByRelationAggregateInput
+  movies?: Prisma.MovieOrderByRelationAggregateInput
   movieContributions?: Prisma.MovieContributionOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  reviewLikes?: Prisma.ReviewLikeOrderByRelationAggregateInput
+  series?: Prisma.SeriesOrderByRelationAggregateInput
   seriesContributions?: Prisma.SeriesContributionOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
+  subscriptions?: Prisma.SubscriptionOrderByWithRelationInput
   userPreference?: Prisma.UserPreferenceOrderByWithRelationInput
+  seriesTrackings?: Prisma.UserSeriesTrackingOrderByRelationAggregateInput
+  watchlists?: Prisma.WatchListOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -285,27 +285,27 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"User"> | string
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
-  ageGroup?: Prisma.EnumAgeGroupNullableFilter<"User"> | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFilter<"User"> | boolean
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
-  sessions?: Prisma.SessionListRelationFilter
+  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
+  ageGroup?: Prisma.EnumAgeGroupNullableFilter<"User"> | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFilter<"User"> | boolean
   accounts?: Prisma.AccountListRelationFilter
-  movies?: Prisma.MovieListRelationFilter
-  series?: Prisma.SeriesListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
+  admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
   comments?: Prisma.CommentListRelationFilter
-  reviewLikes?: Prisma.ReviewLikeListRelationFilter
-  payments?: Prisma.PaymentListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  watchlists?: Prisma.WatchListListRelationFilter
-  seriesTrackings?: Prisma.UserSeriesTrackingListRelationFilter
+  movies?: Prisma.MovieListRelationFilter
   movieContributions?: Prisma.MovieContributionListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
+  reviewLikes?: Prisma.ReviewLikeListRelationFilter
+  series?: Prisma.SeriesListRelationFilter
   seriesContributions?: Prisma.SeriesContributionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
+  subscriptions?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   userPreference?: Prisma.XOR<Prisma.UserPreferenceNullableScalarRelationFilter, Prisma.UserPreferenceWhereInput> | null
+  seriesTrackings?: Prisma.UserSeriesTrackingListRelationFilter
+  watchlists?: Prisma.WatchListListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -314,12 +314,12 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
-  ageGroup?: Prisma.SortOrderInput | Prisma.SortOrder
-  isDeleted?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -334,12 +334,12 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  ageGroup?: Prisma.EnumAgeGroupNullableWithAggregatesFilter<"User"> | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+  ageGroup?: Prisma.EnumAgeGroupNullableWithAggregatesFilter<"User"> | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
 export type UserCreateInput = {
@@ -348,27 +348,27 @@ export type UserCreateInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -377,27 +377,27 @@ export type UserUncheckedCreateInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -406,27 +406,27 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -435,27 +435,27 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -464,12 +464,12 @@ export type UserCreateManyInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
 }
 
 export type UserUpdateManyMutationInput = {
@@ -478,12 +478,12 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -492,12 +492,12 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserScalarRelationFilter = {
@@ -511,12 +511,12 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
-  isDeleted?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -525,12 +525,12 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
-  isDeleted?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -539,12 +539,12 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
-  isDeleted?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutAdminInput = {
@@ -561,16 +561,16 @@ export type UserUpdateOneRequiredWithoutAdminNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAdminInput, Prisma.UserUpdateWithoutAdminInput>, Prisma.UserUncheckedUpdateWithoutAdminInput>
 }
 
-export type NullableEnumAgeGroupFieldUpdateOperationsInput = {
-  set?: $Enums.AgeGroup | null
-}
-
 export type EnumUserStatusFieldUpdateOperationsInput = {
   set?: $Enums.UserStatus
 }
 
 export type EnumUserRoleFieldUpdateOperationsInput = {
   set?: $Enums.UserRole
+}
+
+export type NullableEnumAgeGroupFieldUpdateOperationsInput = {
+  set?: $Enums.AgeGroup | null
 }
 
 export type UserCreateNestedOneWithoutSessionsInput = {
@@ -775,26 +775,26 @@ export type UserCreateWithoutAdminInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAdminInput = {
@@ -803,26 +803,26 @@ export type UserUncheckedCreateWithoutAdminInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAdminInput = {
@@ -847,26 +847,26 @@ export type UserUpdateWithoutAdminInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAdminInput = {
@@ -875,26 +875,26 @@ export type UserUncheckedUpdateWithoutAdminInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -903,26 +903,26 @@ export type UserCreateWithoutSessionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -931,26 +931,26 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -975,26 +975,26 @@ export type UserUpdateWithoutSessionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -1003,26 +1003,26 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -1031,26 +1031,26 @@ export type UserCreateWithoutAccountsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -1059,26 +1059,26 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -1103,26 +1103,26 @@ export type UserUpdateWithoutAccountsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -1131,26 +1131,26 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCommentsInput = {
@@ -1159,26 +1159,26 @@ export type UserCreateWithoutCommentsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
+  movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
-  movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCommentsInput = {
@@ -1187,26 +1187,26 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
+  movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
-  movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCommentsInput = {
@@ -1231,26 +1231,26 @@ export type UserUpdateWithoutCommentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
+  movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
-  movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -1259,26 +1259,26 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
+  movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
-  movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMovieContributionsInput = {
@@ -1287,26 +1287,26 @@ export type UserCreateWithoutMovieContributionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMovieContributionsInput = {
@@ -1315,26 +1315,26 @@ export type UserUncheckedCreateWithoutMovieContributionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMovieContributionsInput = {
@@ -1359,26 +1359,26 @@ export type UserUpdateWithoutMovieContributionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMovieContributionsInput = {
@@ -1387,26 +1387,26 @@ export type UserUncheckedUpdateWithoutMovieContributionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMoviesInput = {
@@ -1415,26 +1415,26 @@ export type UserCreateWithoutMoviesInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMoviesInput = {
@@ -1443,26 +1443,26 @@ export type UserUncheckedCreateWithoutMoviesInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMoviesInput = {
@@ -1487,26 +1487,26 @@ export type UserUpdateWithoutMoviesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMoviesInput = {
@@ -1515,26 +1515,26 @@ export type UserUncheckedUpdateWithoutMoviesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPaymentsInput = {
@@ -1543,26 +1543,26 @@ export type UserCreateWithoutPaymentsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPaymentsInput = {
@@ -1571,26 +1571,26 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPaymentsInput = {
@@ -1615,26 +1615,26 @@ export type UserUpdateWithoutPaymentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentsInput = {
@@ -1643,26 +1643,26 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewLikesInput = {
@@ -1671,26 +1671,26 @@ export type UserCreateWithoutReviewLikesInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewLikesInput = {
@@ -1699,26 +1699,26 @@ export type UserUncheckedCreateWithoutReviewLikesInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewLikesInput = {
@@ -1743,26 +1743,26 @@ export type UserUpdateWithoutReviewLikesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewLikesInput = {
@@ -1771,26 +1771,26 @@ export type UserUncheckedUpdateWithoutReviewLikesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewsInput = {
@@ -1799,26 +1799,26 @@ export type UserCreateWithoutReviewsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewsInput = {
@@ -1827,26 +1827,26 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewsInput = {
@@ -1871,26 +1871,26 @@ export type UserUpdateWithoutReviewsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -1899,26 +1899,26 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSeriesInput = {
@@ -1927,26 +1927,26 @@ export type UserCreateWithoutSeriesInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSeriesInput = {
@@ -1955,26 +1955,26 @@ export type UserUncheckedCreateWithoutSeriesInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSeriesInput = {
@@ -1999,26 +1999,26 @@ export type UserUpdateWithoutSeriesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSeriesInput = {
@@ -2027,26 +2027,26 @@ export type UserUncheckedUpdateWithoutSeriesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSeriesContributionsInput = {
@@ -2055,26 +2055,26 @@ export type UserCreateWithoutSeriesContributionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSeriesContributionsInput = {
@@ -2083,26 +2083,26 @@ export type UserUncheckedCreateWithoutSeriesContributionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSeriesContributionsInput = {
@@ -2127,26 +2127,26 @@ export type UserUpdateWithoutSeriesContributionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSeriesContributionsInput = {
@@ -2155,26 +2155,26 @@ export type UserUncheckedUpdateWithoutSeriesContributionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSeriesTrackingsInput = {
@@ -2183,26 +2183,26 @@ export type UserCreateWithoutSeriesTrackingsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSeriesTrackingsInput = {
@@ -2211,26 +2211,26 @@ export type UserUncheckedCreateWithoutSeriesTrackingsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSeriesTrackingsInput = {
@@ -2255,26 +2255,26 @@ export type UserUpdateWithoutSeriesTrackingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSeriesTrackingsInput = {
@@ -2283,26 +2283,26 @@ export type UserUncheckedUpdateWithoutSeriesTrackingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSubscriptionsInput = {
@@ -2311,26 +2311,26 @@ export type UserCreateWithoutSubscriptionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSubscriptionsInput = {
@@ -2339,26 +2339,26 @@ export type UserUncheckedCreateWithoutSubscriptionsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSubscriptionsInput = {
@@ -2383,26 +2383,26 @@ export type UserUpdateWithoutSubscriptionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSubscriptionsInput = {
@@ -2411,26 +2411,26 @@ export type UserUncheckedUpdateWithoutSubscriptionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutUserPreferenceInput = {
@@ -2439,26 +2439,26 @@ export type UserCreateWithoutUserPreferenceInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUserPreferenceInput = {
@@ -2467,26 +2467,26 @@ export type UserUncheckedCreateWithoutUserPreferenceInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUserPreferenceInput = {
@@ -2511,26 +2511,26 @@ export type UserUpdateWithoutUserPreferenceInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserPreferenceInput = {
@@ -2539,26 +2539,26 @@ export type UserUncheckedUpdateWithoutUserPreferenceInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWatchlistsInput = {
@@ -2567,26 +2567,26 @@ export type UserCreateWithoutWatchlistsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWatchlistsInput = {
@@ -2595,26 +2595,26 @@ export type UserUncheckedCreateWithoutWatchlistsInput = {
   email: string
   emailVerified?: boolean
   image?: string | null
-  ageGroup?: $Enums.AgeGroup | null
-  isDeleted?: boolean
   status?: $Enums.UserStatus
-  role?: $Enums.UserRole
   createdAt?: Date | string
   updatedAt?: Date | string
-  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  role?: $Enums.UserRole
+  ageGroup?: $Enums.AgeGroup | null
+  isDeleted?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
-  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
   movieContributions?: Prisma.MovieContributionUncheckedCreateNestedManyWithoutContributorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedCreateNestedManyWithoutUserInput
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutUserInput
   seriesContributions?: Prisma.SeriesContributionUncheckedCreateNestedManyWithoutContributorInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   userPreference?: Prisma.UserPreferenceUncheckedCreateNestedOneWithoutUserInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWatchlistsInput = {
@@ -2639,26 +2639,26 @@ export type UserUpdateWithoutWatchlistsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWatchlistsInput = {
@@ -2667,26 +2667,26 @@ export type UserUncheckedUpdateWithoutWatchlistsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  ageGroup?: Prisma.NullableEnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
-  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
   movieContributions?: Prisma.MovieContributionUncheckedUpdateManyWithoutContributorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  reviewLikes?: Prisma.ReviewLikeUncheckedUpdateManyWithoutUserNestedInput
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutUserNestedInput
   seriesContributions?: Prisma.SeriesContributionUncheckedUpdateManyWithoutContributorNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   userPreference?: Prisma.UserPreferenceUncheckedUpdateOneWithoutUserNestedInput
+  seriesTrackings?: Prisma.UserSeriesTrackingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -2695,35 +2695,33 @@ export type UserUncheckedUpdateWithoutWatchlistsInput = {
  */
 
 export type UserCountOutputType = {
-  sessions: number
   accounts: number
-  movies: number
-  series: number
-  reviews: number
   comments: number
-  reviewLikes: number
-  payments: number
-  subscriptions: number
-  watchlists: number
-  seriesTrackings: number
+  movies: number
   movieContributions: number
+  payments: number
+  reviews: number
+  reviewLikes: number
+  series: number
   seriesContributions: number
+  sessions: number
+  seriesTrackings: number
+  watchlists: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-  movies?: boolean | UserCountOutputTypeCountMoviesArgs
-  series?: boolean | UserCountOutputTypeCountSeriesArgs
-  reviews?: boolean | UserCountOutputTypeCountReviewsArgs
   comments?: boolean | UserCountOutputTypeCountCommentsArgs
-  reviewLikes?: boolean | UserCountOutputTypeCountReviewLikesArgs
-  payments?: boolean | UserCountOutputTypeCountPaymentsArgs
-  subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
-  watchlists?: boolean | UserCountOutputTypeCountWatchlistsArgs
-  seriesTrackings?: boolean | UserCountOutputTypeCountSeriesTrackingsArgs
+  movies?: boolean | UserCountOutputTypeCountMoviesArgs
   movieContributions?: boolean | UserCountOutputTypeCountMovieContributionsArgs
+  payments?: boolean | UserCountOutputTypeCountPaymentsArgs
+  reviews?: boolean | UserCountOutputTypeCountReviewsArgs
+  reviewLikes?: boolean | UserCountOutputTypeCountReviewLikesArgs
+  series?: boolean | UserCountOutputTypeCountSeriesArgs
   seriesContributions?: boolean | UserCountOutputTypeCountSeriesContributionsArgs
+  sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+  seriesTrackings?: boolean | UserCountOutputTypeCountSeriesTrackingsArgs
+  watchlists?: boolean | UserCountOutputTypeCountWatchlistsArgs
 }
 
 /**
@@ -2739,36 +2737,8 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SessionWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AccountWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountMoviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MovieWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSeriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SeriesWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReviewWhereInput
 }
 
 /**
@@ -2781,36 +2751,8 @@ export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountReviewLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReviewLikeWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountWatchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WatchListWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSeriesTrackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserSeriesTrackingWhereInput
+export type UserCountOutputTypeCountMoviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MovieWhereInput
 }
 
 /**
@@ -2823,8 +2765,57 @@ export type UserCountOutputTypeCountMovieContributionsArgs<ExtArgs extends runti
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewLikeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSeriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SeriesWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountSeriesContributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SeriesContributionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSeriesTrackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserSeriesTrackingWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountWatchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WatchListWhereInput
 }
 
 
@@ -2834,27 +2825,27 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  ageGroup?: boolean
-  isDeleted?: boolean
   status?: boolean
-  role?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  admin?: boolean | Prisma.User$adminArgs<ExtArgs>
-  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  role?: boolean
+  ageGroup?: boolean
+  isDeleted?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  movies?: boolean | Prisma.User$moviesArgs<ExtArgs>
-  series?: boolean | Prisma.User$seriesArgs<ExtArgs>
-  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  admin?: boolean | Prisma.User$adminArgs<ExtArgs>
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
-  reviewLikes?: boolean | Prisma.User$reviewLikesArgs<ExtArgs>
-  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
-  watchlists?: boolean | Prisma.User$watchlistsArgs<ExtArgs>
-  seriesTrackings?: boolean | Prisma.User$seriesTrackingsArgs<ExtArgs>
+  movies?: boolean | Prisma.User$moviesArgs<ExtArgs>
   movieContributions?: boolean | Prisma.User$movieContributionsArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  reviewLikes?: boolean | Prisma.User$reviewLikesArgs<ExtArgs>
+  series?: boolean | Prisma.User$seriesArgs<ExtArgs>
   seriesContributions?: boolean | Prisma.User$seriesContributionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   userPreference?: boolean | Prisma.User$userPreferenceArgs<ExtArgs>
+  seriesTrackings?: boolean | Prisma.User$seriesTrackingsArgs<ExtArgs>
+  watchlists?: boolean | Prisma.User$watchlistsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2864,12 +2855,12 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  ageGroup?: boolean
-  isDeleted?: boolean
   status?: boolean
-  role?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  role?: boolean
+  ageGroup?: boolean
+  isDeleted?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2878,12 +2869,12 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  ageGroup?: boolean
-  isDeleted?: boolean
   status?: boolean
-  role?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  role?: boolean
+  ageGroup?: boolean
+  isDeleted?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -2892,31 +2883,31 @@ export type UserSelectScalar = {
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  ageGroup?: boolean
-  isDeleted?: boolean
   status?: boolean
-  role?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  role?: boolean
+  ageGroup?: boolean
+  isDeleted?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "ageGroup" | "isDeleted" | "status" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "status" | "createdAt" | "updatedAt" | "role" | "ageGroup" | "isDeleted", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  admin?: boolean | Prisma.User$adminArgs<ExtArgs>
-  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  movies?: boolean | Prisma.User$moviesArgs<ExtArgs>
-  series?: boolean | Prisma.User$seriesArgs<ExtArgs>
-  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  admin?: boolean | Prisma.User$adminArgs<ExtArgs>
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
-  reviewLikes?: boolean | Prisma.User$reviewLikesArgs<ExtArgs>
-  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
-  watchlists?: boolean | Prisma.User$watchlistsArgs<ExtArgs>
-  seriesTrackings?: boolean | Prisma.User$seriesTrackingsArgs<ExtArgs>
+  movies?: boolean | Prisma.User$moviesArgs<ExtArgs>
   movieContributions?: boolean | Prisma.User$movieContributionsArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  reviewLikes?: boolean | Prisma.User$reviewLikesArgs<ExtArgs>
+  series?: boolean | Prisma.User$seriesArgs<ExtArgs>
   seriesContributions?: boolean | Prisma.User$seriesContributionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   userPreference?: boolean | Prisma.User$userPreferenceArgs<ExtArgs>
+  seriesTrackings?: boolean | Prisma.User$seriesTrackingsArgs<ExtArgs>
+  watchlists?: boolean | Prisma.User$watchlistsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2925,21 +2916,21 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    admin: Prisma.$AdminPayload<ExtArgs> | null
-    sessions: Prisma.$SessionPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
-    movies: Prisma.$MoviePayload<ExtArgs>[]
-    series: Prisma.$SeriesPayload<ExtArgs>[]
-    reviews: Prisma.$ReviewPayload<ExtArgs>[]
+    admin: Prisma.$AdminPayload<ExtArgs> | null
     comments: Prisma.$CommentPayload<ExtArgs>[]
-    reviewLikes: Prisma.$ReviewLikePayload<ExtArgs>[]
-    payments: Prisma.$PaymentPayload<ExtArgs>[]
-    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    watchlists: Prisma.$WatchListPayload<ExtArgs>[]
-    seriesTrackings: Prisma.$UserSeriesTrackingPayload<ExtArgs>[]
+    movies: Prisma.$MoviePayload<ExtArgs>[]
     movieContributions: Prisma.$MovieContributionPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
+    reviewLikes: Prisma.$ReviewLikePayload<ExtArgs>[]
+    series: Prisma.$SeriesPayload<ExtArgs>[]
     seriesContributions: Prisma.$SeriesContributionPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs> | null
     userPreference: Prisma.$UserPreferencePayload<ExtArgs> | null
+    seriesTrackings: Prisma.$UserSeriesTrackingPayload<ExtArgs>[]
+    watchlists: Prisma.$WatchListPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2947,12 +2938,12 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     emailVerified: boolean
     image: string | null
-    ageGroup: $Enums.AgeGroup | null
-    isDeleted: boolean
     status: $Enums.UserStatus
-    role: $Enums.UserRole
     createdAt: Date
     updatedAt: Date
+    role: $Enums.UserRole
+    ageGroup: $Enums.AgeGroup | null
+    isDeleted: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -3347,21 +3338,21 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  admin<T extends Prisma.User$adminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$adminArgs<ExtArgs>>): Prisma.Prisma__AdminClient<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  movies<T extends Prisma.User$moviesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  series<T extends Prisma.User$seriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$seriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  admin<T extends Prisma.User$adminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$adminArgs<ExtArgs>>): Prisma.Prisma__AdminClient<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviewLikes<T extends Prisma.User$reviewLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  watchlists<T extends Prisma.User$watchlistsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$watchlistsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WatchListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  seriesTrackings<T extends Prisma.User$seriesTrackingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$seriesTrackingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserSeriesTrackingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  movies<T extends Prisma.User$moviesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   movieContributions<T extends Prisma.User$movieContributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$movieContributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovieContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewLikes<T extends Prisma.User$reviewLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  series<T extends Prisma.User$seriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$seriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   seriesContributions<T extends Prisma.User$seriesContributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$seriesContributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeriesContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   userPreference<T extends Prisma.User$userPreferenceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userPreferenceArgs<ExtArgs>>): Prisma.Prisma__UserPreferenceClient<runtime.Types.Result.GetResult<Prisma.$UserPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  seriesTrackings<T extends Prisma.User$seriesTrackingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$seriesTrackingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserSeriesTrackingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  watchlists<T extends Prisma.User$watchlistsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$watchlistsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WatchListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3396,12 +3387,12 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly image: Prisma.FieldRef<"User", 'String'>
-  readonly ageGroup: Prisma.FieldRef<"User", 'AgeGroup'>
-  readonly isDeleted: Prisma.FieldRef<"User", 'Boolean'>
   readonly status: Prisma.FieldRef<"User", 'UserStatus'>
-  readonly role: Prisma.FieldRef<"User", 'UserRole'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly role: Prisma.FieldRef<"User", 'UserRole'>
+  readonly ageGroup: Prisma.FieldRef<"User", 'AgeGroup'>
+  readonly isDeleted: Prisma.FieldRef<"User", 'Boolean'>
 }
     
 
@@ -3795,49 +3786,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.admin
- */
-export type User$adminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Admin
-   */
-  select?: Prisma.AdminSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Admin
-   */
-  omit?: Prisma.AdminOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AdminInclude<ExtArgs> | null
-  where?: Prisma.AdminWhereInput
-}
-
-/**
- * User.sessions
- */
-export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Session
-   */
-  select?: Prisma.SessionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Session
-   */
-  omit?: Prisma.SessionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SessionInclude<ExtArgs> | null
-  where?: Prisma.SessionWhereInput
-  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
-  cursor?: Prisma.SessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
-}
-
-/**
  * User.accounts
  */
 export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3862,75 +3810,22 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.movies
+ * User.admin
  */
-export type User$moviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$adminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Movie
+   * Select specific fields to fetch from the Admin
    */
-  select?: Prisma.MovieSelect<ExtArgs> | null
+  select?: Prisma.AdminSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Movie
+   * Omit specific fields from the Admin
    */
-  omit?: Prisma.MovieOmit<ExtArgs> | null
+  omit?: Prisma.AdminOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MovieInclude<ExtArgs> | null
-  where?: Prisma.MovieWhereInput
-  orderBy?: Prisma.MovieOrderByWithRelationInput | Prisma.MovieOrderByWithRelationInput[]
-  cursor?: Prisma.MovieWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MovieScalarFieldEnum | Prisma.MovieScalarFieldEnum[]
-}
-
-/**
- * User.series
- */
-export type User$seriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Series
-   */
-  select?: Prisma.SeriesSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Series
-   */
-  omit?: Prisma.SeriesOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SeriesInclude<ExtArgs> | null
-  where?: Prisma.SeriesWhereInput
-  orderBy?: Prisma.SeriesOrderByWithRelationInput | Prisma.SeriesOrderByWithRelationInput[]
-  cursor?: Prisma.SeriesWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SeriesScalarFieldEnum | Prisma.SeriesScalarFieldEnum[]
-}
-
-/**
- * User.reviews
- */
-export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Review
-   */
-  select?: Prisma.ReviewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Review
-   */
-  omit?: Prisma.ReviewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReviewInclude<ExtArgs> | null
-  where?: Prisma.ReviewWhereInput
-  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+  include?: Prisma.AdminInclude<ExtArgs> | null
+  where?: Prisma.AdminWhereInput
 }
 
 /**
@@ -3958,123 +3853,27 @@ export type User$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.reviewLikes
+ * User.movies
  */
-export type User$reviewLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$moviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ReviewLike
+   * Select specific fields to fetch from the Movie
    */
-  select?: Prisma.ReviewLikeSelect<ExtArgs> | null
+  select?: Prisma.MovieSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ReviewLike
+   * Omit specific fields from the Movie
    */
-  omit?: Prisma.ReviewLikeOmit<ExtArgs> | null
+  omit?: Prisma.MovieOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ReviewLikeInclude<ExtArgs> | null
-  where?: Prisma.ReviewLikeWhereInput
-  orderBy?: Prisma.ReviewLikeOrderByWithRelationInput | Prisma.ReviewLikeOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewLikeWhereUniqueInput
+  include?: Prisma.MovieInclude<ExtArgs> | null
+  where?: Prisma.MovieWhereInput
+  orderBy?: Prisma.MovieOrderByWithRelationInput | Prisma.MovieOrderByWithRelationInput[]
+  cursor?: Prisma.MovieWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ReviewLikeScalarFieldEnum | Prisma.ReviewLikeScalarFieldEnum[]
-}
-
-/**
- * User.payments
- */
-export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Payment
-   */
-  select?: Prisma.PaymentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Payment
-   */
-  omit?: Prisma.PaymentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentInclude<ExtArgs> | null
-  where?: Prisma.PaymentWhereInput
-  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
-}
-
-/**
- * User.subscriptions
- */
-export type User$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscription
-   */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscription
-   */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
-  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
-}
-
-/**
- * User.watchlists
- */
-export type User$watchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the WatchList
-   */
-  select?: Prisma.WatchListSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the WatchList
-   */
-  omit?: Prisma.WatchListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WatchListInclude<ExtArgs> | null
-  where?: Prisma.WatchListWhereInput
-  orderBy?: Prisma.WatchListOrderByWithRelationInput | Prisma.WatchListOrderByWithRelationInput[]
-  cursor?: Prisma.WatchListWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WatchListScalarFieldEnum | Prisma.WatchListScalarFieldEnum[]
-}
-
-/**
- * User.seriesTrackings
- */
-export type User$seriesTrackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserSeriesTracking
-   */
-  select?: Prisma.UserSeriesTrackingSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserSeriesTracking
-   */
-  omit?: Prisma.UserSeriesTrackingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserSeriesTrackingInclude<ExtArgs> | null
-  where?: Prisma.UserSeriesTrackingWhereInput
-  orderBy?: Prisma.UserSeriesTrackingOrderByWithRelationInput | Prisma.UserSeriesTrackingOrderByWithRelationInput[]
-  cursor?: Prisma.UserSeriesTrackingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserSeriesTrackingScalarFieldEnum | Prisma.UserSeriesTrackingScalarFieldEnum[]
+  distinct?: Prisma.MovieScalarFieldEnum | Prisma.MovieScalarFieldEnum[]
 }
 
 /**
@@ -4102,6 +3901,102 @@ export type User$movieContributionsArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
+ * User.payments
+ */
+export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * User.reviews
+ */
+export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
+ * User.reviewLikes
+ */
+export type User$reviewLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReviewLike
+   */
+  select?: Prisma.ReviewLikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReviewLike
+   */
+  omit?: Prisma.ReviewLikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewLikeInclude<ExtArgs> | null
+  where?: Prisma.ReviewLikeWhereInput
+  orderBy?: Prisma.ReviewLikeOrderByWithRelationInput | Prisma.ReviewLikeOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewLikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewLikeScalarFieldEnum | Prisma.ReviewLikeScalarFieldEnum[]
+}
+
+/**
+ * User.series
+ */
+export type User$seriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Series
+   */
+  select?: Prisma.SeriesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Series
+   */
+  omit?: Prisma.SeriesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SeriesInclude<ExtArgs> | null
+  where?: Prisma.SeriesWhereInput
+  orderBy?: Prisma.SeriesOrderByWithRelationInput | Prisma.SeriesOrderByWithRelationInput[]
+  cursor?: Prisma.SeriesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SeriesScalarFieldEnum | Prisma.SeriesScalarFieldEnum[]
+}
+
+/**
  * User.seriesContributions
  */
 export type User$seriesContributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4126,6 +4021,49 @@ export type User$seriesContributionsArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * User.sessions
+ */
+export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Session
+   */
+  select?: Prisma.SessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Session
+   */
+  omit?: Prisma.SessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * User.subscriptions
+ */
+export type User$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+}
+
+/**
  * User.userPreference
  */
 export type User$userPreferenceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4142,6 +4080,54 @@ export type User$userPreferenceArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.UserPreferenceInclude<ExtArgs> | null
   where?: Prisma.UserPreferenceWhereInput
+}
+
+/**
+ * User.seriesTrackings
+ */
+export type User$seriesTrackingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserSeriesTracking
+   */
+  select?: Prisma.UserSeriesTrackingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserSeriesTracking
+   */
+  omit?: Prisma.UserSeriesTrackingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserSeriesTrackingInclude<ExtArgs> | null
+  where?: Prisma.UserSeriesTrackingWhereInput
+  orderBy?: Prisma.UserSeriesTrackingOrderByWithRelationInput | Prisma.UserSeriesTrackingOrderByWithRelationInput[]
+  cursor?: Prisma.UserSeriesTrackingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserSeriesTrackingScalarFieldEnum | Prisma.UserSeriesTrackingScalarFieldEnum[]
+}
+
+/**
+ * User.watchlists
+ */
+export type User$watchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WatchList
+   */
+  select?: Prisma.WatchListSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WatchList
+   */
+  omit?: Prisma.WatchListOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WatchListInclude<ExtArgs> | null
+  where?: Prisma.WatchListWhereInput
+  orderBy?: Prisma.WatchListOrderByWithRelationInput | Prisma.WatchListOrderByWithRelationInput[]
+  cursor?: Prisma.WatchListWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WatchListScalarFieldEnum | Prisma.WatchListScalarFieldEnum[]
 }
 
 /**

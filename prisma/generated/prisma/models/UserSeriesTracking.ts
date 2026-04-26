@@ -256,8 +256,8 @@ export type UserSeriesTrackingWhereInput = {
   lastTrackedAt?: Prisma.DateTimeFilter<"UserSeriesTracking"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"UserSeriesTracking"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserSeriesTracking"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   series?: Prisma.XOR<Prisma.SeriesScalarRelationFilter, Prisma.SeriesWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type UserSeriesTrackingOrderByWithRelationInput = {
@@ -271,8 +271,8 @@ export type UserSeriesTrackingOrderByWithRelationInput = {
   lastTrackedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
   series?: Prisma.SeriesOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type UserSeriesTrackingWhereUniqueInput = Prisma.AtLeast<{
@@ -290,8 +290,8 @@ export type UserSeriesTrackingWhereUniqueInput = Prisma.AtLeast<{
   lastTrackedAt?: Prisma.DateTimeFilter<"UserSeriesTracking"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"UserSeriesTracking"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserSeriesTracking"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   series?: Prisma.XOR<Prisma.SeriesScalarRelationFilter, Prisma.SeriesWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId_seriesId">
 
 export type UserSeriesTrackingOrderByWithAggregationInput = {
@@ -337,8 +337,8 @@ export type UserSeriesTrackingCreateInput = {
   lastTrackedAt?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutSeriesTrackingsInput
   series: Prisma.SeriesCreateNestedOneWithoutTrackingsInput
+  user: Prisma.UserCreateNestedOneWithoutSeriesTrackingsInput
 }
 
 export type UserSeriesTrackingUncheckedCreateInput = {
@@ -363,8 +363,8 @@ export type UserSeriesTrackingUpdateInput = {
   lastTrackedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutSeriesTrackingsNestedInput
   series?: Prisma.SeriesUpdateOneRequiredWithoutTrackingsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutSeriesTrackingsNestedInput
 }
 
 export type UserSeriesTrackingUncheckedUpdateInput = {
@@ -792,8 +792,8 @@ export type UserSeriesTrackingSelect<ExtArgs extends runtime.Types.Extensions.In
   lastTrackedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   series?: boolean | Prisma.SeriesDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userSeriesTracking"]>
 
 export type UserSeriesTrackingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -807,8 +807,8 @@ export type UserSeriesTrackingSelectCreateManyAndReturn<ExtArgs extends runtime.
   lastTrackedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   series?: boolean | Prisma.SeriesDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userSeriesTracking"]>
 
 export type UserSeriesTrackingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -822,8 +822,8 @@ export type UserSeriesTrackingSelectUpdateManyAndReturn<ExtArgs extends runtime.
   lastTrackedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   series?: boolean | Prisma.SeriesDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userSeriesTracking"]>
 
 export type UserSeriesTrackingSelectScalar = {
@@ -841,23 +841,23 @@ export type UserSeriesTrackingSelectScalar = {
 
 export type UserSeriesTrackingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "seriesId" | "status" | "currentSeason" | "startedAt" | "completedAt" | "lastTrackedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["userSeriesTracking"]>
 export type UserSeriesTrackingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   series?: boolean | Prisma.SeriesDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserSeriesTrackingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   series?: boolean | Prisma.SeriesDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserSeriesTrackingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   series?: boolean | Prisma.SeriesDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $UserSeriesTrackingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UserSeriesTracking"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     series: Prisma.$SeriesPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1264,8 +1264,8 @@ readonly fields: UserSeriesTrackingFieldRefs;
  */
 export interface Prisma__UserSeriesTrackingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   series<T extends Prisma.SeriesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SeriesDefaultArgs<ExtArgs>>): Prisma.Prisma__SeriesClient<runtime.Types.Result.GetResult<Prisma.$SeriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -1888,12 +1888,12 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  ageGroup: 'ageGroup',
-  isDeleted: 'isDeleted',
   status: 'status',
-  role: 'role',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role',
+  ageGroup: 'ageGroup',
+  isDeleted: 'isDeleted'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1950,9 +1950,9 @@ export const CommentScalarFieldEnum = {
   userId: 'userId',
   parentId: 'parentId',
   content: 'content',
-  isSpoiler: 'isSpoiler',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isSpoiler: 'isSpoiler'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
@@ -1976,6 +1976,7 @@ export const MovieContributionScalarFieldEnum = {
   director: 'director',
   cast: 'cast',
   ageGroup: 'ageGroup',
+  streamingLink: 'streamingLink',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1992,6 +1993,7 @@ export const MovieScalarFieldEnum = {
   releaseYear: 'releaseYear',
   director: 'director',
   cast: 'cast',
+  streamingLink: 'streamingLink',
   ageGroup: 'ageGroup',
   priceType: 'priceType',
   createdAt: 'createdAt',
@@ -2029,15 +2031,15 @@ export type ReviewLikeScalarFieldEnum = (typeof ReviewLikeScalarFieldEnum)[keyof
 export const ReviewScalarFieldEnum = {
   id: 'id',
   movieId: 'movieId',
-  seriesId: 'seriesId',
-  userId: 'userId',
   rating: 'rating',
   content: 'content',
-  isSpoiler: 'isSpoiler',
   tags: 'tags',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  isSpoiler: 'isSpoiler',
+  seriesId: 'seriesId'
 } as const
 
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
@@ -2055,13 +2057,14 @@ export const SeriesScalarFieldEnum = {
   priceType: 'priceType',
   totalSeasons: 'totalSeasons',
   totalEpisodes: 'totalEpisodes',
+  streamingLink: 'streamingLink',
   status: 'status',
-  isFeatured: 'isFeatured',
-  featuredAt: 'featuredAt',
-  featuredBy: 'featuredBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  featuredAt: 'featuredAt',
+  featuredBy: 'featuredBy',
+  isFeatured: 'isFeatured'
 } as const
 
 export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
@@ -2080,6 +2083,7 @@ export const SeriesContributionScalarFieldEnum = {
   priceType: 'priceType',
   totalSeasons: 'totalSeasons',
   totalEpisodes: 'totalEpisodes',
+  streamingLink: 'streamingLink',
   seriesStatus: 'seriesStatus',
   status: 'status',
   createdAt: 'createdAt',
@@ -2140,8 +2144,8 @@ export const WatchListScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   movieId: 'movieId',
-  seriesId: 'seriesId',
-  addedAt: 'addedAt'
+  addedAt: 'addedAt',
+  seriesId: 'seriesId'
 } as const
 
 export type WatchListScalarFieldEnum = (typeof WatchListScalarFieldEnum)[keyof typeof WatchListScalarFieldEnum]
@@ -2213,20 +2217,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'AgeGroup'
- */
-export type EnumAgeGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgeGroup'>
-    
-
-
-/**
- * Reference to a field of type 'AgeGroup[]'
- */
-export type ListEnumAgeGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgeGroup[]'>
-    
-
-
-/**
  * Reference to a field of type 'UserStatus'
  */
 export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
@@ -2251,6 +2241,20 @@ export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'UserRole[]'
  */
 export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AgeGroup'
+ */
+export type EnumAgeGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgeGroup'>
+    
+
+
+/**
+ * Reference to a field of type 'AgeGroup[]'
+ */
+export type ListEnumAgeGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgeGroup[]'>
     
 
 

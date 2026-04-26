@@ -1,11 +1,11 @@
 model Genre {
-    id                  String               @id @default(cuid())
-    name                String               @unique
-    movies              Movie[]              @relation("MovieGenres")
-    series              Series[]             @relation("SeriesGenres")
-    movieContributions  MovieContribution[]  @relation("MovieContributionGenres")
-    seriesContributions SeriesContribution[] @relation("SeriesContributionGenres")
-    userPreferences     UserPreference[]     @relation("UserPreferenceGenres")
+  id                  String               @id @default(cuid())
+  name                String               @unique
+  movieContributions  MovieContribution[]  @relation("MovieContributionGenres")
+  movies              Movie[]              @relation("MovieGenres")
+  seriesContributions SeriesContribution[] @relation("SeriesContributionGenres")
+  series              Series[]             @relation("SeriesGenres")
+  userPreferences     UserPreference[]     @relation("UserPreferenceGenres")
 
-    @@map("genre")
+  @@map("genre")
 }

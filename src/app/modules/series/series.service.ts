@@ -77,6 +77,7 @@ export const SeriesService = {
             cast,
             genres,
             platforms,
+            streamingLink,
             priceType,
             ageGroup,
             totalSeasons,
@@ -96,6 +97,7 @@ export const SeriesService = {
                 poster,
                 releaseYear: releaseYear || new Date().getFullYear(),
                 director,
+                streamingLink: streamingLink || "",
                 cast: cast ? JSON.stringify(cast) : "[]",
                 priceType: priceType || "FREE",
                 ageGroup: normalizeAgeGroup(ageGroup),
@@ -234,6 +236,7 @@ export const SeriesService = {
             priceType,
             ageGroup,
             status,
+            streamingLink,
             ...rest
         } = payload;
 

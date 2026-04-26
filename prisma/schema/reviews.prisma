@@ -1,23 +1,23 @@
 model Review {
-    id          String       @id @default(cuid())
-    movieId     String?
-    seriesId    String?
-    userId      String
-    movie       Movie?       @relation(fields: [movieId], references: [id], onDelete: Cascade)
-    series      Series?      @relation(fields: [seriesId], references: [id], onDelete: Cascade)
-    user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-    rating      Int
-    content     String       @db.Text
-    isSpoiler   Boolean      @default(false)
-    tags        String       @db.Text // JSON array string, e.g. ["classic","underrated"]
-    status      ReviewStatus @default(PENDING)
-    comments    Comment[]
-    reviewLikes ReviewLike[]
-    createdAt   DateTime     @default(now())
-    updatedAt   DateTime     @updatedAt
+  id          String       @id @default(cuid())
+  movieId     String?
+  rating      Int
+  content     String
+  tags        String
+  status      ReviewStatus @default(PENDING)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  userId      String
+  isSpoiler   Boolean      @default(false)
+  seriesId    String?
+  comments    Comment[]
+  movie       Movie?       @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  series      Series?      @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviewLikes ReviewLike[]
 
-    @@index([movieId])
-    @@index([seriesId])
-    @@index([userId])
-    @@map("review")
+  @@index([movieId])
+  @@index([seriesId])
+  @@index([userId])
+  @@map("review")
 }

@@ -1,11 +1,11 @@
 model StreamingPlatform {
-    id                  String               @id @default(cuid())
-    name                String               @unique
-    movies              Movie[]              @relation("MoviePlatforms")
-    series              Series[]             @relation("SeriesPlatforms")
-    movieContributions  MovieContribution[]  @relation("MovieContributionPlatforms")
-    seriesContributions SeriesContribution[] @relation("SeriesContributionPlatforms")
-    userPreferences     UserPreference[]     @relation("UserPreferencePlatforms")
+  id                  String               @id @default(cuid())
+  name                String               @unique
+  movieContributions  MovieContribution[]  @relation("MovieContributionPlatforms")
+  movies              Movie[]              @relation("MoviePlatforms")
+  seriesContributions SeriesContribution[] @relation("SeriesContributionPlatforms")
+  series              Series[]             @relation("SeriesPlatforms")
+  userPreferences     UserPreference[]     @relation("UserPreferencePlatforms")
 
-    @@map("streaming_platform")
+  @@map("streaming_platform")
 }

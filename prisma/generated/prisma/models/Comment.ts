@@ -30,9 +30,9 @@ export type CommentMinAggregateOutputType = {
   userId: string | null
   parentId: string | null
   content: string | null
-  isSpoiler: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  isSpoiler: boolean | null
 }
 
 export type CommentMaxAggregateOutputType = {
@@ -41,9 +41,9 @@ export type CommentMaxAggregateOutputType = {
   userId: string | null
   parentId: string | null
   content: string | null
-  isSpoiler: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  isSpoiler: boolean | null
 }
 
 export type CommentCountAggregateOutputType = {
@@ -52,9 +52,9 @@ export type CommentCountAggregateOutputType = {
   userId: number
   parentId: number
   content: number
-  isSpoiler: number
   createdAt: number
   updatedAt: number
+  isSpoiler: number
   _all: number
 }
 
@@ -65,9 +65,9 @@ export type CommentMinAggregateInputType = {
   userId?: true
   parentId?: true
   content?: true
-  isSpoiler?: true
   createdAt?: true
   updatedAt?: true
+  isSpoiler?: true
 }
 
 export type CommentMaxAggregateInputType = {
@@ -76,9 +76,9 @@ export type CommentMaxAggregateInputType = {
   userId?: true
   parentId?: true
   content?: true
-  isSpoiler?: true
   createdAt?: true
   updatedAt?: true
+  isSpoiler?: true
 }
 
 export type CommentCountAggregateInputType = {
@@ -87,9 +87,9 @@ export type CommentCountAggregateInputType = {
   userId?: true
   parentId?: true
   content?: true
-  isSpoiler?: true
   createdAt?: true
   updatedAt?: true
+  isSpoiler?: true
   _all?: true
 }
 
@@ -171,9 +171,9 @@ export type CommentGroupByOutputType = {
   userId: string
   parentId: string | null
   content: string
-  isSpoiler: boolean
   createdAt: Date
   updatedAt: Date
+  isSpoiler: boolean
   _count: CommentCountAggregateOutputType | null
   _min: CommentMinAggregateOutputType | null
   _max: CommentMaxAggregateOutputType | null
@@ -203,13 +203,13 @@ export type CommentWhereInput = {
   userId?: Prisma.StringFilter<"Comment"> | string
   parentId?: Prisma.StringNullableFilter<"Comment"> | string | null
   content?: Prisma.StringFilter<"Comment"> | string
-  isSpoiler?: Prisma.BoolFilter<"Comment"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
-  review?: Prisma.XOR<Prisma.ReviewScalarRelationFilter, Prisma.ReviewWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  isSpoiler?: Prisma.BoolFilter<"Comment"> | boolean
   parent?: Prisma.XOR<Prisma.CommentNullableScalarRelationFilter, Prisma.CommentWhereInput> | null
   replies?: Prisma.CommentListRelationFilter
+  review?: Prisma.XOR<Prisma.ReviewScalarRelationFilter, Prisma.ReviewWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type CommentOrderByWithRelationInput = {
@@ -218,13 +218,13 @@ export type CommentOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
-  isSpoiler?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  review?: Prisma.ReviewOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
+  isSpoiler?: Prisma.SortOrder
   parent?: Prisma.CommentOrderByWithRelationInput
   replies?: Prisma.CommentOrderByRelationAggregateInput
+  review?: Prisma.ReviewOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type CommentWhereUniqueInput = Prisma.AtLeast<{
@@ -236,13 +236,13 @@ export type CommentWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"Comment"> | string
   parentId?: Prisma.StringNullableFilter<"Comment"> | string | null
   content?: Prisma.StringFilter<"Comment"> | string
-  isSpoiler?: Prisma.BoolFilter<"Comment"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
-  review?: Prisma.XOR<Prisma.ReviewScalarRelationFilter, Prisma.ReviewWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  isSpoiler?: Prisma.BoolFilter<"Comment"> | boolean
   parent?: Prisma.XOR<Prisma.CommentNullableScalarRelationFilter, Prisma.CommentWhereInput> | null
   replies?: Prisma.CommentListRelationFilter
+  review?: Prisma.XOR<Prisma.ReviewScalarRelationFilter, Prisma.ReviewWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type CommentOrderByWithAggregationInput = {
@@ -251,9 +251,9 @@ export type CommentOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
-  isSpoiler?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isSpoiler?: Prisma.SortOrder
   _count?: Prisma.CommentCountOrderByAggregateInput
   _max?: Prisma.CommentMaxOrderByAggregateInput
   _min?: Prisma.CommentMinOrderByAggregateInput
@@ -268,21 +268,21 @@ export type CommentScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"Comment"> | string
   parentId?: Prisma.StringNullableWithAggregatesFilter<"Comment"> | string | null
   content?: Prisma.StringWithAggregatesFilter<"Comment"> | string
-  isSpoiler?: Prisma.BoolWithAggregatesFilter<"Comment"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Comment"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Comment"> | Date | string
+  isSpoiler?: Prisma.BoolWithAggregatesFilter<"Comment"> | boolean
 }
 
 export type CommentCreateInput = {
   id?: string
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  review: Prisma.ReviewCreateNestedOneWithoutCommentsInput
-  user: Prisma.UserCreateNestedOneWithoutCommentsInput
+  isSpoiler?: boolean
   parent?: Prisma.CommentCreateNestedOneWithoutRepliesInput
   replies?: Prisma.CommentCreateNestedManyWithoutParentInput
+  review: Prisma.ReviewCreateNestedOneWithoutCommentsInput
+  user: Prisma.UserCreateNestedOneWithoutCommentsInput
 }
 
 export type CommentUncheckedCreateInput = {
@@ -291,22 +291,22 @@ export type CommentUncheckedCreateInput = {
   userId: string
   parentId?: string | null
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
   replies?: Prisma.CommentUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type CommentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.ReviewUpdateOneRequiredWithoutCommentsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   parent?: Prisma.CommentUpdateOneWithoutRepliesNestedInput
   replies?: Prisma.CommentUpdateManyWithoutParentNestedInput
+  review?: Prisma.ReviewUpdateOneRequiredWithoutCommentsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
 }
 
 export type CommentUncheckedUpdateInput = {
@@ -315,9 +315,9 @@ export type CommentUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   replies?: Prisma.CommentUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -327,17 +327,17 @@ export type CommentCreateManyInput = {
   userId: string
   parentId?: string | null
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
 }
 
 export type CommentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CommentUncheckedUpdateManyInput = {
@@ -346,9 +346,9 @@ export type CommentUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CommentListRelationFilter = {
@@ -372,9 +372,9 @@ export type CommentCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  isSpoiler?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isSpoiler?: Prisma.SortOrder
 }
 
 export type CommentMaxOrderByAggregateInput = {
@@ -383,9 +383,9 @@ export type CommentMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  isSpoiler?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isSpoiler?: Prisma.SortOrder
 }
 
 export type CommentMinOrderByAggregateInput = {
@@ -394,9 +394,9 @@ export type CommentMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  isSpoiler?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isSpoiler?: Prisma.SortOrder
 }
 
 export type CommentCreateNestedManyWithoutUserInput = {
@@ -544,12 +544,12 @@ export type CommentUncheckedUpdateManyWithoutReviewNestedInput = {
 export type CommentCreateWithoutUserInput = {
   id?: string
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  review: Prisma.ReviewCreateNestedOneWithoutCommentsInput
+  isSpoiler?: boolean
   parent?: Prisma.CommentCreateNestedOneWithoutRepliesInput
   replies?: Prisma.CommentCreateNestedManyWithoutParentInput
+  review: Prisma.ReviewCreateNestedOneWithoutCommentsInput
 }
 
 export type CommentUncheckedCreateWithoutUserInput = {
@@ -557,9 +557,9 @@ export type CommentUncheckedCreateWithoutUserInput = {
   reviewId: string
   parentId?: string | null
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
   replies?: Prisma.CommentUncheckedCreateNestedManyWithoutParentInput
 }
 
@@ -598,20 +598,20 @@ export type CommentScalarWhereInput = {
   userId?: Prisma.StringFilter<"Comment"> | string
   parentId?: Prisma.StringNullableFilter<"Comment"> | string | null
   content?: Prisma.StringFilter<"Comment"> | string
-  isSpoiler?: Prisma.BoolFilter<"Comment"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
+  isSpoiler?: Prisma.BoolFilter<"Comment"> | boolean
 }
 
 export type CommentCreateWithoutRepliesInput = {
   id?: string
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
+  parent?: Prisma.CommentCreateNestedOneWithoutRepliesInput
   review: Prisma.ReviewCreateNestedOneWithoutCommentsInput
   user: Prisma.UserCreateNestedOneWithoutCommentsInput
-  parent?: Prisma.CommentCreateNestedOneWithoutRepliesInput
 }
 
 export type CommentUncheckedCreateWithoutRepliesInput = {
@@ -620,9 +620,9 @@ export type CommentUncheckedCreateWithoutRepliesInput = {
   userId: string
   parentId?: string | null
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
 }
 
 export type CommentCreateOrConnectWithoutRepliesInput = {
@@ -633,12 +633,12 @@ export type CommentCreateOrConnectWithoutRepliesInput = {
 export type CommentCreateWithoutParentInput = {
   id?: string
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
+  replies?: Prisma.CommentCreateNestedManyWithoutParentInput
   review: Prisma.ReviewCreateNestedOneWithoutCommentsInput
   user: Prisma.UserCreateNestedOneWithoutCommentsInput
-  replies?: Prisma.CommentCreateNestedManyWithoutParentInput
 }
 
 export type CommentUncheckedCreateWithoutParentInput = {
@@ -646,9 +646,9 @@ export type CommentUncheckedCreateWithoutParentInput = {
   reviewId: string
   userId: string
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
   replies?: Prisma.CommentUncheckedCreateNestedManyWithoutParentInput
 }
 
@@ -676,12 +676,12 @@ export type CommentUpdateToOneWithWhereWithoutRepliesInput = {
 export type CommentUpdateWithoutRepliesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parent?: Prisma.CommentUpdateOneWithoutRepliesNestedInput
   review?: Prisma.ReviewUpdateOneRequiredWithoutCommentsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
-  parent?: Prisma.CommentUpdateOneWithoutRepliesNestedInput
 }
 
 export type CommentUncheckedUpdateWithoutRepliesInput = {
@@ -690,9 +690,9 @@ export type CommentUncheckedUpdateWithoutRepliesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CommentUpsertWithWhereUniqueWithoutParentInput = {
@@ -714,12 +714,12 @@ export type CommentUpdateManyWithWhereWithoutParentInput = {
 export type CommentCreateWithoutReviewInput = {
   id?: string
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutCommentsInput
+  isSpoiler?: boolean
   parent?: Prisma.CommentCreateNestedOneWithoutRepliesInput
   replies?: Prisma.CommentCreateNestedManyWithoutParentInput
+  user: Prisma.UserCreateNestedOneWithoutCommentsInput
 }
 
 export type CommentUncheckedCreateWithoutReviewInput = {
@@ -727,9 +727,9 @@ export type CommentUncheckedCreateWithoutReviewInput = {
   userId: string
   parentId?: string | null
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
   replies?: Prisma.CommentUncheckedCreateNestedManyWithoutParentInput
 }
 
@@ -764,20 +764,20 @@ export type CommentCreateManyUserInput = {
   reviewId: string
   parentId?: string | null
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
 }
 
 export type CommentUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.ReviewUpdateOneRequiredWithoutCommentsNestedInput
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   parent?: Prisma.CommentUpdateOneWithoutRepliesNestedInput
   replies?: Prisma.CommentUpdateManyWithoutParentNestedInput
+  review?: Prisma.ReviewUpdateOneRequiredWithoutCommentsNestedInput
 }
 
 export type CommentUncheckedUpdateWithoutUserInput = {
@@ -785,9 +785,9 @@ export type CommentUncheckedUpdateWithoutUserInput = {
   reviewId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   replies?: Prisma.CommentUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -796,9 +796,9 @@ export type CommentUncheckedUpdateManyWithoutUserInput = {
   reviewId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CommentCreateManyParentInput = {
@@ -806,20 +806,20 @@ export type CommentCreateManyParentInput = {
   reviewId: string
   userId: string
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
 }
 
 export type CommentUpdateWithoutParentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  replies?: Prisma.CommentUpdateManyWithoutParentNestedInput
   review?: Prisma.ReviewUpdateOneRequiredWithoutCommentsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
-  replies?: Prisma.CommentUpdateManyWithoutParentNestedInput
 }
 
 export type CommentUncheckedUpdateWithoutParentInput = {
@@ -827,9 +827,9 @@ export type CommentUncheckedUpdateWithoutParentInput = {
   reviewId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   replies?: Prisma.CommentUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -838,9 +838,9 @@ export type CommentUncheckedUpdateManyWithoutParentInput = {
   reviewId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CommentCreateManyReviewInput = {
@@ -848,20 +848,20 @@ export type CommentCreateManyReviewInput = {
   userId: string
   parentId?: string | null
   content: string
-  isSpoiler?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSpoiler?: boolean
 }
 
 export type CommentUpdateWithoutReviewInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   parent?: Prisma.CommentUpdateOneWithoutRepliesNestedInput
   replies?: Prisma.CommentUpdateManyWithoutParentNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
 }
 
 export type CommentUncheckedUpdateWithoutReviewInput = {
@@ -869,9 +869,9 @@ export type CommentUncheckedUpdateWithoutReviewInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   replies?: Prisma.CommentUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -880,9 +880,9 @@ export type CommentUncheckedUpdateManyWithoutReviewInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSpoiler?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -922,13 +922,13 @@ export type CommentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   userId?: boolean
   parentId?: boolean
   content?: boolean
-  isSpoiler?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  isSpoiler?: boolean
   parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
   replies?: boolean | Prisma.Comment$repliesArgs<ExtArgs>
+  review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CommentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
 
@@ -938,12 +938,12 @@ export type CommentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   userId?: boolean
   parentId?: boolean
   content?: boolean
-  isSpoiler?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isSpoiler?: boolean
+  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
   review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
 
 export type CommentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -952,12 +952,12 @@ export type CommentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   userId?: boolean
   parentId?: boolean
   content?: boolean
-  isSpoiler?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isSpoiler?: boolean
+  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
   review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
 
 export type CommentSelectScalar = {
@@ -966,37 +966,37 @@ export type CommentSelectScalar = {
   userId?: boolean
   parentId?: boolean
   content?: boolean
-  isSpoiler?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isSpoiler?: boolean
 }
 
-export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "reviewId" | "userId" | "parentId" | "content" | "isSpoiler" | "createdAt" | "updatedAt", ExtArgs["result"]["comment"]>
+export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "reviewId" | "userId" | "parentId" | "content" | "createdAt" | "updatedAt" | "isSpoiler", ExtArgs["result"]["comment"]>
 export type CommentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
   replies?: boolean | Prisma.Comment$repliesArgs<ExtArgs>
+  review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CommentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CommentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
   review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
 }
 export type CommentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
   review?: boolean | Prisma.ReviewDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  parent?: boolean | Prisma.Comment$parentArgs<ExtArgs>
 }
 
 export type $CommentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Comment"
   objects: {
-    review: Prisma.$ReviewPayload<ExtArgs>
-    user: Prisma.$UserPayload<ExtArgs>
     parent: Prisma.$CommentPayload<ExtArgs> | null
     replies: Prisma.$CommentPayload<ExtArgs>[]
+    review: Prisma.$ReviewPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1004,9 +1004,9 @@ export type $CommentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     userId: string
     parentId: string | null
     content: string
-    isSpoiler: boolean
     createdAt: Date
     updatedAt: Date
+    isSpoiler: boolean
   }, ExtArgs["result"]["comment"]>
   composites: {}
 }
@@ -1401,10 +1401,10 @@ readonly fields: CommentFieldRefs;
  */
 export interface Prisma__CommentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  review<T extends Prisma.ReviewDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewDefaultArgs<ExtArgs>>): Prisma.Prisma__ReviewClient<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   parent<T extends Prisma.Comment$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Comment$parentArgs<ExtArgs>>): Prisma.Prisma__CommentClient<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   replies<T extends Prisma.Comment$repliesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Comment$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  review<T extends Prisma.ReviewDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewDefaultArgs<ExtArgs>>): Prisma.Prisma__ReviewClient<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1439,9 +1439,9 @@ export interface CommentFieldRefs {
   readonly userId: Prisma.FieldRef<"Comment", 'String'>
   readonly parentId: Prisma.FieldRef<"Comment", 'String'>
   readonly content: Prisma.FieldRef<"Comment", 'String'>
-  readonly isSpoiler: Prisma.FieldRef<"Comment", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Comment", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Comment", 'DateTime'>
+  readonly isSpoiler: Prisma.FieldRef<"Comment", 'Boolean'>
 }
     
 

@@ -1,79 +1,77 @@
 model User {
-    id                  String               @id
-    name                String
-    email               String
-    emailVerified       Boolean              @default(false)
-    image               String?
-    ageGroup            AgeGroup?
-    isDeleted           Boolean              @default(false)
-    status              UserStatus           @default(ACTIVE)
-    role                UserRole             @default(USER)
-    createdAt           DateTime             @default(now())
-    updatedAt           DateTime             @updatedAt
-    admin               Admin?
-    sessions            Session[]
-    accounts            Account[]
-    movies              Movie[]
-    series              Series[]
-    reviews             Review[]
-    comments            Comment[]
-    reviewLikes         ReviewLike[]
-    payments            Payment[]
-    subscriptions       Subscription[]
-    watchlists          WatchList[]
-    seriesTrackings     UserSeriesTracking[]
-    movieContributions  MovieContribution[]
-    seriesContributions SeriesContribution[]
-    userPreference      UserPreference?
+  id                  String               @id
+  name                String
+  email               String               @unique
+  emailVerified       Boolean              @default(false)
+  image               String?
+  status              UserStatus           @default(ACTIVE)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  role                UserRole             @default(USER)
+  ageGroup            AgeGroup?
+  isDeleted           Boolean              @default(false)
+  accounts            Account[]
+  admin               Admin?
+  comments            Comment[]
+  movies              Movie[]
+  movieContributions  MovieContribution[]
+  payments            Payment[]
+  reviews             Review[]
+  reviewLikes         ReviewLike[]
+  series              Series[]
+  seriesContributions SeriesContribution[]
+  sessions            Session[]
+  subscriptions       Subscription?
+  userPreference      UserPreference?
+  seriesTrackings     UserSeriesTracking[]
+  watchlists          WatchList[]
 
-    @@unique([email])
-    @@map("user")
+  @@map("user")
 }
 
 model Session {
-    id        String   @id
-    expiresAt DateTime
-    token     String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    ipAddress String?
-    userAgent String?
-    userId    String
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@unique([token])
-    @@index([userId])
-    @@map("session")
+  @@index([userId])
+  @@map("session")
 }
 
 model Account {
-    id                    String    @id
-    accountId             String
-    providerId            String
-    userId                String
-    user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-    accessToken           String?
-    refreshToken          String?
-    idToken               String?
-    accessTokenExpiresAt  DateTime?
-    refreshTokenExpiresAt DateTime?
-    scope                 String?
-    password              String?
-    createdAt             DateTime  @default(now())
-    updatedAt             DateTime  @updatedAt
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@index([userId])
-    @@map("account")
+  @@index([userId])
+  @@map("account")
 }
 
 model Verification {
-    id         String   @id
-    identifier String
-    value      String
-    expiresAt  DateTime
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-    @@index([identifier])
-    @@map("verification")
+  @@index([identifier])
+  @@map("verification")
 }
