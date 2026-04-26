@@ -97,7 +97,7 @@ export const SeriesService = {
                 poster,
                 releaseYear: releaseYear || new Date().getFullYear(),
                 director,
-                streamingLink: streamingLink || "",
+                streamingLink,
                 cast: cast ? JSON.stringify(cast) : "[]",
                 priceType: priceType || "FREE",
                 ageGroup: normalizeAgeGroup(ageGroup),

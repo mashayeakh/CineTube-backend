@@ -399,7 +399,11 @@ export const AuthService = {
                             }
                         },
                         comments: true,
+                        //show the status which is only COMPLETED
                         payments: {
+                            where: {
+                                status: "COMPLETED"
+                            },
                             select: {
                                 id: true,
                                 amount: true,

@@ -98,13 +98,19 @@ export const WatchlistService = {
             where: { userId },
             include: {
                 movie: {
-                    include: {
+                    select: {
+                        id: true,
+                        title: true,
+                        streamingLink: true,
                         genres: true,
                         platforms: true
                     }
                 },
                 series: {
-                    include: {
+                    select: {
+                        id: true,
+                        title: true,
+                        streamingLink: true,
                         genres: true,
                         platforms: true
                     }
@@ -124,7 +130,8 @@ export const WatchlistService = {
             where: {
                 userId,
                 movieId: { not: null }
-            }, include: {
+            },
+            include: {
                 movie: {
                     include: {
                         genres: true,

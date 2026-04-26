@@ -7,13 +7,19 @@ export const UserDashboardWatchlistService = {
             where: { userId },
             include: {
                 movie: {
-                    include: {
+                    select: {
+                        id: true,
+                        title: true,
+                        streamingLink: true,
                         genres: true,
                         platforms: true
                     }
                 },
                 series: {
-                    include: {
+                    select: {
+                        id: true,
+                        title: true,
+                        streamingLink: true,
                         genres: true,
                         platforms: true
                     }

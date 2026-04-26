@@ -69,7 +69,7 @@ export const MoviesContributionService = {
                 poster,
                 releaseYear,
                 director,
-                streamingLink: streamingLink || "",
+                streamingLink,
                 cast: cast ? JSON.stringify(cast) : "[]",
 
                 ageGroup: normalizedAgeGroup,
