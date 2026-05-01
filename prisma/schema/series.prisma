@@ -19,7 +19,7 @@ model Series {
   isFeatured    Boolean              @default(false)
   streamingLink String
   reviews       Review[]
-  user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
   trackings     UserSeriesTracking[]
   watchLists    WatchList[]
   genres        Genre[]              @relation("SeriesGenres")

@@ -12,7 +12,7 @@ model Movie {
   userId        String
   ageGroup      AgeGroup
   streamingLink String
-  user          User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User                @relation(fields: [userId], references: [id], onDelete: Restrict)
   payments      Payment[]
   reviews       Review[]
   watchlists    WatchList[]
