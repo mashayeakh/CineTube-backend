@@ -12,6 +12,9 @@ interface EnvConfig {
     BETTER_AUTH_URL: string,
     ADMIN_EMAIL: string
     ADMIN_PASSWORD: string,
+    SEED_DEMO_USER: boolean,
+    DEMO_USER_EMAIL: string,
+    DEMO_USER_PASSWORD: string,
     ACCESS_TOKEN_SECRET: string,
     REFRESH_TOKEN_SECRET: string,
     ACCESS_TOKEN_EXPIRES_IN: string,
@@ -92,6 +95,16 @@ const loadEnvVariables = (): EnvConfig => {
         }
     }
 
+    const seedDemoUser = process.env.SEED_DEMO_USER?.toLowerCase() === "true";
+
+    if (seedDemoUser) {
+        if (!process.env.DEMO_USER_EMAIL) {
+            throw new Error("Environment variable DEMO_USER_EMAIL is required when SEED_DEMO_USER=true");
+        }
+        if (!process.env.DEMO_USER_PASSWORD) {
+            throw new Error("Environment variable DEMO_USER_PASSWORD is required when SEED_DEMO_USER=true");
+        }
+    }
 
     return {
         NODE_ENV: process.env.NODE_ENV as string,
@@ -101,6 +114,12 @@ const loadEnvVariables = (): EnvConfig => {
         BETTER_AUTH_URL: process.env.BETTER_AUTH_URL as string,
         ADMIN_EMAIL: process.env.ADMIN_EMAIL as string,
         ADMIN_PASSWORD: process.env.ADMIN_PASSWORD as string,
+        SEED_DEMO_USER: seedDemoUser,
+        DEMO_USER_EMAIL: process.env.DEMO_USER_EMAIL ?? "",
+        DEMO_USER_PASSWORD: process.env.DEMO_USER_PASSWORD ?? "",
+        // SEED_DEMO_USER: seedDemoUser,
+        // DEMO_USER_EMAIL: process.env.DEMO_USER_EMAIL ?? "",
+        // DEMO_USER_PASSWORD: process.env.DEMO_USER_PASSWORD ?? "",
         ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET as string,
         REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET as string,
         ACCESS_TOKEN_EXPIRES_IN: process.env.ACCESS_TOKEN_EXPIRES_IN as string,

@@ -51,11 +51,11 @@ export type SeriesContributionMinAggregateOutputType = {
   priceType: $Enums.PriceType | null
   totalSeasons: number | null
   totalEpisodes: number | null
-  streamingLink: string | null
   seriesStatus: $Enums.SeriesStatus | null
   status: $Enums.MovieStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  streamingLink: string | null
 }
 
 export type SeriesContributionMaxAggregateOutputType = {
@@ -71,11 +71,11 @@ export type SeriesContributionMaxAggregateOutputType = {
   priceType: $Enums.PriceType | null
   totalSeasons: number | null
   totalEpisodes: number | null
-  streamingLink: string | null
   seriesStatus: $Enums.SeriesStatus | null
   status: $Enums.MovieStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  streamingLink: string | null
 }
 
 export type SeriesContributionCountAggregateOutputType = {
@@ -91,11 +91,11 @@ export type SeriesContributionCountAggregateOutputType = {
   priceType: number
   totalSeasons: number
   totalEpisodes: number
-  streamingLink: number
   seriesStatus: number
   status: number
   createdAt: number
   updatedAt: number
+  streamingLink: number
   _all: number
 }
 
@@ -125,11 +125,11 @@ export type SeriesContributionMinAggregateInputType = {
   priceType?: true
   totalSeasons?: true
   totalEpisodes?: true
-  streamingLink?: true
   seriesStatus?: true
   status?: true
   createdAt?: true
   updatedAt?: true
+  streamingLink?: true
 }
 
 export type SeriesContributionMaxAggregateInputType = {
@@ -145,11 +145,11 @@ export type SeriesContributionMaxAggregateInputType = {
   priceType?: true
   totalSeasons?: true
   totalEpisodes?: true
-  streamingLink?: true
   seriesStatus?: true
   status?: true
   createdAt?: true
   updatedAt?: true
+  streamingLink?: true
 }
 
 export type SeriesContributionCountAggregateInputType = {
@@ -165,11 +165,11 @@ export type SeriesContributionCountAggregateInputType = {
   priceType?: true
   totalSeasons?: true
   totalEpisodes?: true
-  streamingLink?: true
   seriesStatus?: true
   status?: true
   createdAt?: true
   updatedAt?: true
+  streamingLink?: true
   _all?: true
 }
 
@@ -272,11 +272,11 @@ export type SeriesContributionGroupByOutputType = {
   priceType: $Enums.PriceType
   totalSeasons: number
   totalEpisodes: number | null
-  streamingLink: string
   seriesStatus: $Enums.SeriesStatus
   status: $Enums.MovieStatus
   createdAt: Date
   updatedAt: Date
+  streamingLink: string
   _count: SeriesContributionCountAggregateOutputType | null
   _avg: SeriesContributionAvgAggregateOutputType | null
   _sum: SeriesContributionSumAggregateOutputType | null
@@ -315,11 +315,11 @@ export type SeriesContributionWhereInput = {
   priceType?: Prisma.EnumPriceTypeFilter<"SeriesContribution"> | $Enums.PriceType
   totalSeasons?: Prisma.IntFilter<"SeriesContribution"> | number
   totalEpisodes?: Prisma.IntNullableFilter<"SeriesContribution"> | number | null
-  streamingLink?: Prisma.StringFilter<"SeriesContribution"> | string
   seriesStatus?: Prisma.EnumSeriesStatusFilter<"SeriesContribution"> | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFilter<"SeriesContribution"> | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFilter<"SeriesContribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SeriesContribution"> | Date | string
+  streamingLink?: Prisma.StringFilter<"SeriesContribution"> | string
   contributor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
@@ -338,11 +338,11 @@ export type SeriesContributionOrderByWithRelationInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrderInput | Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
   seriesStatus?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   contributor?: Prisma.UserOrderByWithRelationInput
   genres?: Prisma.GenreOrderByRelationAggregateInput
   platforms?: Prisma.StreamingPlatformOrderByRelationAggregateInput
@@ -364,11 +364,11 @@ export type SeriesContributionWhereUniqueInput = Prisma.AtLeast<{
   priceType?: Prisma.EnumPriceTypeFilter<"SeriesContribution"> | $Enums.PriceType
   totalSeasons?: Prisma.IntFilter<"SeriesContribution"> | number
   totalEpisodes?: Prisma.IntNullableFilter<"SeriesContribution"> | number | null
-  streamingLink?: Prisma.StringFilter<"SeriesContribution"> | string
   seriesStatus?: Prisma.EnumSeriesStatusFilter<"SeriesContribution"> | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFilter<"SeriesContribution"> | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFilter<"SeriesContribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SeriesContribution"> | Date | string
+  streamingLink?: Prisma.StringFilter<"SeriesContribution"> | string
   contributor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
@@ -387,11 +387,11 @@ export type SeriesContributionOrderByWithAggregationInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrderInput | Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
   seriesStatus?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   _count?: Prisma.SeriesContributionCountOrderByAggregateInput
   _avg?: Prisma.SeriesContributionAvgOrderByAggregateInput
   _max?: Prisma.SeriesContributionMaxOrderByAggregateInput
@@ -415,11 +415,11 @@ export type SeriesContributionScalarWhereWithAggregatesInput = {
   priceType?: Prisma.EnumPriceTypeWithAggregatesFilter<"SeriesContribution"> | $Enums.PriceType
   totalSeasons?: Prisma.IntWithAggregatesFilter<"SeriesContribution"> | number
   totalEpisodes?: Prisma.IntNullableWithAggregatesFilter<"SeriesContribution"> | number | null
-  streamingLink?: Prisma.StringWithAggregatesFilter<"SeriesContribution"> | string
   seriesStatus?: Prisma.EnumSeriesStatusWithAggregatesFilter<"SeriesContribution"> | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusWithAggregatesFilter<"SeriesContribution"> | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SeriesContribution"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"SeriesContribution"> | Date | string
+  streamingLink?: Prisma.StringWithAggregatesFilter<"SeriesContribution"> | string
 }
 
 export type SeriesContributionCreateInput = {
@@ -434,11 +434,11 @@ export type SeriesContributionCreateInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   contributor: Prisma.UserCreateNestedOneWithoutSeriesContributionsInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesContributionsInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesContributionsInput
@@ -457,11 +457,11 @@ export type SeriesContributionUncheckedCreateInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesContributionsInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesContributionsInput
 }
@@ -478,11 +478,11 @@ export type SeriesContributionUpdateInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   contributor?: Prisma.UserUpdateOneRequiredWithoutSeriesContributionsNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesContributionsNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesContributionsNestedInput
@@ -501,11 +501,11 @@ export type SeriesContributionUncheckedUpdateInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesContributionsNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesContributionsNestedInput
 }
@@ -523,11 +523,11 @@ export type SeriesContributionCreateManyInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
 }
 
 export type SeriesContributionUpdateManyMutationInput = {
@@ -542,11 +542,11 @@ export type SeriesContributionUpdateManyMutationInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SeriesContributionUncheckedUpdateManyInput = {
@@ -562,11 +562,11 @@ export type SeriesContributionUncheckedUpdateManyInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SeriesContributionListRelationFilter = {
@@ -592,11 +592,11 @@ export type SeriesContributionCountOrderByAggregateInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
   seriesStatus?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
 }
 
 export type SeriesContributionAvgOrderByAggregateInput = {
@@ -618,11 +618,11 @@ export type SeriesContributionMaxOrderByAggregateInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
   seriesStatus?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
 }
 
 export type SeriesContributionMinOrderByAggregateInput = {
@@ -638,11 +638,11 @@ export type SeriesContributionMinOrderByAggregateInput = {
   priceType?: Prisma.SortOrder
   totalSeasons?: Prisma.SortOrder
   totalEpisodes?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
   seriesStatus?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
 }
 
 export type SeriesContributionSumOrderByAggregateInput = {
@@ -781,11 +781,11 @@ export type SeriesContributionCreateWithoutContributorInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesContributionsInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesContributionsInput
 }
@@ -802,11 +802,11 @@ export type SeriesContributionUncheckedCreateWithoutContributorInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesContributionsInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesContributionsInput
 }
@@ -853,11 +853,11 @@ export type SeriesContributionScalarWhereInput = {
   priceType?: Prisma.EnumPriceTypeFilter<"SeriesContribution"> | $Enums.PriceType
   totalSeasons?: Prisma.IntFilter<"SeriesContribution"> | number
   totalEpisodes?: Prisma.IntNullableFilter<"SeriesContribution"> | number | null
-  streamingLink?: Prisma.StringFilter<"SeriesContribution"> | string
   seriesStatus?: Prisma.EnumSeriesStatusFilter<"SeriesContribution"> | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFilter<"SeriesContribution"> | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFilter<"SeriesContribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SeriesContribution"> | Date | string
+  streamingLink?: Prisma.StringFilter<"SeriesContribution"> | string
 }
 
 export type SeriesContributionCreateWithoutGenresInput = {
@@ -872,11 +872,11 @@ export type SeriesContributionCreateWithoutGenresInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   contributor: Prisma.UserCreateNestedOneWithoutSeriesContributionsInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutSeriesContributionsInput
 }
@@ -894,11 +894,11 @@ export type SeriesContributionUncheckedCreateWithoutGenresInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutSeriesContributionsInput
 }
 
@@ -935,11 +935,11 @@ export type SeriesContributionCreateWithoutPlatformsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   contributor: Prisma.UserCreateNestedOneWithoutSeriesContributionsInput
   genres?: Prisma.GenreCreateNestedManyWithoutSeriesContributionsInput
 }
@@ -957,11 +957,11 @@ export type SeriesContributionUncheckedCreateWithoutPlatformsInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutSeriesContributionsInput
 }
 
@@ -998,11 +998,11 @@ export type SeriesContributionCreateManyContributorInput = {
   priceType?: $Enums.PriceType
   totalSeasons: number
   totalEpisodes?: number | null
-  streamingLink: string
   seriesStatus?: $Enums.SeriesStatus
   status?: $Enums.MovieStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  streamingLink: string
 }
 
 export type SeriesContributionUpdateWithoutContributorInput = {
@@ -1017,11 +1017,11 @@ export type SeriesContributionUpdateWithoutContributorInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   genres?: Prisma.GenreUpdateManyWithoutSeriesContributionsNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesContributionsNestedInput
 }
@@ -1038,11 +1038,11 @@ export type SeriesContributionUncheckedUpdateWithoutContributorInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesContributionsNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesContributionsNestedInput
 }
@@ -1059,11 +1059,11 @@ export type SeriesContributionUncheckedUpdateManyWithoutContributorInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SeriesContributionUpdateWithoutGenresInput = {
@@ -1078,11 +1078,11 @@ export type SeriesContributionUpdateWithoutGenresInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   contributor?: Prisma.UserUpdateOneRequiredWithoutSeriesContributionsNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutSeriesContributionsNestedInput
 }
@@ -1100,11 +1100,11 @@ export type SeriesContributionUncheckedUpdateWithoutGenresInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutSeriesContributionsNestedInput
 }
 
@@ -1121,11 +1121,11 @@ export type SeriesContributionUncheckedUpdateManyWithoutGenresInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SeriesContributionUpdateWithoutPlatformsInput = {
@@ -1140,11 +1140,11 @@ export type SeriesContributionUpdateWithoutPlatformsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   contributor?: Prisma.UserUpdateOneRequiredWithoutSeriesContributionsNestedInput
   genres?: Prisma.GenreUpdateManyWithoutSeriesContributionsNestedInput
 }
@@ -1162,11 +1162,11 @@ export type SeriesContributionUncheckedUpdateWithoutPlatformsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   genres?: Prisma.GenreUncheckedUpdateManyWithoutSeriesContributionsNestedInput
 }
 
@@ -1183,11 +1183,11 @@ export type SeriesContributionUncheckedUpdateManyWithoutPlatformsInput = {
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   totalSeasons?: Prisma.IntFieldUpdateOperationsInput | number
   totalEpisodes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   seriesStatus?: Prisma.EnumSeriesStatusFieldUpdateOperationsInput | $Enums.SeriesStatus
   status?: Prisma.EnumMovieStatusFieldUpdateOperationsInput | $Enums.MovieStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1243,11 +1243,11 @@ export type SeriesContributionSelect<ExtArgs extends runtime.Types.Extensions.In
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
-  streamingLink?: boolean
   seriesStatus?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  streamingLink?: boolean
   contributor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   genres?: boolean | Prisma.SeriesContribution$genresArgs<ExtArgs>
   platforms?: boolean | Prisma.SeriesContribution$platformsArgs<ExtArgs>
@@ -1267,11 +1267,11 @@ export type SeriesContributionSelectCreateManyAndReturn<ExtArgs extends runtime.
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
-  streamingLink?: boolean
   seriesStatus?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  streamingLink?: boolean
   contributor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seriesContribution"]>
 
@@ -1288,11 +1288,11 @@ export type SeriesContributionSelectUpdateManyAndReturn<ExtArgs extends runtime.
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
-  streamingLink?: boolean
   seriesStatus?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  streamingLink?: boolean
   contributor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seriesContribution"]>
 
@@ -1309,14 +1309,14 @@ export type SeriesContributionSelectScalar = {
   priceType?: boolean
   totalSeasons?: boolean
   totalEpisodes?: boolean
-  streamingLink?: boolean
   seriesStatus?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  streamingLink?: boolean
 }
 
-export type SeriesContributionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "contributorId" | "title" | "description" | "poster" | "releaseYear" | "director" | "cast" | "ageGroup" | "priceType" | "totalSeasons" | "totalEpisodes" | "streamingLink" | "seriesStatus" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["seriesContribution"]>
+export type SeriesContributionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "contributorId" | "title" | "description" | "poster" | "releaseYear" | "director" | "cast" | "ageGroup" | "priceType" | "totalSeasons" | "totalEpisodes" | "seriesStatus" | "status" | "createdAt" | "updatedAt" | "streamingLink", ExtArgs["result"]["seriesContribution"]>
 export type SeriesContributionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   contributor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   genres?: boolean | Prisma.SeriesContribution$genresArgs<ExtArgs>
@@ -1350,11 +1350,11 @@ export type $SeriesContributionPayload<ExtArgs extends runtime.Types.Extensions.
     priceType: $Enums.PriceType
     totalSeasons: number
     totalEpisodes: number | null
-    streamingLink: string
     seriesStatus: $Enums.SeriesStatus
     status: $Enums.MovieStatus
     createdAt: Date
     updatedAt: Date
+    streamingLink: string
   }, ExtArgs["result"]["seriesContribution"]>
   composites: {}
 }
@@ -1793,11 +1793,11 @@ export interface SeriesContributionFieldRefs {
   readonly priceType: Prisma.FieldRef<"SeriesContribution", 'PriceType'>
   readonly totalSeasons: Prisma.FieldRef<"SeriesContribution", 'Int'>
   readonly totalEpisodes: Prisma.FieldRef<"SeriesContribution", 'Int'>
-  readonly streamingLink: Prisma.FieldRef<"SeriesContribution", 'String'>
   readonly seriesStatus: Prisma.FieldRef<"SeriesContribution", 'SeriesStatus'>
   readonly status: Prisma.FieldRef<"SeriesContribution", 'MovieStatus'>
   readonly createdAt: Prisma.FieldRef<"SeriesContribution", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"SeriesContribution", 'DateTime'>
+  readonly streamingLink: Prisma.FieldRef<"SeriesContribution", 'String'>
 }
     
 

@@ -82,6 +82,14 @@ export const UserRole = {
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
+export const ChatRole = {
+  USER: 'USER',
+  BOT: 'BOT'
+} as const
+
+export type ChatRole = (typeof ChatRole)[keyof typeof ChatRole]
+
+
 export const AgeGroup = {
   AGE_18_PLUS: 'AGE_18_PLUS',
   AGE_13_PLUS: 'AGE_13_PLUS',

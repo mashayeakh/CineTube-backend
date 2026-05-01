@@ -1,0 +1,14 @@
+//chat prisma for chat bot
+
+model ChatMessage {
+    id     String @id @default(uuid())
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
+
+    role      ChatRole
+    message   String
+    createdAt DateTime @default(now())
+
+    @@index([userId])
+    @@map("chat_messages")
+}

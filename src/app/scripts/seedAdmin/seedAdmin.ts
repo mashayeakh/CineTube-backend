@@ -2,6 +2,7 @@ import { UserRole } from "prisma/generated/prisma/enums";
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma"
 import { envVars } from '../../config/env';
+import { error } from "node_modules/better-auth/dist/api/routes/error.mjs";
 
 export const seedAdmin = async () => {
     try {
@@ -73,4 +74,54 @@ export const seedAdmin = async () => {
     } catch (error) {
         console.error("Error ensuring admin:", error);
     }
-} 
+}
+
+export const seedDemoUser = async () => {
+    if (!envVars.SEED_DEMO_USER) {
+        return;
+    }
+
+    try {
+        const demoEmail = envVars.DEMO_USER_EMAIL;
+        let demoUser = await prisma.user.findUnique({
+            where: {
+                email: demoEmail,
+            },
+        });
+
+        if (!demoUser) {
+            const demoCreation = await auth.api.signUpEmail({
+                body: {
+                    email: demoEmail,
+                    password: envVars.DEMO_USER_PASSWORD,
+                    name: "Demo User",
+                    role: UserRole.USER,
+                    rememberMe: false,
+                },
+            });
+
+            demoUser = await prisma.user.findUnique({
+                where: {
+                    id: demoCreation?.user.id as string,
+                },
+            });
+        }
+
+        if (!demoUser) {
+            throw new Error("Failed to resolve demo user during bootstrap");
+        }
+
+        await prisma.user.update({
+            where: {
+                id: demoUser.id,
+            },
+            data: {
+                emailVerified: true,
+            },
+        });
+
+        console.log('Demo user bootstrap completed for:', demoEmail);
+    } catch (error) {
+        console.error('Error ensuring demo user:', error);
+    }
+}

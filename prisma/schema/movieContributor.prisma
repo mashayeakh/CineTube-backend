@@ -1,5 +1,5 @@
 model MovieContribution {
-  id            String   @id @default(cuid())
+  id            String              @id @default(cuid())
   contributorId String
   title         String
   description   String
@@ -8,14 +8,13 @@ model MovieContribution {
   director      String
   cast          String
   ageGroup      AgeGroup
+  status        MovieStatus         @default(PENDING)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
   streamingLink String
-
-  status      MovieStatus         @default(PENDING)
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
-  contributor User                @relation(fields: [contributorId], references: [id], onDelete: Cascade)
-  genres      Genre[]             @relation("MovieContributionGenres")
-  platforms   StreamingPlatform[] @relation("MovieContributionPlatforms")
+  contributor   User                @relation(fields: [contributorId], references: [id], onDelete: Cascade)
+  genres        Genre[]             @relation("MovieContributionGenres")
+  platforms     StreamingPlatform[] @relation("MovieContributionPlatforms")
 
   @@unique([title, contributorId])
   @@index([contributorId])

@@ -56,6 +56,7 @@ export const ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
+  ChatMessage: 'ChatMessage',
   Comment: 'Comment',
   Genre: 'Genre',
   MovieContribution: 'MovieContribution',
@@ -165,6 +166,17 @@ export const VerificationScalarFieldEnum = {
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+export const ChatMessageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  role: 'role',
+  message: 'message',
+  createdAt: 'createdAt'
+} as const
+
+export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
+
+
 export const CommentScalarFieldEnum = {
   id: 'id',
   reviewId: 'reviewId',
@@ -197,10 +209,10 @@ export const MovieContributionScalarFieldEnum = {
   director: 'director',
   cast: 'cast',
   ageGroup: 'ageGroup',
-  streamingLink: 'streamingLink',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  streamingLink: 'streamingLink'
 } as const
 
 export type MovieContributionScalarFieldEnum = (typeof MovieContributionScalarFieldEnum)[keyof typeof MovieContributionScalarFieldEnum]
@@ -214,12 +226,12 @@ export const MovieScalarFieldEnum = {
   releaseYear: 'releaseYear',
   director: 'director',
   cast: 'cast',
-  streamingLink: 'streamingLink',
-  ageGroup: 'ageGroup',
   priceType: 'priceType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  ageGroup: 'ageGroup',
+  streamingLink: 'streamingLink'
 } as const
 
 export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
@@ -278,14 +290,14 @@ export const SeriesScalarFieldEnum = {
   priceType: 'priceType',
   totalSeasons: 'totalSeasons',
   totalEpisodes: 'totalEpisodes',
-  streamingLink: 'streamingLink',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
   featuredAt: 'featuredAt',
   featuredBy: 'featuredBy',
-  isFeatured: 'isFeatured'
+  isFeatured: 'isFeatured',
+  streamingLink: 'streamingLink'
 } as const
 
 export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
@@ -304,11 +316,11 @@ export const SeriesContributionScalarFieldEnum = {
   priceType: 'priceType',
   totalSeasons: 'totalSeasons',
   totalEpisodes: 'totalEpisodes',
-  streamingLink: 'streamingLink',
   seriesStatus: 'seriesStatus',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  streamingLink: 'streamingLink'
 } as const
 
 export type SeriesContributionScalarFieldEnum = (typeof SeriesContributionScalarFieldEnum)[keyof typeof SeriesContributionScalarFieldEnum]

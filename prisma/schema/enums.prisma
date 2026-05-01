@@ -47,6 +47,12 @@ enum UserRole {
   PREMIUM_USER
 }
 
+// For chat messages, we can have roles like USER and BOT to differentiate between user messages and bot responses.q
+enum ChatRole {
+  USER
+  BOT
+}
+
 enum AgeGroup {
   AGE_18_PLUS
   AGE_13_PLUS

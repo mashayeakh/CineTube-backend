@@ -1,25 +1,24 @@
 model SeriesContribution {
-  id            String    @id @default(cuid())
+  id            String              @id @default(cuid())
   contributorId String
-  title         String    @unique
+  title         String              @unique
   description   String
   poster        String
   releaseYear   Int
   director      String
   cast          String
   ageGroup      AgeGroup
-  priceType     PriceType @default(FREE)
+  priceType     PriceType           @default(FREE)
   totalSeasons  Int
   totalEpisodes Int?
+  seriesStatus  SeriesStatus        @default(ONGOING)
+  status        MovieStatus         @default(PENDING)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
   streamingLink String
-
-  seriesStatus SeriesStatus        @default(ONGOING)
-  status       MovieStatus         @default(PENDING)
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-  contributor  User                @relation(fields: [contributorId], references: [id], onDelete: Cascade)
-  genres       Genre[]             @relation("SeriesContributionGenres")
-  platforms    StreamingPlatform[] @relation("SeriesContributionPlatforms")
+  contributor   User                @relation(fields: [contributorId], references: [id], onDelete: Cascade)
+  genres        Genre[]             @relation("SeriesContributionGenres")
+  platforms     StreamingPlatform[] @relation("SeriesContributionPlatforms")
 
   @@index([contributorId])
   @@map("series_contribution")

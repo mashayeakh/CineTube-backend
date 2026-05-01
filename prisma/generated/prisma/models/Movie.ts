@@ -42,12 +42,12 @@ export type MovieMinAggregateOutputType = {
   releaseYear: number | null
   director: string | null
   cast: string | null
-  streamingLink: string | null
-  ageGroup: $Enums.AgeGroup | null
   priceType: $Enums.PriceType | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  ageGroup: $Enums.AgeGroup | null
+  streamingLink: string | null
 }
 
 export type MovieMaxAggregateOutputType = {
@@ -58,12 +58,12 @@ export type MovieMaxAggregateOutputType = {
   releaseYear: number | null
   director: string | null
   cast: string | null
-  streamingLink: string | null
-  ageGroup: $Enums.AgeGroup | null
   priceType: $Enums.PriceType | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  ageGroup: $Enums.AgeGroup | null
+  streamingLink: string | null
 }
 
 export type MovieCountAggregateOutputType = {
@@ -74,12 +74,12 @@ export type MovieCountAggregateOutputType = {
   releaseYear: number
   director: number
   cast: number
-  streamingLink: number
-  ageGroup: number
   priceType: number
   createdAt: number
   updatedAt: number
   userId: number
+  ageGroup: number
+  streamingLink: number
   _all: number
 }
 
@@ -100,12 +100,12 @@ export type MovieMinAggregateInputType = {
   releaseYear?: true
   director?: true
   cast?: true
-  streamingLink?: true
-  ageGroup?: true
   priceType?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  ageGroup?: true
+  streamingLink?: true
 }
 
 export type MovieMaxAggregateInputType = {
@@ -116,12 +116,12 @@ export type MovieMaxAggregateInputType = {
   releaseYear?: true
   director?: true
   cast?: true
-  streamingLink?: true
-  ageGroup?: true
   priceType?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  ageGroup?: true
+  streamingLink?: true
 }
 
 export type MovieCountAggregateInputType = {
@@ -132,12 +132,12 @@ export type MovieCountAggregateInputType = {
   releaseYear?: true
   director?: true
   cast?: true
-  streamingLink?: true
-  ageGroup?: true
   priceType?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  ageGroup?: true
+  streamingLink?: true
   _all?: true
 }
 
@@ -235,12 +235,12 @@ export type MovieGroupByOutputType = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType: $Enums.PriceType
   createdAt: Date
   updatedAt: Date
   userId: string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   _count: MovieCountAggregateOutputType | null
   _avg: MovieAvgAggregateOutputType | null
   _sum: MovieSumAggregateOutputType | null
@@ -274,18 +274,18 @@ export type MovieWhereInput = {
   releaseYear?: Prisma.IntFilter<"Movie"> | number
   director?: Prisma.StringFilter<"Movie"> | string
   cast?: Prisma.StringFilter<"Movie"> | string
-  streamingLink?: Prisma.StringFilter<"Movie"> | string
-  ageGroup?: Prisma.EnumAgeGroupFilter<"Movie"> | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFilter<"Movie"> | $Enums.PriceType
   createdAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   userId?: Prisma.StringFilter<"Movie"> | string
+  ageGroup?: Prisma.EnumAgeGroupFilter<"Movie"> | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFilter<"Movie"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  payments?: Prisma.PaymentListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
+  watchlists?: Prisma.WatchListListRelationFilter
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
-  payments?: Prisma.PaymentListRelationFilter
-  watchlists?: Prisma.WatchListListRelationFilter
 }
 
 export type MovieOrderByWithRelationInput = {
@@ -296,18 +296,18 @@ export type MovieOrderByWithRelationInput = {
   releaseYear?: Prisma.SortOrder
   director?: Prisma.SortOrder
   cast?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
   priceType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  watchlists?: Prisma.WatchListOrderByRelationAggregateInput
   genres?: Prisma.GenreOrderByRelationAggregateInput
   platforms?: Prisma.StreamingPlatformOrderByRelationAggregateInput
-  reviews?: Prisma.ReviewOrderByRelationAggregateInput
-  payments?: Prisma.PaymentOrderByRelationAggregateInput
-  watchlists?: Prisma.WatchListOrderByRelationAggregateInput
 }
 
 export type MovieWhereUniqueInput = Prisma.AtLeast<{
@@ -321,18 +321,18 @@ export type MovieWhereUniqueInput = Prisma.AtLeast<{
   releaseYear?: Prisma.IntFilter<"Movie"> | number
   director?: Prisma.StringFilter<"Movie"> | string
   cast?: Prisma.StringFilter<"Movie"> | string
-  streamingLink?: Prisma.StringFilter<"Movie"> | string
-  ageGroup?: Prisma.EnumAgeGroupFilter<"Movie"> | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFilter<"Movie"> | $Enums.PriceType
   createdAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   userId?: Prisma.StringFilter<"Movie"> | string
+  ageGroup?: Prisma.EnumAgeGroupFilter<"Movie"> | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFilter<"Movie"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  payments?: Prisma.PaymentListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
+  watchlists?: Prisma.WatchListListRelationFilter
   genres?: Prisma.GenreListRelationFilter
   platforms?: Prisma.StreamingPlatformListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
-  payments?: Prisma.PaymentListRelationFilter
-  watchlists?: Prisma.WatchListListRelationFilter
 }, "id" | "title">
 
 export type MovieOrderByWithAggregationInput = {
@@ -343,12 +343,12 @@ export type MovieOrderByWithAggregationInput = {
   releaseYear?: Prisma.SortOrder
   director?: Prisma.SortOrder
   cast?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
   priceType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
   _count?: Prisma.MovieCountOrderByAggregateInput
   _avg?: Prisma.MovieAvgOrderByAggregateInput
   _max?: Prisma.MovieMaxOrderByAggregateInput
@@ -367,12 +367,12 @@ export type MovieScalarWhereWithAggregatesInput = {
   releaseYear?: Prisma.IntWithAggregatesFilter<"Movie"> | number
   director?: Prisma.StringWithAggregatesFilter<"Movie"> | string
   cast?: Prisma.StringWithAggregatesFilter<"Movie"> | string
-  streamingLink?: Prisma.StringWithAggregatesFilter<"Movie"> | string
-  ageGroup?: Prisma.EnumAgeGroupWithAggregatesFilter<"Movie"> | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeWithAggregatesFilter<"Movie"> | $Enums.PriceType
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Movie"> | Date | string
   userId?: Prisma.StringWithAggregatesFilter<"Movie"> | string
+  ageGroup?: Prisma.EnumAgeGroupWithAggregatesFilter<"Movie"> | $Enums.AgeGroup
+  streamingLink?: Prisma.StringWithAggregatesFilter<"Movie"> | string
 }
 
 export type MovieCreateInput = {
@@ -383,17 +383,17 @@ export type MovieCreateInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   user: Prisma.UserCreateNestedOneWithoutMoviesInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
   genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
 }
 
 export type MovieUncheckedCreateInput = {
@@ -404,17 +404,17 @@ export type MovieUncheckedCreateInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
 }
 
 export type MovieUpdateInput = {
@@ -425,17 +425,17 @@ export type MovieUpdateInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutMoviesNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
   genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
 }
 
 export type MovieUncheckedUpdateInput = {
@@ -446,17 +446,17 @@ export type MovieUncheckedUpdateInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
 }
 
 export type MovieCreateManyInput = {
@@ -467,12 +467,12 @@ export type MovieCreateManyInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
 }
 
 export type MovieUpdateManyMutationInput = {
@@ -483,11 +483,11 @@ export type MovieUpdateManyMutationInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MovieUncheckedUpdateManyInput = {
@@ -498,12 +498,12 @@ export type MovieUncheckedUpdateManyInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MovieListRelationFilter = {
@@ -524,12 +524,12 @@ export type MovieCountOrderByAggregateInput = {
   releaseYear?: Prisma.SortOrder
   director?: Prisma.SortOrder
   cast?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
   priceType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
 }
 
 export type MovieAvgOrderByAggregateInput = {
@@ -544,12 +544,12 @@ export type MovieMaxOrderByAggregateInput = {
   releaseYear?: Prisma.SortOrder
   director?: Prisma.SortOrder
   cast?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
   priceType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
 }
 
 export type MovieMinOrderByAggregateInput = {
@@ -560,12 +560,12 @@ export type MovieMinOrderByAggregateInput = {
   releaseYear?: Prisma.SortOrder
   director?: Prisma.SortOrder
   cast?: Prisma.SortOrder
-  streamingLink?: Prisma.SortOrder
-  ageGroup?: Prisma.SortOrder
   priceType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  ageGroup?: Prisma.SortOrder
+  streamingLink?: Prisma.SortOrder
 }
 
 export type MovieSumOrderByAggregateInput = {
@@ -755,16 +755,16 @@ export type MovieCreateWithoutUserInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
+  payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
+  watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
   genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
-  watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
 }
 
 export type MovieUncheckedCreateWithoutUserInput = {
@@ -775,16 +775,16 @@ export type MovieUncheckedCreateWithoutUserInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
+  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
-  watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
 }
 
 export type MovieCreateOrConnectWithoutUserInput = {
@@ -824,12 +824,12 @@ export type MovieScalarWhereInput = {
   releaseYear?: Prisma.IntFilter<"Movie"> | number
   director?: Prisma.StringFilter<"Movie"> | string
   cast?: Prisma.StringFilter<"Movie"> | string
-  streamingLink?: Prisma.StringFilter<"Movie"> | string
-  ageGroup?: Prisma.EnumAgeGroupFilter<"Movie"> | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFilter<"Movie"> | $Enums.PriceType
   createdAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   userId?: Prisma.StringFilter<"Movie"> | string
+  ageGroup?: Prisma.EnumAgeGroupFilter<"Movie"> | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFilter<"Movie"> | string
 }
 
 export type MovieCreateWithoutGenresInput = {
@@ -840,16 +840,16 @@ export type MovieCreateWithoutGenresInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   user: Prisma.UserCreateNestedOneWithoutMoviesInput
-  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
   payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
+  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieUncheckedCreateWithoutGenresInput = {
@@ -860,16 +860,16 @@ export type MovieUncheckedCreateWithoutGenresInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
-  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
+  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieCreateOrConnectWithoutGenresInput = {
@@ -901,16 +901,16 @@ export type MovieCreateWithoutPaymentsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   user: Prisma.UserCreateNestedOneWithoutMoviesInput
-  genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
-  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
+  genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
+  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieUncheckedCreateWithoutPaymentsInput = {
@@ -921,16 +921,16 @@ export type MovieUncheckedCreateWithoutPaymentsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
-  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
-  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
+  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
+  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieCreateOrConnectWithoutPaymentsInput = {
@@ -957,16 +957,16 @@ export type MovieUpdateWithoutPaymentsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutMoviesNestedInput
-  genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
-  platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
+  genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
+  platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieUncheckedUpdateWithoutPaymentsInput = {
@@ -977,16 +977,16 @@ export type MovieUncheckedUpdateWithoutPaymentsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
-  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
+  genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
+  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieCreateWithoutReviewsInput = {
@@ -997,16 +997,16 @@ export type MovieCreateWithoutReviewsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   user: Prisma.UserCreateNestedOneWithoutMoviesInput
-  genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
-  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
   payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
+  genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
+  platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieUncheckedCreateWithoutReviewsInput = {
@@ -1017,16 +1017,16 @@ export type MovieUncheckedCreateWithoutReviewsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
-  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
-  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
+  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
+  platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieCreateOrConnectWithoutReviewsInput = {
@@ -1053,16 +1053,16 @@ export type MovieUpdateWithoutReviewsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutMoviesNestedInput
-  genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
-  platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
+  genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
+  platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieUncheckedUpdateWithoutReviewsInput = {
@@ -1073,16 +1073,16 @@ export type MovieUncheckedUpdateWithoutReviewsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
-  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
+  genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
+  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieCreateWithoutPlatformsInput = {
@@ -1093,16 +1093,16 @@ export type MovieCreateWithoutPlatformsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   user: Prisma.UserCreateNestedOneWithoutMoviesInput
-  genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
   payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListCreateNestedManyWithoutMovieInput
+  genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieUncheckedCreateWithoutPlatformsInput = {
@@ -1113,16 +1113,16 @@ export type MovieUncheckedCreateWithoutPlatformsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
-  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
   watchlists?: Prisma.WatchListUncheckedCreateNestedManyWithoutMovieInput
+  genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
 }
 
 export type MovieCreateOrConnectWithoutPlatformsInput = {
@@ -1154,16 +1154,16 @@ export type MovieCreateWithoutWatchlistsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
   user: Prisma.UserCreateNestedOneWithoutMoviesInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
   genres?: Prisma.GenreCreateNestedManyWithoutMoviesInput
   platforms?: Prisma.StreamingPlatformCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutMovieInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutMovieInput
 }
 
 export type MovieUncheckedCreateWithoutWatchlistsInput = {
@@ -1174,16 +1174,16 @@ export type MovieUncheckedCreateWithoutWatchlistsInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
   genres?: Prisma.GenreUncheckedCreateNestedManyWithoutMoviesInput
   platforms?: Prisma.StreamingPlatformUncheckedCreateNestedManyWithoutMoviesInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutMovieInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutMovieInput
 }
 
 export type MovieCreateOrConnectWithoutWatchlistsInput = {
@@ -1210,16 +1210,16 @@ export type MovieUpdateWithoutWatchlistsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutMoviesNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
   genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
 }
 
 export type MovieUncheckedUpdateWithoutWatchlistsInput = {
@@ -1230,16 +1230,16 @@ export type MovieUncheckedUpdateWithoutWatchlistsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
 }
 
 export type MovieCreateManyUserInput = {
@@ -1250,11 +1250,11 @@ export type MovieCreateManyUserInput = {
   releaseYear: number
   director: string
   cast: string
-  streamingLink: string
-  ageGroup: $Enums.AgeGroup
   priceType?: $Enums.PriceType
   createdAt?: Date | string
   updatedAt?: Date | string
+  ageGroup: $Enums.AgeGroup
+  streamingLink: string
 }
 
 export type MovieUpdateWithoutUserInput = {
@@ -1265,16 +1265,16 @@ export type MovieUpdateWithoutUserInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
+  payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
+  watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
   genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
   platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
-  watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
 }
 
 export type MovieUncheckedUpdateWithoutUserInput = {
@@ -1285,16 +1285,16 @@ export type MovieUncheckedUpdateWithoutUserInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
+  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
   genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
   platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
-  watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
 }
 
 export type MovieUncheckedUpdateManyWithoutUserInput = {
@@ -1305,11 +1305,11 @@ export type MovieUncheckedUpdateManyWithoutUserInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MovieUpdateWithoutGenresInput = {
@@ -1320,16 +1320,16 @@ export type MovieUpdateWithoutGenresInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutMoviesNestedInput
-  platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
+  platforms?: Prisma.StreamingPlatformUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieUncheckedUpdateWithoutGenresInput = {
@@ -1340,16 +1340,16 @@ export type MovieUncheckedUpdateWithoutGenresInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
+  platforms?: Prisma.StreamingPlatformUncheckedUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieUncheckedUpdateManyWithoutGenresInput = {
@@ -1360,12 +1360,12 @@ export type MovieUncheckedUpdateManyWithoutGenresInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MovieUpdateWithoutPlatformsInput = {
@@ -1376,16 +1376,16 @@ export type MovieUpdateWithoutPlatformsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutMoviesNestedInput
-  genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUpdateManyWithoutMovieNestedInput
+  genres?: Prisma.GenreUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieUncheckedUpdateWithoutPlatformsInput = {
@@ -1396,16 +1396,16 @@ export type MovieUncheckedUpdateWithoutPlatformsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutMovieNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutMovieNestedInput
   watchlists?: Prisma.WatchListUncheckedUpdateManyWithoutMovieNestedInput
+  genres?: Prisma.GenreUncheckedUpdateManyWithoutMoviesNestedInput
 }
 
 export type MovieUncheckedUpdateManyWithoutPlatformsInput = {
@@ -1416,12 +1416,12 @@ export type MovieUncheckedUpdateManyWithoutPlatformsInput = {
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   director?: Prisma.StringFieldUpdateOperationsInput | string
   cast?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
-  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
   priceType?: Prisma.EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  ageGroup?: Prisma.EnumAgeGroupFieldUpdateOperationsInput | $Enums.AgeGroup
+  streamingLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1430,19 +1430,19 @@ export type MovieUncheckedUpdateManyWithoutPlatformsInput = {
  */
 
 export type MovieCountOutputType = {
+  payments: number
+  reviews: number
+  watchlists: number
   genres: number
   platforms: number
-  reviews: number
-  payments: number
-  watchlists: number
 }
 
 export type MovieCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  payments?: boolean | MovieCountOutputTypeCountPaymentsArgs
+  reviews?: boolean | MovieCountOutputTypeCountReviewsArgs
+  watchlists?: boolean | MovieCountOutputTypeCountWatchlistsArgs
   genres?: boolean | MovieCountOutputTypeCountGenresArgs
   platforms?: boolean | MovieCountOutputTypeCountPlatformsArgs
-  reviews?: boolean | MovieCountOutputTypeCountReviewsArgs
-  payments?: boolean | MovieCountOutputTypeCountPaymentsArgs
-  watchlists?: boolean | MovieCountOutputTypeCountWatchlistsArgs
 }
 
 /**
@@ -1453,6 +1453,27 @@ export type MovieCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the MovieCountOutputType
    */
   select?: Prisma.MovieCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * MovieCountOutputType without action
+ */
+export type MovieCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * MovieCountOutputType without action
+ */
+export type MovieCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
+/**
+ * MovieCountOutputType without action
+ */
+export type MovieCountOutputTypeCountWatchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WatchListWhereInput
 }
 
 /**
@@ -1469,27 +1490,6 @@ export type MovieCountOutputTypeCountPlatformsArgs<ExtArgs extends runtime.Types
   where?: Prisma.StreamingPlatformWhereInput
 }
 
-/**
- * MovieCountOutputType without action
- */
-export type MovieCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReviewWhereInput
-}
-
-/**
- * MovieCountOutputType without action
- */
-export type MovieCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentWhereInput
-}
-
-/**
- * MovieCountOutputType without action
- */
-export type MovieCountOutputTypeCountWatchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WatchListWhereInput
-}
-
 
 export type MovieSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1499,18 +1499,18 @@ export type MovieSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   releaseYear?: boolean
   director?: boolean
   cast?: boolean
-  streamingLink?: boolean
-  ageGroup?: boolean
   priceType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  ageGroup?: boolean
+  streamingLink?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  payments?: boolean | Prisma.Movie$paymentsArgs<ExtArgs>
+  reviews?: boolean | Prisma.Movie$reviewsArgs<ExtArgs>
+  watchlists?: boolean | Prisma.Movie$watchlistsArgs<ExtArgs>
   genres?: boolean | Prisma.Movie$genresArgs<ExtArgs>
   platforms?: boolean | Prisma.Movie$platformsArgs<ExtArgs>
-  reviews?: boolean | Prisma.Movie$reviewsArgs<ExtArgs>
-  payments?: boolean | Prisma.Movie$paymentsArgs<ExtArgs>
-  watchlists?: boolean | Prisma.Movie$watchlistsArgs<ExtArgs>
   _count?: boolean | Prisma.MovieCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movie"]>
 
@@ -1522,12 +1522,12 @@ export type MovieSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   releaseYear?: boolean
   director?: boolean
   cast?: boolean
-  streamingLink?: boolean
-  ageGroup?: boolean
   priceType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  ageGroup?: boolean
+  streamingLink?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movie"]>
 
@@ -1539,12 +1539,12 @@ export type MovieSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   releaseYear?: boolean
   director?: boolean
   cast?: boolean
-  streamingLink?: boolean
-  ageGroup?: boolean
   priceType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  ageGroup?: boolean
+  streamingLink?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movie"]>
 
@@ -1556,22 +1556,22 @@ export type MovieSelectScalar = {
   releaseYear?: boolean
   director?: boolean
   cast?: boolean
-  streamingLink?: boolean
-  ageGroup?: boolean
   priceType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  ageGroup?: boolean
+  streamingLink?: boolean
 }
 
-export type MovieOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "poster" | "releaseYear" | "director" | "cast" | "streamingLink" | "ageGroup" | "priceType" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["movie"]>
+export type MovieOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "poster" | "releaseYear" | "director" | "cast" | "priceType" | "createdAt" | "updatedAt" | "userId" | "ageGroup" | "streamingLink", ExtArgs["result"]["movie"]>
 export type MovieInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  payments?: boolean | Prisma.Movie$paymentsArgs<ExtArgs>
+  reviews?: boolean | Prisma.Movie$reviewsArgs<ExtArgs>
+  watchlists?: boolean | Prisma.Movie$watchlistsArgs<ExtArgs>
   genres?: boolean | Prisma.Movie$genresArgs<ExtArgs>
   platforms?: boolean | Prisma.Movie$platformsArgs<ExtArgs>
-  reviews?: boolean | Prisma.Movie$reviewsArgs<ExtArgs>
-  payments?: boolean | Prisma.Movie$paymentsArgs<ExtArgs>
-  watchlists?: boolean | Prisma.Movie$watchlistsArgs<ExtArgs>
   _count?: boolean | Prisma.MovieCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MovieIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1585,11 +1585,11 @@ export type $MoviePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Movie"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
+    watchlists: Prisma.$WatchListPayload<ExtArgs>[]
     genres: Prisma.$GenrePayload<ExtArgs>[]
     platforms: Prisma.$StreamingPlatformPayload<ExtArgs>[]
-    reviews: Prisma.$ReviewPayload<ExtArgs>[]
-    payments: Prisma.$PaymentPayload<ExtArgs>[]
-    watchlists: Prisma.$WatchListPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1599,12 +1599,12 @@ export type $MoviePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     releaseYear: number
     director: string
     cast: string
-    streamingLink: string
-    ageGroup: $Enums.AgeGroup
     priceType: $Enums.PriceType
     createdAt: Date
     updatedAt: Date
     userId: string
+    ageGroup: $Enums.AgeGroup
+    streamingLink: string
   }, ExtArgs["result"]["movie"]>
   composites: {}
 }
@@ -2000,11 +2000,11 @@ readonly fields: MovieFieldRefs;
 export interface Prisma__MovieClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  payments<T extends Prisma.Movie$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.Movie$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  watchlists<T extends Prisma.Movie$watchlistsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$watchlistsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WatchListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   genres<T extends Prisma.Movie$genresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$genresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GenrePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   platforms<T extends Prisma.Movie$platformsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$platformsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StreamingPlatformPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviews<T extends Prisma.Movie$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  payments<T extends Prisma.Movie$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  watchlists<T extends Prisma.Movie$watchlistsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movie$watchlistsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WatchListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2041,12 +2041,12 @@ export interface MovieFieldRefs {
   readonly releaseYear: Prisma.FieldRef<"Movie", 'Int'>
   readonly director: Prisma.FieldRef<"Movie", 'String'>
   readonly cast: Prisma.FieldRef<"Movie", 'String'>
-  readonly streamingLink: Prisma.FieldRef<"Movie", 'String'>
-  readonly ageGroup: Prisma.FieldRef<"Movie", 'AgeGroup'>
   readonly priceType: Prisma.FieldRef<"Movie", 'PriceType'>
   readonly createdAt: Prisma.FieldRef<"Movie", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Movie", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Movie", 'String'>
+  readonly ageGroup: Prisma.FieldRef<"Movie", 'AgeGroup'>
+  readonly streamingLink: Prisma.FieldRef<"Movie", 'String'>
 }
     
 
@@ -2448,6 +2448,78 @@ export type MovieDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Movie.payments
+ */
+export type Movie$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * Movie.reviews
+ */
+export type Movie$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
+ * Movie.watchlists
+ */
+export type Movie$watchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WatchList
+   */
+  select?: Prisma.WatchListSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WatchList
+   */
+  omit?: Prisma.WatchListOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WatchListInclude<ExtArgs> | null
+  where?: Prisma.WatchListWhereInput
+  orderBy?: Prisma.WatchListOrderByWithRelationInput | Prisma.WatchListOrderByWithRelationInput[]
+  cursor?: Prisma.WatchListWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WatchListScalarFieldEnum | Prisma.WatchListScalarFieldEnum[]
+}
+
+/**
  * Movie.genres
  */
 export type Movie$genresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2493,78 +2565,6 @@ export type Movie$platformsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.StreamingPlatformScalarFieldEnum | Prisma.StreamingPlatformScalarFieldEnum[]
-}
-
-/**
- * Movie.reviews
- */
-export type Movie$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Review
-   */
-  select?: Prisma.ReviewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Review
-   */
-  omit?: Prisma.ReviewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReviewInclude<ExtArgs> | null
-  where?: Prisma.ReviewWhereInput
-  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
-}
-
-/**
- * Movie.payments
- */
-export type Movie$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Payment
-   */
-  select?: Prisma.PaymentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Payment
-   */
-  omit?: Prisma.PaymentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentInclude<ExtArgs> | null
-  where?: Prisma.PaymentWhereInput
-  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
-}
-
-/**
- * Movie.watchlists
- */
-export type Movie$watchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the WatchList
-   */
-  select?: Prisma.WatchListSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the WatchList
-   */
-  omit?: Prisma.WatchListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WatchListInclude<ExtArgs> | null
-  where?: Prisma.WatchListWhereInput
-  orderBy?: Prisma.WatchListOrderByWithRelationInput | Prisma.WatchListOrderByWithRelationInput[]
-  cursor?: Prisma.WatchListWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WatchListScalarFieldEnum | Prisma.WatchListScalarFieldEnum[]
 }
 
 /**

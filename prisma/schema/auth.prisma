@@ -25,6 +25,7 @@ model User {
   userPreference      UserPreference?
   seriesTrackings     UserSeriesTracking[]
   watchlists          WatchList[]
+  chatMessages        ChatMessage[]
 
   @@map("user")
 }

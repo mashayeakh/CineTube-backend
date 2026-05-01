@@ -389,6 +389,7 @@ export const ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
+  ChatMessage: 'ChatMessage',
   Comment: 'Comment',
   Genre: 'Genre',
   MovieContribution: 'MovieContribution',
@@ -418,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "user" | "session" | "account" | "verification" | "comment" | "genre" | "movieContribution" | "movie" | "payment" | "reviewLike" | "review" | "series" | "seriesContribution" | "userSeriesTracking" | "streamingPlatform" | "subscription" | "userPreference" | "watchList"
+    modelProps: "admin" | "user" | "session" | "account" | "verification" | "chatMessage" | "comment" | "genre" | "movieContribution" | "movie" | "payment" | "reviewLike" | "review" | "series" | "seriesContribution" | "userSeriesTracking" | "streamingPlatform" | "subscription" | "userPreference" | "watchList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -789,6 +790,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.VerificationCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.VerificationCountAggregateOutputType> | number
+        }
+      }
+    }
+    ChatMessage: {
+      payload: Prisma.$ChatMessagePayload<ExtArgs>
+      fields: Prisma.ChatMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChatMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChatMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.ChatMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChatMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+        }
+        findMany: {
+          args: Prisma.ChatMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>[]
+        }
+        create: {
+          args: Prisma.ChatMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+        }
+        createMany: {
+          args: Prisma.ChatMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChatMessageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>[]
+        }
+        delete: {
+          args: Prisma.ChatMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+        }
+        update: {
+          args: Prisma.ChatMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.ChatMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChatMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChatMessageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>[]
+        }
+        upsert: {
+          args: Prisma.ChatMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.ChatMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChatMessage>
+        }
+        groupBy: {
+          args: Prisma.ChatMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChatMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatMessageCountAggregateOutputType> | number
         }
       }
     }
@@ -1944,6 +2019,17 @@ export const VerificationScalarFieldEnum = {
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+export const ChatMessageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  role: 'role',
+  message: 'message',
+  createdAt: 'createdAt'
+} as const
+
+export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
+
+
 export const CommentScalarFieldEnum = {
   id: 'id',
   reviewId: 'reviewId',
@@ -1976,10 +2062,10 @@ export const MovieContributionScalarFieldEnum = {
   director: 'director',
   cast: 'cast',
   ageGroup: 'ageGroup',
-  streamingLink: 'streamingLink',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  streamingLink: 'streamingLink'
 } as const
 
 export type MovieContributionScalarFieldEnum = (typeof MovieContributionScalarFieldEnum)[keyof typeof MovieContributionScalarFieldEnum]
@@ -1993,12 +2079,12 @@ export const MovieScalarFieldEnum = {
   releaseYear: 'releaseYear',
   director: 'director',
   cast: 'cast',
-  streamingLink: 'streamingLink',
-  ageGroup: 'ageGroup',
   priceType: 'priceType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  ageGroup: 'ageGroup',
+  streamingLink: 'streamingLink'
 } as const
 
 export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
@@ -2057,14 +2143,14 @@ export const SeriesScalarFieldEnum = {
   priceType: 'priceType',
   totalSeasons: 'totalSeasons',
   totalEpisodes: 'totalEpisodes',
-  streamingLink: 'streamingLink',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
   featuredAt: 'featuredAt',
   featuredBy: 'featuredBy',
-  isFeatured: 'isFeatured'
+  isFeatured: 'isFeatured',
+  streamingLink: 'streamingLink'
 } as const
 
 export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
@@ -2083,11 +2169,11 @@ export const SeriesContributionScalarFieldEnum = {
   priceType: 'priceType',
   totalSeasons: 'totalSeasons',
   totalEpisodes: 'totalEpisodes',
-  streamingLink: 'streamingLink',
   seriesStatus: 'seriesStatus',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  streamingLink: 'streamingLink'
 } as const
 
 export type SeriesContributionScalarFieldEnum = (typeof SeriesContributionScalarFieldEnum)[keyof typeof SeriesContributionScalarFieldEnum]
@@ -2255,6 +2341,20 @@ export type EnumAgeGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'AgeGroup[]'
  */
 export type ListEnumAgeGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgeGroup[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ChatRole'
+ */
+export type EnumChatRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChatRole'>
+    
+
+
+/**
+ * Reference to a field of type 'ChatRole[]'
+ */
+export type ListEnumChatRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChatRole[]'>
     
 
 
@@ -2511,6 +2611,7 @@ export type GlobalOmitConfig = {
   session?: Prisma.SessionOmit
   account?: Prisma.AccountOmit
   verification?: Prisma.VerificationOmit
+  chatMessage?: Prisma.ChatMessageOmit
   comment?: Prisma.CommentOmit
   genre?: Prisma.GenreOmit
   movieContribution?: Prisma.MovieContributionOmit
