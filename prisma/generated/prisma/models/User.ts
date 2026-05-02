@@ -554,6 +554,11 @@ export type UserMinOrderByAggregateInput = {
   isDeleted?: Prisma.SortOrder
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type UserCreateNestedOneWithoutAdminInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAdminInput, Prisma.UserUncheckedCreateWithoutAdminInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAdminInput
@@ -614,10 +619,12 @@ export type UserCreateNestedOneWithoutChatMessagesInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutChatMessagesNestedInput = {
+export type UserUpdateOneWithoutChatMessagesNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutChatMessagesInput, Prisma.UserUncheckedCreateWithoutChatMessagesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatMessagesInput
   upsert?: Prisma.UserUpsertWithoutChatMessagesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutChatMessagesInput, Prisma.UserUpdateWithoutChatMessagesInput>, Prisma.UserUncheckedUpdateWithoutChatMessagesInput>
 }

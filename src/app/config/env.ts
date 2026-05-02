@@ -30,6 +30,8 @@ interface EnvConfig {
         SMTP_FROM: string,
     },
 
+    GEMINI_API_KEY: string,
+
     STRIPE: {
         STRIPE_SECRET_KEY: string,
         STRIPE_WEBHOOK_SECRET: string,
@@ -69,7 +71,8 @@ const loadEnvVariables = (): EnvConfig => {
         "STRIPE_WEBHOOK_SECRET",
         "CLOUDINARY_CLOUD_NAME",
         "CLOUDINARY_API_KEY",
-        "CLOUDINARY_API_SECRET"
+        "CLOUDINARY_API_SECRET",
+        "GEMINI_API_KEY"
     ]
 
     // check for validation, if something is missing, throw new err
@@ -127,6 +130,7 @@ const loadEnvVariables = (): EnvConfig => {
         BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN: process.env.BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN as string,
         BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE: process.env.BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE as string,
         FRONTEND_URL: process.env.FRONTEND_URL as string,
+        GEMINI_API_KEY: process.env.GEMINI_API_KEY as string,
         EMAIL_SENDER: {
             SMTP_USER: process.env.EMAIL_SENDER_SMTP_USER as string,
             SMTP_PASS: process.env.EMAIL_SENDER_SMTP_PASS as string,
@@ -143,7 +147,9 @@ const loadEnvVariables = (): EnvConfig => {
             CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
             API_KEY: process.env.CLOUDINARY_API_KEY as string,
             API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
-        }
+        },
+
+
 
     }
 }

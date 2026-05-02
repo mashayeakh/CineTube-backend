@@ -45,12 +45,14 @@ enum UserRole {
   USER
   ADMIN
   PREMIUM_USER
+  GUEST
 }
 
 // For chat messages, we can have roles like USER and BOT to differentiate between user messages and bot responses.q
 enum ChatRole {
   USER
   BOT
+  GUEST
 }
 
 enum AgeGroup {

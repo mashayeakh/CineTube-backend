@@ -76,7 +76,8 @@ export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof Subscr
 export const UserRole = {
   USER: 'USER',
   ADMIN: 'ADMIN',
-  PREMIUM_USER: 'PREMIUM_USER'
+  PREMIUM_USER: 'PREMIUM_USER',
+  GUEST: 'GUEST'
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
@@ -84,7 +85,8 @@ export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 export const ChatRole = {
   USER: 'USER',
-  BOT: 'BOT'
+  BOT: 'BOT',
+  GUEST: 'GUEST'
 } as const
 
 export type ChatRole = (typeof ChatRole)[keyof typeof ChatRole]

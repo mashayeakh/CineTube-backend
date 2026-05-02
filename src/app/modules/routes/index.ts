@@ -20,6 +20,7 @@ import { WatchlistRouter } from "../watchlist/watchlist.route";
 import { UserPreferenceRouter } from "../userPreference/userPreference.route";
 import { LeaderboardRouter } from "../ledearboard/ledearboard.route";
 import { ReviewLikeRouter } from "../reviewLike/reviewLike.route";
+import { BotMessageRouter } from "../botMessage/botMessage.route";
 
 const router = express.Router();
 
@@ -152,6 +153,12 @@ router.use(
     LeaderboardRouter
 )
 
+
+//chat bot
+router.use(
+    "/bot-message",
+    BotMessageRouter
+)
 
 
 export default router;

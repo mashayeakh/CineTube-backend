@@ -1,12 +1,13 @@
-//chat prisma for chat bot
-
 model ChatMessage {
-    id     String @id @default(uuid())
-    userId String
-    user   User   @relation(fields: [userId], references: [id])
+    id String @id @default(uuid())
 
-    role      ChatRole
-    message   String
+    userId String?
+    user   User?   @relation(fields: [userId], references: [id])
+
+    role    ChatRole
+    message String
+    result  String? // AI response stored here
+
     createdAt DateTime @default(now())
 
     @@index([userId])
