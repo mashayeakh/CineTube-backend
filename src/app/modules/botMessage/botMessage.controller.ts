@@ -8,49 +8,49 @@ import { ChatRole } from "prisma/generated/prisma/enums";
 
 export const BotMessageController = {
     sendMessage: catchAsyc(async (req: Request, res: Response) => {
-        try {
-            const { message } = req.body;
+        const { message } = req.body;
+        const userId = req.user?.userId || null;
 
-            // optional: if you have auth middleware
-            const userId = req.user?.userId || null;
-
-            // 1. Validate input
-            if (!message) {
-                return res.status(400).json({
-                    success: false,
-                    message: "Message is required",
-                });
-            }
-
-            // 2. Save USER message
-            await BotMessageService.saveUserMessage(message, userId as string);
-
-            // 3. Get AI response
-            const aiReply = await BotMessageService.genAiBotResponse(message);
-
-            // 4. Save BOT response
-            await prisma.chatMessage.create({
-                data: {
-                    message: aiReply,
-                    role: ChatRole.BOT,
-                    userId: userId || null,
-                },
-            });
-
-            // 5. Send response to client
-            sendResponse(res, {
-                httpStatusCode: status.OK,
-                success: true,
-                message: "Message sent successfully",
-                result: aiReply,
-            });
-        } catch (error) {
-            console.error("Chat Controller Error:", error);
-
-            return res.status(500).json({
+        if (!message) {
+            return res.status(400).json({
                 success: false,
-                message: "Something went wrong",
+                message: "Message is required",
             });
         }
+
+        // 1. Get AI response first
+        const aiReply = await BotMessageService.genAiBotResponse(message);
+
+        // 2. Save everything in ONE row
+        const chat = await prisma.chatMessage.create({
+            data: {
+                userId,
+                role: ChatRole.GUEST,
+                message,
+                result: aiReply,
+            },
+        });
+
+        // 3. Return response
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Chat saved successfully",
+            result: chat,
+        });
+    }),
+
+    //! grabbing history
+    getHistory: catchAsyc(async (req, res) => {
+        const userId = req.user?.userId || null;
+
+        const result = await BotMessageService.getChatHistory(userId as string);
+
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Chat history fetched successfully",
+            result,
+        });
     }),
 };

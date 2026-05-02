@@ -9,6 +9,12 @@ router.post(
     BotMessageController.sendMessage
 );
 
+//!history
+router.get(
+    "/history",
+    BotMessageController.getHistory
+);
+
 // router.post("/chat", async (req, res) => {
 //     res.json({ message: "Chat route working" });
 // });

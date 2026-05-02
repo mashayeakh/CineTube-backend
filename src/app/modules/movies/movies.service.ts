@@ -121,9 +121,20 @@ export const MoviesService = {
 
         // return { ...result, data: dataWithParsed };
 
-        const m = await prisma.movie.findMany()
+        const m = await prisma.movie.findMany({
+            include: {
+                user: true,
+                genres: true,
+                platforms: true,
+            }
+        })
         const contribute = await prisma.movieContribution.findMany({
             where: { status: "APPROVED" },
+            include: {
+                contributor: true,
+                genres: true,
+                platforms: true
+            }
         })
 
         const merged = [
