@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from "express";
 import { app } from "./app";
 import dotenv from 'dotenv'
 import { envVars } from "./app/config/env";
-import { seedAdmin, seedDemoUser } from "./app/scripts/seedAdmin/seedAdmin";
+import { seedAdmin } from "./app/scripts/seedAdmin/seedAdmin";
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ const bootstrap = async () => {
     try {
         // seeding admin and optional demo user
         await seedAdmin();
-        await seedDemoUser();
+        // await seedDemoUser();
         app.listen(envVars.PORT, () => {
             console.log(`Server is running on http://localhost:${envVars.PORT}`);
         });
@@ -23,12 +23,14 @@ const bootstrap = async () => {
 }
 
 // Run listen only in non-serverless environments
-if (process.env.VERCEL !== '1') {
-    bootstrap();
-} else {
-    // On Vercel: seed admin and optional demo user on cold start without listen()
-    Promise.all([seedAdmin(), seedDemoUser()]).catch(console.error);
-}
+// if (process.env.VERCEL !== '1') {
+//     bootstrap();
+// } else {
+//     // On Vercel: seed admin and optional demo user on cold start without listen()
+//     Promise.all([seedAdmin(), seedDemoUser()]).catch(console.error);
+// }
+
+bootstrap();
 
 // Required export for Vercel serverless
 export default app;
