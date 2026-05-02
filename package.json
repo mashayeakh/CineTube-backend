@@ -13,7 +13,7 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "start": "node dist/src/server.js",
     "build": "prisma generate && tsc && node src/app/scripts/fix-imports.js && node src/app/scripts/fix-prisma-imports.js",
