@@ -42,7 +42,10 @@ interface EnvConfig {
         CLOUD_NAME: string,
         API_KEY: string,
         API_SECRET: string,
-    }
+    },
+
+    RESEND_API_KEY: string,
+    RESEND_FROM_EMAIL: string,
 }
 
 //load env
@@ -73,7 +76,9 @@ const loadEnvVariables = (): EnvConfig => {
         "CLOUDINARY_CLOUD_NAME",
         "CLOUDINARY_API_KEY",
         "CLOUDINARY_API_SECRET",
-        "GEMINI_API_KEY"
+        "GEMINI_API_KEY",
+        "RESEND_API_KEY",
+        "RESEND_FROM_EMAIL"
     ]
 
     // check for validation, if something is missing, throw new err
@@ -158,6 +163,8 @@ const loadEnvVariables = (): EnvConfig => {
             API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
         },
 
+        RESEND_API_KEY: process.env.RESEND_API_KEY as string,
+        RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL as string,
 
 
     }
