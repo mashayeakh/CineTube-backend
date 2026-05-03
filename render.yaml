@@ -3,5 +3,5 @@ services:
     name: cinetube-server
     env: node
     branch: main
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --omit=dev=false && npm run build
     startCommand: npm start
