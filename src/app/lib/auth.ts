@@ -18,11 +18,9 @@ export const auth = betterAuth({
     }),
 
     trustedOrigins: [
-        // process.env.BETTER_AUTH_URL || "http://localhost:5000"
-        // envVars.FRONTEND_URL ||
-        // `http://localhost:${envVars.PORT}`,
-        // envVars.FRONTEND_URL
-        envVars.FRONTEND_URL
+        envVars.FRONTEND_URL,
+        envVars.BETTER_AUTH_URL,
+        ...(process.env.NODE_ENV !== "production" ? [`http://localhost:${envVars.PORT}`] : []),
     ],
     emailAndPassword: {
         enabled: true,
@@ -33,22 +31,20 @@ export const auth = betterAuth({
         useSecureCookies: process.env.NODE_ENV === "production",
         cookies: {
             sessionToken: {
-                name: "session_token", // force the cookie name to be "session_token"
+                name: "session_token",
                 attributes: {
                     sameSite: "none",
-                    secure: true,
+                    secure: process.env.NODE_ENV === "production",
                     httpOnly: true,
-                    // path: "/"
                     partitioned: true,
                 }
             },
             state: {
-                name: "session_token", // force the cookie name to be "session_token"
+                name: "auth_state",
                 attributes: {
                     sameSite: "none",
-                    secure: true,
+                    secure: process.env.NODE_ENV === "production",
                     httpOnly: true,
-                    // path: "/",
                     partitioned: true,
                 }
             },
@@ -112,7 +108,7 @@ export const auth = betterAuth({
                     }
 
                     if (user && !user.emailVerified) {
-                        //now send the eamil with otp
+                        // send email with otp
                         await sendEmail({
                             to: email,
                             subject: "Your OTP for email verification",
@@ -122,7 +118,13 @@ export const auth = betterAuth({
                                 otp: otp,
                             }
                         }).catch((error) => {
-                            console.error("Failed to send verification OTP", error?.message ?? error);
+                            console.error("Failed to send verification OTP", {
+                                message: error?.message ?? error,
+                                stack: error?.stack ?? null,
+                                code: error?.code ?? null,
+                                response: error?.response ?? null,
+                            });
+                            throw error;
                         });
                     }
                 }
@@ -144,7 +146,13 @@ export const auth = betterAuth({
                                 otp: otp,
                             }
                         }).catch((error) => {
-                            console.error("Failed to send password reset OTP", error?.message ?? error);
+                            console.error("Failed to send password reset OTP", {
+                                message: error?.message ?? error,
+                                stack: error?.stack ?? null,
+                                code: error?.code ?? null,
+                                response: error?.response ?? null,
+                            });
+                            throw error;
                         });
                     }
                 }

@@ -1,10 +1,10 @@
 import nodemailer from 'nodemailer';
 import { envVars } from '../config/env';
+import fs from 'node:fs';
 import path from 'node:path';
 import ejs from 'ejs'
 import { AppError } from '../errorHelpers/AppError';
 import status from 'http-status';
-import { fileURLToPath } from 'node:url';
 
 //transporter 
 const transporter = nodemailer.createTransport({
@@ -42,14 +42,15 @@ export const sendEmail = async ({
     attachments
 }: sendEmailOptions) => {
     try {
-        //set the template path - use process.cwd() for reliable path resolution
-        const templatePath = path.resolve(
-            process.cwd(),
-            "src/app/templates",
-            `${templateName}.ejs`
-        );
+        //set the template path - support both source and built output locations
+        const sourcePath = path.resolve(process.cwd(), "src/app/templates", `${templateName}.ejs`);
+        const builtPath = path.resolve(process.cwd(), "dist/src/app/templates", `${templateName}.ejs`);
+        const templatePath = fs.existsSync(builtPath) ? builtPath : sourcePath;
 
-        console.log(`Rendering template from: ${templatePath}`);
+        console.log(`Attempting to render email template from: ${builtPath}`);
+        console.log(`Fallback source template path: ${sourcePath}`);
+        console.log(`Using template path: ${templatePath}`);
+
         const html = await ejs.renderFile(templatePath, templateData)
 
         //send the email now
@@ -70,7 +71,12 @@ export const sendEmail = async ({
         console.log(`----Email sent to ${to} with subject "${subject}" using template "${templateName}"`)
 
     } catch (error: any) {
-        console.log("Email sending error", error.message)
+        console.error("Email sending error", {
+            message: error?.message,
+            stack: error?.stack,
+            code: error?.code ?? null,
+            response: error?.response ?? null,
+        });
         throw new AppError(status.INTERNAL_SERVER_ERROR, "Failed to send email")
     }
 }
