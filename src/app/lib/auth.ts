@@ -30,7 +30,7 @@ export const auth = betterAuth({
     },
     advanced: {
         // disableCSRFCheck: true
-        useSecureCookies: false,
+        useSecureCookies: process.env.NODE_ENV === "production",
         cookies: {
             sessionToken: {
                 name: "session_token", // force the cookie name to be "session_token"

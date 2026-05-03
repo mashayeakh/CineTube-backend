@@ -42,7 +42,12 @@ export const sendEmail = async ({
 }: sendEmailOptions) => {
     try {
         //set the template path
-        const templatePath = path.resolve(process.cwd(), `src/app/templates/${templateName}.ejs`);
+        // const templatePath = path.resolve(process.cwd(), `src/app/templates/${templateName}.ejs`);
+        const templatePath = path.resolve(
+            __dirname,
+            "../templates",
+            `${templateName}.ejs`
+        );
         const html = await ejs.renderFile(templatePath, templateData)
 
         //send the email now
