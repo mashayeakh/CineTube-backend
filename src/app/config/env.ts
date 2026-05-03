@@ -61,7 +61,6 @@ const loadEnvVariables = (): EnvConfig => {
         "REFRESH_TOKEN_EXPIRES_IN",
         "BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN",
         "BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE",
-        "FRONTEND_URL",
         "EMAIL_SENDER_SMTP_USER",
         "EMAIL_SENDER_SMTP_PASS",
         "EMAIL_SENDER_SMTP_HOST",
@@ -86,7 +85,15 @@ const loadEnvVariables = (): EnvConfig => {
 
     const nodeEnv = process.env.NODE_ENV as string;
     const betterAuthUrl = process.env.BETTER_AUTH_URL as string;
-    const frontendUrl = process.env.FRONTEND_URL as string;
+    const frontendUrl =
+        process.env.FRONTEND_URL ||
+        process.env.APP_URL ||
+        process.env.NEXT_PUBLIC_APP_URL ||
+        "";
+
+    if (!frontendUrl) {
+        throw new Error("Environment variable FRONTEND_URL or APP_URL or NEXT_PUBLIC_APP_URL is required but not set");
+    }
 
     if (nodeEnv === "production") {
         if (/localhost|127\.0\.0\.1/i.test(betterAuthUrl)) {
@@ -127,7 +134,7 @@ const loadEnvVariables = (): EnvConfig => {
         REFRESH_TOKEN_EXPIRES_IN: process.env.REFRESH_TOKEN_EXPIRES_IN as string,
         BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN: process.env.BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN as string,
         BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE: process.env.BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE as string,
-        FRONTEND_URL: process.env.FRONTEND_URL as string,
+        FRONTEND_URL: frontendUrl,
         GEMINI_API_KEY: process.env.GEMINI_API_KEY as string,
         EMAIL_SENDER: {
             SMTP_USER: process.env.EMAIL_SENDER_SMTP_USER as string,
