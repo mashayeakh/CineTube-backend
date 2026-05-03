@@ -121,7 +121,9 @@ export const auth = betterAuth({
                                 name: user.name,
                                 otp: otp,
                             }
-                        })
+                        }).catch((error) => {
+                            console.error("Failed to send verification OTP", error?.message ?? error);
+                        });
                     }
                 }
                 //otp , for forget password
@@ -141,7 +143,9 @@ export const auth = betterAuth({
                                 name: user.name,
                                 otp: otp,
                             }
-                        })
+                        }).catch((error) => {
+                            console.error("Failed to send password reset OTP", error?.message ?? error);
+                        });
                     }
                 }
             },
