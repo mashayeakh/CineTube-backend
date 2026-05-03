@@ -54,7 +54,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Better Auth routes - Let Better Auth handle ALL auth routes
-app.all("/api/auth/*splat", toNodeHandler(auth));
+// app.all("/api/auth/*splat", toNodeHandler(auth));
+// app.use("/api/auth/", toNodeHandler(auth))
 
 
 // Parse URL-encoded bodies (optional, but good to have)
