@@ -6,18 +6,16 @@ import ejs from 'ejs'
 import { AppError } from '../errorHelpers/AppError';
 import status from 'http-status';
 
-//transporter 
+//transporter
 const transporter = nodemailer.createTransport({
     host: envVars.EMAIL_SENDER.SMTP_HOST,
-    port: parseInt(envVars.EMAIL_SENDER.SMTP_PORT),
-    secure: parseInt(envVars.EMAIL_SENDER.SMTP_PORT) === 465,
+    port: Number(envVars.EMAIL_SENDER.SMTP_PORT),
+    secure: true,
     auth: {
         user: envVars.EMAIL_SENDER.SMTP_USER,
         pass: envVars.EMAIL_SENDER.SMTP_PASS,
     },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
+
 })
 
 //interface for email options
