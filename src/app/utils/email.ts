@@ -42,18 +42,14 @@ export const sendEmail = async ({
     attachments
 }: sendEmailOptions) => {
     try {
-        //set the template path - handle both CommonJS and ESM
-        let templatePath: string;
+        //set the template path - use process.cwd() for reliable path resolution
+        const templatePath = path.resolve(
+            process.cwd(),
+            "src/app/templates",
+            `${templateName}.ejs`
+        );
 
-        if (typeof __dirname !== 'undefined') {
-            // CommonJS environment
-            templatePath = path.resolve(__dirname, "../templates", `${templateName}.ejs`);
-        } else {
-            // ESM environment or compiled code
-            const __filename = fileURLToPath(import.meta.url);
-            const __dirname = path.dirname(__filename);
-            templatePath = path.resolve(__dirname, "../templates", `${templateName}.ejs`);
-        }
+        console.log(`Rendering template from: ${templatePath}`);
         const html = await ejs.renderFile(templatePath, templateData)
 
         //send the email now
