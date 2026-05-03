@@ -7,7 +7,7 @@ import { AppError } from '../errorHelpers/AppError';
 import status from 'http-status';
 
 const smtpPort = Number(envVars.EMAIL_SENDER.SMTP_PORT);
-const smtpOptions = {
+const smtpOptions: any = {
     host: envVars.EMAIL_SENDER.SMTP_HOST,
     port: smtpPort,
     secure: smtpPort === 465,
@@ -23,29 +23,30 @@ const smtpOptions = {
     },
 };
 
-const transporter = nodemailer.createTransport(smtpOptions);
+const createTransporter = (options = smtpOptions) => nodemailer.createTransport(options);
+const transporter = createTransporter();
 
 const sendMailWithRetry = async (mailOptions: nodemailer.SendMailOptions) => {
     try {
         return await transporter.sendMail(mailOptions);
     } catch (error: any) {
-        // Retry Gmail over STARTTLS if Render blocks SMTPS on port 465
-        if (
-            envVars.EMAIL_SENDER.SMTP_HOST === 'smtp.gmail.com' &&
-            smtpPort === 465 &&
-            error?.code === 'ETIMEDOUT'
-        ) {
-            console.warn('SMTP port 465 timed out; retrying with port 587 and STARTTLS');
-            const retryTransporter = nodemailer.createTransport({
+        const isGmail = envVars.EMAIL_SENDER.SMTP_HOST === 'smtp.gmail.com';
+        const timedOut = error?.code === 'ETIMEDOUT' || error?.message?.includes('Connection timeout');
+
+        if (isGmail && smtpPort === 465 && timedOut) {
+            console.warn('SMTP port 465 timed out on Gmail; retrying with port 587 and STARTTLS');
+            const retryTransporter = createTransporter({
                 ...smtpOptions,
                 port: 587,
                 secure: false,
+                requireTLS: true,
                 tls: {
                     rejectUnauthorized: false,
                 },
             });
             return await retryTransporter.sendMail(mailOptions);
         }
+
         throw error;
     }
 };
