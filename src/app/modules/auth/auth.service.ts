@@ -34,23 +34,6 @@ export const AuthService = {
             throw new AppError(status.BAD_REQUEST, "Failed to register user");
         }
 
-        //check if user already exists in our database (prisma)
-        const existingUser = await prisma.user.findUnique({
-            where: { id: data.user.id }
-        });
-
-        if (!existingUser) {
-            await prisma.user.create({
-                data: {
-                    id: data.user.id,
-                    name: data.user.name,
-                    email: data.user.email,
-                    image: data.user.image,
-                    emailVerified: data.user.emailVerified,
-                }
-            });
-        }
-
         return { data };
     },
 
