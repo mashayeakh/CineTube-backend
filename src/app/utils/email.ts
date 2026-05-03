@@ -4,6 +4,7 @@ import path from 'node:path';
 import ejs from 'ejs'
 import { AppError } from '../errorHelpers/AppError';
 import status from 'http-status';
+import { fileURLToPath } from 'node:url';
 
 //transporter 
 const transporter = nodemailer.createTransport({
@@ -41,13 +42,18 @@ export const sendEmail = async ({
     attachments
 }: sendEmailOptions) => {
     try {
-        //set the template path
-        // const templatePath = path.resolve(process.cwd(), `src/app/templates/${templateName}.ejs`);
-        const templatePath = path.resolve(
-            __dirname,
-            "../templates",
-            `${templateName}.ejs`
-        );
+        //set the template path - handle both CommonJS and ESM
+        let templatePath: string;
+
+        if (typeof __dirname !== 'undefined') {
+            // CommonJS environment
+            templatePath = path.resolve(__dirname, "../templates", `${templateName}.ejs`);
+        } else {
+            // ESM environment or compiled code
+            const __filename = fileURLToPath(import.meta.url);
+            const __dirname = path.dirname(__filename);
+            templatePath = path.resolve(__dirname, "../templates", `${templateName}.ejs`);
+        }
         const html = await ejs.renderFile(templatePath, templateData)
 
         //send the email now
