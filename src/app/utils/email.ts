@@ -6,17 +6,49 @@ import ejs from 'ejs'
 import { AppError } from '../errorHelpers/AppError';
 import status from 'http-status';
 
-//transporter
-const transporter = nodemailer.createTransport({
+const smtpPort = Number(envVars.EMAIL_SENDER.SMTP_PORT);
+const smtpOptions = {
     host: envVars.EMAIL_SENDER.SMTP_HOST,
-    port: Number(envVars.EMAIL_SENDER.SMTP_PORT),
-    secure: true,
+    port: smtpPort,
+    secure: smtpPort === 465,
     auth: {
         user: envVars.EMAIL_SENDER.SMTP_USER,
         pass: envVars.EMAIL_SENDER.SMTP_PASS,
     },
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
+    tls: {
+        rejectUnauthorized: false,
+    },
+};
 
-})
+const transporter = nodemailer.createTransport(smtpOptions);
+
+const sendMailWithRetry = async (mailOptions: nodemailer.SendMailOptions) => {
+    try {
+        return await transporter.sendMail(mailOptions);
+    } catch (error: any) {
+        // Retry Gmail over STARTTLS if Render blocks SMTPS on port 465
+        if (
+            envVars.EMAIL_SENDER.SMTP_HOST === 'smtp.gmail.com' &&
+            smtpPort === 465 &&
+            error?.code === 'ETIMEDOUT'
+        ) {
+            console.warn('SMTP port 465 timed out; retrying with port 587 and STARTTLS');
+            const retryTransporter = nodemailer.createTransport({
+                ...smtpOptions,
+                port: 587,
+                secure: false,
+                tls: {
+                    rejectUnauthorized: false,
+                },
+            });
+            return await retryTransporter.sendMail(mailOptions);
+        }
+        throw error;
+    }
+};
 
 //interface for email options
 interface sendEmailOptions {
@@ -52,7 +84,7 @@ export const sendEmail = async ({
         const html = await ejs.renderFile(templatePath, templateData)
 
         //send the email now
-        const info = await transporter.sendMail({
+        const info = await sendMailWithRetry({
             from: envVars.EMAIL_SENDER.SMTP_FROM,
             to: to,
             subject: subject,
@@ -65,7 +97,6 @@ export const sendEmail = async ({
         })
 
         console.log(`----Email sent to ${to} :${info.messageId}`)
-
         console.log(`----Email sent to ${to} with subject "${subject}" using template "${templateName}"`)
 
     } catch (error: any) {
