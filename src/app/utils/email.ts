@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import { envVars } from '../config/env';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import ejs from 'ejs'
 import { AppError } from '../errorHelpers/AppError';
 import status from 'http-status';
@@ -76,11 +77,36 @@ export const sendEmail = async ({
         //set the template path - support both source and built output locations
         const sourcePath = path.resolve(process.cwd(), "src/app/templates", `${templateName}.ejs`);
         const builtPath = path.resolve(process.cwd(), "dist/src/app/templates", `${templateName}.ejs`);
-        const templatePath = fs.existsSync(builtPath) ? builtPath : sourcePath;
+        
+        // robust fallback using __dirname
+        const currentFileDir = path.dirname(fileURLToPath(import.meta.url));
+        const relativeTemplatePath = path.resolve(currentFileDir, "../templates", `${templateName}.ejs`);
 
-        console.log(`Attempting to render email template from: ${builtPath}`);
-        console.log(`Fallback source template path: ${sourcePath}`);
-        console.log(`Using template path: ${templatePath}`);
+        let templatePath = "";
+        if (fs.existsSync(builtPath)) {
+            templatePath = builtPath;
+        } else if (fs.existsSync(sourcePath)) {
+            templatePath = sourcePath;
+        } else if (fs.existsSync(relativeTemplatePath)) {
+            templatePath = relativeTemplatePath;
+        } else {
+            // Check one more place: src/app/templates relative to root if running from dist
+            const rootTemplatesPath = path.resolve(process.cwd(), "src/app/templates", `${templateName}.ejs`);
+            if (fs.existsSync(rootTemplatesPath)) {
+                templatePath = rootTemplatesPath;
+            }
+        }
+
+        if (!templatePath) {
+            console.error(`Email template not found: ${templateName}. Tried paths:`, {
+                builtPath,
+                sourcePath,
+                relativeTemplatePath
+            });
+            throw new AppError(status.INTERNAL_SERVER_ERROR, `Email template ${templateName} not found`);
+        }
+
+        console.log(`Using email template path: ${templatePath}`);
 
         const html = await ejs.renderFile(templatePath, templateData)
 
@@ -101,11 +127,12 @@ export const sendEmail = async ({
         console.log(`----Email sent to ${to} with subject "${subject}" using template "${templateName}"`)
 
     } catch (error: any) {
-        console.error("Email sending error", {
+        console.error("Email sending error detailed:", {
             message: error?.message,
             stack: error?.stack,
             code: error?.code ?? null,
             response: error?.response ?? null,
+            templateName
         });
         throw new AppError(status.INTERNAL_SERVER_ERROR, "Failed to send email")
     }

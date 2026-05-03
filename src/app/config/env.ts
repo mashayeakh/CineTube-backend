@@ -8,9 +8,10 @@ interface EnvConfig {
     NODE_ENV: string,
     PORT: string,
     DATABASE_URL: string
-    BETTER_AUTH_SECRET: string
+    BETTER_AUTH_SECRET: string,
     BETTER_AUTH_URL: string,
-    ADMIN_EMAIL: string
+    BETTER_AUTH_COOKIE_DOMAIN: string,
+    ADMIN_EMAIL: string,
     ADMIN_PASSWORD: string,
     // SEED_DEMO_USER: boolean,
     // DEMO_USER_EMAIL: string,
@@ -53,6 +54,7 @@ const loadEnvVariables = (): EnvConfig => {
         "DATABASE_URL",
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
+        "BETTER_AUTH_COOKIE_DOMAIN",
         "ADMIN_EMAIL",
         "ADMIN_PASSWORD",
         "ACCESS_TOKEN_SECRET",
@@ -84,12 +86,13 @@ const loadEnvVariables = (): EnvConfig => {
     })
 
     const nodeEnv = process.env.NODE_ENV as string;
-    const betterAuthUrl = process.env.BETTER_AUTH_URL as string;
-    const frontendUrl =
+    const betterAuthUrl = (process.env.BETTER_AUTH_URL as string).replace(/\/$/, "");
+    const rawFrontendUrl =
         process.env.FRONTEND_URL ||
         process.env.APP_URL ||
         process.env.NEXT_PUBLIC_APP_URL ||
         "";
+    const frontendUrl = rawFrontendUrl.replace(/\/$/, "");
 
     if (!frontendUrl) {
         throw new Error("Environment variable FRONTEND_URL or APP_URL or NEXT_PUBLIC_APP_URL is required but not set");
@@ -122,7 +125,8 @@ const loadEnvVariables = (): EnvConfig => {
         PORT: process.env.PORT as string,
         DATABASE_URL: process.env.DATABASE_URL as string,
         BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET as string,
-        BETTER_AUTH_URL: process.env.BETTER_AUTH_URL as string,
+        BETTER_AUTH_URL: betterAuthUrl,
+        BETTER_AUTH_COOKIE_DOMAIN: process.env.BETTER_AUTH_COOKIE_DOMAIN as string,
         ADMIN_EMAIL: process.env.ADMIN_EMAIL as string,
         ADMIN_PASSWORD: process.env.ADMIN_PASSWORD as string,
         // SEED_DEMO_USER: seedDemoUser,
@@ -134,7 +138,7 @@ const loadEnvVariables = (): EnvConfig => {
         REFRESH_TOKEN_EXPIRES_IN: process.env.REFRESH_TOKEN_EXPIRES_IN as string,
         BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN: process.env.BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN as string,
         BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE: process.env.BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE as string,
-        FRONTEND_URL: process.env.FRONTEND_URL as string,
+        FRONTEND_URL: frontendUrl,
         GEMINI_API_KEY: process.env.GEMINI_API_KEY as string,
         EMAIL_SENDER: {
             SMTP_USER: process.env.EMAIL_SENDER_SMTP_USER as string,

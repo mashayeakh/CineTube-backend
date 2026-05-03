@@ -93,16 +93,26 @@ export const auth = betterAuth({
             async sendVerificationOTP({ email, otp, type }) {
                 //otp , for email verificaton 
                 if (type === "email-verification") {
-                    //fetch the email 
-                    const user = await prisma.user.findUnique({
+                    //fetch the email with a retry to handle potential race conditions
+                    let user = await prisma.user.findUnique({
                         where: {
                             email: email
                         }
                     })
 
+                    if (!user) {
+                        console.log(`User ${email} not found initially. Retrying in 500ms...`);
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                        user = await prisma.user.findUnique({
+                            where: {
+                                email: email
+                            }
+                        })
+                    }
+
                     // if user does not exist
                     if (!user) {
-                        console.error(`User with email ${email} not found for sending OTP`);
+                        console.error(`User with email ${email} still not found for sending OTP after retry`);
                         return;
                     }
 
