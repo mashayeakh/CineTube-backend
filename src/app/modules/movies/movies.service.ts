@@ -13,13 +13,9 @@ const toAbsolutePosterUrl = (poster: string) => {
     if (!poster.startsWith("/")) return poster;
 
     const envBaseUrl = envVars.BETTER_AUTH_URL?.replace(/\/$/, "");
-    const fallbackVercelUrl = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : undefined;
-
     const baseUrl = envBaseUrl && !/localhost|127\.0\.0\.1/i.test(envBaseUrl)
         ? envBaseUrl
-        : fallbackVercelUrl;
+        : undefined;
 
     if (!baseUrl) return poster;
 
