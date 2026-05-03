@@ -108,8 +108,8 @@ export const auth = betterAuth({
                     }
 
                     if (user && !user.emailVerified) {
-                        // send email with otp
-                        await sendEmail({
+                        // send email with otp (fire and forget)
+                        sendEmail({
                             to: email,
                             subject: "Your OTP for email verification",
                             templateName: "otp",
@@ -124,7 +124,6 @@ export const auth = betterAuth({
                                 code: error?.code ?? null,
                                 response: error?.response ?? null,
                             });
-                            throw error;
                         });
                     }
                 }
@@ -137,7 +136,8 @@ export const auth = betterAuth({
                         }
                     })
                     if (user) {
-                        await sendEmail({
+                        // fire and forget
+                        sendEmail({
                             to: email,
                             subject: "Your OTP for password reset",
                             templateName: "otp",
@@ -152,7 +152,6 @@ export const auth = betterAuth({
                                 code: error?.code ?? null,
                                 response: error?.response ?? null,
                             });
-                            throw error;
                         });
                     }
                 }
