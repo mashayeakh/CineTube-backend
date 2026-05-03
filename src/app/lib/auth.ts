@@ -108,23 +108,28 @@ export const auth = betterAuth({
                     }
 
                     if (user && !user.emailVerified) {
-                        // send email with otp (fire and forget)
-                        sendEmail({
-                            to: email,
-                            subject: "Your OTP for email verification",
-                            templateName: "otp",
-                            templateData: {
-                                name: user.name,
-                                otp: otp,
-                            }
-                        }).catch((error) => {
+                        console.log(`Sending verification OTP to ${email}`);
+                        try {
+                            await sendEmail({
+                                to: email,
+                                subject: "Your OTP for email verification",
+                                templateName: "otp",
+                                templateData: {
+                                    name: user.name,
+                                    otp: otp,
+                                }
+                            });
+                            console.log(`Verification OTP sent successfully to ${email}`);
+                        } catch (error: any) {
                             console.error("Failed to send verification OTP", {
                                 message: error?.message ?? error,
                                 stack: error?.stack ?? null,
                                 code: error?.code ?? null,
                                 response: error?.response ?? null,
                             });
-                        });
+                        }
+                    } else {
+                        console.log(`Skipping OTP for ${email}: user exists=${!!user}, verified=${user?.emailVerified}`);
                     }
                 }
                 //otp , for forget password
@@ -136,23 +141,26 @@ export const auth = betterAuth({
                         }
                     })
                     if (user) {
-                        // fire and forget
-                        sendEmail({
-                            to: email,
-                            subject: "Your OTP for password reset",
-                            templateName: "otp",
-                            templateData: {
-                                name: user.name,
-                                otp: otp,
-                            }
-                        }).catch((error) => {
+                        console.log(`Sending password reset OTP to ${email}`);
+                        try {
+                            await sendEmail({
+                                to: email,
+                                subject: "Your OTP for password reset",
+                                templateName: "otp",
+                                templateData: {
+                                    name: user.name,
+                                    otp: otp,
+                                }
+                            });
+                            console.log(`Password reset OTP sent successfully to ${email}`);
+                        } catch (error: any) {
                             console.error("Failed to send password reset OTP", {
                                 message: error?.message ?? error,
                                 stack: error?.stack ?? null,
                                 code: error?.code ?? null,
                                 response: error?.response ?? null,
                             });
-                        });
+                        }
                     }
                 }
             },
