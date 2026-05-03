@@ -1,4 +1,4 @@
-import { Resend } from 'resend';
+import { BrevoClient } from '@getbrevo/brevo';
 import { envVars } from '../config/env';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -7,7 +7,9 @@ import ejs from 'ejs';
 import { AppError } from '../errorHelpers/AppError';
 import status from 'http-status';
 
-const resend = new Resend(envVars.RESEND_API_KEY);
+const brevo = new BrevoClient({
+    apiKey: envVars.BREVO_API_KEY,
+});
 
 interface sendEmailOptions {
     to: string;
@@ -29,7 +31,7 @@ export const sendEmail = async ({
     attachments,
 }: sendEmailOptions) => {
     try {
-        // ── Resolve template path ────────────────────────────────────────
+        // ── Resolve template path ─────────────────────────────────────
         const builtPath = path.resolve(process.cwd(), "dist/src/app/templates", `${templateName}.ejs`);
         const sourcePath = path.resolve(process.cwd(), "src/app/templates", `${templateName}.ejs`);
         const currentFileDir = path.dirname(fileURLToPath(import.meta.url));
@@ -49,26 +51,28 @@ export const sendEmail = async ({
 
         const html = await ejs.renderFile(templatePath, templateData);
 
-        // ── Send via Resend HTTP API ──────────────────────────────────────
-        console.log(`[Email] Sending to ${to} via Resend...`);
+        // ── Send via Brevo ────────────────────────────────────────────
+        console.log(`[Email] Sending to ${to} via Brevo...`);
 
-        const { data, error } = await resend.emails.send({
-            from: envVars.RESEND_FROM_EMAIL, // e.g. "CineTube <noreply@yourdomain.com>"
-            to,
+        const response = await brevo.transactionalEmails.sendTransacEmail({
             subject,
-            html,
-            attachments: attachments?.map((a) => ({
-                filename: a.filename,
-                content: a.content as string,
-            })),
+            htmlContent: html,
+            sender: {
+                name: envVars.BREVO_FROM_NAME,
+                email: envVars.BREVO_FROM_EMAIL,
+            },
+            to: [{ email: to }],
+            ...(attachments?.length && {
+                attachment: attachments.map((a) => ({
+                    name: a.filename,
+                    content: Buffer.isBuffer(a.content)
+                        ? a.content.toString('base64')
+                        : Buffer.from(a.content).toString('base64'),
+                })),
+            }),
         });
 
-        if (error) {
-            console.error(`[Email] ❌ Resend API error:`, error);
-            throw new AppError(status.INTERNAL_SERVER_ERROR, "Failed to send email");
-        }
-
-        console.log(`[Email] ✅ Email sent to ${to} — id=${data?.id}`);
+        console.log(`[Email] ✅ Email sent to ${to} — messageId=${(response as any)?.messageId}`);
 
     } catch (error: any) {
         console.error("[Email] ❌ sendEmail failed:", {

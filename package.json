@@ -40,6 +40,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@getbrevo/brevo": "^5.0.4",
     "@google/generative-ai": "^0.24.1",
     "@prisma/adapter-pg": "^7.5.0",
     "@prisma/client": "^7.5.0",
