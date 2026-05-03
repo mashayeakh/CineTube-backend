@@ -19,6 +19,7 @@
   "main": "dist/src/server.js",
   "scripts": {
     "start": "node dist/src/server.js",
+    "prebuild": "npm install --omit=dev=false",
     "build": "prisma generate && tsc && node src/app/scripts/fix-imports.js && node src/app/scripts/fix-prisma-imports.js",
     "build:tsup": "tsup",
     "dev": "tsx watch src/server.ts",
