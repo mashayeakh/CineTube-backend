@@ -70,6 +70,10 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello Cinetube!')
 })
 
+app.get('/health', (req: Request, res: Response) => {
+    res.status(200).json({ status: 'ok' })
+})
+
 //global error handler
 app.use(errorHandler);
 

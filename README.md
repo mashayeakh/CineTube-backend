@@ -58,7 +58,7 @@ All endpoints are served under the base prefix **`/api/v1`**.
 | File Uploads | Multer 2.1.1 + Cloudinary 2.9.0              |
 | Templating   | EJS 5.0.1                                    |
 | Development  | tsx 4.21.0                                   |
-| Deployment   | Vercel (serverless)                          |
+| Deployment   | Render                                       |
 
 **Additional Libraries:**
 
@@ -121,7 +121,7 @@ All endpoints are served under the base prefix **`/api/v1`**.
 - **Static Serving**: `/files` endpoint for uploaded content
 - **Error Handling**: Centralized error middleware with typed responses
 - **Query Building**: Dynamic filtering, searching, and pagination
-- **CORS Support**: Allowlist-based origin control with Vercel compatibility
+- **CORS Support**: Allowlist-based origin control with Render compatibility
 
 ---
 
@@ -473,9 +473,6 @@ prisma/
 │   └── ...
 └── migrations/                    # Database migrations
 
-api/
-└── index.js                       # Vercel serverless entry
-
 files/                             # Static file uploads
 ```
 
@@ -483,25 +480,25 @@ files/                             # Static file uploads
 
 ## Deployment
 
-### Vercel (Serverless)
+### Render
 
-The application is configured for Vercel serverless deployment:
+The application is configured for deployment on Render:
 
-1. **Connect to Vercel:**
+1. **Create a New Web Service:**
+   - Connect your GitHub repository to Render.
 
-   ```bash
-   vercel --prod
-   ```
+2. **Configure Environment:**
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm start`
 
-2. **Environment Variables:**
-   - Set all required environment variables in Vercel dashboard
-   - Ensure `BETTER_AUTH_URL` points to your Vercel domain
-   - Configure `FRONTEND_URL` for CORS
+3. **Environment Variables:**
+   - Set all required environment variables in the Render dashboard (copy from `.env`).
+   - Ensure `BETTER_AUTH_URL` points to your Render `.onrender.com` domain.
+   - Configure `FRONTEND_URL` for CORS.
 
-3. **Build Configuration:**
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-   - Install Command: `npm install`
+4. **Database:**
+   - Ensure your PostgreSQL database is accessible from Render (e.g., use Render's managed PostgreSQL or a service like Neon).
 
 ### Other Platforms
 
@@ -867,8 +864,6 @@ npm run stripe:webhook
 
 ```text
 cinetube_server/
-├── api/
-│   └── index.js                  # Vercel serverless entry point
 ├── files/                        # Uploaded static files (posters)
 ├── prisma/
 │   ├── generated/
@@ -928,29 +923,10 @@ cinetube_server/
 ├── package.json
 ├── prisma.config.ts
 ├── tsconfig.json
-└── vercel.json
+└── tsconfig.json
 ```
 
----
 
-## Deployment
-
-This project is configured for **Vercel** serverless deployment via `api/index.js` and `vercel.json`.
-
-### Steps
-
-1. Push the repository to GitHub.
-2. Import the project in [Vercel](https://vercel.com).
-3. Add all required environment variables in the Vercel project settings (use production values).
-4. Run migrations against your production PostgreSQL instance before the first deploy:
-
-   ```bash
-   DATABASE_URL=<production_url> npx prisma migrate deploy
-   ```
-
-5. Deploy — Vercel will run `npm run build` automatically.
-
-> **Important:** Use a separate production database. Never point production at a local or development database.
 > |-- tsconfig.json
 > |-- prisma.config.ts
 > |-- README.md
@@ -1006,18 +982,3 @@ npm run build
 npm start
 ````
 
-## Vercel Production Deployment
-
-1. Set production env vars in Vercel Project Settings using `.env.production.example` as reference.
-2. Ensure production DB URL is different from local `.env` DB URL.
-3. Deploy:
-
-```bash
-npx vercel --prod
-```
-
-4. If Prisma schema changed, run migration in production:
-
-```bash
-npx prisma migrate deploy
-```
