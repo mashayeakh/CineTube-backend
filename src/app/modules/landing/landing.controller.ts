@@ -50,6 +50,17 @@ export const LandingController = {
             message: "Popular movies fetched successfully",
             result: movies
         });
+    }),
+
+    // community stats
+    getCommunityStats: catchAsyc(async (req: Request, res: Response) => {
+        const stats = await LandingService.getCommunityStats();
+        sendResponse(res, {
+            httpStatusCode: status.OK,
+            success: true,
+            message: "Community stats fetched successfully",
+            result: stats
+        });
     })
 
 }

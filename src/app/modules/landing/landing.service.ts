@@ -80,13 +80,6 @@ export const LandingService = {
 
     //!popular movies
     async getPopularMovies() {
-        // const movies = await prisma.movie.findMany({
-        //     include: {
-        //         reviews: true,
-        //         watchlists: true
-        //     }
-        // });
-
         const movies = await prisma.movie.findMany({
             include: {
                 reviews: {
@@ -114,8 +107,21 @@ export const LandingService = {
                 };
             })
             .sort((a, b) => b.score - a.score);
+    },
+
+    //!community stats
+    async getCommunityStats() {
+        const [totalUsers, totalMovies, totalReviews, totalComments] = await Promise.all([
+            prisma.user.count(),
+            prisma.movie.count(),
+            prisma.review.count(),
+            prisma.comment.count(),
+        ]);
+
+        return {
+            members: totalUsers,
+            movies: totalMovies,
+            engagement: totalReviews + totalComments
+        };
     }
-
-
-
-} 
+}
