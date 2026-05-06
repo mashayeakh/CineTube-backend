@@ -44,8 +44,7 @@ interface EnvConfig {
         API_SECRET: string,
     },
 
-    RESEND_API_KEY: string,
-    RESEND_FROM_EMAIL: string,
+
 
     BREVO_API_KEY: string,
     BREVO_FROM_EMAIL: string,
@@ -81,8 +80,6 @@ const loadEnvVariables = (): EnvConfig => {
         "CLOUDINARY_API_KEY",
         "CLOUDINARY_API_SECRET",
         "GEMINI_API_KEY",
-        "RESEND_API_KEY",
-        "RESEND_FROM_EMAIL",
         "BREVO_API_KEY",
         "BREVO_FROM_EMAIL",
         "BREVO_FROM_NAME",
@@ -170,8 +167,7 @@ const loadEnvVariables = (): EnvConfig => {
             API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
         },
 
-        RESEND_API_KEY: process.env.RESEND_API_KEY as string,
-        RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL as string,
+
 
         BREVO_API_KEY: process.env.BREVO_API_KEY as string,
         BREVO_FROM_EMAIL: process.env.BREVO_FROM_EMAIL as string,

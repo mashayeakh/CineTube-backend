@@ -41,5 +41,11 @@ router.get(
     ReviewController.getAllReviews
 );
 
+//! get latest reviews (public)
+router.get(
+    "/public/latest",
+    ReviewController.getAllReviews
+);
+
 
 export const ReviewRouter = router;

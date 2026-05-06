@@ -100,10 +100,24 @@ export const ReviewService = {
 
         console.log("RE", reviews)
 
-        return reviews.map(review => ({
-            ...review,
-            tags: JSON.parse(review.tags || "[]")
-        }));
+        return reviews.map(review => {
+            let parsedTags = [];
+            try {
+                if (typeof review.tags === 'string' && review.tags.trim()) {
+                    parsedTags = JSON.parse(review.tags);
+                } else if (Array.isArray(review.tags)) {
+                    parsedTags = review.tags;
+                }
+            } catch (e) {
+                console.error("Failed to parse tags for review", review.id, e);
+                parsedTags = [];
+            }
+            
+            return {
+                ...review,
+                tags: parsedTags
+            };
+        });
     },
 
     //!edit the review if the stauts is pending onely
