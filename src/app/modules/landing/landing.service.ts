@@ -14,6 +14,7 @@ export const LandingService = {
                         comments: true
                     }
                 },
+                genres: true,
                 watchlists: {
                     where: {
                         addedAt: {
@@ -58,6 +59,7 @@ export const LandingService = {
                         comments: true
                     }
                 },
+                genres: true,
                 watchlists: {
                     where: {
                         addedAt: {
@@ -87,6 +89,7 @@ export const LandingService = {
                         comments: true
                     }
                 },
+                genres: true,
                 watchlists: true
             }
         });
